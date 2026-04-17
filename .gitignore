@@ -1,5 +1,7 @@
+# Build/generated artifacts — produced by scripts, not committed
 /build/
 /skills/*.skill
+/generated/*/corpus.json
 .DS_Store
 __pycache__/
 *.pyc
