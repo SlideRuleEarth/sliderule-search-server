@@ -1,12 +1,39 @@
 /build/
 /skills/*.skill
-.terraform/
-.terraform.lock.hcl
-*.tfstate
-*.tfstate.backup
-terraform.tfvars
 .DS_Store
 __pycache__/
 *.pyc
 .venv/
 venv/
+
+# --- Terraform (HashiCorp-recommended) ---------------------------------------
+# https://github.com/github/gitignore/blob/main/Terraform.gitignore
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files (we use a remote S3 backend; state should never be local)
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+# .tfvars files — may contain secrets; not versioned
+*.tfvars
+*.tfvars.json
+
+# Local override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# CLI configuration files
+.terraformrc
+terraform.rc
+
+# NOTE: .terraform.lock.hcl is intentionally NOT ignored. It pins provider
+# versions and hashes and is the Terraform equivalent of package-lock.json.
+# Commit it so every `terraform init` resolves to identical provider binaries.
