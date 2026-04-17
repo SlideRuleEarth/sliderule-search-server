@@ -1,0 +1,12 @@
+/build/
+/skills/*.skill
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+terraform.tfvars
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/

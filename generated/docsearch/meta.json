@@ -1,0 +1,10 @@
+{
+  "built_at": "2026-04-17T20:58:33Z",
+  "source_host": "docs.slideruleearth.io",
+  "crawl_strategy": "bfs",
+  "pages_crawled": 135,
+  "chunk_count": 1415,
+  "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_dim": 384,
+  "corpus_bytes": 11524038
+}
