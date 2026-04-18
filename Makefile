@@ -20,8 +20,9 @@ DOMAIN_APEX     ?= $(DOMAIN)
 S3_BUCKET       ?=
 DISTRIBUTION_ID = $(shell aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='$(DOMAIN)'].Id" --output text)
 
-BUILD_DIR = $(ROOT)/build
-SRC_DIR   = $(ROOT)/generated
+BUILD_DIR    = $(ROOT)/build
+SRC_DIR      = $(ROOT)/generated
+CORPUS_FILE  = $(SRC_DIR)/docsearch/corpus.json
 
 .PHONY: help build clean deploy smoketest rebuild-corpus package-skill \
         upload invalidate live-update \
@@ -45,11 +46,18 @@ help: ## That's me!
 clean: ## Remove the build/ tree
 	rm -rf $(BUILD_DIR)
 
-build: ## Stage generated/ into build/
+build: $(CORPUS_FILE) ## Stage generated/ into build/ (builds corpus if missing)
 	@bash $(ROOT)/scripts/build.sh
 
-rebuild-corpus: ## Re-crawl docs.slideruleearth.io and rebuild the docsearch corpus
+# File target: corpus.json is a build artifact (gitignored). If absent,
+# make auto-regenerates it before any downstream target that depends on it.
+$(CORPUS_FILE):
+	@echo "corpus.json missing — crawling + embedding docs.slideruleearth.io..."
 	python3 $(ROOT)/tools/build_docsearch_corpus.py
+
+rebuild-corpus: ## Force re-crawl of docs.slideruleearth.io
+	rm -f $(CORPUS_FILE)
+	$(MAKE) $(CORPUS_FILE)
 
 package-skill: ## Package skills/sliderule-docsearch/ into a .skill zip
 	@bash $(ROOT)/scripts/package_skill.sh sliderule-docsearch
