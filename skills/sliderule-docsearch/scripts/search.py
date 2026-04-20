@@ -29,6 +29,7 @@ import os
 import re
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
 
 # Quiet two known-benign HuggingFace banners that would otherwise print
 # every time search.py runs. Set via env vars (rather than calling the
@@ -55,12 +56,57 @@ from pathlib import Path
 os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")
 os.environ.setdefault("HF_HUB_VERBOSITY", "error")
 
-import requests
+
+def _missing_deps_exit(exc: "ModuleNotFoundError") -> None:
+    """Print an actionable install hint and exit 2 when a required
+    third-party package is missing.
+
+    Used by both the module-level `import requests` guard below and
+    `load_embedder()` later. Keeping the message in one helper means
+    the user sees the same recovery playbook regardless of which
+    package is missing.
+
+    Lives before any third-party import, so it uses stdlib only.
+    """
+    # exc.name is the top-level package ("requests", "sentence_transformers")
+    print(
+        f"\nERROR: required package '{exc.name}' is not installed.\n\n"
+        f"This skill's Python dependencies aren't available in the\n"
+        f"current interpreter. Install them with:\n"
+        f"\n"
+        f"  pip install -r skills/sliderule-docsearch/requirements.txt\n"
+        f"\n"
+        f"Or, if you're using the repo-local venv, 'make freeplay' and\n"
+        f"'make rebuild-corpus' auto-select .venv/bin/python and print\n"
+        f"a clearer hint.\n",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+# Module-level third-party imports. The only one that runs unconditionally
+# at file load is 'requests' — numpy and sentence_transformers are imported
+# inside the functions that need them, so they can't blow up a mis-used
+# 'python search.py --help'.
+try:
+    import requests
+except ModuleNotFoundError as e:
+    _missing_deps_exit(e)
 
 EXPECTED_EMBEDDER = "sentence-transformers/all-MiniLM-L6-v2"
 DEFAULT_BASE_URL = "https://search.testsliderule.org"
-DEFAULT_CORPUS_PATH = "/docsearch/corpus.json"
 DEFAULT_META_PATH = "/docsearch/meta.json"
+
+# Corpus URLs are content-addressed: the path embeds the sha256 of the
+# bytes. A deploy publishes a new /docsearch/corpus_<new_sha>.json AND
+# keeps the old /docsearch/corpus_<old_sha>.json live for a while, so
+# an in-flight client that fetched meta.json before the pointer flip
+# can still successfully fetch its (old) corpus.
+#
+# The URL scheme guarantees the race-free invariant the reviewer
+# flagged: it is impossible for /docsearch/corpus_<X>.json to return
+# bytes that don't hash to X, no matter what meta advertises.
+DEFAULT_CORPUS_PATH_TEMPLATE = "/docsearch/corpus_{sha}.json"
 
 # Minimal English stopwords. Intentionally small: we keep technical-looking
 # tokens (atl03x, phoreal, etc.) through and only drop grammatical filler
@@ -98,17 +144,56 @@ def log(msg: str) -> None:
 
 
 def resolve_urls(args: argparse.Namespace) -> tuple[str, str]:
-    """Return (corpus_url, meta_url) based on flags + env + defaults.
+    """Return (base_url, meta_url) based on flags + env + defaults.
 
-    Precedence: explicit --corpus-url / --meta-url > SLIDERULE_SEARCH_BASE
-    env var > built-in default. The two URLs are independent so a dev can
-    point at a local file server for the corpus while still hitting prod
-    meta, etc.
+    The corpus URL is NOT returned here — it's derived at fetch time
+    from meta.json's corpus_sha256 (see corpus_url_for). That's what
+    makes the deploy race-free: we never fetch a fixed /corpus.json
+    path that the server might be flipping behind us.
+
+    Precedence for base: --meta-url's scheme+host > SLIDERULE_SEARCH_BASE
+    env var > built-in default.
+
+    The --meta-url rule is load-bearing: if the user points at a
+    staging meta.json but base stayed on the default host, we'd
+    fetch meta from staging and corpus from prod — a split-brain
+    fetch that either 404s (sha not on default host) or silently
+    queries the wrong environment (sha coincidentally exists
+    on both).  By deriving base from --meta-url when set, meta and
+    corpus always come from the same host unless the caller
+    explicitly overrides --corpus-url as well.
     """
-    base = os.environ.get("SLIDERULE_SEARCH_BASE", DEFAULT_BASE_URL).rstrip("/")
-    corpus_url = args.corpus_url or f"{base}{DEFAULT_CORPUS_PATH}"
-    meta_url = args.meta_url or f"{base}{DEFAULT_META_PATH}"
-    return corpus_url, meta_url
+    if args.meta_url:
+        # Extract scheme+host from the override and make that the
+        # base for the corpus-URL derivation.  Path + query on the
+        # meta URL itself are preserved (meta_url is used as-is),
+        # but base intentionally strips to scheme://host so that
+        # /docsearch/corpus_<sha>.json is appended at the root.
+        parsed = urlparse(args.meta_url)
+        if not parsed.scheme or not parsed.netloc:
+            print(
+                f"ERROR: --meta-url must be a full URL with scheme and "
+                f"host (e.g. https://search.example.com/docsearch/meta.json). "
+                f"Got: {args.meta_url!r}",
+                file=sys.stderr,
+            )
+            sys.exit(2)
+        base = f"{parsed.scheme}://{parsed.netloc}"
+        meta_url = args.meta_url
+    else:
+        base = os.environ.get("SLIDERULE_SEARCH_BASE", DEFAULT_BASE_URL).rstrip("/")
+        meta_url = f"{base}{DEFAULT_META_PATH}"
+    return base, meta_url
+
+
+def corpus_url_for(base_url: str, sha: str) -> str:
+    """Build the content-addressed corpus URL for a given sha.
+
+    The URL's path contains the sha, so fetching this URL can only
+    ever return bytes that hash to `sha` (assuming the server hasn't
+    been corrupted). That's the whole point of the versioned scheme.
+    """
+    return f"{base_url.rstrip('/')}{DEFAULT_CORPUS_PATH_TEMPLATE.format(sha=sha)}"
 
 
 def cache_path_for(sha: str) -> Path:
@@ -140,14 +225,23 @@ def fetch_meta(url: str) -> dict:
 
 
 def load_corpus_from_url(
-    corpus_url: str, meta: dict, force_refresh: bool
+    base_url: str,
+    meta: dict,
+    force_refresh: bool,
+    corpus_url_override: str | None = None,
 ) -> tuple[dict, Path]:
     """Fetch corpus.json if our cache doesn't already have the sha'd copy.
 
-    Also verifies the downloaded bytes actually hash to what meta said
-    they would — a mismatch means either meta.json on the server is
-    stale relative to corpus.json, or something tampered with the
-    response in flight. Either way, refuse to load it.
+    Under the content-addressed URL scheme the corpus URL is derived
+    from meta.corpus_sha256 — fetching that path can't return
+    mismatched bytes. We still verify the hash after download as a
+    belt-and-suspenders check, which also catches a corrupted cache
+    file if one somehow survives.
+
+    corpus_url_override bypasses the derivation for dev setups that
+    want to point the skill at a specific non-versioned file. When
+    passed, we don't control the URL scheme, so the hash check is
+    the only guard left.
     """
     sha = meta.get("corpus_sha256")
     if not sha:
@@ -158,6 +252,9 @@ def load_corpus_from_url(
             file=sys.stderr,
         )
         sys.exit(2)
+
+    # Pick the URL: explicit override > content-addressed derivation.
+    corpus_url = corpus_url_override or corpus_url_for(base_url, sha)
 
     cache_path = cache_path_for(sha)
 
@@ -206,10 +303,12 @@ def load_corpus(args: argparse.Namespace) -> tuple[dict, dict | None]:
                 meta = None
         return corpus, meta
 
-    corpus_url, meta_url = resolve_urls(args)
+    base_url, meta_url = resolve_urls(args)
     meta = fetch_meta(meta_url)
     corpus, _cache_path = load_corpus_from_url(
-        corpus_url, meta, force_refresh=args.force_refresh
+        base_url, meta,
+        force_refresh=args.force_refresh,
+        corpus_url_override=args.corpus_url,
     )
     return corpus, meta
 
@@ -230,13 +329,67 @@ def validate_corpus(corpus: dict) -> None:
         sys.exit(2)
 
 
+def load_embedder():
+    """Load the sentence-transformer model with a user-friendly failure
+    message.
+
+    Two failure surfaces we want to catch cleanly instead of raising a
+    raw traceback:
+
+      1. Package not installed. If sentence-transformers isn't in the
+         current Python environment, the raw error is a
+         ModuleNotFoundError from the 'from sentence_transformers
+         import' line. The `make freeplay` / `make rebuild-corpus`
+         targets have a preflight import-check for this, but someone
+         running `python search.py ...` directly bypasses that.
+
+      2. Model download failure. With the package installed but no
+         local cache and no network (corporate proxy, air-gapped
+         runtime, HF Hub outage), HuggingFace raises connection/
+         resolution errors that unwind as a noisy httpx/urllib3/
+         huggingface_hub traceback.
+
+    Both cases exit 2 with a short, actionable recovery playbook —
+    matches the existing error-exit convention (validate_corpus).
+    """
+    try:
+        # Import INSIDE the try so a missing package lands in our
+        # ModuleNotFoundError handler, not a raw traceback.
+        from sentence_transformers import SentenceTransformer
+    except ModuleNotFoundError as e:
+        _missing_deps_exit(e)  # reuses the shared hint; does not return
+
+    try:
+        return SentenceTransformer(EXPECTED_EMBEDDER)
+    except (OSError, ValueError, RuntimeError) as e:
+        # OSError covers most of the network-y HF exceptions (they
+        # inherit from it): LocalEntryNotFoundError, ConnectionError,
+        # RepositoryNotFoundError. ValueError/RuntimeError catch
+        # malformed-cache and missing-file surprises. Broad enough
+        # to catch real failures, narrow enough not to swallow bugs.
+        print(
+            f"\nERROR: failed to load embedder '{EXPECTED_EMBEDDER}'.\n\n"
+            f"Cause: {type(e).__name__}: {e}\n\n"
+            f"This is usually a HuggingFace network issue on first run.\n"
+            f"Fixes:\n"
+            f"  1. Check your internet connection and retry.\n"
+            f"  2. Pre-cache the model while online:\n"
+            f"       python -c \"from sentence_transformers import SentenceTransformer; \\\n"
+            f"                  SentenceTransformer('{EXPECTED_EMBEDDER}')\"\n"
+            f"  3. If running offline/air-gapped, place a pre-downloaded\n"
+            f"     model at ~/.cache/huggingface/hub/ before invoking\n"
+            f"     the skill.\n",
+            file=sys.stderr,
+        )
+        sys.exit(2)
+
+
 def embed_query(query: str):
     """Turn the query string into a unit-length 384-dim vector, ready
     to dot-product against the pre-computed chunk matrix."""
     import numpy as np
-    from sentence_transformers import SentenceTransformer
 
-    model = SentenceTransformer(EXPECTED_EMBEDDER)
+    model = load_embedder()
     vec = model.encode([query], convert_to_numpy=True)[0]
     norm = np.linalg.norm(vec)
     if norm > 0:
@@ -510,10 +663,11 @@ def run_repl(corpus: dict, meta: dict | None, args: argparse.Namespace) -> int:
     the corpus after a rebuild.
     """
     import numpy as np
-    from sentence_transformers import SentenceTransformer
 
     log("Loading embedder (one-time, ~3s)...")
-    model = SentenceTransformer(EXPECTED_EMBEDDER)
+    # Shared helper — prints an actionable recovery playbook on
+    # network/cache failure instead of a raw HF traceback.
+    model = load_embedder()
 
     # State mutated by :commands. Kept in a dict so handle_repl_command
     # can update it in place without passing a slew of out-parameters.
@@ -562,13 +716,29 @@ def run_repl(corpus: dict, meta: dict | None, args: argparse.Namespace) -> int:
         print()
 
 
+def _positive_int(s: str) -> int:
+    """argparse `type=` validator: accept 1, 2, 3, ... and reject
+    0 and negatives. Matches the REPL's :k validation in
+    handle_repl_command() so the one-shot and REPL paths behave
+    identically. --top-k 0 silently returns zero hits under the
+    previous unvalidated int cast; --top-k -3 did worse things
+    (numpy negative-index slicing)."""
+    v = int(s)
+    if v < 1:
+        raise argparse.ArgumentTypeError(
+            f"must be a positive integer, got {v}"
+        )
+    return v
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     # query is optional so --repl can run without one. We validate
     # below that exactly one of (query, --repl) is provided.
     parser.add_argument("query", nargs="?", default=None,
                         help="The search query. Required unless --repl is set.")
-    parser.add_argument("--top-k", type=int, default=5)
+    parser.add_argument("--top-k", type=_positive_int, default=5,
+                        help="Number of results to return (positive int).")
     parser.add_argument("--corpus-url", default=None,
                         help="Override corpus URL (otherwise derived from base).")
     parser.add_argument("--meta-url", default=None,

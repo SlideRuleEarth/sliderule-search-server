@@ -107,18 +107,30 @@ package-skill: ## Package skills/sliderule-docsearch/ into a .skill zip
 
 # ---- Sync + invalidate ----------------------------------------------------------------------------
 
-upload: ## Sync build/ to s3://$(S3_BUCKET)/ (Content-Type auto-detected from .json)
+# Deploy is race-free via content-addressed corpus URLs + tag-based
+# cleanup. See scripts/upload.sh for the detailed logic; the Makefile
+# just delegates so we don't fight Makefile escaping rules for a
+# multi-step bash flow. The short version:
+#
+#   1. sync non-corpus files (--delete) preserving versioned corpora
+#   2. cp new versioned corpus (immutable cache)
+#   3. cp meta.json (atomic pointer flip)
+#   4. tag the previously-live corpus state=stale (eligible for
+#      eventual lifecycle expiration)
+#
+# The tag step is what makes S3 lifecycle safe: it only expires
+# tagged objects, so the current corpus is never at risk — even if
+# we skip deploys for months.
+upload: ## Sync build/ to s3://$(S3_BUCKET)/ (see scripts/upload.sh)
 	@test -d $(BUILD_DIR) || (echo "❌ $(BUILD_DIR) missing — run 'make build' first"; exit 1)
-	export AWS_MAX_ATTEMPTS=5 AWS_RETRY_MODE=standard && \
-	echo "Syncing $(BUILD_DIR) -> s3://$(S3_BUCKET)/" && \
-	aws s3 sync $(BUILD_DIR)/ s3://$(S3_BUCKET)/ \
-		--delete \
-		--cache-control "max-age=60"
+	@export AWS_MAX_ATTEMPTS=5 AWS_RETRY_MODE=standard && \
+	 bash $(ROOT)/scripts/upload.sh $(BUILD_DIR) $(S3_BUCKET)
 
-invalidate: ## Invalidate all published paths on the CloudFront distribution
-	export AWS_MAX_ATTEMPTS=5 AWS_RETRY_MODE=standard && \
-	echo "Invalidating CloudFront distribution $(DISTRIBUTION_ID)..." && \
-	aws cloudfront create-invalidation --distribution-id $(DISTRIBUTION_ID) --paths "/*"
+invalidate: ## Invalidate meta.json and errors/ (versioned corpora don't need it)
+	@export AWS_MAX_ATTEMPTS=5 AWS_RETRY_MODE=standard && \
+	echo "Invalidating /docsearch/meta.json + /errors/* on CloudFront..." && \
+	aws cloudfront create-invalidation --distribution-id $(DISTRIBUTION_ID) \
+		--paths "/docsearch/meta.json" "/errors/*"
 
 live-update: check-vars build upload invalidate ## Build, upload, and invalidate
 
