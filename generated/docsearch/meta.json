@@ -1,11 +1,11 @@
 {
-  "built_at": "2026-04-20T11:49:34Z",
+  "built_at": "2026-04-20T12:52:14Z",
   "source_host": "docs.slideruleearth.io",
   "crawl_strategy": "bfs",
-  "pages_crawled": 133,
-  "chunk_count": 1465,
+  "pages_crawled": 105,
+  "chunk_count": 1028,
   "embedder": "sentence-transformers/all-MiniLM-L6-v2",
   "embedding_dim": 384,
-  "corpus_bytes": 11945798,
-  "corpus_sha256": "d69ac48ec5184c985f6c30760e953c124cc964e2f2eb9761096eede4db7f03b6"
+  "corpus_bytes": 8314615,
+  "corpus_sha256": "aa11b1b13477789969765a861969e3600fa014f5b01fe0f0ac0e9b7890ee0abd"
 }

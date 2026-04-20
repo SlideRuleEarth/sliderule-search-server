@@ -41,6 +41,46 @@ CONTENT_SELECTORS = [
     ("div", {"class": "rst-content"}),
 ]
 
+# URL paths that match one of these prefixes are Sphinx machinery, not
+# human-authored content. Filtering them at the crawl stage (before we
+# even fetch) saves bandwidth and, more importantly, keeps them out of
+# the embeddings + lexical index entirely.
+#
+# Why each is excluded:
+#
+#   /_modules/   Sphinx viewcode extension. Generates one HTML page per
+#                documented Python module with the entire source code
+#                syntax-highlighted. These pages are token-rich copies
+#                of the same identifiers the curated API reference
+#                describes in prose, so they dominate IDF-weighted
+#                lexical ranking and saturate top-K for identifier
+#                queries (e.g. a bare "atl03" query would otherwise
+#                fill top-5 with sibling sub-chunks of the icesat2
+#                module dump). No new semantic information lives here.
+#
+#   /_sources/   Raw .rst/.md sources, linked from the "View page
+#                source" footer. Same content as the rendered page
+#                but without chunk-relevant structure.
+#
+#   /genindex    Auto-generated alphabetical index and its variants
+#   /py-modindex (genindex-all.html, py-modindex.html). Pure lists of
+#                links, zero prose.
+#
+#   /search.html Sphinx's own client-side search UI — stub page, not
+#                content.
+#
+# /_static/, /_images/, /_downloads/ don't need to appear here because
+# the crawler already rejects non-HTML Content-Type responses (see
+# is_html_response + fetch_page).
+SKIP_PATH_PREFIXES = (
+    "/_modules/",
+    "/_sources/",
+    "/genindex",
+    "/py-modindex",
+    "/search.html",
+)
+
+
 STRIP_SELECTORS = [
     ("nav", {}),
     ("header", {}),
@@ -81,6 +121,10 @@ def fetch_sitemap(session: requests.Session) -> list[str] | None:
             text = (loc.text or "").strip()
             if text and urlparse(text).netloc == HOST:
                 urls.append(urldefrag(text).url)
+    # Drop Sphinx machinery URLs before we ever hit the network — some
+    # sitemaps dutifully list /_modules/* and /genindex.html, and we'd
+    # rather not waste bandwidth fetching them only to throw away.
+    urls = [u for u in urls if is_content_url(u)]
     return sorted(set(urls)) if urls else None
 
 
@@ -91,6 +135,18 @@ def is_html_response(resp: requests.Response) -> bool:
 
 def normalize_url(url: str) -> str:
     return urldefrag(url).url.rstrip("/") or url
+
+
+def is_content_url(url: str) -> bool:
+    """Return False for Sphinx machinery pages that we've decided not
+    to include in the corpus (see SKIP_PATH_PREFIXES).
+
+    Operates on the URL's path component only, so it's host-agnostic:
+    it works on absolute URLs (from the sitemap or BFS), relative URLs
+    that have been resolved via urljoin, and local dev URLs equally.
+    """
+    path = urlparse(url).path
+    return not any(path.startswith(prefix) for prefix in SKIP_PATH_PREFIXES)
 
 
 def crawl_from_seed(session: requests.Session, max_pages: int) -> list[str]:
@@ -149,7 +205,15 @@ def extract_links(html: str, base: str) -> list[str]:
         full = urljoin(base, href)
         if urlparse(full).netloc != HOST:
             continue
-        links.append(urldefrag(full).url)
+        # Filter machinery links here so the BFS queue never enqueues
+        # them. Every rendered Sphinx page has "View page source" and
+        # "[source]" links pointing at /_sources/ and /_modules/, so
+        # without this filter BFS would discover and fetch hundreds of
+        # them transitively.
+        full = urldefrag(full).url
+        if not is_content_url(full):
+            continue
+        links.append(full)
     return links
 
 
