@@ -81,6 +81,26 @@ SKIP_PATH_PREFIXES = (
 )
 
 
+# URL-path → category label. Each chunk carries the category through
+# to search output so AI agent consumers can weigh content types on
+# their own. We're *labeling*, not filtering — release_notes stays
+# in the corpus because it's the authoritative answer for version/
+# history queries, it just shouldn't dominate top-K for conceptual
+# questions. First-match wins; order matters — release_notes must
+# come before the broader developer_guide prefix since release notes
+# live under it.
+CATEGORY_RULES = (
+    ("/user_guide/",                      "user_guide"),
+    ("/api_reference/",                   "api_reference"),
+    ("/developer_guide/release_notes/",   "release_notes"),
+    ("/developer_guide/",                 "developer_guide"),
+    ("/getting_started/",                 "getting_started"),
+    ("/assets/",                          "tutorial"),
+    ("/background/",                      "background"),
+)
+DEFAULT_CATEGORY = "other"
+
+
 STRIP_SELECTORS = [
     ("nav", {}),
     ("header", {}),
@@ -147,6 +167,20 @@ def is_content_url(url: str) -> bool:
     """
     path = urlparse(url).path
     return not any(path.startswith(prefix) for prefix in SKIP_PATH_PREFIXES)
+
+
+def categorize_url(url: str) -> str:
+    """Classify a page by URL path. Returns a category label that will
+    be stored on every chunk from that page and surfaced in search
+    output. See CATEGORY_RULES for the mapping and DEFAULT_CATEGORY
+    for the fallback. Path-only (not host-dependent) so it works
+    regardless of whether the URL is absolute or relative-resolved.
+    """
+    path = urlparse(url).path
+    for prefix, label in CATEGORY_RULES:
+        if path.startswith(prefix):
+            return label
+    return DEFAULT_CATEGORY
 
 
 def crawl_from_seed(session: requests.Session, max_pages: int) -> list[str]:
@@ -326,6 +360,10 @@ def chunk_page(url: str, html: str) -> list[dict]:
     strip_chrome(main)
     title = page_title(soup, main)
 
+    # Category is a page-level property (URL-derived), so compute it
+    # once and attach to every chunk emitted below.
+    category = categorize_url(url)
+
     headings = main.find_all(HEADING_TAGS)
 
     chunks: list[dict] = []
@@ -341,6 +379,7 @@ def chunk_page(url: str, html: str) -> list[dict]:
                     "url": url,
                     "title": title,
                     "section": title,
+                    "category": category,
                     "text": piece,
                     "_order": sub_idx,
                 }
@@ -361,6 +400,7 @@ def chunk_page(url: str, html: str) -> list[dict]:
                     "url": url,
                     "title": title,
                     "section": heading_text or title,
+                    "category": category,
                     "text": piece,
                     "_order": idx * 1000 + sub_idx,
                 }
@@ -408,6 +448,10 @@ def build_corpus(
                 "url": chunk["url"],
                 "title": chunk["title"],
                 "section": chunk["section"],
+                # Category is a URL-derived content-type tag (user_guide,
+                # api_reference, release_notes, ...). Travels into each
+                # search result so AI agent consumers can weigh types.
+                "category": chunk.get("category", DEFAULT_CATEGORY),
                 "text": chunk["text"],
                 "embedding": round_embedding(vec),
             }

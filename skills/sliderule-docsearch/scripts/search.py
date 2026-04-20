@@ -291,6 +291,29 @@ def fuse_rrf(semantic_ranks: list[int], lexical_ranks: list[int]) -> list[float]
     ]
 
 
+def _build_result_row(chunk: dict, cosine_score: float) -> dict:
+    """Build one entry of the `results` array.
+
+    Shared by the fused and disable-lexical code paths so they can't
+    drift apart. `score` is always cosine (the display-friendly 0-1
+    value); the ordering of the caller's list is what reflects
+    fusion vs pure cosine. `category` is emitted only when the chunk
+    actually has one — older corpora built before the tagging change
+    won't, and we shouldn't leak a spurious null.
+    """
+    row = {
+        "score": round(float(cosine_score), 4),
+        "url": chunk.get("url", ""),
+        "title": chunk.get("title", ""),
+        "section": chunk.get("section", ""),
+        "text": chunk.get("text", ""),
+    }
+    category = chunk.get("category")
+    if category:
+        row["category"] = category
+    return row
+
+
 def top_k(
     corpus: dict,
     query: str,
@@ -332,15 +355,7 @@ def top_k(
         results = []
         for i in idx_sorted:
             c = chunks[int(i)]
-            results.append(
-                {
-                    "score": round(float(cosine_scores[int(i)]), 4),
-                    "url": c.get("url", ""),
-                    "title": c.get("title", ""),
-                    "section": c.get("section", ""),
-                    "text": c.get("text", ""),
-                }
-            )
+            results.append(_build_result_row(c, cosine_scores[int(i)]))
         return results
 
     # Semantic rank (1-based, via argsort inversion).
@@ -356,17 +371,7 @@ def top_k(
 
     results = []
     for i in idx_sorted:
-        c = chunks[i]
-        row = {
-            # score stays cosine for continuity — agents/users have a
-            # mental model for 0-1 cosine values. The ordering reflects
-            # fused RRF, not raw cosine.
-            "score": round(float(cosine_scores[i]), 4),
-            "url": c.get("url", ""),
-            "title": c.get("title", ""),
-            "section": c.get("section", ""),
-            "text": c.get("text", ""),
-        }
+        row = _build_result_row(chunks[i], cosine_scores[i])
         if matched_per_chunk[i]:
             # Only emit when nonempty — keeps output tidy for pure
             # semantic matches that don't share any identifier tokens.
@@ -415,8 +420,18 @@ def print_human_table(results: list[dict]) -> None:
             text = text[:77] + "..."
         matched = r.get("matched_tokens")
         mt_str = f"  matched={matched}" if matched else ""
-        # Pad URL column to 60 chars so text aligns across rows.
-        print(f"  {i}. {r['score']:.3f}  {url[:60]:<60}  {text}{mt_str}")
+        # Category shows up before the URL so you can eyeball at a
+        # glance whether a hit is user_guide, release_notes, etc.
+        # Fixed-width column keeps things aligned across rows; we
+        # show a short dash for chunks without a category (older
+        # corpora).
+        category = r.get("category") or "-"
+        # Pad columns so text aligns across rows regardless of
+        # variable-length category/URL.
+        print(
+            f"  {i}. {r['score']:.3f}  "
+            f"[{category:<15}]  {url[:55]:<55}  {text}{mt_str}"
+        )
 
 
 REPL_HELP = """\

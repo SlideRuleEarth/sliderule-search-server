@@ -69,6 +69,7 @@ The skill prints JSON to stdout:
   "results": [
     {
       "score": 0.742,
+      "category": "user_guide",
       "url": "https://docs.slideruleearth.io/...",
       "title": "X-Series APIs",
       "section": "Overview",
@@ -95,13 +96,32 @@ The skill prints JSON to stdout:
    to the key nouns and concepts — this typically lifts retrieval
    quality.
 2. Parse the JSON response. Each `results[i]` has a `score` (cosine
-   similarity, higher is better), `url`, `title`, `section`, and `text`.
-   When present, `matched_tokens` lists which of the user's query tokens
-   appeared literally in the chunk — a useful signal for confirming
-   that an identifier-heavy query (e.g. `"atl03x"`) hit the right
-   variant. Note: ranking reflects RRF-fused semantic + lexical scores,
-   so `score` (which is cosine only) doesn't always monotonically
-   decrease down the list.
+   similarity, higher is better), `url`, `title`, `section`, `category`,
+   and `text`. When present, `matched_tokens` lists which of the user's
+   query tokens appeared literally in the chunk — a useful signal for
+   confirming that an identifier-heavy query (e.g. `"atl03x"`) hit the
+   right variant. Note: ranking reflects RRF-fused semantic + lexical
+   scores, so `score` (which is cosine only) doesn't always
+   monotonically decrease down the list.
+
+3. **Use `category` to weigh content types against the user's intent.**
+   Each chunk is tagged by URL-derived content type:
+
+   | category          | what it is                               | prioritize when the user's question is... |
+   | ----------------- | ---------------------------------------- | ------------------------------------------ |
+   | `user_guide`      | curated concept + usage pages            | conceptual, "how do I...", "what is..."    |
+   | `api_reference`   | function signatures + parameter tables   | API/parameter lookups                       |
+   | `background`      | theory, data product descriptions        | background science, data interpretation     |
+   | `getting_started` | quickstarts, first-request examples      | onboarding questions                        |
+   | `tutorial`        | rendered notebooks with worked examples  | "show me an example of X"                   |
+   | `developer_guide` | architecture, internals, build process   | contributing, internals                     |
+   | `release_notes`   | per-version changelogs + known issues    | **only** version-keyed: "when was X added", "did Y change", "known bug in v?" |
+
+   `release_notes` chunks often score high on conceptual queries
+   because they name-drop the concept while reporting historical bugs.
+   For a conceptual question, treat `release_notes` hits as caveats or
+   ignore them — prefer `user_guide` / `api_reference` / `background`
+   hits as the primary answer.
 3. Synthesize an answer from the top results. Cite the specific URLs
    you used — users rely on those links to go read the authoritative
    docs themselves.
