@@ -392,9 +392,142 @@ def corpus_meta_summary(corpus: dict, meta: dict | None) -> dict:
     return summary
 
 
+def print_human_table(results: list[dict]) -> None:
+    """Render results as a compact per-line summary for the REPL.
+
+    One line per hit: rank, cosine score (display-only; ordering uses
+    the fused RRF score), short URL tail (host-stripped), first ~80
+    chars of text, and matched_tokens if present. Much easier to scan
+    than the JSON we emit in one-shot mode.
+    """
+    if not results:
+        print("  (no results)")
+        return
+    for i, r in enumerate(results, 1):
+        url = r.get("url", "")
+        for prefix in ("https://docs.slideruleearth.io/",
+                       "https://", "http://"):
+            if url.startswith(prefix):
+                url = url[len(prefix):]
+                break
+        text = r.get("text", "")
+        if len(text) > 80:
+            text = text[:77] + "..."
+        matched = r.get("matched_tokens")
+        mt_str = f"  matched={matched}" if matched else ""
+        # Pad URL column to 60 chars so text aligns across rows.
+        print(f"  {i}. {r['score']:.3f}  {url[:60]:<60}  {text}{mt_str}")
+
+
+REPL_HELP = """\
+Commands:
+  :k N          change top-k (current: {k})
+  :lex on|off   toggle lexical fusion (current: {lex})
+  :help         show this help
+  Ctrl-D        exit
+Anything else is treated as a search query."""
+
+
+def handle_repl_command(line: str, state: dict) -> None:
+    """Parse and apply a ':command' entered in the REPL.
+
+    Only state-mutating commands live here. Anything unrecognized
+    just prints a hint — we never raise, because the user is sitting
+    at a prompt and expects to keep typing.
+    """
+    parts = line[1:].split()
+    if not parts:
+        return
+    cmd = parts[0]
+    if cmd in ("help", "h", "?"):
+        print(REPL_HELP.format(
+            k=state["top_k"],
+            lex="off" if state["disable_lexical"] else "on",
+        ))
+    elif cmd == "k":
+        if len(parts) < 2 or not parts[1].isdigit() or int(parts[1]) < 1:
+            print("usage: :k <N>  (positive integer)")
+            return
+        state["top_k"] = int(parts[1])
+        print(f"top_k={state['top_k']}")
+    elif cmd == "lex":
+        if len(parts) < 2 or parts[1] not in ("on", "off"):
+            print("usage: :lex on|off")
+            return
+        state["disable_lexical"] = (parts[1] == "off")
+        print(f"lexical={'off' if state['disable_lexical'] else 'on'}")
+    else:
+        print(f"unknown command: :{cmd}  (try :help)")
+
+
+def run_repl(corpus: dict, meta: dict | None, args: argparse.Namespace) -> int:
+    """Interactive search loop.
+
+    Loads the sentence-transformer model once (~3s) and then processes
+    queries from stdin until EOF/Ctrl-D. Each subsequent query is
+    <100ms, which makes this the right tool for iterating on wording,
+    toggling lexical fusion on/off for comparison, and sanity-checking
+    the corpus after a rebuild.
+    """
+    import numpy as np
+    from sentence_transformers import SentenceTransformer
+
+    log("Loading embedder (one-time, ~3s)...")
+    model = SentenceTransformer(EXPECTED_EMBEDDER)
+
+    # State mutated by :commands. Kept in a dict so handle_repl_command
+    # can update it in place without passing a slew of out-parameters.
+    state = {
+        "top_k": args.top_k,
+        "disable_lexical": args.disable_lexical,
+    }
+
+    built_at = meta.get("built_at", "unknown") if meta else "unknown"
+    sha = (meta.get("corpus_sha256") or "")[:12] if meta else ""
+    chunk_count = len(corpus.get("chunks", []))
+
+    print()
+    print(f"Corpus: {chunk_count} chunks, built_at {built_at}"
+          + (f", sha={sha}" if sha else ""))
+    print(f"top_k={state['top_k']}, "
+          f"lexical={'off' if state['disable_lexical'] else 'on'}")
+    print("Commands: :k N   :lex on|off   :help   (Ctrl-D to exit)")
+    print()
+
+    while True:
+        try:
+            line = input("search> ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print()  # trailing newline after ^D
+            return 0
+
+        if not line:
+            continue
+
+        if line.startswith(":"):
+            handle_repl_command(line, state)
+            continue
+
+        # Normal query: embed, score, print. Uses the same top_k() as
+        # the one-shot code path, so results match exactly.
+        vec = model.encode([line], convert_to_numpy=True)[0]
+        norm = np.linalg.norm(vec)
+        if norm > 0:
+            vec = vec / norm
+        results = top_k(
+            corpus, line, vec, state["top_k"],
+            disable_lexical=state["disable_lexical"],
+        )
+        print_human_table(results)
+        print()
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("query", help="The search query.")
+    # query is optional so --repl can run without one. We validate
+    # below that exactly one of (query, --repl) is provided.
+    parser.add_argument("query", nargs="?", default=None,
+                        help="The search query. Required unless --repl is set.")
     parser.add_argument("--top-k", type=int, default=5)
     parser.add_argument("--corpus-url", default=None,
                         help="Override corpus URL (otherwise derived from base).")
@@ -412,10 +545,28 @@ def main() -> int:
                             "normal use, where the lexical boost helps identifier-"
                             "shaped queries (e.g. 'atl03x' vs 'atl03')."
                         ))
+    parser.add_argument("--repl", action="store_true",
+                        help=(
+                            "Drop into an interactive search loop instead of "
+                            "running one query and exiting. Loads the embedder "
+                            "model once, then processes queries from stdin "
+                            "until Ctrl-D. Use :help inside the REPL for "
+                            "supported commands. See also: 'make freeplay'."
+                        ))
     args = parser.parse_args()
+
+    # query is required unless --repl is set; enforce here rather than
+    # via argparse since the rule is "exactly one of the two."
+    if not args.repl and not args.query:
+        parser.error("query is required (or pass --repl for interactive mode)")
+    if args.repl and args.query:
+        parser.error("--repl is mutually exclusive with a positional query")
 
     corpus, meta = load_corpus(args)
     validate_corpus(corpus)
+
+    if args.repl:
+        return run_repl(corpus, meta, args)
 
     query_vec = embed_query(args.query)
     results = top_k(

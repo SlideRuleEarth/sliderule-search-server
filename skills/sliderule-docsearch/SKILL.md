@@ -46,6 +46,11 @@ Flags:
   exists for the current sha256.
 - `--disable-lexical` — skip the lexical rank-fusion step; results
   become pure cosine similarity. Mainly for A/B comparison.
+- `--repl` — drop into an interactive search loop instead of
+  one-shot. Loads the embedder once (~3s) and then processes
+  queries from stdin until Ctrl-D. Inside the REPL: `:k N` changes
+  top-k, `:lex on|off` toggles fusion, `:help` lists commands. For
+  local iteration, `make freeplay` is the canonical entry point.
 
 The environment variable `SLIDERULE_SEARCH_BASE` (if set) selects a
 different base URL — the skill appends `/docsearch/corpus.json` and

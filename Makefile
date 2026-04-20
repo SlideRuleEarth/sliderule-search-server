@@ -25,6 +25,7 @@ SRC_DIR      = $(ROOT)/generated
 CORPUS_FILE  = $(SRC_DIR)/docsearch/corpus.json
 
 .PHONY: help build clean deploy smoketest rebuild-corpus package-skill \
+        freeplay \
         upload invalidate live-update \
         terraform-apply terraform-destroy check-vars \
         deploy-to-testsliderule deploy-to-slideruleearth \
@@ -61,6 +62,14 @@ build: ## Stage generated/ into build/ (fails if corpus.json missing)
 	  exit 1; \
 	}
 	@bash $(ROOT)/scripts/build.sh
+
+freeplay: ## Interactive search REPL against the committed corpus (no deploy involved)
+	@test -f $(CORPUS_FILE) || { \
+	  echo "❌ $(CORPUS_FILE) is missing. Run 'make rebuild-corpus' first."; \
+	  exit 1; \
+	}
+	@python3 $(ROOT)/skills/sliderule-docsearch/scripts/search.py \
+	  --corpus-file $(CORPUS_FILE) --repl
 
 rebuild-corpus: ## Re-crawl docs.slideruleearth.io and regenerate generated/docsearch/
 	python3 $(ROOT)/tools/build_docsearch_corpus.py
