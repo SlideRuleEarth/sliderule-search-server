@@ -46,18 +46,24 @@ help: ## That's me!
 clean: ## Remove the build/ tree
 	rm -rf $(BUILD_DIR)
 
-build: $(CORPUS_FILE) ## Stage generated/ into build/ (builds corpus if missing)
+# `build` is a pure staging step: generated/ -> build/, plus an inlined
+# errors/not-found.json. It does NOT auto-regenerate the corpus — that's
+# deliberate. Auto-regen during deploy means the same commit can ship
+# different bytes depending on what the live docs site happens to serve
+# at deploy time. Instead, require the committed corpus to be present
+# and fail loudly if it isn't. Use `make rebuild-corpus` to refresh.
+build: ## Stage generated/ into build/ (fails if corpus.json missing)
+	@test -f $(CORPUS_FILE) || { \
+	  echo "❌ $(CORPUS_FILE) is missing."; \
+	  echo "   corpus.json is a committed artifact; don't auto-regenerate"; \
+	  echo "   during deploy. Run 'make rebuild-corpus' to refresh it, then"; \
+	  echo "   review and commit the diff before deploying."; \
+	  exit 1; \
+	}
 	@bash $(ROOT)/scripts/build.sh
 
-# File target: corpus.json is a build artifact (gitignored). If absent,
-# make auto-regenerates it before any downstream target that depends on it.
-$(CORPUS_FILE):
-	@echo "corpus.json missing — crawling + embedding docs.slideruleearth.io..."
+rebuild-corpus: ## Re-crawl docs.slideruleearth.io and regenerate generated/docsearch/
 	python3 $(ROOT)/tools/build_docsearch_corpus.py
-
-rebuild-corpus: ## Force re-crawl of docs.slideruleearth.io
-	rm -f $(CORPUS_FILE)
-	$(MAKE) $(CORPUS_FILE)
 
 package-skill: ## Package skills/sliderule-docsearch/ into a .skill zip
 	@bash $(ROOT)/scripts/package_skill.sh sliderule-docsearch
