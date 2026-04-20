@@ -28,6 +28,18 @@ ENV HF_HOME=/opt/hf-cache \
     PYTHONDONTWRITEBYTECODE=1
 
 COPY server/requirements.txt ${LAMBDA_TASK_ROOT}/
+
+# Install PyTorch CPU-only wheels FIRST. The default PyPI torch wheel
+# ships ~2.5 GB of CUDA kernels we never use in Lambda (Lambda has no
+# GPU). The CPU-only wheels are ~180 MB. Bypass the regular PyPI
+# index for torch; install sentence-transformers afterwards and it
+# will see torch is already satisfied and not re-install.
+#
+# Net effect on image size: ~5 GB → ~1 GB. Cold-start pulls + ECR
+# storage + `docker push` time all improve proportionally.
+RUN pip install --no-cache-dir \
+    --index-url https://download.pytorch.org/whl/cpu \
+    torch
 RUN pip install --no-cache-dir -r ${LAMBDA_TASK_ROOT}/requirements.txt
 
 # Pre-download the sentence-transformer weights into HF_HOME. Bypass
