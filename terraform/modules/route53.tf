@@ -37,3 +37,20 @@ resource "aws_route53_record" "search" {
     evaluate_target_health = false
   }
 }
+
+# IPv6 alias. The CloudFront distribution has is_ipv6_enabled = true but
+# that's only half the story — without an AAAA record, IPv6-only clients
+# can't resolve the hostname to a CloudFront edge. AWS recommends
+# matching A + AAAA alias records whenever IPv6 is enabled on the
+# distribution.
+resource "aws_route53_record" "search_ipv6" {
+  zone_id = data.aws_route53_zone.public.id
+  name    = var.domainName
+  type    = "AAAA"
+
+  alias {
+    name                   = aws_cloudfront_distribution.search.domain_name
+    zone_id                = aws_cloudfront_distribution.search.hosted_zone_id
+    evaluate_target_health = false
+  }
+}
