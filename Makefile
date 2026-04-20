@@ -24,6 +24,14 @@ BUILD_DIR    = $(ROOT)/build
 SRC_DIR      = $(ROOT)/generated
 CORPUS_FILE  = $(SRC_DIR)/docsearch/corpus.json
 
+# Prefer the repo-local .venv when it exists so `make freeplay` and
+# `make rebuild-corpus` Just Work without requiring the user to
+# `source .venv/bin/activate` first. Falls back to whatever python3 is
+# on PATH — if that shell's python doesn't have sentence-transformers,
+# the per-target import-check below prints a clear install hint instead
+# of a raw ModuleNotFoundError traceback.
+PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/python || echo python3)
+
 .PHONY: help build clean deploy smoketest rebuild-corpus package-skill \
         freeplay \
         upload invalidate live-update \
@@ -68,11 +76,31 @@ freeplay: ## Interactive search REPL against the committed corpus (no deploy inv
 	  echo "❌ $(CORPUS_FILE) is missing. Run 'make rebuild-corpus' first."; \
 	  exit 1; \
 	}
-	@python3 $(ROOT)/skills/sliderule-docsearch/scripts/search.py \
+	@$(PYTHON) -c "import sentence_transformers, numpy, requests" 2>/dev/null || { \
+	  echo "❌ skill dependencies missing in $(PYTHON)."; \
+	  echo "   Install them one of two ways:"; \
+	  echo "     (a) Repo-local venv (picked up automatically next run):"; \
+	  echo "         python3 -m venv .venv \\"; \
+	  echo "           && .venv/bin/pip install -r skills/sliderule-docsearch/requirements.txt"; \
+	  echo "     (b) Your active Python environment:"; \
+	  echo "         pip install -r skills/sliderule-docsearch/requirements.txt"; \
+	  exit 1; \
+	}
+	@$(PYTHON) $(ROOT)/skills/sliderule-docsearch/scripts/search.py \
 	  --corpus-file $(CORPUS_FILE) --repl
 
 rebuild-corpus: ## Re-crawl docs.slideruleearth.io and regenerate generated/docsearch/
-	python3 $(ROOT)/tools/build_docsearch_corpus.py
+	@$(PYTHON) -c "import sentence_transformers, bs4, requests" 2>/dev/null || { \
+	  echo "❌ builder dependencies missing in $(PYTHON)."; \
+	  echo "   Install them one of two ways:"; \
+	  echo "     (a) Repo-local venv (picked up automatically next run):"; \
+	  echo "         python3 -m venv .venv \\"; \
+	  echo "           && .venv/bin/pip install -r tools/requirements.txt"; \
+	  echo "     (b) Your active Python environment:"; \
+	  echo "         pip install -r tools/requirements.txt"; \
+	  exit 1; \
+	}
+	$(PYTHON) $(ROOT)/tools/build_docsearch_corpus.py
 
 package-skill: ## Package skills/sliderule-docsearch/ into a .skill zip
 	@bash $(ROOT)/scripts/package_skill.sh sliderule-docsearch
