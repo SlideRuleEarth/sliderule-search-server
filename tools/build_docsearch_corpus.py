@@ -367,6 +367,22 @@ def write_corpus(out_dir: Path, chunks: list[dict], dim: int) -> Path:
     return path
 
 
+# Stream the file through sha256 so we don't have to re-read corpus.json
+# into memory just to fingerprint it — corpus.json can be tens of MB and
+# we've already written it to disk at this point.
+def sha256_of(path: Path) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for block in iter(lambda: f.read(1 << 16), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+# meta.json is the public "what is currently deployed" record. The skill
+# client fetches it on every query (tiny) and uses corpus_sha256 to decide
+# whether its local corpus cache is still valid. Because the client keys
+# its cache by this hash, meta.json is effectively the cache-invalidation
+# signal for the entire distribution.
 def write_meta(
     out_dir: Path,
     pages_crawled: int,
@@ -374,6 +390,7 @@ def write_meta(
     dim: int,
     crawl_strategy: str,
     corpus_bytes: int,
+    corpus_sha256: str,
 ) -> Path:
     meta = {
         "built_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -384,6 +401,9 @@ def write_meta(
         "embedder": EMBEDDER_NAME,
         "embedding_dim": dim,
         "corpus_bytes": corpus_bytes,
+        # Fingerprint of the corpus.json bytes this meta was written
+        # alongside. The skill's cache is keyed by this value.
+        "corpus_sha256": corpus_sha256,
     }
     path = out_dir / "meta.json"
     with open(path, "w", encoding="utf-8") as f:
@@ -404,6 +424,33 @@ def main() -> int:
         type=int,
         default=200,
         help="Cap on the number of pages to fetch.",
+    )
+    # --min-pages / --min-chunks are the empty-corpus guards. If the docs
+    # site goes down mid-build, or if a site restructure breaks the
+    # content extractor, we'd otherwise silently ship a zero-chunk corpus
+    # as a successful deploy. These thresholds abort the build *before*
+    # touching corpus.json/meta.json, so the previous known-good
+    # artifacts stay in place.
+    parser.add_argument(
+        "--min-pages",
+        type=int,
+        default=20,
+        help=(
+            "Abort (non-zero exit) if fewer than this many pages crawled "
+            "successfully. Guards against transient docs-site outages "
+            "silently deploying an empty corpus. Lower intentionally if "
+            "you really want to ship a tiny build."
+        ),
+    )
+    parser.add_argument(
+        "--min-chunks",
+        type=int,
+        default=100,
+        help=(
+            "Abort if fewer than this many chunks were produced. Catches "
+            "the case where pages fetched but nothing usable came out of "
+            "the extractor (site restructure, selector mismatch, etc)."
+        ),
     )
     args = parser.parse_args()
 
@@ -429,11 +476,39 @@ def main() -> int:
     crawl_seconds = time.time() - t0
     log(f"Crawled {len(pages)} pages in {crawl_seconds:.1f}s")
 
+    # Guard #1: not enough pages means the site is probably down or the
+    # crawler is broken. Bail before we touch the on-disk artifacts.
+    if len(pages) < args.min_pages:
+        log(
+            f"ERROR: only {len(pages)} pages fetched successfully "
+            f"(minimum {args.min_pages}). Refusing to overwrite "
+            f"corpus.json/meta.json — a transient docs outage is the "
+            f"likely cause. Re-run later, or lower --min-pages if you "
+            f"really mean to ship this."
+        )
+        return 1
+
     chunks, embedder, dim = build_corpus(pages)
     log(f"Chunked to {len(chunks)} pieces")
 
+    # Guard #2: pages fetched but extractor produced nothing useful.
+    # Usually means upstream HTML structure changed and CONTENT_SELECTORS
+    # no longer matches. Bail so the old corpus isn't clobbered by an
+    # empty one.
+    if len(chunks) < args.min_chunks:
+        log(
+            f"ERROR: only {len(chunks)} chunks produced "
+            f"(minimum {args.min_chunks}). Refusing to overwrite "
+            f"corpus.json/meta.json. Likely cause: upstream HTML "
+            f"restructure — check CONTENT_SELECTORS / STRIP_SELECTORS."
+        )
+        return 1
+
+    # Past the guards. Write corpus first so we can hash it, then write
+    # meta pointing at that hash.
     corpus_path = write_corpus(out_dir, chunks, dim)
     corpus_bytes = corpus_path.stat().st_size
+    corpus_sha = sha256_of(corpus_path)
     meta_path = write_meta(
         out_dir,
         pages_crawled=len(pages),
@@ -441,6 +516,7 @@ def main() -> int:
         dim=dim,
         crawl_strategy=strategy,
         corpus_bytes=corpus_bytes,
+        corpus_sha256=corpus_sha,
     )
 
     print(f"Crawled {len(pages)} pages in {crawl_seconds:.1f}s")
@@ -448,7 +524,7 @@ def main() -> int:
     print(f"Embedded with {embedder}")
     mb = corpus_bytes / (1024 * 1024)
     print(f"Wrote {corpus_path} ({mb:.1f} MB)")
-    print(f"Wrote {meta_path}")
+    print(f"Wrote {meta_path}  (corpus_sha256={corpus_sha[:12]}...)")
     return 0
 
 
