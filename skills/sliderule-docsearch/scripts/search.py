@@ -30,6 +30,31 @@ import re
 import sys
 from pathlib import Path
 
+# Quiet two known-benign HuggingFace banners that would otherwise print
+# every time search.py runs. Set via env vars (rather than calling the
+# libraries' logging APIs) so this works before 'import transformers'
+# has happened — the first import is deep inside sentence_transformers.
+# setdefault() means a user who explicitly overrides these in their
+# shell keeps control.
+#
+#   TRANSFORMERS_VERBOSITY=error
+#     Hides the BertModel LOAD REPORT with the
+#     'embeddings.position_ids UNEXPECTED' line. That tensor is a
+#     fixed arange(max_len) buffer that older transformers versions
+#     registered and newer versions compute on the fly — the
+#     mismatch is cosmetic, not functional.
+#
+#   HF_HUB_VERBOSITY=error
+#     Hides the 'Warning: You are sending unauthenticated requests
+#     to the HF Hub' message. Anonymous downloads are fine for our
+#     volume; rate limits only bite if you're hammering the Hub.
+#
+# We intentionally do NOT set HF_HUB_DISABLE_PROGRESS_BARS — cold-start
+# model downloads (~80 MB) show a progress bar, which is the useful
+# feedback a user wants on a fresh install.
+os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")
+os.environ.setdefault("HF_HUB_VERBOSITY", "error")
+
 import requests
 
 EXPECTED_EMBEDDER = "sentence-transformers/all-MiniLM-L6-v2"
