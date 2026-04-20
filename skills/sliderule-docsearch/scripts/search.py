@@ -24,7 +24,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -34,6 +36,31 @@ EXPECTED_EMBEDDER = "sentence-transformers/all-MiniLM-L6-v2"
 DEFAULT_BASE_URL = "https://search.testsliderule.org"
 DEFAULT_CORPUS_PATH = "/docsearch/corpus.json"
 DEFAULT_META_PATH = "/docsearch/meta.json"
+
+# Minimal English stopwords. Intentionally small: we keep technical-looking
+# tokens (atl03x, phoreal, etc.) through and only drop grammatical filler
+# that would otherwise dilute IDF.
+STOPWORDS = frozenset({
+    "a", "an", "the", "is", "are", "was", "were", "be", "been", "being",
+    "what", "which", "who", "when", "where", "why", "how",
+    "and", "or", "but", "if", "then", "else", "of", "in", "on", "at",
+    "to", "for", "with", "by", "as", "that", "this", "these", "those",
+    "do", "does", "did", "can", "could", "should", "would",
+    "i", "you", "he", "she", "it", "we", "they",
+    "my", "your", "his", "her", "its", "our", "their",
+    "me", "us", "them", "him",
+})
+
+# Identifier-friendly tokenizer: splits on non-alphanumeric, preserves
+# underscores, lowercases. Keeps things like "atl03x" and "phoreal_18"
+# as single tokens.
+TOKEN_RE = re.compile(r"[a-z0-9_]+")
+
+# Reciprocal rank fusion constant. k=60 is the value from the original
+# RRF paper (Cormack et al. 2009); it damps the contribution of low-
+# ranked items so the top few dominate without a single ranker winning
+# everything.
+RRF_K = 60
 
 # Per-user cache root. We drop corpus files here keyed by their sha256
 # so switching bases (test/prod) or picking up a freshly-released
@@ -192,10 +219,100 @@ def embed_query(query: str):
     return vec
 
 
-def top_k(corpus: dict, query_vec, k: int):
-    """Cosine similarity between query_vec and every chunk's embedding,
-    then take the top K. The matrix is tiny (1400ish × 384 floats) so
-    this is a single numpy matmul, microseconds in practice."""
+def tokenize(text: str) -> list[str]:
+    """Lowercase + split on non-alphanumeric, drop length-1 tokens and
+    grammatical stopwords. Preserves identifier-shaped tokens like
+    'atl03x', 'phoreal', 'atl06_land_ice_height' intact."""
+    return [
+        t for t in TOKEN_RE.findall(text.lower())
+        if len(t) > 1 and t not in STOPWORDS
+    ]
+
+
+def lexical_signals(
+    query: str, chunks: list[dict]
+) -> tuple[list[int], list[list[str]]]:
+    """Compute IDF-weighted lexical scores per chunk, return (ranks,
+    matched_tokens_per_chunk).
+
+    ranks[i] is chunks[i]'s 1-based rank by lexical score (1 = best).
+    matched_tokens_per_chunk[i] lists the query tokens that appeared
+    in chunks[i] — surfaced in the output so agents can see *why* a
+    result ranked high.
+
+    IDF formula: log((N+1) / (df+1)). Rare terms dominate common ones.
+    A token in 1 of 1500 chunks contributes ~7.3 per match; a token
+    in 1000 of 1500 contributes ~0.4. That's what rescues queries
+    like "atl03x" — the rare token's IDF outweighs any shared prose.
+    """
+    q_tokens = set(tokenize(query))
+    n_chunks = len(chunks)
+
+    if not q_tokens or n_chunks == 0:
+        # No lexical signal available — report a flat ranking so the
+        # caller's fusion just falls through to the semantic rank.
+        return [n_chunks] * n_chunks, [[] for _ in chunks]
+
+    # Tokenize each chunk once. Section is worth including because
+    # headings often contain the most-distinctive tokens (e.g. an
+    # "ATL03x" section heading is a stronger signal than a passing
+    # mention in prose).
+    per_chunk_tokens = [
+        set(tokenize(c.get("text", "") + " " + c.get("section", "")))
+        for c in chunks
+    ]
+
+    idf = {}
+    for t in q_tokens:
+        df = sum(1 for toks in per_chunk_tokens if t in toks)
+        idf[t] = math.log((n_chunks + 1) / (df + 1))
+
+    matched_per_chunk = [sorted(q_tokens & toks) for toks in per_chunk_tokens]
+    scores = [sum(idf[t] for t in m) for m in matched_per_chunk]
+
+    # Sort by score desc; ties broken by chunk index for stability.
+    order = sorted(range(n_chunks), key=lambda i: (-scores[i], i))
+    ranks = [0] * n_chunks
+    for rank, idx in enumerate(order, start=1):
+        ranks[idx] = rank
+    return ranks, matched_per_chunk
+
+
+def fuse_rrf(semantic_ranks: list[int], lexical_ranks: list[int]) -> list[float]:
+    """Reciprocal rank fusion. score[i] = 1/(k+sem_rank) + 1/(k+lex_rank).
+
+    Independently low ranks on both sides → tiny contribution; a top
+    rank on either side → meaningful contribution. Symmetric weighting
+    means neither signal can win a tied situation on its own.
+    """
+    return [
+        1.0 / (RRF_K + s) + 1.0 / (RRF_K + l)
+        for s, l in zip(semantic_ranks, lexical_ranks)
+    ]
+
+
+def top_k(
+    corpus: dict,
+    query: str,
+    query_vec,
+    k: int,
+    disable_lexical: bool = False,
+) -> list[dict]:
+    """Rank chunks by fused semantic + lexical signals, return top K.
+
+    Semantic side: cosine similarity between query_vec and every chunk's
+    embedding — a single matmul, microseconds.
+
+    Lexical side: IDF-weighted token-overlap between query and chunk
+    text (see lexical_signals). Rescues queries where the user's
+    intent is a specific identifier (e.g. 'atl03x' vs 'atl03') that
+    the embedder can't reliably distinguish from near-neighbors.
+
+    The two ranks are fused with RRF. If disable_lexical=True the
+    lexical signal is skipped entirely and results are pure cosine —
+    useful for A/B comparison or when the query contains no
+    identifier-like tokens.
+    """
     import numpy as np
 
     chunks = corpus.get("chunks", [])
@@ -207,20 +324,54 @@ def top_k(corpus: dict, query_vec, k: int):
     norms[norms == 0] = 1.0
     matrix = matrix / norms[:, None]
 
-    scores = matrix @ query_vec
-    idx_sorted = np.argsort(-scores)[:k]
+    cosine_scores = matrix @ query_vec
+
+    if disable_lexical:
+        # Preserve the pre-fusion behavior exactly for A/B testing.
+        idx_sorted = np.argsort(-cosine_scores)[:k]
+        results = []
+        for i in idx_sorted:
+            c = chunks[int(i)]
+            results.append(
+                {
+                    "score": round(float(cosine_scores[int(i)]), 4),
+                    "url": c.get("url", ""),
+                    "title": c.get("title", ""),
+                    "section": c.get("section", ""),
+                    "text": c.get("text", ""),
+                }
+            )
+        return results
+
+    # Semantic rank (1-based, via argsort inversion).
+    sem_order = np.argsort(-cosine_scores)
+    sem_ranks = np.empty(len(chunks), dtype=int)
+    sem_ranks[sem_order] = np.arange(1, len(chunks) + 1)
+
+    lex_ranks, matched_per_chunk = lexical_signals(query, chunks)
+    fused = fuse_rrf(sem_ranks.tolist(), lex_ranks)
+
+    # Sort by fused score desc; stable by chunk index for reproducibility.
+    idx_sorted = sorted(range(len(chunks)), key=lambda i: (-fused[i], i))[:k]
+
     results = []
     for i in idx_sorted:
-        c = chunks[int(i)]
-        results.append(
-            {
-                "score": round(float(scores[int(i)]), 4),
-                "url": c.get("url", ""),
-                "title": c.get("title", ""),
-                "section": c.get("section", ""),
-                "text": c.get("text", ""),
-            }
-        )
+        c = chunks[i]
+        row = {
+            # score stays cosine for continuity — agents/users have a
+            # mental model for 0-1 cosine values. The ordering reflects
+            # fused RRF, not raw cosine.
+            "score": round(float(cosine_scores[i]), 4),
+            "url": c.get("url", ""),
+            "title": c.get("title", ""),
+            "section": c.get("section", ""),
+            "text": c.get("text", ""),
+        }
+        if matched_per_chunk[i]:
+            # Only emit when nonempty — keeps output tidy for pure
+            # semantic matches that don't share any identifier tokens.
+            row["matched_tokens"] = matched_per_chunk[i]
+        results.append(row)
     return results
 
 
@@ -253,13 +404,24 @@ def main() -> int:
                         help="Read corpus from local path; skip remote fetch.")
     parser.add_argument("--force-refresh", action="store_true",
                         help="Re-download corpus even if a cached copy exists.")
+    parser.add_argument("--disable-lexical", action="store_true",
+                        help=(
+                            "Skip the lexical rank-fusion step. Results become "
+                            "pure cosine similarity, matching the pre-fusion "
+                            "behavior. Mainly for A/B comparison — leave off for "
+                            "normal use, where the lexical boost helps identifier-"
+                            "shaped queries (e.g. 'atl03x' vs 'atl03')."
+                        ))
     args = parser.parse_args()
 
     corpus, meta = load_corpus(args)
     validate_corpus(corpus)
 
     query_vec = embed_query(args.query)
-    results = top_k(corpus, query_vec, args.top_k)
+    results = top_k(
+        corpus, args.query, query_vec, args.top_k,
+        disable_lexical=args.disable_lexical,
+    )
 
     output = {
         "query": args.query,

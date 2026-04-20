@@ -21,7 +21,11 @@ Semantic search over the SlideRule Earth documentation at
   fresh corpus — cache invalidation is immediate, not a 24-hour lag.
 - The skill embeds the user's query with the same sentence-transformer
   model (`sentence-transformers/all-MiniLM-L6-v2`), scores all chunks
-  with a single cosine-similarity matmul, and returns the top-K.
+  with a single cosine-similarity matmul, and fuses that ranking with
+  an IDF-weighted lexical-overlap ranking via reciprocal rank fusion
+  (RRF). The fusion rescues queries where the user's intent hinges on
+  a specific identifier — e.g. `"atl03x"` vs `"atl03"` — that pure
+  semantic similarity can't reliably distinguish.
 - No Anthropic API calls. No server-side compute. Retrieval runs
   locally in pure Python.
 
@@ -40,6 +44,8 @@ Flags:
   fetching (useful for local testing before the server is up).
 - `--force-refresh` — re-download the corpus even if a cached copy
   exists for the current sha256.
+- `--disable-lexical` — skip the lexical rank-fusion step; results
+  become pure cosine similarity. Mainly for A/B comparison.
 
 The environment variable `SLIDERULE_SEARCH_BASE` (if set) selects a
 different base URL — the skill appends `/docsearch/corpus.json` and
@@ -61,7 +67,8 @@ The skill prints JSON to stdout:
       "url": "https://docs.slideruleearth.io/...",
       "title": "X-Series APIs",
       "section": "Overview",
-      "text": "..."
+      "text": "...",
+      "matched_tokens": ["atl03x"]
     }
   ],
   "corpus_meta": {
@@ -84,6 +91,12 @@ The skill prints JSON to stdout:
    quality.
 2. Parse the JSON response. Each `results[i]` has a `score` (cosine
    similarity, higher is better), `url`, `title`, `section`, and `text`.
+   When present, `matched_tokens` lists which of the user's query tokens
+   appeared literally in the chunk — a useful signal for confirming
+   that an identifier-heavy query (e.g. `"atl03x"`) hit the right
+   variant. Note: ranking reflects RRF-fused semantic + lexical scores,
+   so `score` (which is cosine only) doesn't always monotonically
+   decrease down the list.
 3. Synthesize an answer from the top results. Cite the specific URLs
    you used — users rely on those links to go read the authoritative
    docs themselves.
