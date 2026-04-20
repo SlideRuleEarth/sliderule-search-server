@@ -78,8 +78,18 @@ resource "aws_cloudfront_distribution" "search" {
   }
 
   default_cache_behavior {
-    target_origin_id       = "lambda-${replace(var.domainName, ".", "-")}"
-    allowed_methods        = ["GET", "HEAD", "OPTIONS", "POST", "PUT", "PATCH", "DELETE"]
+    target_origin_id = "lambda-${replace(var.domainName, ".", "-")}"
+
+    # CloudFront only accepts one of three preset method sets for
+    # allowed_methods: [GET,HEAD], [GET,HEAD,OPTIONS], or the full
+    # [GET,HEAD,OPTIONS,PUT,POST,PATCH,DELETE]. Since we need POST
+    # (for /docsearch/search), the full set is the minimum available.
+    # PUT/PATCH/DELETE traffic that reaches Lambda is caught by the
+    # catch-all 404 in server/app.py — harmless but counts as an
+    # invocation. If we ever want to block those verbs before they
+    # reach the origin, the lever is a CloudFront Function or WAF.
+    allowed_methods = ["GET", "HEAD", "OPTIONS", "POST", "PUT", "PATCH", "DELETE"]
+
     cached_methods         = ["GET", "HEAD", "OPTIONS"]
     viewer_protocol_policy = "redirect-to-https"
     compress               = true

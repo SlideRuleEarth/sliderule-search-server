@@ -66,10 +66,18 @@ def resolve_search_url(args: argparse.Namespace) -> str:
     return f"{base}{DEFAULT_SEARCH_PATH}"
 
 
-def _positive_int(s: str) -> int:
+SERVER_TOP_K_MAX = 50  # keep in sync with server/app.py's Pydantic Field(le=50)
+
+
+def _top_k(s: str) -> int:
+    """argparse validator that matches the server's top_k bounds.
+    Failing client-side gives a clean argparse error instead of an HTTP
+    round-trip that returns 422."""
     v = int(s)
-    if v < 1:
-        raise argparse.ArgumentTypeError(f"must be a positive integer, got {v}")
+    if not (1 <= v <= SERVER_TOP_K_MAX):
+        raise argparse.ArgumentTypeError(
+            f"must be between 1 and {SERVER_TOP_K_MAX} (server max), got {v}"
+        )
     return v
 
 
@@ -83,8 +91,8 @@ def _parse_categories(s: str | None) -> list[str] | None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("query", help="The search query.")
-    parser.add_argument("--top-k", type=_positive_int, default=5,
-                        help="Number of results to return (positive int).")
+    parser.add_argument("--top-k", type=_top_k, default=5,
+                        help=f"Number of results to return (1..{SERVER_TOP_K_MAX}).")
     parser.add_argument("--disable-lexical", action="store_true",
                         help=(
                             "Ask the server to skip lexical rank fusion; "

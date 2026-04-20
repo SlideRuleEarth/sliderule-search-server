@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import math
 import re
-import sys
 
 import numpy as np
 
@@ -52,20 +51,30 @@ def tokenize(text: str) -> list[str]:
     ]
 
 
+class CorpusValidationError(ValueError):
+    """Raised when the corpus was built with a different embedder than
+    the one this server runs. Cosine similarity across mismatched
+    embedders is meaningless, so we refuse to serve."""
+
+
 def validate_corpus(corpus: dict) -> None:
-    """Embeddings from a different model are not comparable to the
-    query embedding we'll compute. Fail loudly instead of producing
-    nonsense similarity scores."""
+    """Raise CorpusValidationError if the corpus's embedder doesn't
+    match EXPECTED_EMBEDDER.
+
+    Kept as a pure function (raises instead of exiting) so callers can
+    decide how to handle the failure: the Lambda cold-start path lets
+    the exception propagate (Lambda init fails, CloudWatch logs the
+    traceback); the freeplay REPL catches and prints + exits 2; tests
+    can assert on the exception type.
+    """
     found = corpus.get("embedder")
     if found != EXPECTED_EMBEDDER:
-        print(
-            f"ERROR: corpus was built with embedder '{found}', but this "
-            f"server uses '{EXPECTED_EMBEDDER}'. Cosine similarity "
-            f"between mismatched embedders is meaningless. Rebuild the "
-            f"corpus or update the code.",
-            file=sys.stderr,
+        raise CorpusValidationError(
+            f"corpus was built with embedder '{found}', but this server "
+            f"uses '{EXPECTED_EMBEDDER}'. Cosine similarity between "
+            f"mismatched embedders is meaningless. Rebuild the corpus "
+            f"or update the code."
         )
-        sys.exit(2)
 
 
 def lexical_signals(

@@ -40,7 +40,7 @@ Flags:
 - `--disable-lexical` — ask the server to skip lexical rank-fusion; results become pure cosine similarity. Mainly for A/B comparison — leave off for normal use.
 - `--categories LIST` — comma-separated category allowlist (e.g. `user_guide,api_reference`). Filter is applied server-side **before** ranking, so `top_k` reflects the filtered universe.
 - `--search-url URL` — full override of the search endpoint (for staging/dev).
-- `--timeout SECONDS` — HTTP timeout (default 30).
+- `--timeout SECONDS` — HTTP timeout (default 60). The server is a Lambda; a cold start adds ~3–5 s to the first request after a period of idleness, so the timeout is set higher than a typical HTTP default.
 
 `SLIDERULE_SEARCH_BASE` env var picks a different base URL — the skill
 appends `/docsearch/search`.

@@ -126,7 +126,11 @@ def main() -> int:
     raw = corpus_path.read_bytes()
     corpus_sha = hashlib.sha256(raw).hexdigest()
     corpus = json.loads(raw)
-    ranking.validate_corpus(corpus)
+    try:
+        ranking.validate_corpus(corpus)
+    except ranking.CorpusValidationError as e:
+        print(f"ERROR: {e}", file=sys.stderr)
+        return 2
     chunks = corpus.get("chunks", [])
     log(f"  {len(chunks)} chunks, sha={corpus_sha[:12]}")
 
