@@ -54,6 +54,13 @@ Response: see [skills/sliderule-docsearch/SKILL.md](skills/sliderule-docsearch/S
 
 CORS: `Access-Control-Allow-Origin: *`, methods `GET, HEAD, OPTIONS, POST`.
 
+**POST bodies require an `x-amz-content-sha256` header** whose value is
+the hex-encoded SHA-256 of the request body. CloudFront uses this to
+SigV4-sign the origin request via OAC; without it Lambda URL returns
+403. The `sliderule-docsearch` skill client adds this automatically —
+direct HTTPS callers (curl, browser `fetch`, etc.) need to compute and
+add it. See [SKILL.md § Direct HTTPS callers](skills/sliderule-docsearch/SKILL.md#direct-https-callers-curl-browsers-anything-other-than-scriptssearchpy).
+
 ## Repository layout
 
 ```
@@ -81,6 +88,7 @@ tools/
 terraform/                                ECR + Lambda + CloudFront + Route 53 + ACM
 scripts/
 ├── deploy_lambda.sh                      docker build → ECR push → update Lambda
+├── test_image.sh                         build + run image via Lambda RIE locally
 ├── smoketest.sh                          curl the deployed endpoints
 └── package_skill.sh                      zip a .skill archive
 ```
@@ -97,6 +105,22 @@ make freeplay
 
 The REPL imports `server.ranking` directly — same implementation the
 deployed Lambda uses.
+
+### Local Docker testing
+
+To exercise the exact container image the Lambda will run — build +
+AWS Lambda Runtime Interface Emulator + full assertion suite:
+
+```bash
+make test-image         # build + run + test + teardown
+make run-image          # build + run interactively on :9000 for manual poking
+```
+
+`test-image` exercises 8 routes through the real Mangum → FastAPI →
+ranking path, including OPTIONS preflight, validation 422s, the
+`categories=[]` zero-results semantic, and the catch-all 404. Doesn't
+exercise CloudFront, OAC, or the `x-amz-content-sha256` path — those
+only show up under real AWS.
 
 ## Corpus rebuild
 
@@ -131,8 +155,14 @@ make deploy-to-testsliderule    # runs all three below
 which expands to:
 
 1. `make terraform-apply-ecr` — create the ECR repo.
-2. `make deploy-lambda` — build the image (arm64) and push `:latest` + a content-tagged artifact.
+2. `make deploy-lambda` — build the image (arm64) and push `:latest` + a content-tagged audit artifact.
 3. `make terraform-apply` — create Lambda + Function URL + CloudFront + Route 53 + ACM, wiring everything together.
+
+**IAM requirement:** step 3 creates an IAM role (`docsearch-lambda-<sanitized-domain>`),
+so the running principal needs `iam:CreateRole` + `iam:AttachRolePolicy`.
+Standard PowerUser/developer roles typically lack these; use admin-level
+credentials for the initial apply. Routine `deploy-lambda` updates do
+not need IAM permissions.
 
 ### Routine updates
 
@@ -186,7 +216,8 @@ The resulting archive has `sliderule-docsearch/` as its root directory.
 
 ## Operational notes
 
-- **Cold start:** ~3s model load + ~1s corpus parse + ~500 ms matrix normalization. First request after a container boot pays this; warm requests run in 30–70 ms (uncached) or 1–5 ms (cached).
+- **Cold start:** ~3 s model load + ~1 s corpus parse + ~500 ms matrix normalization. First request after a container boot pays this; warm requests run in 30–70 ms (uncached) or 1–5 ms (cached).
+- **First-ever request after a fresh image push** carries an additional one-time cost while Lambda copies the image from ECR into its optimized runtime storage — up to ~60 s for this image. CloudFront's default `origin_read_timeout` is 30 s, so the first request of a fresh deploy will 504 once; subsequent requests hit the now-warmed container normally. Bumping `origin_read_timeout` to 60 s is a planned follow-up.
 - **Cache:** in-memory LRU, keyed by `(query, top_k, disable_lexical, categories, corpus_sha256)`. Bounded at 1024 entries. Stats visible at `GET /docsearch/meta`.
 - **Freshness:** no polling. A new corpus means a new image; a new image means a new Lambda container, which means fresh state. No stale-data window.
 - **Logs:** CloudWatch log group `/aws/lambda/docsearch-<sanitized-domain>` (e.g. `/aws/lambda/docsearch-search-testsliderule-org`), 30-day retention.
