@@ -12,12 +12,16 @@ Semantic search over the SlideRule Earth documentation at
 
 - A pre-computed corpus of documentation chunks and their embeddings is
   hosted as static JSON at
-  `https://search.testsliderule.org/docsearch/corpus.json` (built by the
-  `sliderule-search-server` repo).
-- At query time the skill fetches that corpus (cached locally for 24
-  hours), embeds the user's query with the same sentence-transformer
-  model (`sentence-transformers/all-MiniLM-L6-v2`), and returns the
-  top-K chunks by cosine similarity.
+  `https://search.testsliderule.org/docsearch/corpus.json`, with a
+  small companion `meta.json` at the same base.
+- At query time the skill fetches `meta.json` (tiny, ~300 bytes) on
+  every invocation, then reuses its local corpus cache as long as
+  `meta.json`'s `corpus_sha256` matches what's already cached. A new
+  release flips the sha, and the skill transparently downloads the
+  fresh corpus — cache invalidation is immediate, not a 24-hour lag.
+- The skill embeds the user's query with the same sentence-transformer
+  model (`sentence-transformers/all-MiniLM-L6-v2`), scores all chunks
+  with a single cosine-similarity matmul, and returns the top-K.
 - No Anthropic API calls. No server-side compute. Retrieval runs
   locally in pure Python.
 
@@ -31,12 +35,18 @@ Flags:
 
 - `--top-k N` — number of results to return (default 5).
 - `--corpus-url URL` — override the default corpus URL.
+- `--meta-url URL` — override the default meta URL.
 - `--corpus-file PATH` — read corpus from a local file instead of
   fetching (useful for local testing before the server is up).
-- `--force-refresh` — bypass the 24-hour local cache.
+- `--force-refresh` — re-download the corpus even if a cached copy
+  exists for the current sha256.
 
 The environment variable `SLIDERULE_SEARCH_BASE` (if set) selects a
-different base URL — the skill appends `/docsearch/corpus.json`.
+different base URL — the skill appends `/docsearch/corpus.json` and
+`/docsearch/meta.json`.
+
+The local cache lives under `$TMPDIR/sliderule_docsearch/` as
+`corpus_<sha256>.json`, one file per distinct corpus version.
 
 ## Output
 
@@ -55,9 +65,13 @@ The skill prints JSON to stdout:
     }
   ],
   "corpus_meta": {
+    "chunk_count": 1465,
+    "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+    "embedding_dim": 384,
     "built_at": "2026-04-17T14:23:11Z",
-    "chunk_count": 735,
-    "embedder": "sentence-transformers/all-MiniLM-L6-v2"
+    "corpus_sha256": "d69ac48ec5184c985f6c30760e953c124cc964e2f2eb9761096eede4db7f03b6",
+    "pages_crawled": 133,
+    "source_host": "docs.slideruleearth.io"
   }
 }
 ```

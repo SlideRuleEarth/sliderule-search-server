@@ -51,21 +51,47 @@ Configured via CloudFront `custom_error_response` pointing at
 | `/docsearch/corpus.json`   | `generated/docsearch/corpus.json`          | [`tools/build_docsearch_corpus.py`](tools/build_docsearch_corpus.py) crawls `docs.slideruleearth.io` |
 | `/docsearch/meta.json`     | `generated/docsearch/meta.json`            | Produced alongside `corpus.json` by the same script        |
 
+### Release flow — when do we rebuild?
+
+The corpus rebuild is **release-coupled**. It gets regenerated when the
+SlideRule server is released, which coincides with a docs-site release.
+Typical cadence is once a week or less. In between releases the corpus
+is frozen.
+
+That matters for two things:
+
+1. **Tracked artifacts.** Both `corpus.json` and `meta.json` are
+   committed to git. `make build` never auto-regenerates — it fails
+   loudly if `corpus.json` is missing. Deploys from a given commit
+   always ship the bytes committed at that commit.
+2. **Meta-driven client cache.** The skill fetches `meta.json` on every
+   query (tiny, ~300 bytes), then reuses its local corpus cache as long
+   as `meta.json`'s `corpus_sha256` matches. Clients pick up a new
+   corpus the moment it's released, with no wall-clock TTL.
+
 ### Regenerating the docsearch corpus
 
 ```bash
-pip install -r tools/requirements.txt
-python tools/build_docsearch_corpus.py
-git add generated/ && git commit -m "rebuild docsearch corpus"
+make rebuild-corpus
+# Review the diff — chunk count, pages_crawled, corpus_sha256 should
+# all shift in a way that matches what changed upstream.
+git add generated/ && git commit -m "rebuild docsearch corpus for release X.Y.Z"
 ```
 
-First run downloads the ~80 MB `all-MiniLM-L6-v2` sentence-transformer
-model from HuggingFace; subsequent runs are offline-capable for the
-embedding step.
+The first invocation downloads the ~80 MB `all-MiniLM-L6-v2`
+sentence-transformer model from HuggingFace; subsequent runs are
+offline-capable for the embedding step.
+
+Empty-corpus guard: the builder refuses to overwrite existing artifacts
+unless it crawled at least `--min-pages` (default 20) pages and
+produced at least `--min-chunks` (default 100) chunks. Prevents a
+transient docs outage from silently shipping a zero-chunk corpus.
 
 Builds are deterministic given the same source site: chunks are sorted
 by URL then in-page section order, embeddings are rounded to 6 decimal
-places, and `built_at` lives only in `meta.json`.
+places, and `built_at` lives only in `meta.json`. `corpus_sha256` in
+`meta.json` fingerprints the corpus bytes and is the cache key the
+skill uses.
 
 ## Skills
 
