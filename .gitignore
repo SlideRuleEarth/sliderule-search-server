@@ -1,12 +1,12 @@
 # Build/generated artifacts — produced by scripts, not committed
-/build/
 /skills/*.skill
 
 # NOTE: generated/ IS tracked. corpus.json and meta.json are build-time
-# artifacts but they're committed so `git checkout <sha> && make deploy`
-# ships deterministic bytes. Rebuilds are deliberate, release-coupled,
-# and the diff is PR-reviewable (chunk count, pages, sha256 shift).
-# Do not add /generated/ to this ignore list.
+# artifacts but they're committed so `git checkout <sha> && make deploy-lambda`
+# ships deterministic bytes — the Docker image bakes those committed
+# files in at `server/Dockerfile`'s COPY step. Rebuilds are deliberate,
+# release-coupled, and the diff is PR-reviewable (chunk count, pages,
+# sha256 shift). Do not add /generated/ to this ignore list.
 
 .DS_Store
 __pycache__/

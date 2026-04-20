@@ -1,6 +1,6 @@
 ---
 name: sliderule-docsearch
-description: Semantic search over the SlideRule Earth documentation (docs.slideruleearth.io). Use this skill whenever the user asks about SlideRule concepts, parameters, APIs, data products, configuration options, Python client usage, endpoints, examples, or any 'how do I...' question about SlideRule. Retrieval is cosine similarity between the query embedding and pre-computed chunk embeddings from a static corpus hosted at search.testsliderule.org. First invocation downloads the all-MiniLM-L6-v2 sentence-transformer model (~80 MB) from HuggingFace.
+description: Semantic search over the SlideRule Earth documentation (docs.slideruleearth.io). Use this skill whenever the user asks about SlideRule concepts, parameters, APIs, data products, configuration options, Python client usage, endpoints, examples, or any 'how do I...' question about SlideRule. Retrieval runs server-side at search.testsliderule.org — semantic cosine similarity fused with IDF-weighted lexical overlap via reciprocal rank fusion. The skill itself is a thin HTTP client.
 ---
 
 # sliderule-docsearch
@@ -10,58 +10,64 @@ Semantic search over the SlideRule Earth documentation at
 
 ## Architecture
 
-- A pre-computed corpus of documentation chunks and their embeddings is
-  hosted as static JSON at
-  `https://search.testsliderule.org/docsearch/corpus.json`, with a
-  small companion `meta.json` at the same base.
-- At query time the skill fetches `meta.json` (tiny, ~300 bytes) on
-  every invocation, then reuses its local corpus cache as long as
-  `meta.json`'s `corpus_sha256` matches what's already cached. A new
-  release flips the sha, and the skill transparently downloads the
-  fresh corpus — cache invalidation is immediate, not a 24-hour lag.
-- The skill embeds the user's query with the same sentence-transformer
-  model (`sentence-transformers/all-MiniLM-L6-v2`), scores all chunks
-  with a single cosine-similarity matmul, and fuses that ranking with
-  an IDF-weighted lexical-overlap ranking via reciprocal rank fusion
-  (RRF). The fusion rescues queries where the user's intent hinges on
-  a specific identifier — e.g. `"atl03x"` vs `"atl03"` — that pure
-  semantic similarity can't reliably distinguish.
-- No Anthropic API calls. No server-side compute. Retrieval runs
-  locally in pure Python.
+- Retrieval runs on a Lambda behind CloudFront at
+  `https://search.testsliderule.org/docsearch/search`. The Lambda image
+  bakes in the corpus and the `all-MiniLM-L6-v2` sentence-transformer
+  model, so there's no network fetch at query time beyond the single
+  POST.
+- The skill client is a thin HTTP wrapper: it POSTs the query (plus
+  `top_k`, `disable_lexical`, and an optional `categories` allowlist)
+  and prints the server's JSON response to stdout.
+- The server embeds the query, scores all chunks with cosine
+  similarity, fuses that ranking with IDF-weighted lexical overlap via
+  reciprocal rank fusion (RRF), and returns the top K. The fusion
+  rescues queries where the user's intent hinges on a specific
+  identifier — e.g. `"atl03x"` vs `"atl03"` — that pure semantic
+  similarity can't reliably distinguish.
+- Results for the same `(query, top_k, disable_lexical, categories)`
+  tuple are cached in the Lambda's LRU so repeat queries return in
+  single-digit milliseconds.
 
 ## Invocation
 
 ```bash
-python scripts/search.py "<query>" [--top-k 5]
+python scripts/search.py "<query>" [--top-k 5] [--disable-lexical] [--categories ...]
 ```
 
 Flags:
 
-- `--top-k N` — number of results to return (default 5).
-- `--corpus-url URL` — override the default corpus URL.
-- `--meta-url URL` — override the default meta URL.
-- `--corpus-file PATH` — read corpus from a local file instead of
-  fetching (useful for local testing before the server is up).
-- `--force-refresh` — re-download the corpus even if a cached copy
-  exists for the current sha256.
-- `--disable-lexical` — skip the lexical rank-fusion step; results
-  become pure cosine similarity. Mainly for A/B comparison.
-- `--repl` — drop into an interactive search loop instead of
-  one-shot. Loads the embedder once (~3s) and then processes
-  queries from stdin until Ctrl-D. Inside the REPL: `:k N` changes
-  top-k, `:lex on|off` toggles fusion, `:help` lists commands. For
-  local iteration, `make freeplay` is the canonical entry point.
+- `--top-k N` — number of results to return (default 5, max 50).
+- `--disable-lexical` — ask the server to skip lexical rank-fusion; results become pure cosine similarity. Mainly for A/B comparison — leave off for normal use.
+- `--categories LIST` — comma-separated category allowlist (e.g. `user_guide,api_reference`). Filter is applied server-side **before** ranking, so `top_k` reflects the filtered universe.
+- `--search-url URL` — full override of the search endpoint (for staging/dev).
+- `--timeout SECONDS` — HTTP timeout (default 30).
 
-The environment variable `SLIDERULE_SEARCH_BASE` (if set) selects a
-different base URL — the skill appends `/docsearch/corpus.json` and
-`/docsearch/meta.json`.
+`SLIDERULE_SEARCH_BASE` env var picks a different base URL — the skill
+appends `/docsearch/search`.
 
-The local cache lives under `$TMPDIR/sliderule_docsearch/` as
-`corpus_<sha256>.json`, one file per distinct corpus version.
+The skill requires network access (a single HTTPS POST per query).
+There is no offline mode.
+
+### Direct HTTPS callers (curl, browsers, anything other than `scripts/search.py`)
+
+The endpoint is fronted by CloudFront + Lambda Function URL with OAC,
+so every POST body must carry an `x-amz-content-sha256` header whose
+value is the hex-encoded SHA-256 of the request body. CloudFront uses
+this to SigV4-sign the origin request; without it the Lambda URL
+rejects the call with 403. `scripts/search.py` computes and adds the
+header automatically; direct callers must do it themselves:
+
+```bash
+body='{"query":"atl03x","top_k":3}'
+curl -sS https://search.testsliderule.org/docsearch/search \
+  -H "Content-Type: application/json" \
+  -H "x-amz-content-sha256: $(printf %s "$body" | sha256sum | awk '{print $1}')" \
+  -d "$body"
+```
 
 ## Output
 
-The skill prints JSON to stdout:
+The skill prints JSON to stdout, byte-for-byte the server response:
 
 ```json
 {
@@ -81,8 +87,8 @@ The skill prints JSON to stdout:
     "chunk_count": 1465,
     "embedder": "sentence-transformers/all-MiniLM-L6-v2",
     "embedding_dim": 384,
-    "built_at": "2026-04-17T14:23:11Z",
     "corpus_sha256": "d69ac48ec5184c985f6c30760e953c124cc964e2f2eb9761096eede4db7f03b6",
+    "built_at": "2026-04-17T14:23:11Z",
     "pages_crawled": 133,
     "source_host": "docs.slideruleearth.io"
   }
@@ -121,20 +127,17 @@ The skill prints JSON to stdout:
    because they name-drop the concept while reporting historical bugs.
    For a conceptual question, treat `release_notes` hits as caveats or
    ignore them — prefer `user_guide` / `api_reference` / `background`
-   hits as the primary answer.
-3. Synthesize an answer from the top results. Cite the specific URLs
+   hits as the primary answer. You can also narrow with
+   `--categories user_guide,api_reference` when you're confident about
+   the target content type; the filter applies before ranking so
+   `top_k` is exact.
+
+4. Synthesize an answer from the top results. Cite the specific URLs
    you used — users rely on those links to go read the authoritative
    docs themselves.
-4. If the top `score` is low (< 0.3) or the results look off-topic,
+5. If the top `score` is low (< 0.3) or the results look off-topic,
    tell the user the docs don't seem to cover their question and
    suggest rephrasing or pointing them at a specific doc section.
-
-## First-run cost
-
-The first invocation downloads the ~80 MB `all-MiniLM-L6-v2` model from
-HuggingFace and caches it under `~/.cache/huggingface/`. Subsequent
-invocations are fast and offline-capable for the embedding step (the
-corpus fetch still needs the network unless `--corpus-file` is used).
 
 ## Not covered
 
