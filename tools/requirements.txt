@@ -1,3 +1,16 @@
+# Build-time dependencies for the corpus builders under tools/.
+# None of these get installed into the Lambda image — the runtime's
+# requirements are separate (see server/requirements.txt).
+
 sentence-transformers
 beautifulsoup4
 requests
+
+# pymupdf (AGPL-3.0): build-time only. Used by build_nsidc_corpus.py to
+# extract text from PDFs. Not shipped in the Lambda image, not exposed
+# over a network, not modified — so its AGPL terms stay contained to
+# local / CI builds. See the full rationale in the docstring of
+# tools/build_nsidc_corpus.py. If usage mode ever changes (e.g. we
+# bundle it into a distributed artifact) the license picture needs
+# a fresh look.
+pymupdf

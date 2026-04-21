@@ -1,6 +1,11 @@
 # Build/generated artifacts — produced by scripts, not committed
 /skills/*.skill
 
+# Download caches — populated by the corpus builders on first run so
+# subsequent rebuilds skip the network. Large (PDFs can be 10+ MB each)
+# and re-fetchable; never committed.
+/tools/.cache/
+
 # NOTE: generated/ IS tracked. corpus.json and meta.json are build-time
 # artifacts but they're committed so `git checkout <sha> && make deploy-lambda`
 # ships deterministic bytes — the Docker image bakes those committed
