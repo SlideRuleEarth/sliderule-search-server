@@ -28,7 +28,14 @@
 set -euo pipefail
 
 DOMAIN="${1:?usage: deploy_lambda.sh <domain>  (e.g. search.testsliderule.org)}"
-AWS_REGION="${AWS_REGION:-us-east-1}"
+# Hardcoded: CloudFront is a global service pinned to us-east-1 for our
+# domains, and ECR + Lambda are co-located there by design. Respecting
+# a shell-exported AWS_REGION would let unrelated daily AWS work (say
+# `export AWS_REGION=us-west-2` for a different project) accidentally
+# point this deploy at the wrong region, producing confusing
+# ResourceNotFoundException errors. If we ever multi-region this
+# service, promote back to a CLI arg.
+AWS_REGION="us-east-1"
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
 # Sanitize domain for AWS resource names (lambda/ecr disallow dots).
