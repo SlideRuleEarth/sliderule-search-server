@@ -54,12 +54,26 @@ Response: see [skills/sliderule-docsearch/SKILL.md](skills/sliderule-docsearch/S
 
 CORS: `Access-Control-Allow-Origin: *`, methods `GET, HEAD, OPTIONS, POST`.
 
+### Request signing
+
 **POST bodies require an `x-amz-content-sha256` header** whose value is
 the hex-encoded SHA-256 of the request body. CloudFront uses this to
-SigV4-sign the origin request via OAC; without it Lambda URL returns
-403. The `sliderule-docsearch` skill client adds this automatically —
-direct HTTPS callers (curl, browser `fetch`, etc.) need to compute and
-add it. See [SKILL.md § Direct HTTPS callers](skills/sliderule-docsearch/SKILL.md#direct-https-callers-curl-browsers-anything-other-than-scriptssearchpy).
+SigV4-sign the origin request via OAC; without it, Lambda Function URL
+rejects the call with 403. The `sliderule-docsearch` skill client
+computes and adds this header automatically. Direct HTTPS callers
+(`curl`, browser `fetch`, any client that isn't `scripts/search.py`)
+need to compute and add it themselves:
+
+```bash
+body='{"query":"atl03x","top_k":3}'
+curl -sS https://search.testsliderule.org/docsearch/search \
+  -H "Content-Type: application/json" \
+  -H "x-amz-content-sha256: $(printf %s "$body" | sha256sum | awk '{print $1}')" \
+  -d "$body"
+```
+
+The hash must match the exact bytes of the request body (no
+reformatting, no extra whitespace) since that's what CloudFront signs.
 
 ## Repository layout
 

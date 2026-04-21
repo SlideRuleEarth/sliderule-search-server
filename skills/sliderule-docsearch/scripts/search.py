@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Thin HTTP client for the sliderule-docsearch service.
 
 POSTs the query to https://<base>/docsearch/search and prints the
@@ -19,11 +18,16 @@ from urllib.parse import urlparse
 
 
 def _missing_deps_exit(exc: ModuleNotFoundError) -> None:
+    # The install hint uses the bare package name rather than
+    # `-r .../requirements.txt` because the skill's root path on disk
+    # depends on where it was installed — /mnt/skills/user/... inside
+    # Claude's sandbox, the repo layout locally, etc. `pip install
+    # requests` works everywhere and says exactly what's needed.
     print(
         f"\nERROR: required package '{exc.name}' is not installed.\n\n"
         f"This skill's only Python dependency is `requests`. Install it:\n"
         f"\n"
-        f"  pip install -r skills/sliderule-docsearch/requirements.txt\n",
+        f"  pip install requests\n",
         file=sys.stderr,
     )
     sys.exit(2)
@@ -35,6 +39,9 @@ except ModuleNotFoundError as e:
     _missing_deps_exit(e)
 
 
+# Points at the test/staging environment by design — we're still
+# iterating on the skill against testsliderule.org. Flip to
+# https://search.slideruleearth.io once we cut over to production.
 DEFAULT_BASE_URL = "https://search.testsliderule.org"
 DEFAULT_SEARCH_PATH = "/docsearch/search"
 

@@ -115,5 +115,8 @@ resource "aws_cloudfront_distribution" "search" {
     minimum_protocol_version = "TLSv1.2_2021"
   }
 
+  # Per-IP rate limit. See waf.tf for the rule (2000 req per 5-min window).
+  web_acl_id = aws_wafv2_web_acl.search.arn
+
   price_class = "PriceClass_100"
 }

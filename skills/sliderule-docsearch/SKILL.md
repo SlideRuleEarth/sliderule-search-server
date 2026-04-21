@@ -1,6 +1,6 @@
 ---
 name: sliderule-docsearch
-description: Semantic search over the SlideRule Earth documentation (docs.slideruleearth.io). Use this skill whenever the user asks about SlideRule concepts, parameters, APIs, data products, configuration options, Python client usage, endpoints, examples, or any 'how do I...' question about SlideRule. Retrieval runs server-side at search.testsliderule.org — semantic cosine similarity fused with IDF-weighted lexical overlap via reciprocal rank fusion. The skill itself is a thin HTTP client.
+description: Search the SlideRule Earth documentation. Use for questions about SlideRule APIs, parameters, data products, the Python client, configuration, examples, version history, or any "how do I..." or "what is..." question specific to SlideRule or its ICESat-2/GEDI endpoints (atl03p, atl06p, atl08p, atl13p, atl24p, gedil4ap, etc.). Use `nsidc-reference` instead for ICESat-2/GEDI science theory, ATBDs, photon-classification algorithms, or HDF5 structure.
 ---
 
 # sliderule-docsearch
@@ -10,23 +10,11 @@ Semantic search over the SlideRule Earth documentation at
 
 ## Architecture
 
-- Retrieval runs on a Lambda behind CloudFront at
-  `https://search.testsliderule.org/docsearch/search`. The Lambda image
-  bakes in the corpus and the `all-MiniLM-L6-v2` sentence-transformer
-  model, so there's no network fetch at query time beyond the single
-  POST.
-- The skill client is a thin HTTP wrapper: it POSTs the query (plus
-  `top_k`, `disable_lexical`, and an optional `categories` allowlist)
-  and prints the server's JSON response to stdout.
-- The server embeds the query, scores all chunks with cosine
-  similarity, fuses that ranking with IDF-weighted lexical overlap via
-  reciprocal rank fusion (RRF), and returns the top K. The fusion
-  rescues queries where the user's intent hinges on a specific
-  identifier — e.g. `"atl03x"` vs `"atl03"` — that pure semantic
-  similarity can't reliably distinguish.
-- Results for the same `(query, top_k, disable_lexical, categories)`
-  tuple are cached in the Lambda's LRU so repeat queries return in
-  single-digit milliseconds.
+Hosted semantic + lexical search. One HTTPS POST per query to a
+Lambda behind CloudFront; there's no offline mode. All retrieval
+(embedding with `all-MiniLM-L6-v2`, cosine scoring, IDF-weighted
+lexical overlap, reciprocal rank fusion) runs server-side. The
+skill client is a thin transport wrapper.
 
 ## Invocation
 
@@ -44,26 +32,6 @@ Flags:
 
 `SLIDERULE_SEARCH_BASE` env var picks a different base URL — the skill
 appends `/docsearch/search`.
-
-The skill requires network access (a single HTTPS POST per query).
-There is no offline mode.
-
-### Direct HTTPS callers (curl, browsers, anything other than `scripts/search.py`)
-
-The endpoint is fronted by CloudFront + Lambda Function URL with OAC,
-so every POST body must carry an `x-amz-content-sha256` header whose
-value is the hex-encoded SHA-256 of the request body. CloudFront uses
-this to SigV4-sign the origin request; without it the Lambda URL
-rejects the call with 403. `scripts/search.py` computes and adds the
-header automatically; direct callers must do it themselves:
-
-```bash
-body='{"query":"atl03x","top_k":3}'
-curl -sS https://search.testsliderule.org/docsearch/search \
-  -H "Content-Type: application/json" \
-  -H "x-amz-content-sha256: $(printf %s "$body" | sha256sum | awk '{print $1}')" \
-  -d "$body"
-```
 
 ## Output
 
@@ -101,13 +69,25 @@ The skill prints JSON to stdout, byte-for-byte the server response:
    information-rich query. If the user asked a verbose question, trim it
    to the key nouns and concepts — this typically lifts retrieval
    quality.
+
+   **Example of trimming a verbose user question:**
+   - User: *"how do I set up confidence filtering for photons when
+     I'm using the atl03x endpoint, I can't figure out the parameter
+     name"*
+   - Good search query: `"atl03x confidence filtering parameters"`
+   - The retrieval is cosine + IDF; concise technical nouns beat
+     natural language.
 2. Parse the JSON response. Each `results[i]` has a `score` (cosine
    similarity, higher is better), `url`, `title`, `section`, `category`,
    and `text`. When present, `matched_tokens` lists which of the user's
-   query tokens appeared literally in the chunk — a useful signal for
-   confirming that an identifier-heavy query (e.g. `"atl03x"`) hit the
-   right variant. Note: ranking reflects RRF-fused semantic + lexical
-   scores, so `score` (which is cosine only) doesn't always
+   query tokens appeared literally in the chunk. For identifier-heavy
+   queries this is the **primary disambiguator** — verify the exact
+   identifier appears in `matched_tokens` on the top result. If only
+   a related variant matched (e.g. user asked about `atl03x` but the
+   top hit only matched `atl03`), either re-run with a more specific
+   query or flag the mismatch to the user rather than citing a
+   near-miss as an answer. Note: ranking reflects RRF-fused semantic
+   + lexical scores, so `score` (which is cosine only) doesn't always
    monotonically decrease down the list.
 
 3. **Use `category` to weigh content types against the user's intent.**
@@ -135,9 +115,10 @@ The skill prints JSON to stdout, byte-for-byte the server response:
 4. Synthesize an answer from the top results. Cite the specific URLs
    you used — users rely on those links to go read the authoritative
    docs themselves.
-5. If the top `score` is low (< 0.3) or the results look off-topic,
-   tell the user the docs don't seem to cover their question and
-   suggest rephrasing or pointing them at a specific doc section.
+5. If the top `score` is low (e.g., below ~0.3) or the results look
+   off-topic, tell the user the docs don't seem to cover their
+   question and suggest rephrasing or pointing them at a specific
+   doc section.
 
 ## Not covered
 
