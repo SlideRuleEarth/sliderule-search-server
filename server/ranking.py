@@ -133,7 +133,15 @@ def fuse_rrf(semantic_ranks: list[int], lexical_ranks: list[int]) -> list[float]
 
 def _build_result_row(chunk: dict, cosine_score: float) -> dict:
     """Build one entry of the `results` array. Shared by fused and
-    disable-lexical paths so they can't drift apart."""
+    disable-lexical paths so they can't drift apart.
+
+    The base shape (score + url/title/section/text + optional category)
+    is common to every corpus. Any *additional* per-chunk fields the
+    corpus builder decided to include (e.g. the nsidc builder's
+    source_product, source_version, source_page, source_url) are
+    passed through unchanged — the corpus builder owns schema
+    extensions, and ranking.py stays corpus-agnostic.
+    """
     row = {
         "score": round(float(cosine_score), 4),
         "url": chunk.get("url", ""),
@@ -144,6 +152,17 @@ def _build_result_row(chunk: dict, cosine_score: float) -> dict:
     category = chunk.get("category")
     if category:
         row["category"] = category
+    # Pass-through for builder-specific metadata. The base fields + the
+    # infrastructure-only fields (id, embedding) are excluded; everything
+    # else the builder put on the chunk rides along into the response.
+    _BASE_KEYS = {
+        "id", "embedding",
+        "url", "title", "section", "text", "category",
+    }
+    for key, value in chunk.items():
+        if key in _BASE_KEYS:
+            continue
+        row[key] = value
     return row
 
 

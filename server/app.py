@@ -51,12 +51,19 @@ TASK_ROOT = Path(os.environ.get("LAMBDA_TASK_ROOT", "/var/task"))
 # Per-corpus source paths. Each corpus contributes two files: corpus.json
 # (chunks + embeddings) and meta.json (build-time metadata). Env-var
 # overrides let local dev point at generated/<corpus>/ directly; the Lambda
-# image COPYs flat files into /var/task/.
+# image COPYs flat files into /var/task/ with a name prefix per corpus
+# (see server/Dockerfile).
 DOCSEARCH_CORPUS_PATH = Path(
     os.environ.get("DOCSEARCH_CORPUS_PATH", TASK_ROOT / "corpus.json")
 )
 DOCSEARCH_META_PATH = Path(
     os.environ.get("DOCSEARCH_META_PATH", TASK_ROOT / "meta.json")
+)
+NSIDC_CORPUS_PATH = Path(
+    os.environ.get("NSIDC_CORPUS_PATH", TASK_ROOT / "nsidc_corpus.json")
+)
+NSIDC_META_PATH = Path(
+    os.environ.get("NSIDC_META_PATH", TASK_ROOT / "nsidc_meta.json")
 )
 
 
@@ -154,10 +161,12 @@ def _load_embedder():
 # -- Module-level state ------------------------------------------------------
 
 # Per-corpus state, keyed by corpus name. Each value is the dict returned
-# by _load_corpus_state(). Additional corpora get registered here by
-# later commits; this shape doesn't change as N grows.
+# by _load_corpus_state(). The two corpora share the embedder (MODEL
+# below) and the LRU cache, but have independent chunks, matrix, sha,
+# and meta.
 CORPORA: dict[str, dict] = {
     "docsearch": _load_corpus_state(DOCSEARCH_CORPUS_PATH, DOCSEARCH_META_PATH),
+    "nsidc": _load_corpus_state(NSIDC_CORPUS_PATH, NSIDC_META_PATH),
 }
 
 # Shared across all corpora. Both rely on a single model instance (saves
@@ -297,15 +306,30 @@ def docsearch_meta() -> dict:
     return _meta_impl("docsearch")
 
 
+@app.post("/nsidc/search", response_model=SearchResponse)
+def nsidc_search(req: SearchRequest) -> dict:
+    return _search_impl("nsidc", req)
+
+
+@app.get("/nsidc/meta")
+def nsidc_meta() -> dict:
+    return _meta_impl("nsidc")
+
+
 @app.get("/healthz")
 def healthz() -> dict:
-    # Response shape preserved from the single-corpus era so existing
-    # clients (smoketest, uptime checks) keep passing. When nsidc lands
-    # we'll broaden this to report per-corpus sha without breaking the
-    # top-level `corpus_sha256` field — add, don't rename.
+    # Response shape intentionally superset of the single-corpus era:
+    # the top-level `corpus_sha256` field is preserved (pointing at the
+    # docsearch corpus) so existing clients don't break; the new
+    # `corpora` block enumerates every registered corpus. Add, don't
+    # rename.
     return {
         "status": "ok",
         "corpus_sha256": CORPORA["docsearch"]["corpus_sha"],
+        "corpora": {
+            name: state["corpus_sha"]
+            for name, state in CORPORA.items()
+        },
     }
 
 
