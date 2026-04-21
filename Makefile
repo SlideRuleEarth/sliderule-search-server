@@ -39,7 +39,8 @@ PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/pyt
         terraform-apply terraform-apply-ecr terraform-destroy check-vars \
         deploy-to-testsliderule deploy-to-slideruleearth \
         destroy-testsliderule destroy-slideruleearth \
-        update-testsliderule update-slideruleearth
+        update-testsliderule update-slideruleearth \
+        update-infra-testsliderule update-infra-slideruleearth
 
 help: ## That's me!
 	@printf "\033[37m%-40s\033[0m %s\n" "#-----------------------------------------------------------------------------------------"
@@ -164,6 +165,9 @@ deploy-to-testsliderule: ## First-time deploy: ECR → image push → full stack
 update-testsliderule: ## Routine update: rebuild image + update Lambda at search.testsliderule.org
 	make deploy-lambda DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org
 
+update-infra-testsliderule: ## Terraform-only update at search.testsliderule.org (WAF, DNS, CloudFront, etc. — no Lambda rebuild)
+	make terraform-apply DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org
+
 destroy-testsliderule: ## Tear down search.testsliderule.org infrastructure
 	make terraform-destroy DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org
 
@@ -174,6 +178,9 @@ deploy-to-slideruleearth: ## First-time deploy: ECR → image push → full stac
 
 update-slideruleearth: ## Routine update: rebuild image + update Lambda at search.slideruleearth.io
 	make deploy-lambda DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io
+
+update-infra-slideruleearth: ## Terraform-only update at search.slideruleearth.io (WAF, DNS, CloudFront, etc. — no Lambda rebuild)
+	make terraform-apply DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io
 
 destroy-slideruleearth: ## Tear down search.slideruleearth.io infrastructure
 	make terraform-destroy DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io
