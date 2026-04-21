@@ -27,14 +27,14 @@ SRC_DIR      = $(ROOT)/generated
 CORPUS_FILE  = $(SRC_DIR)/docsearch/corpus.json
 
 # Prefer the repo-local .venv when it exists so `make freeplay` and
-# `make rebuild-corpus` Just Work without requiring the user to
+# `make rebuild-corpus-*` Just Work without requiring the user to
 # `source .venv/bin/activate` first. Falls back to whatever python3 is
 # on PATH — if that shell's python doesn't have the deps, the
 # per-target import-check below prints a clear install hint instead
 # of a raw ModuleNotFoundError traceback.
 PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/python || echo python3)
 
-.PHONY: help clean rebuild-corpus package-skill \
+.PHONY: help clean rebuild-corpus-docsearch rebuild-corpus-nsidc package-skill \
         freeplay build-image test-image run-image deploy-lambda smoketest \
         terraform-apply terraform-apply-ecr terraform-destroy check-vars \
         deploy-to-testsliderule deploy-to-slideruleearth \
@@ -56,7 +56,7 @@ help: ## That's me!
 
 # ---- Corpus + dev iteration -----------------------------------------------------------------------
 
-rebuild-corpus: ## Re-crawl docs.slideruleearth.io and regenerate generated/docsearch/
+rebuild-corpus-docsearch: ## Re-crawl docs.slideruleearth.io and regenerate generated/docsearch/
 	@$(PYTHON) -c "import sentence_transformers, bs4, requests" 2>/dev/null || { \
 	  echo "❌ builder dependencies missing in $(PYTHON)."; \
 	  echo "   Install them one of two ways:"; \
@@ -69,9 +69,22 @@ rebuild-corpus: ## Re-crawl docs.slideruleearth.io and regenerate generated/docs
 	}
 	$(PYTHON) $(ROOT)/tools/build_docsearch_corpus.py
 
+rebuild-corpus-nsidc: ## Download NSIDC + ORNL references and regenerate generated/nsidc/
+	@$(PYTHON) -c "import sentence_transformers, bs4, requests, fitz" 2>/dev/null || { \
+	  echo "❌ builder dependencies missing in $(PYTHON) (pymupdf is new)."; \
+	  echo "   Install them one of two ways:"; \
+	  echo "     (a) Repo-local venv (picked up automatically next run):"; \
+	  echo "         python3 -m venv .venv \\"; \
+	  echo "           && .venv/bin/pip install -r tools/requirements.txt"; \
+	  echo "     (b) Your active Python environment:"; \
+	  echo "         pip install -r tools/requirements.txt"; \
+	  exit 1; \
+	}
+	$(PYTHON) $(ROOT)/tools/build_nsidc_corpus.py
+
 freeplay: ## Interactive search REPL against the committed corpus (no deploy involved)
 	@test -f $(CORPUS_FILE) || { \
-	  echo "❌ $(CORPUS_FILE) is missing. Run 'make rebuild-corpus' first."; \
+	  echo "❌ $(CORPUS_FILE) is missing. Run 'make rebuild-corpus-docsearch' first."; \
 	  exit 1; \
 	}
 	@$(PYTHON) -c "import sentence_transformers, numpy, fastapi, pydantic" 2>/dev/null || { \
@@ -95,7 +108,7 @@ package-skill: ## Package skills/sliderule-docsearch/ into a .skill zip
 # it builds, pushes to ECR, and (if the Lambda already exists) updates its image_uri in place.
 build-image: ## Locally build the Lambda container image (sanity check; no push)
 	@test -f $(CORPUS_FILE) || { \
-	  echo "❌ $(CORPUS_FILE) is missing. Run 'make rebuild-corpus' first."; \
+	  echo "❌ $(CORPUS_FILE) is missing. Run 'make rebuild-corpus-docsearch' first."; \
 	  exit 1; \
 	}
 	docker buildx build --load --platform linux/arm64 -f server/Dockerfile -t docsearch:dev .

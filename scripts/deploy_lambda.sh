@@ -17,8 +17,9 @@
 #      Skipped on first deploy when the Lambda doesn't exist yet —
 #      terraform-apply creates it using :latest right after.
 #
-# Requires generated/docsearch/corpus.json to be present (image bakes
-# it in). 'make rebuild-corpus' refreshes it.
+# Requires generated/docsearch/corpus.json + generated/nsidc/corpus.json
+# to be present (image bakes both in). `make rebuild-corpus-docsearch`
+# and `make rebuild-corpus-nsidc` refresh them.
 
 set -euo pipefail
 
@@ -35,12 +36,12 @@ cd "$REPO_ROOT"
 
 test -f generated/docsearch/corpus.json || {
   echo "❌ generated/docsearch/corpus.json is missing."
-  echo "   Run 'make rebuild-corpus' first."
+  echo "   Run 'make rebuild-corpus-docsearch' first."
   exit 1
 }
 test -f generated/docsearch/meta.json || {
   echo "❌ generated/docsearch/meta.json is missing."
-  echo "   Run 'make rebuild-corpus' first."
+  echo "   Run 'make rebuild-corpus-docsearch' first."
   exit 1
 }
 

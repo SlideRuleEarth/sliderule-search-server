@@ -138,18 +138,22 @@ only show up under real AWS.
 
 ## Corpus rebuild
 
+The server hosts two corpora, each rebuilt by a distinct target:
+
 ```bash
 .venv/bin/pip install -r tools/requirements.txt   # first time only
-make rebuild-corpus
-# Review the generated/docsearch/ diff (chunk count, pages_crawled,
+make rebuild-corpus-docsearch   # crawls docs.slideruleearth.io
+make rebuild-corpus-nsidc       # downloads NSIDC + ORNL PDFs and the GEDI HTML
+# Review the generated/{docsearch,nsidc}/ diff (chunk counts,
 # corpus_sha256 all shift). Commit the change:
-git add generated/ && git commit -m "rebuild docsearch corpus for release X.Y.Z"
+git add generated/ && git commit -m "rebuild corpora for release X.Y.Z"
 ```
 
 The corpus rebuild is **release-coupled**: regenerate when upstream
-docs change. Both `corpus.json` and `meta.json` are committed so a
-deploy from a given git sha ships deterministic bytes — the Docker
-image's COPY step bakes in whatever is committed at that moment.
+docs change. Both `corpus.json` and `meta.json` (per corpus) are
+committed so a deploy from a given git sha ships deterministic
+bytes — the Docker image's COPY step bakes in whatever is committed
+at that moment.
 
 Empty-corpus guard: the builder refuses to overwrite existing
 artifacts unless it crawled at least `--min-pages` (default 20) pages

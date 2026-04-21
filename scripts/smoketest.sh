@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 #
-# Smoke-test the deployed docsearch distribution.
+# Smoke-test the deployed sliderule-search-server distribution.
 # Usage: DOMAIN=search.testsliderule.org ./scripts/smoketest.sh
 #
-# Exercises the new endpoints:
-#   GET  /healthz                  liveness
-#   GET  /docsearch/meta           static corpus metadata
-#   OPTIONS /docsearch/search      CORS preflight includes POST
-#   POST /docsearch/search         happy-path + validation failures
-#   consistency: corpus_sha256 in POST response matches GET /meta
+# Exercises both corpora and the domain-wide plumbing:
+#   GET     /healthz                     liveness + enumerates corpora
+#   GET     /docsearch/meta              static corpus metadata (per-corpus)
+#   GET     /nsidc/meta
+#   OPTIONS /docsearch/search            CORS preflight (domain-wide concern,
+#                                        tested once against docsearch)
+#   POST    /docsearch/search            happy-path + validation failures
+#   POST    /nsidc/search                happy-path + sha consistency
+#   consistency: corpus_sha256 in POST response matches GET /meta (per-corpus)
 #
 # Every POST must include `x-amz-content-sha256: <body-hash>`. CloudFront
 # SigV4-signs origin requests using OAC and doesn't buffer the body to
@@ -193,25 +196,61 @@ check_status "POST /docsearch/search (top_k=0) -> 422" 422 \
   "$BASE/docsearch/search"
 
 # --- Consistency: corpus_sha256 matches /meta and POST response -----------
-if command -v jq >/dev/null 2>&1; then
+#
+# Run per-corpus: both /docsearch and /nsidc must have a meta endpoint
+# returning 200 JSON, a search endpoint that serves a happy-path POST,
+# and `corpus_meta.corpus_sha256` in the POST response must equal what
+# /<corpus>/meta advertises. Catches both "new corpus wasn't wired up"
+# and "meta/corpus got out of sync at build time."
+check_corpus_consistency() {
+  local corpus="$1"
+  local sample_query="$2"
+
   echo
-  echo "  consistency check: corpus_sha256 across /meta and POST:"
-  meta_sha="$(curl -sS "$BASE/docsearch/meta" | jq -r '.corpus_sha256')"
-  consistency_body='{"query":"ok","top_k":1}'
-  consistency_sha="$(sha256_hex "$consistency_body")"
+  echo "  === corpus: $corpus ==="
+
+  check_status "GET /$corpus/meta" 200 "$BASE/$corpus/meta"
+
+  if ! command -v jq >/dev/null 2>&1; then
+    return
+  fi
+
+  local body sha meta_sha post_sha
+  body="{\"query\":\"${sample_query}\",\"top_k\":1}"
+  sha="$(sha256_hex "$body")"
+
+  meta_sha="$(curl -sS "$BASE/$corpus/meta" | jq -r '.corpus_sha256')"
   post_sha="$(
     curl -sS \
       -H "Content-Type: application/json" \
-      -H "x-amz-content-sha256: $consistency_sha" \
-      -d "$consistency_body" \
-      "$BASE/docsearch/search" \
+      -H "x-amz-content-sha256: $sha" \
+      -d "$body" \
+      "$BASE/$corpus/search" \
       | jq -r '.corpus_meta.corpus_sha256'
   )"
+
   if [[ -n "$meta_sha" && "$meta_sha" == "$post_sha" ]]; then
     echo "    PASS  sha matches: ${meta_sha:0:12}..."
     pass=$((pass+1))
   else
     echo "    FAIL  sha mismatch: /meta=$meta_sha  POST=$post_sha"
+    fail=$((fail+1))
+  fi
+}
+
+check_corpus_consistency docsearch "ok"
+check_corpus_consistency nsidc     "icesat2"
+
+# --- healthz reports both corpora ------------------------------------------
+if command -v jq >/dev/null 2>&1; then
+  echo
+  echo "  healthz /corpora block:"
+  corpora_keys="$(curl -sS "$BASE/healthz" | jq -c '.corpora | keys')"
+  if [[ "$corpora_keys" == '["docsearch","nsidc"]' ]]; then
+    echo "    PASS  /healthz reports both corpora: $corpora_keys"
+    pass=$((pass+1))
+  else
+    echo "    FAIL  /healthz corpora unexpected: $corpora_keys"
     fail=$((fail+1))
   fi
 fi

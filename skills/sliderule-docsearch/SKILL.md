@@ -124,5 +124,6 @@ The skill prints JSON to stdout, byte-for-byte the server response:
 
 For authoritative ICESat-2 / GEDI science (photon classification,
 algorithm details, HDF5 structure, quality flags), use the
-`nsidc-reference` skill instead — that's sourced from NSIDC user guides
-and ATBDs rather than SlideRule's own docs.
+`nsidc-reference` skill instead — that's sourced from NSIDC + ORNL
+DAAC user guides and ATBDs (ATL03, ATL06, ATL08, ATL13, ATL24, GEDI
+L4A) rather than SlideRule's own docs.

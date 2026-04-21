@@ -1,17 +1,25 @@
 # syntax=docker/dockerfile:1.6
 #
-# Lambda container image for sliderule-docsearch.
+# Lambda container image for sliderule-search-server. Serves multiple
+# corpora (docsearch + nsidc) out of one Lambda; see server/app.py's
+# CORPORA dict for how they're routed.
 #
-# Two "heavy" items are baked in at build time so cold starts never reach
-# the network:
+# Three "heavy" items are baked in at build time so cold starts never
+# reach the network:
 #
 #   1. sentence-transformers/all-MiniLM-L6-v2 (~90 MB) — pre-downloaded
 #      into HF_HOME=/opt/hf-cache. HF_HUB_OFFLINE=1 at runtime enforces
-#      no Hub call.
+#      no Hub call. One model instance serves every corpus.
 #
 #   2. generated/docsearch/corpus.json + meta.json — copied verbatim
 #      into /var/task. The Lambda hashes corpus.json at cold start to
 #      compute corpus_sha256.
+#
+#   3. generated/nsidc/corpus.json + meta.json — same deal, laid down
+#      with `nsidc_` filename prefixes so both corpora coexist at the
+#      task root. Environment variables in app.py (NSIDC_CORPUS_PATH,
+#      DOCSEARCH_CORPUS_PATH) let local dev override without
+#      rebuilding the image.
 #
 # Build from the repo root so the COPY paths resolve:
 #
@@ -49,10 +57,13 @@ RUN TRANSFORMERS_OFFLINE=0 HF_HUB_OFFLINE=0 python -c "\
 from sentence_transformers import SentenceTransformer; \
 SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')"
 
-# Corpus + metadata. Both committed in git; the image carries the
-# exact bytes of the most recent `make rebuild-corpus` run.
+# Corpora + metadata. Both sets of files are committed in git; the
+# image carries the exact bytes of the most recent
+# `make rebuild-corpus-docsearch` / `make rebuild-corpus-nsidc` runs.
 COPY generated/docsearch/corpus.json ${LAMBDA_TASK_ROOT}/corpus.json
 COPY generated/docsearch/meta.json   ${LAMBDA_TASK_ROOT}/meta.json
+COPY generated/nsidc/corpus.json     ${LAMBDA_TASK_ROOT}/nsidc_corpus.json
+COPY generated/nsidc/meta.json       ${LAMBDA_TASK_ROOT}/nsidc_meta.json
 
 # Application code. `server/__init__.py` is committed (empty) so
 # `from server import …` works without a post-copy touch step.

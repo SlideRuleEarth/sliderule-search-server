@@ -1,0 +1,13 @@
+{
+  "built_at": "2026-04-21T15:05:16Z",
+  "source_host": "nsidc.org + ornldaac.earthdata.nasa.gov",
+  "crawl_strategy": "url_list",
+  "sources_total": 12,
+  "sources_ok": 12,
+  "pages_crawled": 12,
+  "chunk_count": 1757,
+  "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_dim": 384,
+  "corpus_bytes": 15172716,
+  "corpus_sha256": "03df6e57b873a481d9a5fe247df6fd143a0bf4de81e8376dacd3869f2d1a0f46"
+}
