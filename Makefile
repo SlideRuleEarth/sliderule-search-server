@@ -42,7 +42,8 @@ PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/pyt
         destroy-testsliderule destroy-slideruleearth \
         update-testsliderule update-slideruleearth \
         update-infra-testsliderule update-infra-slideruleearth \
-        smoketest-testsliderule smoketest-slideruleearth
+        smoketest-testsliderule smoketest-slideruleearth \
+        logs logs-testsliderule logs-slideruleearth
 
 help: ## That's me!
 	@printf "\033[37m%-40s\033[0m %s\n" "#-----------------------------------------------------------------------------------------"
@@ -175,6 +176,23 @@ terraform-destroy: ## Tear down Lambda + CloudFront + ECR + DNS
 smoketest: ## curl the deployed endpoints and verify status + CORS + consistency
 	@DOMAIN=$(DOMAIN) bash $(ROOT)/scripts/smoketest.sh
 
+# ---- CloudWatch logs ------------------------------------------------------------------------------
+
+# `aws logs tail` pulls its region from the CLI default, which is
+# probably not us-east-1 on your workstation (the Lambda lives in
+# us-east-1, but your ~/.aws/config default may be elsewhere). Baking
+# --region into the target means you never need to remember.
+# --since 10m seeds with recent activity immediately (so you can see
+# the most recent EventBridge warmup tick without waiting for the next
+# one), then --follow streams new events until Ctrl-C.
+logs: ## Tail Lambda CloudWatch logs (requires DOMAIN)
+	@test -n "$(DOMAIN)" || (echo "❌ DOMAIN is not set"; exit 1)
+	aws logs tail "/aws/lambda/docsearch-$(subst .,-,$(DOMAIN))" \
+		--region us-east-1 \
+		--since 10m \
+		--follow \
+		--format short
+
 # ---- Per-environment wrappers ---------------------------------------------------------------------
 
 deploy-to-testsliderule: ## First-time deploy: ECR → image push → full stack at search.testsliderule.org
@@ -194,6 +212,9 @@ destroy-testsliderule: ## Tear down search.testsliderule.org infrastructure
 smoketest-testsliderule: ## Smoketest against search.testsliderule.org
 	make smoketest DOMAIN=search.testsliderule.org
 
+logs-testsliderule: ## Tail CloudWatch logs for search.testsliderule.org
+	make logs DOMAIN=search.testsliderule.org
+
 deploy-to-slideruleearth: ## First-time deploy: ECR → image push → full stack at search.slideruleearth.io
 	make terraform-apply-ecr DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io && \
 	make deploy-lambda       DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io && \
@@ -210,6 +231,9 @@ destroy-slideruleearth: ## Tear down search.slideruleearth.io infrastructure
 
 smoketest-slideruleearth: ## Smoketest against search.slideruleearth.io
 	make smoketest DOMAIN=search.slideruleearth.io
+
+logs-slideruleearth: ## Tail CloudWatch logs for search.slideruleearth.io
+	make logs DOMAIN=search.slideruleearth.io
 
 # ---- Validation -----------------------------------------------------------------------------------
 
