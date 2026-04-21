@@ -1,0 +1,80 @@
+name: ci
+
+# Runs on every PR into main and on every push to main. Designed to be the
+# required status check for branch protection — if this passes, merging is
+# safe; if it fails, the PR should not merge.
+#
+# Five checks, matching what `make verify` asserts locally:
+#   1. Python syntax (server/, tools/, skills/) compiles cleanly
+#   2. Committed corpora parse as JSON (both docsearch + nsidc)
+#   3. terraform fmt is clean across terraform/
+#   4. terraform config parses cleanly (no backend to init, so -backend=false)
+#   5. Both skill archives still package
+#
+# No AWS creds required — everything here is read-only against the repo.
+# No docker build — the Lambda image is heavy (torch CPU wheels + MiniLM
+# model download) and the Dockerfile path is exercised by `make build-image`
+# locally / `make update-<env>` at deploy time.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: "1.14.9"
+          terraform_wrapper: false
+
+      # Parse every .py file under the three source trees. Catches
+      # SyntaxError / indent errors without executing the modules
+      # (so no torch, no sentence-transformers, no network).
+      - name: python syntax check
+        run: python -m compileall -q server tools skills
+
+      # Committed corpora are baked into the Lambda image at build time.
+      # If either file isn't valid JSON, the image builds but Mangum will
+      # 500 on the first request — catch it here instead.
+      - name: corpora parse check
+        run: |
+          python -c "import json; json.load(open('generated/docsearch/corpus.json'))"
+          python -c "import json; json.load(open('generated/nsidc/corpus.json'))"
+
+      - name: terraform fmt
+        run: terraform fmt -check -recursive terraform/
+
+      # `-backend=false` skips the S3 backend setup (no AWS creds needed).
+      # `-lockfile=readonly` requires .terraform.lock.hcl to satisfy
+      # required_providers on linux_amd64 — catches unpinned drift and
+      # missing-platform-hash mistakes (the darwin-only lock-file trap).
+      - name: terraform validate
+        working-directory: terraform
+        run: |
+          terraform init -backend=false -lockfile=readonly
+          terraform validate
+
+      # Confirm both skill archives still zip cleanly. Doesn't validate
+      # the skill's network behavior (no deployment exists in CI); just
+      # proves the zip command succeeds and each skill directory is
+      # complete.
+      - name: package skills (sanity)
+        run: |
+          make package-skill-docsearch
+          make package-skill-nsidc

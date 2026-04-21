@@ -34,7 +34,7 @@ CORPUS_FILE  = $(SRC_DIR)/docsearch/corpus.json
 # of a raw ModuleNotFoundError traceback.
 PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/python || echo python3)
 
-.PHONY: help clean rebuild-corpus-docsearch rebuild-corpus-nsidc \
+.PHONY: help clean verify rebuild-corpus-docsearch rebuild-corpus-nsidc \
         package-skill-docsearch package-skill-nsidc package-skills \
         freeplay build-image test-image run-image deploy-lambda smoketest \
         terraform-apply terraform-apply-ecr terraform-destroy check-vars \
@@ -55,6 +55,25 @@ help: ## That's me!
 	@echo DOMAIN_ROOT:     $(DOMAIN_ROOT)
 	@echo DOMAIN_APEX:     $(DOMAIN_APEX)
 	@echo DISTRIBUTION_ID: $(DISTRIBUTION_ID)
+
+# ---- Local CI (mirrors .github/workflows/ci.yml) --------------------------------------------------
+
+# `make verify` is the one-stop contributor check: py syntax + tf fmt +
+# corpora parse + skills package. The same four steps run in CI as the
+# `verify` job gated by branch protection. If this passes locally, the
+# PR should pass CI.
+#
+# Deliberately *excludes* `make build-image` — the Dockerfile bake pulls
+# torch CPU wheels and downloads the MiniLM model (~1 GB image, several
+# minutes). That path is exercised at deploy time via `make update-<env>`.
+verify: ## Run local CI checks: py syntax, tf fmt, corpora parse, skills package
+	@python3 -m compileall -q server tools skills
+	@terraform fmt -check -recursive terraform/
+	@python3 -c "import json; json.load(open('generated/docsearch/corpus.json'))"
+	@python3 -c "import json; json.load(open('generated/nsidc/corpus.json'))"
+	@$(MAKE) --no-print-directory package-skill-docsearch > /dev/null
+	@$(MAKE) --no-print-directory package-skill-nsidc > /dev/null
+	@echo "✅ make verify OK"
 
 # ---- Corpus + dev iteration -----------------------------------------------------------------------
 
