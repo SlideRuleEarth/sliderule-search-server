@@ -226,11 +226,19 @@ domain alias.
 ## Skill packaging
 
 ```bash
-bash scripts/package_skill.sh sliderule-docsearch
-# → skills/sliderule-docsearch.skill
+make package-skill-docsearch    # → skills/sliderule-docsearch.skill
+make package-skill-nsidc        # → skills/nsidc-reference.skill
+make package-skills             # both
 ```
 
-The resulting archive has `sliderule-docsearch/` as its root directory.
+Each `.skill` archive is a zip with the skill directory at the root
+(e.g. `sliderule-docsearch/…`). Packages are ~6 KB — no corpus or
+model bytes bundled, just SKILL.md + the thin Python client.
+
+The packages are environment-independent: the same `.skill` works
+whether it's pointed at `search.testsliderule.org` (current default)
+or `search.slideruleearth.io` (production once we cut over). The
+host is a one-line constant in the skill's `scripts/search.py`.
 
 ## Operational notes
 

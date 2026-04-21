@@ -34,7 +34,8 @@ CORPUS_FILE  = $(SRC_DIR)/docsearch/corpus.json
 # of a raw ModuleNotFoundError traceback.
 PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/python || echo python3)
 
-.PHONY: help clean rebuild-corpus-docsearch rebuild-corpus-nsidc package-skill \
+.PHONY: help clean rebuild-corpus-docsearch rebuild-corpus-nsidc \
+        package-skill-docsearch package-skill-nsidc package-skills \
         freeplay build-image test-image run-image deploy-lambda smoketest \
         terraform-apply terraform-apply-ecr terraform-destroy check-vars \
         deploy-to-testsliderule deploy-to-slideruleearth \
@@ -99,8 +100,13 @@ freeplay: ## Interactive search REPL against the committed corpus (no deploy inv
 	}
 	@cd $(ROOT) && $(PYTHON) -m server.freeplay --corpus-file $(CORPUS_FILE)
 
-package-skill: ## Package skills/sliderule-docsearch/ into a .skill zip
+package-skill-docsearch: ## Package skills/sliderule-docsearch/ into a .skill zip
 	@bash $(ROOT)/scripts/package_skill.sh sliderule-docsearch
+
+package-skill-nsidc: ## Package skills/nsidc-reference/ into a .skill zip
+	@bash $(ROOT)/scripts/package_skill.sh nsidc-reference
+
+package-skills: package-skill-docsearch package-skill-nsidc ## Package both skills
 
 # ---- Lambda image build + deploy ------------------------------------------------------------------
 
