@@ -9,7 +9,3 @@ variable "domainName" {
 variable "domainApex" {
   type = string
 }
-
-variable "s3_bucket_name" {
-  type = string
-}

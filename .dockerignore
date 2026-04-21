@@ -1,0 +1,21 @@
+# Keep the docker build context small and deterministic.
+# Only files referenced by COPY in server/Dockerfile need to be in context.
+
+.git
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Not referenced by the image build
+terraform/
+scripts/
+tools/
+skills/
+build/
+docs/
+*.md
+.gitignore
+.dockerignore
+Makefile

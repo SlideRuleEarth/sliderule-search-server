@@ -13,15 +13,6 @@ variable "domain_root" {
   default     = "testsliderule"
 }
 
-variable "s3_bucket_name" {
-  type        = string
-  description = "Name of the S3 bucket that stores the search corpora"
-  validation {
-    condition     = length(var.s3_bucket_name) > 0
-    error_message = "The s3_bucket_name variable must not be empty."
-  }
-}
-
 variable "cost_grouping" {
   description = "Cost tag grouping"
   type        = string

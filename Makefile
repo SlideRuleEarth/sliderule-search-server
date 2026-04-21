@@ -1,44 +1,45 @@
 ####################################################################################################
 #
-# SlideRule Search Server — publishes static search corpora (JSON + embeddings) over a
-# CloudFront distribution. Sibling service to sliderule-schema-server: same infrastructure
-# pattern, different content.
+# SlideRule Search Server — serves /docsearch/search over CloudFront + Lambda.
 #
-# generated/ is the source of truth for what gets deployed. scripts/build.sh stages it
-# plus an inlined errors/not-found.json into build/, which the Makefile syncs to S3 and
-# invalidates on CloudFront. Skills are packaged separately via scripts/package_skill.sh.
+# Architecture: one Lambda container image (sentence-transformers model + corpus.json
+# baked in) fronted by CloudFront via OAC. No S3 artifact hosting, no meta.json
+# polling — a corpus rebuild is just a new image push.
+#
+# Skills are packaged separately via scripts/package_skill.sh.
 #
 ####################################################################################################
 
 SHELL := /bin/bash
 ROOT  = $(shell pwd)
 
-# DOMAIN / S3_BUCKET / DOMAIN_APEX are supplied by wrapper targets (or the environment).
+# DOMAIN / DOMAIN_APEX are supplied by wrapper targets (or the environment).
+# DOMAIN_ROOT is the *middle* label — the environment differentiator — so
+# search.testsliderule.org -> testsliderule and search.slideruleearth.io ->
+# slideruleearth. (The first label is "search" in both envs, which would
+# collapse the Project cost-attribution tag to a single value.)
 DOMAIN          ?=
-DOMAIN_ROOT     = $(firstword $(subst ., ,$(DOMAIN)))
+DOMAIN_ROOT     = $(word 2,$(subst ., ,$(DOMAIN)))
 DOMAIN_APEX     ?= $(DOMAIN)
-S3_BUCKET       ?=
-DISTRIBUTION_ID = $(shell aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='$(DOMAIN)'].Id" --output text)
+DISTRIBUTION_ID = $(shell aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='$(DOMAIN)'].Id" --output text 2>/dev/null)
 
-BUILD_DIR    = $(ROOT)/build
 SRC_DIR      = $(ROOT)/generated
 CORPUS_FILE  = $(SRC_DIR)/docsearch/corpus.json
 
 # Prefer the repo-local .venv when it exists so `make freeplay` and
 # `make rebuild-corpus` Just Work without requiring the user to
 # `source .venv/bin/activate` first. Falls back to whatever python3 is
-# on PATH — if that shell's python doesn't have sentence-transformers,
-# the per-target import-check below prints a clear install hint instead
+# on PATH — if that shell's python doesn't have the deps, the
+# per-target import-check below prints a clear install hint instead
 # of a raw ModuleNotFoundError traceback.
 PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/python || echo python3)
 
-.PHONY: help build clean deploy smoketest rebuild-corpus package-skill \
-        freeplay \
-        upload invalidate live-update \
-        terraform-apply terraform-destroy check-vars \
+.PHONY: help clean rebuild-corpus package-skill \
+        freeplay build-image test-image run-image deploy-lambda smoketest \
+        terraform-apply terraform-apply-ecr terraform-destroy check-vars \
         deploy-to-testsliderule deploy-to-slideruleearth \
         destroy-testsliderule destroy-slideruleearth \
-        live-update-testsliderule live-update-slideruleearth
+        update-testsliderule update-slideruleearth
 
 help: ## That's me!
 	@printf "\033[37m%-40s\033[0m %s\n" "#-----------------------------------------------------------------------------------------"
@@ -49,45 +50,9 @@ help: ## That's me!
 	@echo DOMAIN:          $(DOMAIN)
 	@echo DOMAIN_ROOT:     $(DOMAIN_ROOT)
 	@echo DOMAIN_APEX:     $(DOMAIN_APEX)
-	@echo S3_BUCKET:       $(S3_BUCKET)
 	@echo DISTRIBUTION_ID: $(DISTRIBUTION_ID)
 
-clean: ## Remove the build/ tree
-	rm -rf $(BUILD_DIR)
-
-# `build` is a pure staging step: generated/ -> build/, plus an inlined
-# errors/not-found.json. It does NOT auto-regenerate the corpus — that's
-# deliberate. Auto-regen during deploy means the same commit can ship
-# different bytes depending on what the live docs site happens to serve
-# at deploy time. Instead, require the committed corpus to be present
-# and fail loudly if it isn't. Use `make rebuild-corpus` to refresh.
-build: ## Stage generated/ into build/ (fails if corpus.json missing)
-	@test -f $(CORPUS_FILE) || { \
-	  echo "❌ $(CORPUS_FILE) is missing."; \
-	  echo "   corpus.json is a committed artifact; don't auto-regenerate"; \
-	  echo "   during deploy. Run 'make rebuild-corpus' to refresh it, then"; \
-	  echo "   review and commit the diff before deploying."; \
-	  exit 1; \
-	}
-	@bash $(ROOT)/scripts/build.sh
-
-freeplay: ## Interactive search REPL against the committed corpus (no deploy involved)
-	@test -f $(CORPUS_FILE) || { \
-	  echo "❌ $(CORPUS_FILE) is missing. Run 'make rebuild-corpus' first."; \
-	  exit 1; \
-	}
-	@$(PYTHON) -c "import sentence_transformers, numpy, requests" 2>/dev/null || { \
-	  echo "❌ skill dependencies missing in $(PYTHON)."; \
-	  echo "   Install them one of two ways:"; \
-	  echo "     (a) Repo-local venv (picked up automatically next run):"; \
-	  echo "         python3 -m venv .venv \\"; \
-	  echo "           && .venv/bin/pip install -r skills/sliderule-docsearch/requirements.txt"; \
-	  echo "     (b) Your active Python environment:"; \
-	  echo "         pip install -r skills/sliderule-docsearch/requirements.txt"; \
-	  exit 1; \
-	}
-	@$(PYTHON) $(ROOT)/skills/sliderule-docsearch/scripts/search.py \
-	  --corpus-file $(CORPUS_FILE) --repl
+# ---- Corpus + dev iteration -----------------------------------------------------------------------
 
 rebuild-corpus: ## Re-crawl docs.slideruleearth.io and regenerate generated/docsearch/
 	@$(PYTHON) -c "import sentence_transformers, bs4, requests" 2>/dev/null || { \
@@ -102,97 +67,124 @@ rebuild-corpus: ## Re-crawl docs.slideruleearth.io and regenerate generated/docs
 	}
 	$(PYTHON) $(ROOT)/tools/build_docsearch_corpus.py
 
+freeplay: ## Interactive search REPL against the committed corpus (no deploy involved)
+	@test -f $(CORPUS_FILE) || { \
+	  echo "❌ $(CORPUS_FILE) is missing. Run 'make rebuild-corpus' first."; \
+	  exit 1; \
+	}
+	@$(PYTHON) -c "import sentence_transformers, numpy, fastapi, pydantic" 2>/dev/null || { \
+	  echo "❌ server dependencies missing in $(PYTHON)."; \
+	  echo "   Install them one of two ways:"; \
+	  echo "     (a) Repo-local venv (picked up automatically next run):"; \
+	  echo "         python3 -m venv .venv \\"; \
+	  echo "           && .venv/bin/pip install -r server/requirements.txt"; \
+	  echo "     (b) Your active Python environment:"; \
+	  echo "         pip install -r server/requirements.txt"; \
+	  exit 1; \
+	}
+	@cd $(ROOT) && $(PYTHON) -m server.freeplay --corpus-file $(CORPUS_FILE)
+
 package-skill: ## Package skills/sliderule-docsearch/ into a .skill zip
 	@bash $(ROOT)/scripts/package_skill.sh sliderule-docsearch
 
-# ---- Sync + invalidate ----------------------------------------------------------------------------
+# ---- Lambda image build + deploy ------------------------------------------------------------------
 
-# Deploy is race-free via content-addressed corpus URLs + tag-based
-# cleanup. See scripts/upload.sh for the detailed logic; the Makefile
-# just delegates so we don't fight Makefile escaping rules for a
-# multi-step bash flow. The short version:
+# `build-image` is a local sanity check; it doesn't push. `deploy-lambda` is the real thing —
+# it builds, pushes to ECR, and (if the Lambda already exists) updates its image_uri in place.
+build-image: ## Locally build the Lambda container image (sanity check; no push)
+	@test -f $(CORPUS_FILE) || { \
+	  echo "❌ $(CORPUS_FILE) is missing. Run 'make rebuild-corpus' first."; \
+	  exit 1; \
+	}
+	docker buildx build --load --platform linux/arm64 -f server/Dockerfile -t docsearch:dev .
+
+test-image: ## Build + run the image locally via the AWS Lambda RIE and exercise all routes
+	@bash $(ROOT)/scripts/test_image.sh
+
+run-image: build-image ## Build the image and run it interactively on :9000 (Ctrl-C to stop)
+	@echo
+	@echo "Lambda RIE listening on http://localhost:9000"
+	@echo "Invoke endpoint:"
+	@echo "  POST http://localhost:9000/2015-03-31/functions/function/invocations"
+	@echo "Payload: a Lambda Function URL v2 event. See scripts/test_image.sh for examples."
+	@echo
+	docker run --rm -p 9000:8080 docsearch:dev
+
+deploy-lambda: ## Build + push image to ECR, update Lambda (requires DOMAIN)
+	@test -n "$(DOMAIN)" || (echo "❌ DOMAIN is not set"; exit 1)
+	@bash $(ROOT)/scripts/deploy_lambda.sh $(DOMAIN)
+
+# ---- Terraform (infrastructure lifecycle) ---------------------------------------------------------
+
+# First-time deploy is two-phase because Lambda won't create without an image already in ECR:
+#   1. terraform-apply-ecr   (creates just the ECR repo)
+#   2. deploy-lambda         (pushes the initial image to :latest)
+#   3. terraform-apply       (creates Lambda + CloudFront + Route53 using :latest)
 #
-#   1. sync non-corpus files (--delete) preserving versioned corpora
-#   2. cp new versioned corpus (immutable cache)
-#   3. cp meta.json (atomic pointer flip)
-#   4. tag the previously-live corpus state=stale (eligible for
-#      eventual lifecycle expiration)
-#
-# The tag step is what makes S3 lifecycle safe: it only expires
-# tagged objects, so the current corpus is never at risk — even if
-# we skip deploys for months.
-upload: ## Sync build/ to s3://$(S3_BUCKET)/ (see scripts/upload.sh)
-	@test -d $(BUILD_DIR) || (echo "❌ $(BUILD_DIR) missing — run 'make build' first"; exit 1)
-	@export AWS_MAX_ATTEMPTS=5 AWS_RETRY_MODE=standard && \
-	 bash $(ROOT)/scripts/upload.sh $(BUILD_DIR) $(S3_BUCKET)
+# Subsequent routine updates are just `make deploy-lambda`.
+terraform-apply-ecr: ## First-phase: create only the ECR repo so the image can be pushed
+	mkdir -p terraform/ && cd terraform/ && terraform init && \
+	(terraform workspace select $(DOMAIN)-search-server || terraform workspace new $(DOMAIN)-search-server) && \
+	terraform apply \
+		-target=module.cloudfront.aws_ecr_repository.docsearch \
+		-target=module.cloudfront.aws_ecr_lifecycle_policy.docsearch \
+		-var domainName=$(DOMAIN) \
+		-var domainApex=$(DOMAIN_APEX) \
+		-var domain_root=$(DOMAIN_ROOT)
 
-invalidate: ## Invalidate meta.json and errors/ (versioned corpora don't need it)
-	@export AWS_MAX_ATTEMPTS=5 AWS_RETRY_MODE=standard && \
-	echo "Invalidating /docsearch/meta.json + /errors/* on CloudFront..." && \
-	aws cloudfront create-invalidation --distribution-id $(DISTRIBUTION_ID) \
-		--paths "/docsearch/meta.json" "/errors/*"
-
-live-update: check-vars build upload invalidate ## Build, upload, and invalidate
-
-deploy: live-update ## Alias for live-update (build + upload + invalidate)
-
-# ---- Terraform (distribution lifecycle) -----------------------------------------------------------
-
-terraform-apply: ## Create/update the bucket + distribution + DNS via Terraform
+terraform-apply: ## Create/update the full stack (ECR already must exist)
 	mkdir -p terraform/ && cd terraform/ && terraform init && \
 	(terraform workspace select $(DOMAIN)-search-server || terraform workspace new $(DOMAIN)-search-server) && \
 	terraform validate && \
 	terraform apply \
 		-var domainName=$(DOMAIN) \
 		-var domainApex=$(DOMAIN_APEX) \
-		-var domain_root=$(DOMAIN_ROOT) \
-		-var s3_bucket_name=$(S3_BUCKET)
+		-var domain_root=$(DOMAIN_ROOT)
 
-terraform-destroy: ## Tear down the bucket + distribution + DNS via Terraform
+terraform-destroy: ## Tear down Lambda + CloudFront + ECR + DNS
 	cd terraform/ && terraform init && \
 	(terraform workspace select $(DOMAIN)-search-server || terraform workspace new $(DOMAIN)-search-server) && \
 	terraform destroy \
 		-var domainName=$(DOMAIN) \
 		-var domainApex=$(DOMAIN_APEX) \
-		-var domain_root=$(DOMAIN_ROOT) \
-		-var s3_bucket_name=$(S3_BUCKET)
+		-var domain_root=$(DOMAIN_ROOT)
 
 # ---- Smoke tests ----------------------------------------------------------------------------------
 
-smoketest: ## curl the public endpoints and verify status + Content-Type + CORS
+smoketest: ## curl the deployed endpoints and verify status + CORS + consistency
 	@DOMAIN=$(DOMAIN) bash $(ROOT)/scripts/smoketest.sh
 
 # ---- Per-environment wrappers ---------------------------------------------------------------------
 
-deploy-to-testsliderule: ## Create infra + upload content at search.testsliderule.org
-	make terraform-apply DOMAIN=search.testsliderule.org S3_BUCKET=sliderule-search-test DOMAIN_APEX=testsliderule.org && \
-	make live-update     DOMAIN=search.testsliderule.org S3_BUCKET=sliderule-search-test DOMAIN_APEX=testsliderule.org
+deploy-to-testsliderule: ## First-time deploy: ECR → image push → full stack at search.testsliderule.org
+	make terraform-apply-ecr DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org && \
+	make deploy-lambda       DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org && \
+	make terraform-apply     DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org
 
-live-update-testsliderule: ## Build + upload + invalidate at search.testsliderule.org
-	make live-update DOMAIN=search.testsliderule.org S3_BUCKET=sliderule-search-test DOMAIN_APEX=testsliderule.org
+update-testsliderule: ## Routine update: rebuild image + update Lambda at search.testsliderule.org
+	make deploy-lambda DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org
 
 destroy-testsliderule: ## Tear down search.testsliderule.org infrastructure
-	make terraform-destroy DOMAIN=search.testsliderule.org S3_BUCKET=sliderule-search-test DOMAIN_APEX=testsliderule.org
+	make terraform-destroy DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org
 
-deploy-to-slideruleearth: ## Create infra + upload content at search.slideruleearth.io
-	make terraform-apply DOMAIN=search.slideruleearth.io S3_BUCKET=sliderule-search-prod DOMAIN_APEX=slideruleearth.io && \
-	make live-update     DOMAIN=search.slideruleearth.io S3_BUCKET=sliderule-search-prod DOMAIN_APEX=slideruleearth.io
+deploy-to-slideruleearth: ## First-time deploy: ECR → image push → full stack at search.slideruleearth.io
+	make terraform-apply-ecr DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io && \
+	make deploy-lambda       DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io && \
+	make terraform-apply     DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io
 
-live-update-slideruleearth: ## Build + upload + invalidate at search.slideruleearth.io
-	make live-update DOMAIN=search.slideruleearth.io S3_BUCKET=sliderule-search-prod DOMAIN_APEX=slideruleearth.io
+update-slideruleearth: ## Routine update: rebuild image + update Lambda at search.slideruleearth.io
+	make deploy-lambda DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io
 
 destroy-slideruleearth: ## Tear down search.slideruleearth.io infrastructure
-	make terraform-destroy DOMAIN=search.slideruleearth.io S3_BUCKET=sliderule-search-prod DOMAIN_APEX=slideruleearth.io
+	make terraform-destroy DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io
 
 # ---- Validation -----------------------------------------------------------------------------------
 
 check-vars:
 	@test -n "$(DOMAIN)"          || (echo "❌ DOMAIN is not set"; exit 1)
-	@test -n "$(S3_BUCKET)"       || (echo "❌ S3_BUCKET is not set"; exit 1)
 	@test -n "$(DOMAIN_APEX)"     || (echo "❌ DOMAIN_APEX is not set"; exit 1)
 	@test -n "$(DISTRIBUTION_ID)" || (echo "❌ DISTRIBUTION_ID could not be resolved for DOMAIN=$(DOMAIN)"; exit 1)
 	@echo "✅ All required variables are set:"
 	@echo "   DOMAIN          = $(DOMAIN)"
 	@echo "   DOMAIN_APEX     = $(DOMAIN_APEX)"
-	@echo "   S3_BUCKET       = $(S3_BUCKET)"
 	@echo "   DISTRIBUTION_ID = $(DISTRIBUTION_ID)"
