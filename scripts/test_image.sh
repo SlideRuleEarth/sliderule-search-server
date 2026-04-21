@@ -197,6 +197,39 @@ resp="$(invoke /nope GET '')"
 status="$(echo "$resp" | python3 -c 'import json,sys; print(json.load(sys.stdin)["statusCode"])')"
 check_json_status "GET /nope (catch-all)" "$status" "404"
 
+# EventBridge scheduled warmup event — exercises server/handler.py's
+# branch that short-circuits before Mangum. In production this is
+# driven by the rule defined in terraform/modules/warmer.tf; here we
+# synthesize the canonical envelope AWS emits for rate(5 minutes).
+# The handler returns {"warmup":"ok","corpora":[...]} directly (no
+# Lambda-proxy-response shape), so we key assertions off the raw
+# top-level "warmup" and "corpora" fields rather than statusCode.
+echo
+echo "  EventBridge warmup event (scheduled-invoke path):"
+warmup_event='{"version":"0","id":"abcd-1234","detail-type":"Scheduled Event","source":"aws.events","account":"0","time":"2026-04-21T20:00:00Z","region":"us-east-1","resources":["arn:aws:events:us-east-1:0:rule/test"],"detail":{}}'
+resp="$(curl -sS -XPOST "http://localhost:$RIE_PORT/2015-03-31/functions/function/invocations" \
+  -H "Content-Type: application/json" \
+  -d "$warmup_event")"
+warmup_status="$(echo "$resp" | python3 -c '
+import json, sys
+try:
+  print(json.load(sys.stdin).get("warmup", "<missing>"))
+except Exception as e:
+  print(f"<parse-error: {e}>")
+')"
+if [[ "$warmup_status" == "ok" ]]; then
+  corpora_list="$(echo "$resp" | python3 -c '
+import json, sys
+print(",".join(json.load(sys.stdin).get("corpora", [])))
+')"
+  echo "    PASS  warmup returned ok; corpora=[$corpora_list]"
+  pass=$((pass+1))
+else
+  echo "    FAIL  warmup event did not short-circuit"
+  echo "          response: $(echo "$resp" | head -c 200)"
+  fail=$((fail+1))
+fi
+
 echo
 echo "[4/4] Container logs (tail):"
 docker logs "$CONTAINER_NAME" 2>&1 | tail -10 | sed 's/^/    /'
