@@ -40,7 +40,8 @@ PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/pyt
         deploy-to-testsliderule deploy-to-slideruleearth \
         destroy-testsliderule destroy-slideruleearth \
         update-testsliderule update-slideruleearth \
-        update-infra-testsliderule update-infra-slideruleearth
+        update-infra-testsliderule update-infra-slideruleearth \
+        smoketest-testsliderule smoketest-slideruleearth
 
 help: ## That's me!
 	@printf "\033[37m%-40s\033[0m %s\n" "#-----------------------------------------------------------------------------------------"
@@ -171,6 +172,9 @@ update-infra-testsliderule: ## Terraform-only update at search.testsliderule.org
 destroy-testsliderule: ## Tear down search.testsliderule.org infrastructure
 	make terraform-destroy DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org
 
+smoketest-testsliderule: ## Smoketest against search.testsliderule.org
+	make smoketest DOMAIN=search.testsliderule.org
+
 deploy-to-slideruleearth: ## First-time deploy: ECR → image push → full stack at search.slideruleearth.io
 	make terraform-apply-ecr DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io && \
 	make deploy-lambda       DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io && \
@@ -184,6 +188,9 @@ update-infra-slideruleearth: ## Terraform-only update at search.slideruleearth.i
 
 destroy-slideruleearth: ## Tear down search.slideruleearth.io infrastructure
 	make terraform-destroy DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io
+
+smoketest-slideruleearth: ## Smoketest against search.slideruleearth.io
+	make smoketest DOMAIN=search.slideruleearth.io
 
 # ---- Validation -----------------------------------------------------------------------------------
 
