@@ -92,13 +92,16 @@ class MiniLMEmbedder:
 
         iterator = range(0, len(texts), batch_size)
         if show_progress:
-            # tqdm is a transitive dep of onnxruntime/tokenizers; absence
-            # is unusual but not fatal.
             try:
                 from tqdm import tqdm
 
                 iterator = tqdm(iterator, desc="embedding", total=(len(texts) + batch_size - 1) // batch_size)
             except ImportError:
+                # tqdm is an optional nicety for multi-minute corpus-rebuild
+                # runs; servers don't pass show_progress and therefore never
+                # reach this branch. Fall back to the plain range iterator
+                # silently rather than forcing every deploy environment to
+                # install tqdm.
                 pass
 
         out: list[np.ndarray] = []
