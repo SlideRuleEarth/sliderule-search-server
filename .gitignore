@@ -1,4 +1,8 @@
-# Build/generated artifacts — produced by scripts, not committed
+# Build/generated artifacts — produced by scripts, not committed.
+# scripts/package_skill.sh writes .skill archives to tmp_skill_for_export/;
+# the older /skills/*.skill rule stays in place as a safety net in case
+# an old version of the script or manual invocation drops one there.
+/tmp_skill_for_export/
 /skills/*.skill
 
 # Throwaway scratch space — parity tests, experiments. Git-ignored so
