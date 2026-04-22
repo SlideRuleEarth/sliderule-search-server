@@ -26,7 +26,7 @@
 #   docker buildx build --platform linux/arm64 -f server/Dockerfile \
 #     -t <ecr-url>:<tag> .
 
-FROM public.ecr.aws/lambda/python:3.12
+FROM public.ecr.aws/lambda/python:3.13
 
 ENV HF_HOME=/opt/hf-cache \
     TRANSFORMERS_VERBOSITY=error \
