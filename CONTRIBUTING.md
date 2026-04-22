@@ -108,7 +108,10 @@ on a PR, `make verify` locally will reproduce it.
 If you have AWS credentials with the right profile:
 
 ```bash
-# First-time (creates ECR, pushes image, then full stack):
+# First-time from a clean slate (creates ECR, pushes image, then full stack):
+make bootstrap-deploy-to-testsliderule
+
+# Combined infra + code update (terraform first, then image):
 make deploy-to-testsliderule
 
 # Routine code update (just rebuild image + update Lambda):

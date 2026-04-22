@@ -164,16 +164,16 @@ and produced at least `--min-chunks` (default 100) chunks.
 ### First-time setup (per domain)
 
 Because Lambda won't create without an image already present in ECR,
-the first deploy is three steps:
+the first deploy is three steps, driven by `bootstrap-deploy-to-<env>`:
 
 ```bash
-make deploy-to-testsliderule    # runs all three below
+make bootstrap-deploy-to-testsliderule    # runs all three below
 ```
 
 which expands to:
 
 1. `make terraform-apply-ecr` — create the ECR repo.
-2. `make deploy-lambda` — build the image (arm64) and push `:latest` + a content-tagged audit artifact.
+2. `make deploy-lambda` — build the image (x86_64) and push `:latest` + a content-tagged audit artifact.
 3. `make terraform-apply` — create Lambda + Function URL + CloudFront + Route 53 + ACM, wiring everything together.
 
 **IAM requirement:** step 3 creates an IAM role (`docsearch-lambda-<sanitized-domain>`),
@@ -184,15 +184,22 @@ not need IAM permissions.
 
 ### Routine updates
 
-Either the corpus changed, the server code changed, or both:
+Three shapes depending on what changed:
 
-```bash
-make update-testsliderule    # == make deploy-lambda DOMAIN=...
-```
+| Changed       | Target                            | What it does                                        |
+|---------------|-----------------------------------|-----------------------------------------------------|
+| Code only     | `make update-testsliderule`       | Rebuild image, push, `update-function-code`, warm.  |
+| Infra only    | `make update-infra-testsliderule` | `terraform apply` — no Lambda rebuild.              |
+| Both          | `make deploy-to-testsliderule`    | Terraform apply first, then image push + update.    |
 
-That rebuilds the image and updates the Lambda's `image_uri` in place.
+Use the combined `deploy-to-<env>` when a single change touches both
+`terraform/` and `server/` — e.g. bumping `memory_size` alongside a
+code change, or an architecture switch where terraform must recreate
+the Lambda before `update-function-code` can accept the new image.
+
 Terraform has `lifecycle { ignore_changes = [image_uri] }` on the
-Lambda so plan/apply doesn't revert these out-of-band deploys.
+Lambda so code-only `update-<env>` out-of-band deploys don't get
+reverted by a subsequent `update-infra-<env>`.
 
 ### Verify
 
