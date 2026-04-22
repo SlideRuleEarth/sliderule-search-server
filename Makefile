@@ -108,7 +108,7 @@ freeplay: ## Interactive search REPL against the committed corpus (no deploy inv
 	  echo "❌ $(CORPUS_FILE) is missing. Run 'make rebuild-corpus-docsearch' first."; \
 	  exit 1; \
 	}
-	@$(PYTHON) -c "import sentence_transformers, numpy, fastapi, pydantic" 2>/dev/null || { \
+	@$(PYTHON) -c "import onnxruntime, tokenizers, numpy, fastapi, pydantic" 2>/dev/null || { \
 	  echo "❌ server dependencies missing in $(PYTHON)."; \
 	  echo "   Install them one of two ways:"; \
 	  echo "     (a) Repo-local venv (picked up automatically next run):"; \

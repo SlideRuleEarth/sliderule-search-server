@@ -19,9 +19,6 @@ import sys
 import time
 from pathlib import Path
 
-# Quiet known-benign HuggingFace banners before sentence_transformers import.
-os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")
-os.environ.setdefault("HF_HUB_VERBOSITY", "error")
 
 
 def log(msg: str) -> None:
@@ -143,18 +140,23 @@ def main() -> int:
         for c in chunks
     ]
 
-    log("Loading embedder (one-time, ~3s)...")
+    log("Loading embedder (one-time)...")
     t0 = time.time()
     try:
-        from sentence_transformers import SentenceTransformer
-    except ModuleNotFoundError:
+        from server.embedder import MiniLMEmbedder
+    except ModuleNotFoundError as exc:
         print(
-            "ERROR: sentence-transformers is not installed in this interpreter.\n"
+            f"ERROR: {exc}\n"
             "  Install:  pip install -r server/requirements.txt",
             file=sys.stderr,
         )
         return 2
-    model = SentenceTransformer(ranking.EXPECTED_EMBEDDER)
+    # Default to the committed generated/shared/ artifacts; allow override
+    # via env var in case of alternate checkouts.
+    repo_root = Path(__file__).resolve().parent.parent
+    model_path = Path(os.environ.get("EMBEDDER_MODEL_PATH", repo_root / "generated" / "shared" / "model.onnx"))
+    tok_path = Path(os.environ.get("EMBEDDER_TOKENIZER_PATH", repo_root / "generated" / "shared" / "tokenizer.json"))
+    model = MiniLMEmbedder(model_path, tok_path)
     log(f"  loaded in {time.time() - t0:.2f}s")
 
     state = {
@@ -203,7 +205,7 @@ def main() -> int:
             print()
             continue
 
-        vec = model.encode([line], convert_to_numpy=True)[0]
+        vec = model.encode([line])[0]
         n = np.linalg.norm(vec)
         if n > 0:
             vec = vec / n

@@ -4,12 +4,12 @@
 # corpora (docsearch + nsidc) out of one Lambda; see server/app.py's
 # CORPORA dict for how they're routed.
 #
-# Three "heavy" items are baked in at build time so cold starts never
-# reach the network:
+# Build-time inputs baked into the image (so cold starts never reach
+# the network):
 #
-#   1. sentence-transformers/all-MiniLM-L6-v2 (~90 MB) — pre-downloaded
-#      into HF_HOME=/opt/hf-cache. HF_HUB_OFFLINE=1 at runtime enforces
-#      no Hub call. One model instance serves every corpus.
+#   1. generated/shared/model.onnx + tokenizer.json — the MiniLM-L6-v2
+#      weights exported to ONNX plus the matching WordPiece tokenizer
+#      config. Loaded via onnxruntime + the `tokenizers` Rust library.
 #
 #   2. generated/docsearch/corpus.json + meta.json — copied verbatim
 #      into /var/task. The Lambda hashes corpus.json at cold start to
@@ -18,8 +18,8 @@
 #   3. generated/nsidc/corpus.json + meta.json — same deal, laid down
 #      with `nsidc_` filename prefixes so both corpora coexist at the
 #      task root. Environment variables in app.py (NSIDC_CORPUS_PATH,
-#      DOCSEARCH_CORPUS_PATH) let local dev override without
-#      rebuilding the image.
+#      DOCSEARCH_CORPUS_PATH, EMBEDDER_MODEL_PATH, etc.) let local dev
+#      override paths without rebuilding the image.
 #
 # Build from the repo root so the COPY paths resolve:
 #
@@ -28,34 +28,18 @@
 
 FROM public.ecr.aws/lambda/python:3.13
 
-ENV HF_HOME=/opt/hf-cache \
-    TRANSFORMERS_VERBOSITY=error \
-    HF_HUB_VERBOSITY=error \
-    TRANSFORMERS_OFFLINE=1 \
-    HF_HUB_OFFLINE=1 \
-    PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONDONTWRITEBYTECODE=1
 
 COPY server/requirements.txt ${LAMBDA_TASK_ROOT}/
-
-# Install PyTorch CPU-only wheels FIRST. The default PyPI torch wheel
-# ships ~2.5 GB of CUDA kernels we never use in Lambda (Lambda has no
-# GPU). The CPU-only wheels are ~180 MB. Bypass the regular PyPI
-# index for torch; install sentence-transformers afterwards and it
-# will see torch is already satisfied and not re-install.
-#
-# Net effect on image size: ~5 GB → ~1 GB. Cold-start pulls + ECR
-# storage + `docker push` time all improve proportionally.
-RUN pip install --no-cache-dir \
-    --index-url https://download.pytorch.org/whl/cpu \
-    torch
 RUN pip install --no-cache-dir -r ${LAMBDA_TASK_ROOT}/requirements.txt
 
-# Pre-download the sentence-transformer weights into HF_HOME. Bypass
-# the offline flags for this single RUN so the Hub call succeeds; the
-# rest of the image (and the runtime) stay offline.
-RUN TRANSFORMERS_OFFLINE=0 HF_HUB_OFFLINE=0 python -c "\
-from sentence_transformers import SentenceTransformer; \
-SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')"
+# Shared embedder artifacts. One model file + one tokenizer, same bytes
+# the corpus builders used to produce the committed embeddings. Keeping
+# these byte-equal across builder and server is the whole reason we ship
+# them in the repo instead of re-downloading from Hugging Face — see
+# server/embedder.py for the full rationale.
+COPY generated/shared/model.onnx     ${LAMBDA_TASK_ROOT}/model.onnx
+COPY generated/shared/tokenizer.json ${LAMBDA_TASK_ROOT}/tokenizer.json
 
 # Corpora + metadata. Both sets of files are committed in git; the
 # image carries the exact bytes of the most recent

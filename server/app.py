@@ -66,6 +66,16 @@ NSIDC_META_PATH = Path(
     os.environ.get("NSIDC_META_PATH", TASK_ROOT / "nsidc_meta.json")
 )
 
+# Shared embedder artifacts. Env-var overrides let local dev point at
+# generated/shared/ directly instead of /var/task/. Same model file +
+# tokenizer the corpus builders use.
+EMBEDDER_MODEL_PATH = Path(
+    os.environ.get("EMBEDDER_MODEL_PATH", TASK_ROOT / "model.onnx")
+)
+EMBEDDER_TOKENIZER_PATH = Path(
+    os.environ.get("EMBEDDER_TOKENIZER_PATH", TASK_ROOT / "tokenizer.json")
+)
+
 
 # -- Cold-start load ---------------------------------------------------------
 
@@ -142,19 +152,23 @@ def _load_corpus_state(corpus_path: Path, meta_path: Path) -> dict:
 
 
 def _load_embedder():
-    """Load the sentence-transformer model once at cold start.
+    """Load the MiniLM ONNX session + tokenizer once at cold start.
 
-    The model is pre-downloaded into the Docker image via a RUN step,
-    and HF_HOME is set so sentence-transformers reads from there. With
-    HF_HUB_OFFLINE=1 we guarantee no network call at runtime. One model
+    The model.onnx and tokenizer.json are baked into the Docker image
+    at build time (copied from generated/shared/). No network call at
+    runtime — onnxruntime just reads the local .onnx file. One embedder
     instance serves every corpus registered in CORPORA.
     """
     t0 = time.time()
     # Deferred import so --help-style tooling doesn't pay the cost.
-    from sentence_transformers import SentenceTransformer
+    from server.embedder import MiniLMEmbedder
 
-    model = SentenceTransformer(ranking.EXPECTED_EMBEDDER)
-    log.info("embedder loaded: %s in %.2fs", ranking.EXPECTED_EMBEDDER, time.time() - t0)
+    model = MiniLMEmbedder(EMBEDDER_MODEL_PATH, EMBEDDER_TOKENIZER_PATH)
+    log.info(
+        "embedder loaded: %s in %.2fs",
+        ranking.EXPECTED_EMBEDDER,
+        time.time() - t0,
+    )
     return model
 
 
@@ -265,10 +279,10 @@ def _search_impl(corpus_name: str, req: SearchRequest) -> dict:
         CACHE.set(cache_key, response)
         return response
 
-    vec = MODEL.encode([req.query], convert_to_numpy=True)[0]
-    norm = float(np.linalg.norm(vec))
-    if norm > 0:
-        vec = vec / norm
+    # MiniLMEmbedder always returns (N, 384) float32 already-L2-normalized,
+    # so no post-normalization step here (we used to re-normalize because
+    # sentence-transformers' default didn't normalize).
+    vec = MODEL.encode([req.query])[0]
 
     results = ranking.rank(
         sub_chunks, sub_matrix, sub_tokens,
