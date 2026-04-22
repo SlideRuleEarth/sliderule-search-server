@@ -78,7 +78,7 @@ verify: ## Run local CI checks: py syntax, tf fmt, corpora parse, skills package
 # ---- Corpus + dev iteration -----------------------------------------------------------------------
 
 rebuild-corpus-docsearch: ## Re-crawl docs.slideruleearth.io and regenerate generated/docsearch/
-	@$(PYTHON) -c "import sentence_transformers, bs4, requests" 2>/dev/null || { \
+	@$(PYTHON) -c "import onnxruntime, tokenizers, bs4, requests" 2>/dev/null || { \
 	  echo "❌ builder dependencies missing in $(PYTHON)."; \
 	  echo "   Install them one of two ways:"; \
 	  echo "     (a) Repo-local venv (picked up automatically next run):"; \
@@ -91,8 +91,8 @@ rebuild-corpus-docsearch: ## Re-crawl docs.slideruleearth.io and regenerate gene
 	$(PYTHON) $(ROOT)/tools/build_docsearch_corpus.py
 
 rebuild-corpus-nsidc: ## Download NSIDC + ORNL references and regenerate generated/nsidc/
-	@$(PYTHON) -c "import sentence_transformers, bs4, requests, fitz" 2>/dev/null || { \
-	  echo "❌ builder dependencies missing in $(PYTHON) (pymupdf is new)."; \
+	@$(PYTHON) -c "import onnxruntime, tokenizers, bs4, requests, fitz" 2>/dev/null || { \
+	  echo "❌ builder dependencies missing in $(PYTHON) (pymupdf + onnxruntime)."; \
 	  echo "   Install them one of two ways:"; \
 	  echo "     (a) Repo-local venv (picked up automatically next run):"; \
 	  echo "         python3 -m venv .venv \\"; \
@@ -108,7 +108,7 @@ freeplay: ## Interactive search REPL against the committed corpus (no deploy inv
 	  echo "❌ $(CORPUS_FILE) is missing. Run 'make rebuild-corpus-docsearch' first."; \
 	  exit 1; \
 	}
-	@$(PYTHON) -c "import sentence_transformers, numpy, fastapi, pydantic" 2>/dev/null || { \
+	@$(PYTHON) -c "import onnxruntime, tokenizers, numpy, fastapi, pydantic" 2>/dev/null || { \
 	  echo "❌ server dependencies missing in $(PYTHON)."; \
 	  echo "   Install them one of two ways:"; \
 	  echo "     (a) Repo-local venv (picked up automatically next run):"; \

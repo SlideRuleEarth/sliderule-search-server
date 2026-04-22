@@ -420,7 +420,13 @@ def round_embedding(vec) -> list[float]:
 def build_corpus(
     pages: list[tuple[str, str]],
 ) -> tuple[list[dict], str, int]:
-    from sentence_transformers import SentenceTransformer
+    # Import the shared embedder here (not at module scope) so the script
+    # parses and --help runs even if onnxruntime isn't installed yet.
+    # sys.path prepend lets tools/ scripts import the server.* package
+    # without turning the repo into an installable package.
+    repo_root = Path(__file__).resolve().parent.parent
+    sys.path.insert(0, str(repo_root))
+    from server.embedder import EMBEDDING_DIM, MiniLMEmbedder
 
     all_chunks: list[dict] = []
     for url, html in pages:
@@ -429,16 +435,19 @@ def build_corpus(
     all_chunks.sort(key=lambda c: (c["url"], c["_order"]))
 
     log(f"Embedding {len(all_chunks)} chunks with {EMBEDDER_NAME}...")
-    model = SentenceTransformer(EMBEDDER_NAME)
+    model = MiniLMEmbedder(
+        repo_root / "generated" / "shared" / "model.onnx",
+        repo_root / "generated" / "shared" / "tokenizer.json",
+    )
     texts = [c["text"] for c in all_chunks]
     t0 = time.time()
-    vectors = (
-        model.encode(texts, batch_size=32, show_progress_bar=True, convert_to_numpy=True)
-        if texts
-        else []
-    )
+    if texts:
+        vectors = model.encode(texts, batch_size=32, show_progress=True)
+        dim = EMBEDDING_DIM
+    else:
+        vectors = []
+        dim = 0
     embed_seconds = time.time() - t0
-    dim = int(vectors.shape[1]) if len(texts) else 0
 
     out_chunks: list[dict] = []
     for chunk, vec in zip(all_chunks, vectors):

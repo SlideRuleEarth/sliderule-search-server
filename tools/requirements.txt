@@ -1,10 +1,17 @@
 # Build-time dependencies for the corpus builders under tools/.
-# None of these get installed into the Lambda image — the runtime's
-# requirements are separate (see server/requirements.txt).
+# These are the *same* ones the Lambda image uses for embedding: the
+# corpus builders import server/embedder.py so one code path produces
+# both the committed chunk embeddings and runtime query embeddings.
 
-sentence-transformers
+onnxruntime
+tokenizers
+numpy
 beautifulsoup4
 requests
+
+# Progress bars during corpus embedding. Optional at runtime but nice
+# during multi-minute rebuilds.
+tqdm
 
 # pymupdf (AGPL-3.0): build-time only. Used by build_nsidc_corpus.py to
 # extract text from PDFs. Not shipped in the Lambda image, not exposed
@@ -14,3 +21,8 @@ requests
 # bundle it into a distributed artifact) the license picture needs
 # a fresh look.
 pymupdf
+
+# Regenerating the ONNX model + tokenizer artifacts (tools/export_minilm_onnx.py)
+# needs optimum + torch + transformers. Those aren't pinned here because the
+# regeneration step is rare and intentionally requires a manual install:
+#   .venv/bin/pip install 'sentence-transformers[onnx]'
