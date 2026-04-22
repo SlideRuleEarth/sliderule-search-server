@@ -39,12 +39,15 @@ PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/pyt
         package-skill-docsearch package-skill-nsidc package-skills \
         freeplay build-image test-image run-image deploy-lambda smoketest \
         terraform-apply terraform-apply-ecr terraform-destroy check-vars \
+        bootstrap-deploy-to-testsliderule bootstrap-deploy-to-slideruleearth \
         deploy-to-testsliderule deploy-to-slideruleearth \
         destroy-testsliderule destroy-slideruleearth \
         update-testsliderule update-slideruleearth \
         update-infra-testsliderule update-infra-slideruleearth \
         smoketest-testsliderule smoketest-slideruleearth \
-        logs logs-testsliderule logs-slideruleearth
+        logs logs-testsliderule logs-slideruleearth \
+        errors errors-testsliderule errors-slideruleearth \
+        error-count error-count-testsliderule error-count-slideruleearth
 
 # ---- Corpus builder container (x86_64) -----------------------------------------------------------
 
@@ -216,14 +219,64 @@ logs: ## Tail Lambda CloudWatch logs (requires DOMAIN)
 		--follow \
 		--format short
 
+# `errors` is a one-shot filtered scan — `logs` with --follow is useful
+# for watching live activity, but when something goes wrong you don't
+# want to scroll through thousands of successful warmer ticks to find
+# the one error line. The filter patterns target the concrete strings
+# the Lambda runtime emits on a failure:
+#
+#   "Status: timeout"       — INIT_REPORT / invoke timeout
+#   "Status: error"         — explicit error status on INIT_REPORT / REPORT
+#   "Error Type:"           — Lambda runtime reports error class
+#   "Runtime.ExitError"     — container crashed during init or invoke
+#   "Traceback"             — unhandled Python exception in handler
+errors: ## Show Lambda error events in CloudWatch logs for the last hour (requires DOMAIN)
+	@test -n "$(DOMAIN)" || (echo "❌ DOMAIN is not set"; exit 1)
+	aws logs tail "/aws/lambda/docsearch-$(subst .,-,$(DOMAIN))" \
+		--region us-east-1 \
+		--since 1h \
+		--format short \
+		--filter-pattern '?"Status: timeout" ?"Status: error" ?"Error Type:" ?"Runtime.ExitError" ?"Traceback"'
+
+# `error-count` hits the Lambda Errors metric rather than the log
+# stream — useful when you want a numeric "have there been any errors
+# at all in the last hour" check without paging through output.
+# `--period 300` buckets into 5-min intervals matching the EventBridge
+# warmer cadence; the Sum column is the Error count per bucket. An
+# empty table means zero errors.
+error-count: ## Show Lambda error count (CloudWatch metric, 5-min buckets, last 1h) (requires DOMAIN)
+	@test -n "$(DOMAIN)" || (echo "❌ DOMAIN is not set"; exit 1)
+	aws cloudwatch get-metric-statistics \
+		--region us-east-1 \
+		--namespace AWS/Lambda \
+		--metric-name Errors \
+		--dimensions Name=FunctionName,Value="docsearch-$(subst .,-,$(DOMAIN))" \
+		--start-time "$$(date -u -v-1H +%Y-%m-%dT%H:%M:%S)" \
+		--end-time "$$(date -u +%Y-%m-%dT%H:%M:%S)" \
+		--period 300 \
+		--statistics Sum \
+		--output table
+
 # ---- Per-environment wrappers ---------------------------------------------------------------------
 
-deploy-to-testsliderule: ## First-time deploy: ECR → image push → full stack at search.testsliderule.org
+bootstrap-deploy-to-testsliderule: ## First-time deploy from a clean slate: ECR → image push → full stack at search.testsliderule.org
 	make terraform-apply-ecr DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org && \
 	make deploy-lambda       DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org && \
 	make terraform-apply     DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org
 
-update-testsliderule: ## Routine update: rebuild image + update Lambda at search.testsliderule.org
+# Combined deploy for the case where both terraform config and Lambda
+# code changed — e.g. bumping memory_size in a config apply alongside a
+# code update, or today's arch switch (terraform flips to x86_64, then
+# the new image replaces :latest). Terraform runs first so that any
+# schema-incompatible infra change (arch, memory, env vars) is already
+# live before the new image is pushed and update-function-code runs.
+# For infra-only or code-only iteration, use update-infra-<env> or
+# update-<env> directly.
+deploy-to-testsliderule: ## Combined infra + code deploy at search.testsliderule.org (terraform first, then image)
+	make update-infra-testsliderule && \
+	make update-testsliderule
+
+update-testsliderule: ## Code-only update: rebuild image + update Lambda at search.testsliderule.org
 	make deploy-lambda DOMAIN=search.testsliderule.org DOMAIN_APEX=testsliderule.org
 
 update-infra-testsliderule: ## Terraform-only update at search.testsliderule.org (WAF, DNS, CloudFront, etc. — no Lambda rebuild)
@@ -238,12 +291,22 @@ smoketest-testsliderule: ## Smoketest against search.testsliderule.org
 logs-testsliderule: ## Tail CloudWatch logs for search.testsliderule.org
 	make logs DOMAIN=search.testsliderule.org
 
-deploy-to-slideruleearth: ## First-time deploy: ECR → image push → full stack at search.slideruleearth.io
+errors-testsliderule: ## Show Lambda error events for search.testsliderule.org (last 1h)
+	make errors DOMAIN=search.testsliderule.org
+
+error-count-testsliderule: ## Show Lambda error count for search.testsliderule.org (last 1h)
+	make error-count DOMAIN=search.testsliderule.org
+
+bootstrap-deploy-to-slideruleearth: ## First-time deploy from a clean slate: ECR → image push → full stack at search.slideruleearth.io
 	make terraform-apply-ecr DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io && \
 	make deploy-lambda       DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io && \
 	make terraform-apply     DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io
 
-update-slideruleearth: ## Routine update: rebuild image + update Lambda at search.slideruleearth.io
+deploy-to-slideruleearth: ## Combined infra + code deploy at search.slideruleearth.io (terraform first, then image)
+	make update-infra-slideruleearth && \
+	make update-slideruleearth
+
+update-slideruleearth: ## Code-only update: rebuild image + update Lambda at search.slideruleearth.io
 	make deploy-lambda DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io
 
 update-infra-slideruleearth: ## Terraform-only update at search.slideruleearth.io (WAF, DNS, CloudFront, etc. — no Lambda rebuild)
@@ -257,6 +320,12 @@ smoketest-slideruleearth: ## Smoketest against search.slideruleearth.io
 
 logs-slideruleearth: ## Tail CloudWatch logs for search.slideruleearth.io
 	make logs DOMAIN=search.slideruleearth.io
+
+errors-slideruleearth: ## Show Lambda error events for search.slideruleearth.io (last 1h)
+	make errors DOMAIN=search.slideruleearth.io
+
+error-count-slideruleearth: ## Show Lambda error count for search.slideruleearth.io (last 1h)
+	make error-count DOMAIN=search.slideruleearth.io
 
 # ---- Validation -----------------------------------------------------------------------------------
 
