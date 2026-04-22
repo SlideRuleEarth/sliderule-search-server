@@ -47,7 +47,9 @@ PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/pyt
         smoketest-testsliderule smoketest-slideruleearth \
         logs logs-testsliderule logs-slideruleearth \
         errors errors-testsliderule errors-slideruleearth \
-        error-count error-count-testsliderule error-count-slideruleearth
+        error-count error-count-testsliderule error-count-slideruleearth \
+        invocations invocations-testsliderule invocations-slideruleearth \
+        requests requests-testsliderule requests-slideruleearth
 
 # ---- Corpus builder container (x86_64) -----------------------------------------------------------
 
@@ -257,6 +259,55 @@ error-count: ## Show Lambda error count (CloudWatch metric, 5-min buckets, last 
 		--statistics Sum \
 		--output table
 
+# `invocations` is the count of EVERY Lambda invocation over the last
+# 24h, bucketed by hour. Includes:
+#   - EventBridge warmer (rate(5 minutes) -> ~12/hr baseline)
+#   - Post-deploy `aws lambda invoke` warmups from deploy_lambda.sh
+#   - Real user traffic via CloudFront
+# For *just* real external traffic use `make requests` instead (hits
+# CloudFront metrics, which don't see the warmer or direct invokes).
+invocations: ## Show Lambda invocation count (CloudWatch metric, 1-hour buckets, last 24h) (requires DOMAIN)
+	@test -n "$(DOMAIN)" || (echo "❌ DOMAIN is not set"; exit 1)
+	aws cloudwatch get-metric-statistics \
+		--region us-east-1 \
+		--namespace AWS/Lambda \
+		--metric-name Invocations \
+		--dimensions Name=FunctionName,Value="docsearch-$(subst .,-,$(DOMAIN))" \
+		--start-time "$$(date -u -v-24H +%Y-%m-%dT%H:%M:%S)" \
+		--end-time "$$(date -u +%Y-%m-%dT%H:%M:%S)" \
+		--period 3600 \
+		--statistics Sum \
+		--output text \
+		--query 'sort_by(Datapoints,&Timestamp)[].[Timestamp,Sum]'
+
+# `requests` hits CloudFront's Requests metric instead of Lambda's —
+# so it counts only traffic that entered through the edge (real users,
+# smoketest curls, etc.) and excludes warmer ticks and direct
+# `aws lambda invoke` warmups that bypass CloudFront. This is the
+# more meaningful "how many real queries have we served" number.
+#
+# CloudFront metrics are published per-distribution+Region=Global, so
+# we have to resolve the distribution ID by domain alias. That lookup
+# eats a CLI call per invocation of this target; the DOMAIN-scoped
+# `DISTRIBUTION_ID` at the top of the Makefile does the same thing
+# but only kicks in after DOMAIN is set by the wrappers — so for the
+# base target we do the lookup inline.
+requests: ## Show CloudFront external request count (CloudWatch metric, 1-hour buckets, last 24h) (requires DOMAIN)
+	@test -n "$(DOMAIN)" || (echo "❌ DOMAIN is not set"; exit 1)
+	@DIST_ID=$$(aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='$(DOMAIN)'].Id" --output text 2>/dev/null); \
+	test -n "$$DIST_ID" || { echo "❌ No CloudFront distribution found for $(DOMAIN)"; exit 1; }; \
+	aws cloudwatch get-metric-statistics \
+		--region us-east-1 \
+		--namespace AWS/CloudFront \
+		--metric-name Requests \
+		--dimensions Name=DistributionId,Value=$$DIST_ID Name=Region,Value=Global \
+		--start-time "$$(date -u -v-24H +%Y-%m-%dT%H:%M:%S)" \
+		--end-time "$$(date -u +%Y-%m-%dT%H:%M:%S)" \
+		--period 3600 \
+		--statistics Sum \
+		--output text \
+		--query 'sort_by(Datapoints,&Timestamp)[].[Timestamp,Sum]'
+
 # ---- Per-environment wrappers ---------------------------------------------------------------------
 
 bootstrap-deploy-to-testsliderule: ## First-time deploy from a clean slate: ECR → image push → full stack at search.testsliderule.org
@@ -297,6 +348,12 @@ errors-testsliderule: ## Show Lambda error events for search.testsliderule.org (
 error-count-testsliderule: ## Show Lambda error count for search.testsliderule.org (last 1h)
 	make error-count DOMAIN=search.testsliderule.org
 
+invocations-testsliderule: ## Show Lambda invocation count for search.testsliderule.org (last 24h)
+	make invocations DOMAIN=search.testsliderule.org
+
+requests-testsliderule: ## Show CloudFront request count for search.testsliderule.org (last 24h)
+	make requests DOMAIN=search.testsliderule.org
+
 bootstrap-deploy-to-slideruleearth: ## First-time deploy from a clean slate: ECR → image push → full stack at search.slideruleearth.io
 	make terraform-apply-ecr DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io && \
 	make deploy-lambda       DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io && \
@@ -326,6 +383,12 @@ errors-slideruleearth: ## Show Lambda error events for search.slideruleearth.io 
 
 error-count-slideruleearth: ## Show Lambda error count for search.slideruleearth.io (last 1h)
 	make error-count DOMAIN=search.slideruleearth.io
+
+invocations-slideruleearth: ## Show Lambda invocation count for search.slideruleearth.io (last 24h)
+	make invocations DOMAIN=search.slideruleearth.io
+
+requests-slideruleearth: ## Show CloudFront request count for search.slideruleearth.io (last 24h)
+	make requests DOMAIN=search.slideruleearth.io
 
 # ---- Validation -----------------------------------------------------------------------------------
 
