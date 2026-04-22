@@ -35,6 +35,7 @@ CORPUS_FILE  = $(SRC_DIR)/docsearch/corpus.json
 PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/python || echo python3)
 
 .PHONY: help clean verify rebuild-corpus-docsearch rebuild-corpus-nsidc \
+        build-corpus-image \
         package-skill-docsearch package-skill-nsidc package-skills \
         freeplay build-image test-image run-image deploy-lambda smoketest \
         terraform-apply terraform-apply-ecr terraform-destroy check-vars \
@@ -44,6 +45,23 @@ PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/pyt
         update-infra-testsliderule update-infra-slideruleearth \
         smoketest-testsliderule smoketest-slideruleearth \
         logs logs-testsliderule logs-slideruleearth
+
+# ---- Corpus builder container (x86_64) -----------------------------------------------------------
+
+# Builder image name. Tagged :latest; the `build-corpus-image` target
+# rebuilds it on demand, and docker's layer cache keeps subsequent runs
+# instant unless tools/requirements.txt changed.
+CORPUS_BUILDER_IMAGE = docsearch-corpus-builder:latest
+
+# Corpus rebuilds run inside an x86_64 container so the embedding arch
+# matches what Lambda runs. See tools/Dockerfile.builder for rationale.
+# On an M-series Mac this first-time build is Rosetta-emulated (slower
+# than native arm64 but cached after).
+build-corpus-image: ## Build the x86_64 container used for corpus rebuilds
+	docker buildx build --load --platform linux/amd64 \
+		-f $(ROOT)/tools/Dockerfile.builder \
+		-t $(CORPUS_BUILDER_IMAGE) \
+		$(ROOT)
 
 help: ## That's me!
 	@printf "\033[37m%-40s\033[0m %s\n" "#-----------------------------------------------------------------------------------------"
@@ -77,31 +95,17 @@ verify: ## Run local CI checks: py syntax, tf fmt, corpora parse, skills package
 
 # ---- Corpus + dev iteration -----------------------------------------------------------------------
 
-rebuild-corpus-docsearch: ## Re-crawl docs.slideruleearth.io and regenerate generated/docsearch/
-	@$(PYTHON) -c "import onnxruntime, tokenizers, bs4, requests" 2>/dev/null || { \
-	  echo "❌ builder dependencies missing in $(PYTHON)."; \
-	  echo "   Install them one of two ways:"; \
-	  echo "     (a) Repo-local venv (picked up automatically next run):"; \
-	  echo "         python3 -m venv .venv \\"; \
-	  echo "           && .venv/bin/pip install -r tools/requirements.txt"; \
-	  echo "     (b) Your active Python environment:"; \
-	  echo "         pip install -r tools/requirements.txt"; \
-	  exit 1; \
-	}
-	$(PYTHON) $(ROOT)/tools/build_docsearch_corpus.py
+rebuild-corpus-docsearch: build-corpus-image ## Re-crawl docs.slideruleearth.io and regenerate generated/docsearch/
+	docker run --rm --platform linux/amd64 \
+		-v $(ROOT):/app -w /app \
+		$(CORPUS_BUILDER_IMAGE) \
+		python tools/build_docsearch_corpus.py
 
-rebuild-corpus-nsidc: ## Download NSIDC + ORNL references and regenerate generated/nsidc/
-	@$(PYTHON) -c "import onnxruntime, tokenizers, bs4, requests, fitz" 2>/dev/null || { \
-	  echo "❌ builder dependencies missing in $(PYTHON) (pymupdf + onnxruntime)."; \
-	  echo "   Install them one of two ways:"; \
-	  echo "     (a) Repo-local venv (picked up automatically next run):"; \
-	  echo "         python3 -m venv .venv \\"; \
-	  echo "           && .venv/bin/pip install -r tools/requirements.txt"; \
-	  echo "     (b) Your active Python environment:"; \
-	  echo "         pip install -r tools/requirements.txt"; \
-	  exit 1; \
-	}
-	$(PYTHON) $(ROOT)/tools/build_nsidc_corpus.py
+rebuild-corpus-nsidc: build-corpus-image ## Download NSIDC + ORNL references and regenerate generated/nsidc/
+	docker run --rm --platform linux/amd64 \
+		-v $(ROOT):/app -w /app \
+		$(CORPUS_BUILDER_IMAGE) \
+		python tools/build_nsidc_corpus.py
 
 freeplay: ## Interactive search REPL against the committed corpus (no deploy involved)
 	@test -f $(CORPUS_FILE) || { \

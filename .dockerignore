@@ -1,5 +1,7 @@
 # Keep the docker build context small and deterministic.
-# Only files referenced by COPY in server/Dockerfile need to be in context.
+# Only files referenced by COPY in either Dockerfile need to be in context:
+#   - server/Dockerfile         (Lambda runtime image)
+#   - tools/Dockerfile.builder  (corpus-builder image)
 
 .git
 .venv/
@@ -8,10 +10,14 @@ __pycache__/
 *.pyc
 .DS_Store
 
-# Not referenced by the image build
+# Not referenced by any image build
 terraform/
 scripts/
 tools/
+# …except tools/requirements.txt, which tools/Dockerfile.builder copies
+# into its layer cache. The actual builder scripts under tools/ are
+# volume-mounted at run time, so the rest of tools/ stays out of context.
+!tools/requirements.txt
 skills/
 build/
 docs/
