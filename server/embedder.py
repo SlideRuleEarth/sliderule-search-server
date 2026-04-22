@@ -72,15 +72,41 @@ class MiniLMEmbedder:
             i.name == "token_type_ids" for i in self.session.get_inputs()
         )
 
-    def encode(self, texts: list[str]) -> np.ndarray:
+    def encode(
+        self,
+        texts: list[str],
+        batch_size: int = 32,
+        show_progress: bool = False,
+    ) -> np.ndarray:
         """Encode a batch of strings to (N, 384) float32, L2-normalized.
 
         Empty list returns shape (0, 384). Single strings should be wrapped in
         a list by the caller so the return shape stays consistent.
+
+        Batches of size `batch_size` (default 32, matching sentence-transformers'
+        default) keep peak memory bounded — a 1000-chunk corpus with 256-token
+        sequences would otherwise allocate ~380 MB of activations in one shot.
         """
         if not texts:
             return np.zeros((0, EMBEDDING_DIM), dtype=np.float32)
 
+        iterator = range(0, len(texts), batch_size)
+        if show_progress:
+            # tqdm is a transitive dep of onnxruntime/tokenizers; absence
+            # is unusual but not fatal.
+            try:
+                from tqdm import tqdm
+
+                iterator = tqdm(iterator, desc="embedding", total=(len(texts) + batch_size - 1) // batch_size)
+            except ImportError:
+                pass
+
+        out: list[np.ndarray] = []
+        for start in iterator:
+            out.append(self._encode_batch(texts[start : start + batch_size]))
+        return np.concatenate(out, axis=0)
+
+    def _encode_batch(self, texts: list[str]) -> np.ndarray:
         encs = self.tokenizer.encode_batch(texts)
         input_ids = np.array([e.ids for e in encs], dtype=np.int64)
         attention_mask = np.array([e.attention_mask for e in encs], dtype=np.int64)
