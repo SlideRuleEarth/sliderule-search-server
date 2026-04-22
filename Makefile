@@ -49,7 +49,8 @@ PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/pyt
         errors errors-testsliderule errors-slideruleearth \
         error-count error-count-testsliderule error-count-slideruleearth \
         invocations invocations-testsliderule invocations-slideruleearth \
-        requests requests-testsliderule requests-slideruleearth
+        requests requests-testsliderule requests-slideruleearth \
+        cost-estimate cost-estimate-testsliderule cost-estimate-slideruleearth
 
 # ---- Corpus builder container (x86_64) -----------------------------------------------------------
 
@@ -241,23 +242,29 @@ errors: ## Show Lambda error events in CloudWatch logs for the last hour (requir
 		--filter-pattern '?"Status: timeout" ?"Status: error" ?"Error Type:" ?"Runtime.ExitError" ?"Traceback"'
 
 # `error-count` hits the Lambda Errors metric rather than the log
-# stream — useful when you want a numeric "have there been any errors
-# at all in the last hour" check without paging through output.
-# `--period 300` buckets into 5-min intervals matching the EventBridge
-# warmer cadence; the Sum column is the Error count per bucket. An
-# empty table means zero errors.
-error-count: ## Show Lambda error count (CloudWatch metric, 5-min buckets, last 1h) (requires DOMAIN)
+# stream — useful for "how many errors per hour over the last day"
+# without paging through output.
+#
+# Window + bucket size match `invocations` and `requests` (24h / 1h)
+# so the three outputs are apples-to-apples: line up the same hour
+# across all three and you see invocations vs. real requests vs.
+# errors at a glance. The Sum column is the Error count per bucket;
+# a bucket with Sum=0 means zero errors that hour (which is most of
+# them when things are healthy).
+error-count: ## Show Lambda error count (CloudWatch metric, 1-hour buckets, last 24h) (requires DOMAIN)
 	@test -n "$(DOMAIN)" || (echo "❌ DOMAIN is not set"; exit 1)
-	aws cloudwatch get-metric-statistics \
+	@aws cloudwatch get-metric-statistics \
 		--region us-east-1 \
 		--namespace AWS/Lambda \
 		--metric-name Errors \
 		--dimensions Name=FunctionName,Value="docsearch-$(subst .,-,$(DOMAIN))" \
-		--start-time "$$(date -u -v-1H +%Y-%m-%dT%H:%M:%S)" \
+		--start-time "$$(date -u -v-24H +%Y-%m-%dT%H:%M:%S)" \
 		--end-time "$$(date -u +%Y-%m-%dT%H:%M:%S)" \
-		--period 300 \
+		--period 3600 \
 		--statistics Sum \
-		--output table
+		--output text \
+		--query 'sort_by(Datapoints,&Timestamp)[].[Timestamp,Sum]' \
+		| python3 $(ROOT)/scripts/utc_to_local.py
 
 # `invocations` is the count of EVERY Lambda invocation over the last
 # 24h, bucketed by hour. Includes:
@@ -268,7 +275,7 @@ error-count: ## Show Lambda error count (CloudWatch metric, 5-min buckets, last 
 # CloudFront metrics, which don't see the warmer or direct invokes).
 invocations: ## Show Lambda invocation count (CloudWatch metric, 1-hour buckets, last 24h) (requires DOMAIN)
 	@test -n "$(DOMAIN)" || (echo "❌ DOMAIN is not set"; exit 1)
-	aws cloudwatch get-metric-statistics \
+	@aws cloudwatch get-metric-statistics \
 		--region us-east-1 \
 		--namespace AWS/Lambda \
 		--metric-name Invocations \
@@ -278,7 +285,8 @@ invocations: ## Show Lambda invocation count (CloudWatch metric, 1-hour buckets,
 		--period 3600 \
 		--statistics Sum \
 		--output text \
-		--query 'sort_by(Datapoints,&Timestamp)[].[Timestamp,Sum]'
+		--query 'sort_by(Datapoints,&Timestamp)[].[Timestamp,Sum]' \
+		| python3 $(ROOT)/scripts/utc_to_local.py
 
 # `requests` hits CloudFront's Requests metric instead of Lambda's —
 # so it counts only traffic that entered through the edge (real users,
@@ -292,21 +300,21 @@ invocations: ## Show Lambda invocation count (CloudWatch metric, 1-hour buckets,
 # `DISTRIBUTION_ID` at the top of the Makefile does the same thing
 # but only kicks in after DOMAIN is set by the wrappers — so for the
 # base target we do the lookup inline.
-requests: ## Show CloudFront external request count (CloudWatch metric, 1-hour buckets, last 24h) (requires DOMAIN)
+# `cost-estimate` joins Lambda's Invocations and Duration metrics by
+# timestamp and applies public Lambda pricing to estimate compute +
+# request cost per hourly bucket over the last 24h. Architecture
+# (x86_64) and memory (2 GB) are hardcoded in scripts/cost_estimate.py
+# to match terraform/modules/lambda.tf; bump there if terraform
+# changes. Covers Lambda compute + request fees only — doesn't include
+# data transfer, CloudFront, ECR. Compute dominates our bill in
+# practice, so this tracks the real AWS invoice closely.
+#
+# For penny-exact actuals use `aws ce get-cost-and-usage` (24h lag)
+# filtered by the `Project` tag.
+cost-estimate: ## Estimate Lambda cost by hour for the last 24h (requires DOMAIN)
 	@test -n "$(DOMAIN)" || (echo "❌ DOMAIN is not set"; exit 1)
-	@DIST_ID=$$(aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='$(DOMAIN)'].Id" --output text 2>/dev/null); \
-	test -n "$$DIST_ID" || { echo "❌ No CloudFront distribution found for $(DOMAIN)"; exit 1; }; \
-	aws cloudwatch get-metric-statistics \
-		--region us-east-1 \
-		--namespace AWS/CloudFront \
-		--metric-name Requests \
-		--dimensions Name=DistributionId,Value=$$DIST_ID Name=Region,Value=Global \
-		--start-time "$$(date -u -v-24H +%Y-%m-%dT%H:%M:%S)" \
-		--end-time "$$(date -u +%Y-%m-%dT%H:%M:%S)" \
-		--period 3600 \
-		--statistics Sum \
-		--output text \
-		--query 'sort_by(Datapoints,&Timestamp)[].[Timestamp,Sum]'
+	@python3 $(ROOT)/scripts/cost_estimate.py "docsearch-$(subst .,-,$(DOMAIN))" \
+		| python3 $(ROOT)/scripts/utc_to_local.py
 
 # ---- Per-environment wrappers ---------------------------------------------------------------------
 
@@ -345,7 +353,7 @@ logs-testsliderule: ## Tail CloudWatch logs for search.testsliderule.org
 errors-testsliderule: ## Show Lambda error events for search.testsliderule.org (last 1h)
 	make errors DOMAIN=search.testsliderule.org
 
-error-count-testsliderule: ## Show Lambda error count for search.testsliderule.org (last 1h)
+error-count-testsliderule: ## Show Lambda error count for search.testsliderule.org (last 24h)
 	make error-count DOMAIN=search.testsliderule.org
 
 invocations-testsliderule: ## Show Lambda invocation count for search.testsliderule.org (last 24h)
@@ -353,6 +361,9 @@ invocations-testsliderule: ## Show Lambda invocation count for search.testslider
 
 requests-testsliderule: ## Show CloudFront request count for search.testsliderule.org (last 24h)
 	make requests DOMAIN=search.testsliderule.org
+
+cost-estimate-testsliderule: ## Estimate Lambda cost for search.testsliderule.org (last 24h)
+	make cost-estimate DOMAIN=search.testsliderule.org
 
 bootstrap-deploy-to-slideruleearth: ## First-time deploy from a clean slate: ECR → image push → full stack at search.slideruleearth.io
 	make terraform-apply-ecr DOMAIN=search.slideruleearth.io DOMAIN_APEX=slideruleearth.io && \
@@ -381,7 +392,7 @@ logs-slideruleearth: ## Tail CloudWatch logs for search.slideruleearth.io
 errors-slideruleearth: ## Show Lambda error events for search.slideruleearth.io (last 1h)
 	make errors DOMAIN=search.slideruleearth.io
 
-error-count-slideruleearth: ## Show Lambda error count for search.slideruleearth.io (last 1h)
+error-count-slideruleearth: ## Show Lambda error count for search.slideruleearth.io (last 24h)
 	make error-count DOMAIN=search.slideruleearth.io
 
 invocations-slideruleearth: ## Show Lambda invocation count for search.slideruleearth.io (last 24h)
@@ -389,6 +400,9 @@ invocations-slideruleearth: ## Show Lambda invocation count for search.sliderule
 
 requests-slideruleearth: ## Show CloudFront request count for search.slideruleearth.io (last 24h)
 	make requests DOMAIN=search.slideruleearth.io
+
+cost-estimate-slideruleearth: ## Estimate Lambda cost for search.slideruleearth.io (last 24h)
+	make cost-estimate DOMAIN=search.slideruleearth.io
 
 # ---- Validation -----------------------------------------------------------------------------------
 
