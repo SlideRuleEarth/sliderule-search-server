@@ -1,6 +1,10 @@
 # Build/generated artifacts — produced by scripts, not committed
 /skills/*.skill
 
+# Throwaway scratch space — parity tests, experiments. Git-ignored so
+# this isn't a dumping ground that creeps into the repo.
+/scratch/
+
 # Download caches — populated by the corpus builders on first run so
 # subsequent rebuilds skip the network. Large (PDFs can be 10+ MB each)
 # and re-fetchable; never committed.
