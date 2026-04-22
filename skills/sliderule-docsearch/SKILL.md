@@ -8,6 +8,41 @@ description: Search the SlideRule Earth documentation. Use for questions about S
 Semantic search over the SlideRule Earth documentation at
 [docs.slideruleearth.io](https://docs.slideruleearth.io/).
 
+## Search or skip?
+
+This skill is for SlideRule-specific knowledge: parameter names, API
+signatures, default values, configuration keys, endpoint behavior, example
+workflows, version history. Search when the question hinges on *how SlideRule
+does something*.
+
+Skip the search and answer from general knowledge when the question is about
+a general concept that merely shows up in SlideRule's orbit — file formats
+(GeoParquet, HDF5, Parquet, Arrow), geospatial primitives (WGS84, geoid
+models, UTM, CRS), Python tooling (pandas indices, asyncio, HTTPS), or CS
+fundamentals. A search there wastes a round trip and tends to return chunks
+that mention the concept in passing without defining it.
+
+The boundary is "general concept" vs. "SlideRule's treatment of that
+concept":
+
+- *"What is GeoParquet?"* → general knowledge, skip the search.
+- *"Does SlideRule's GeoParquet output include a CRS column?"* → search.
+- *"What does WGS84 mean?"* → general knowledge.
+- *"What geoid model does SlideRule apply when I request `atl03_corr_fields:
+  ["geoid"]`?"* → search.
+
+When genuinely unsure, search — undertriggering the skill is worse than one
+extra HTTP call.
+
+**Default-value questions belong elsewhere.** "What's the current default for
+`cnf`?" or "What does `srt` default to on `atl03x`?" should be answered from
+the `sliderule-params` or `sliderule-schema` skills, not from a docsearch
+query. Current defaults in this corpus are sometimes documented only in
+release-notes chunks describing the change that set them — which means
+docsearch will technically return an answer, but one that's easy to misread
+as historical trivia. The params/schema skills pull from the live schema
+distribution and are authoritative for current values.
+
 ## Architecture
 
 Hosted semantic + lexical search. One HTTPS POST per query to a
@@ -77,6 +112,18 @@ The skill prints JSON to stdout, byte-for-byte the server response:
    - Good search query: `"atl03x confidence filtering parameters"`
    - The retrieval is cosine + IDF; concise technical nouns beat
      natural language.
+
+   **If the search call itself fails** (HTTP 5xx, timeout, connection
+   error) — distinct from returning weak results — the server is a
+   Lambda and occasionally hits transient errors under load, memory
+   pressure, or cold-start. Retry once after ~15–30 seconds. If the
+   second attempt also fails, tell the user the docs search is
+   temporarily unavailable and either answer from general knowledge
+   (if the "Search or skip?" gate would have allowed it anyway) or
+   ask them to retry later. Don't fabricate doc content to fill the
+   gap, and don't cite URLs you haven't seen returned by a successful
+   search.
+
 2. Parse the JSON response. Each `results[i]` has a `score` (cosine
    similarity, higher is better), `url`, `title`, `section`, `category`,
    and `text`. When present, `matched_tokens` lists which of the user's
@@ -115,10 +162,43 @@ The skill prints JSON to stdout, byte-for-byte the server response:
 4. Synthesize an answer from the top results. Cite the specific URLs
    you used — users rely on those links to go read the authoritative
    docs themselves.
+
+   **When results disagree, resolve by authority and recency, not by
+   averaging.** Semantic search will happily return contradictory
+   chunks when the docs are in transition or when different categories
+   describe the same concept at different levels of truth.
+
+   - For questions about *current behavior* (defaults, signatures,
+     valid values, what a parameter does), `api_reference` and
+     `user_guide` outrank `tutorial` and `release_notes`. Tutorials
+     pick a specific value to demonstrate something — they aren't
+     documenting the default. Release notes describe *changes*, which
+     makes them authoritative for "when did X change" but not for
+     "what is X now".
+   - If two chunks from authoritative categories genuinely contradict
+     (e.g., two `user_guide` pages with different defaults for the
+     same parameter), surface the conflict to the user rather than
+     silently picking one. That pattern usually means the docs are
+     mid-migration and the user needs to know before they rely on the
+     answer.
+   - Exact identifiers beat higher scores. If the user asked about
+     `atl03x` and the top hit only carries `atl03` in `matched_tokens`,
+     the answer belongs to whichever chunk actually matched `atl03x`,
+     even if it ranks lower (see step 2).
 5. If the top `score` is low (e.g., below ~0.3) or the results look
-   off-topic, tell the user the docs don't seem to cover their
-   question and suggest rephrasing or pointing them at a specific
-   doc section.
+   off-topic, try one reformulation before giving up. Productive
+   reformulations usually drop soft words and keep the technical
+   nouns, add an endpoint or parameter name the user referenced but
+   the first query omitted, split a compound question and search the
+   more specific half first, or switch to a canonical identifier form
+   (e.g., `atl03_corr_fields` rather than a paraphrase of it).
+
+   Cap retries at one. If the second attempt also returns weak or
+   off-topic results, tell the user the docs don't seem to cover
+   their question and suggest rephrasing or pointing them at a
+   specific doc section. Two failed searches look the same whether
+   the corpus is missing the content or the query is hopeless —
+   either way, more attempts won't resolve it.
 
 ## Not covered
 
