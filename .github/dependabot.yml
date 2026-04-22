@@ -1,0 +1,79 @@
+# Dependabot opens weekly PRs to bump pinned dependencies.
+# Each PR flows through the same branch-protection gate as any other —
+# CI's `verify` job runs, reviewer approves, merge.
+#
+# Nothing auto-merges from this config. Security fixes (CVE-driven)
+# are a separate mechanism enabled via
+# `gh api -X PUT .../automated-security-fixes`; those also open PRs
+# but the trigger is a published advisory, not a weekly schedule.
+
+version: 2
+updates:
+  # GitHub Actions pins in .github/workflows/*.yml
+  # (actions/checkout@v6, actions/setup-python@v6,
+  #  hashicorp/setup-terraform@v4, github/codeql-action@v4, …)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "actions"
+
+  # Runtime deps for the Lambda server (FastAPI, Mangum, sentence-transformers,
+  # numpy, pydantic). These are what actually get installed into the image.
+  - package-ecosystem: "pip"
+    directory: "/server"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: "server"
+
+  # Build-time deps for the corpus builders (sentence-transformers, bs4,
+  # requests, pymupdf). Never shipped to Lambda — only used by
+  # `make rebuild-corpus-*`.
+  - package-ecosystem: "pip"
+    directory: "/tools"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: "tools"
+
+  # Skill client deps (requests). One entry per skill so updates land
+  # independently — the two skills ship as separate .skill archives.
+  - package-ecosystem: "pip"
+    directory: "/skills/sliderule-docsearch"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: "skills/sliderule-docsearch"
+
+  - package-ecosystem: "pip"
+    directory: "/skills/nsidc-reference"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: "skills/nsidc-reference"
+
+  # Terraform provider pins in terraform/versions.tf and the
+  # committed .terraform.lock.hcl.
+  - package-ecosystem: "terraform"
+    directory: "/terraform"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: "terraform"
+
+  # Base-image bumps for server/Dockerfile (public.ecr.aws/lambda/python).
+  - package-ecosystem: "docker"
+    directory: "/server"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: "docker"
