@@ -1,6 +1,13 @@
 fastapi>=0.110.0
 mangum>=0.21.0
 pydantic>=2.13.3
-onnxruntime>=1.23.0
+# onnxruntime 1.23/1.24 terminate with "Attempt to use DefaultLogger but
+# none has been registered" on Lambda arm64 because their bundled cpuinfo
+# can't parse Lambda's restricted /sys/devices/system/cpu/{possible,present}
+# and the resulting C++ exception escapes before the logger subsystem is
+# fully initialized. Older versions handled the same sysfs shape gracefully.
+# Pin until the regression is fixed upstream; track the cp313 arm64 wheel
+# availability when bumping.
+onnxruntime==1.22.1
 tokenizers>=0.20.0
 numpy>=1.24.0
