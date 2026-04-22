@@ -36,7 +36,7 @@ resource "aws_lambda_function" "docsearch" {
   role          = aws_iam_role.lambda.arn
   package_type  = "Image"
   image_uri     = "${aws_ecr_repository.docsearch.repository_url}:latest"
-  architectures = ["arm64"]
+  architectures = ["x86_64"]
   memory_size   = 2048
   timeout       = 30
 

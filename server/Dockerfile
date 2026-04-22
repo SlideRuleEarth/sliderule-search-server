@@ -23,8 +23,14 @@
 #
 # Build from the repo root so the COPY paths resolve:
 #
-#   docker buildx build --platform linux/arm64 -f server/Dockerfile \
+#   docker buildx build --platform linux/amd64 -f server/Dockerfile \
 #     -t <ecr-url>:<tag> .
+#
+# Platform is linux/amd64 to match the x86_64 Lambda architecture
+# (terraform/modules/lambda.tf). arm64 Lambda was abandoned after
+# onnxruntime's bundled cpuinfo failed to parse Lambda arm64's
+# restricted /sys/devices/system/cpu/*, terminating the container
+# during init. x86_64 Lambda exposes a normal /sys, and cpuinfo works.
 
 FROM public.ecr.aws/lambda/python:3.13
 

@@ -9,7 +9,7 @@
 # Deploy pipeline, in order:
 #
 #   1. ECR login (requires aws CLI credentials).
-#   2. docker buildx build --platform linux/arm64 --push
+#   2. docker buildx build --platform linux/amd64 --push
 #      Image is tagged BOTH as :latest (terraform references this for
 #      the initial Lambda create) AND :corpus-<sha>-code-<sha> (an
 #      immutable audit tag pinned to the actual corpus + code).
@@ -94,9 +94,9 @@ echo "[1/3] Logging in to ECR ($ECR_HOST)..."
 aws ecr get-login-password --region "$AWS_REGION" \
   | docker login --username AWS --password-stdin "$ECR_HOST"
 
-echo "[2/3] Building + pushing image (tags: $TAG, latest) for linux/arm64..."
+echo "[2/3] Building + pushing image (tags: $TAG, latest) for linux/amd64..."
 docker buildx build \
-  --platform linux/arm64 \
+  --platform linux/amd64 \
   -f server/Dockerfile \
   -t "$ECR_URI:$TAG" \
   -t "$ECR_URI:latest" \

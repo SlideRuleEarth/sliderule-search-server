@@ -141,7 +141,7 @@ build-image: ## Locally build the Lambda container image (sanity check; no push)
 	  echo "❌ $(CORPUS_FILE) is missing. Run 'make rebuild-corpus-docsearch' first."; \
 	  exit 1; \
 	}
-	docker buildx build --load --platform linux/arm64 -f server/Dockerfile -t docsearch:dev .
+	docker buildx build --load --platform linux/amd64 -f server/Dockerfile -t docsearch:dev .
 
 test-image: ## Build + run the image locally via the AWS Lambda RIE and exercise all routes
 	@bash $(ROOT)/scripts/test_image.sh
