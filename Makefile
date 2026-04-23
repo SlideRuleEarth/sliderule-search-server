@@ -37,7 +37,7 @@ PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/pyt
 .PHONY: help clean verify rebuild-corpus-docsearch rebuild-corpus-nsidc \
         build-corpus-image \
         package-skill-docsearch package-skill-nsidc package-skills \
-        freeplay build-image test-image run-image deploy-lambda smoketest \
+        freeplay build-image test-image run-image deploy-lambda smoketest query \
         terraform-apply terraform-apply-ecr terraform-destroy check-vars \
         bootstrap-deploy-to-testsliderule bootstrap-deploy-to-slideruleearth \
         deploy-to-testsliderule deploy-to-slideruleearth \
@@ -45,6 +45,7 @@ PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/pyt
         update-testsliderule update-slideruleearth \
         update-infra-testsliderule update-infra-slideruleearth \
         smoketest-testsliderule smoketest-slideruleearth \
+        query-testsliderule query-slideruleearth \
         logs logs-testsliderule logs-slideruleearth \
         errors errors-testsliderule errors-slideruleearth \
         error-count error-count-testsliderule error-count-slideruleearth \
@@ -205,6 +206,34 @@ terraform-destroy: ## Tear down Lambda + CloudFront + ECR + DNS
 smoketest: ## curl the deployed endpoints and verify status + CORS + consistency
 	@DOMAIN=$(DOMAIN) bash $(ROOT)/scripts/smoketest.sh
 
+# ---- Ad-hoc query ---------------------------------------------------------------------------------
+
+# Hit /docsearch/search on the deployed endpoint with a single query and
+# pretty-print the JSON response. Quick spot-checks ("does this phrase
+# match what I think it matches?") without spinning up freeplay or
+# editing scripts/smoketest.sh.
+#
+# CloudFront's OAC SigV4-signs origin requests but doesn't buffer the
+# body to hash it, so viewers must send `x-amz-content-sha256` with the
+# body's SHA256 or Lambda URL returns 403. Same pattern as
+# scripts/smoketest.sh's signed_post(). `jq --arg` escapes QUERY so
+# quotes and special chars can't break the JSON body. sha256sum is
+# GNU coreutils; macOS uses shasum -a 256 — one or the other is always
+# present.
+query: ## Ad-hoc search query against deployed /docsearch/search (requires DOMAIN and QUERY)
+	@test -n "$(DOMAIN)" || (echo "❌ DOMAIN is not set"; exit 1)
+	@test -n "$(QUERY)"  || (echo "❌ QUERY is not set"; exit 1)
+	@BODY=$$(jq -cn --arg q "$(QUERY)" '{query: $$q}'); \
+	if command -v sha256sum >/dev/null 2>&1; then \
+		HASH=$$(printf '%s' "$$BODY" | sha256sum | awk '{print $$1}'); \
+	else \
+		HASH=$$(printf '%s' "$$BODY" | shasum -a 256 | awk '{print $$1}'); \
+	fi; \
+	curl -s "https://$(DOMAIN)/docsearch/search" \
+		-H 'content-type: application/json' \
+		-H "x-amz-content-sha256: $$HASH" \
+		-d "$$BODY" | jq .
+
 # ---- CloudWatch logs ------------------------------------------------------------------------------
 
 # `aws logs tail` pulls its region from the CLI default, which is
@@ -364,6 +393,9 @@ destroy-testsliderule: ## Tear down search.testsliderule.org infrastructure
 smoketest-testsliderule: ## Smoketest against search.testsliderule.org
 	make smoketest DOMAIN=search.testsliderule.org
 
+query-testsliderule: ## Ad-hoc query against search.testsliderule.org (requires QUERY)
+	make query DOMAIN=search.testsliderule.org QUERY="$(QUERY)"
+
 logs-testsliderule: ## Tail CloudWatch logs for search.testsliderule.org
 	make logs DOMAIN=search.testsliderule.org
 
@@ -402,6 +434,9 @@ destroy-slideruleearth: ## Tear down search.slideruleearth.io infrastructure
 
 smoketest-slideruleearth: ## Smoketest against search.slideruleearth.io
 	make smoketest DOMAIN=search.slideruleearth.io
+
+query-slideruleearth: ## Ad-hoc query against search.slideruleearth.io (requires QUERY)
+	make query DOMAIN=search.slideruleearth.io QUERY="$(QUERY)"
 
 logs-slideruleearth: ## Tail CloudWatch logs for search.slideruleearth.io
 	make logs DOMAIN=search.slideruleearth.io
