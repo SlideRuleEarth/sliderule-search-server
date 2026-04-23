@@ -300,6 +300,23 @@ invocations: ## Show Lambda invocation count (CloudWatch metric, 1-hour buckets,
 # `DISTRIBUTION_ID` at the top of the Makefile does the same thing
 # but only kicks in after DOMAIN is set by the wrappers — so for the
 # base target we do the lookup inline.
+requests: ## Show CloudFront request count (CloudWatch metric, 1-hour buckets, last 24h) (requires DOMAIN)
+	@test -n "$(DOMAIN)" || (echo "❌ DOMAIN is not set"; exit 1)
+	@DIST_ID=$$(aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='$(DOMAIN)'].Id" --output text 2>/dev/null); \
+	test -n "$$DIST_ID" || { echo "❌ No CloudFront distribution found for $(DOMAIN)"; exit 1; }; \
+	aws cloudwatch get-metric-statistics \
+		--region us-east-1 \
+		--namespace AWS/CloudFront \
+		--metric-name Requests \
+		--dimensions Name=DistributionId,Value=$$DIST_ID Name=Region,Value=Global \
+		--start-time "$$(date -u -v-24H +%Y-%m-%dT%H:%M:%S)" \
+		--end-time "$$(date -u +%Y-%m-%dT%H:%M:%S)" \
+		--period 3600 \
+		--statistics Sum \
+		--output text \
+		--query 'sort_by(Datapoints,&Timestamp)[].[Timestamp,Sum]' \
+		| python3 $(ROOT)/scripts/utc_to_local.py
+
 # `cost-estimate` joins Lambda's Invocations and Duration metrics by
 # timestamp and applies public Lambda pricing to estimate compute +
 # request cost per hourly bucket over the last 24h. Architecture
