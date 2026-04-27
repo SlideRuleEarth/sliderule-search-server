@@ -1,0 +1,182 @@
+{
+  "generated_at": "2026-04-27T18:21:01+00:00",
+  "summary": {
+    "total_files": 5,
+    "completed": 5,
+    "incomplete": 0,
+    "overall_verdicts": {
+      "correct": 4,
+      "partial": 1
+    },
+    "routing_decisions": {
+      "keep": 5
+    }
+  },
+  "records": [
+    {
+      "row_index": 1,
+      "query": "atl03x X-Series API photon processing",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/01-atl03x-x-series-api-photon-processing-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 2,
+      "query": "atl06x surface fit elevation",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/02-atl06x-surface-fit-elevation-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": "docsearch",
+        "urls": [
+          "https://docs.slideruleearth.io/user_guide/icesat2.html"
+        ],
+        "sections": [
+          "2",
+          "atl06-atl06x"
+        ],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 3,
+      "query": "atl24x bathymetry subsetting",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/03-atl24x-bathymetry-subsetting-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "correct",
+          "r3": "correct",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 4,
+      "query": "yapc photon classifier",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/04-yapc-photon-classifier-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 5,
+      "query": "cnf confidence filter parameter",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/05-cnf-confidence-filter-parameter-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "correct",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    }
+  ]
+}
