@@ -21,7 +21,7 @@
 
 #### r1 — score 0.556
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-01-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v02-01-00.html
 - **title:** Release v2.1.x
 - **section:** Known Issues
 - **category:** `release_notes`
@@ -35,7 +35,7 @@ PhoREAL processing includes some known bugs - the median ground height uses the 
 
 #### r2 — score 0.565
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-00-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-00-00.html
 - **title:** Release v3.0.x
 - **section:** Issues Resolved
 - **category:** `release_notes`
@@ -49,7 +49,7 @@ PhoREAL processing bug fixes: the median ground height now uses the absolute hei
 
 #### r3 — score 0.545
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3. ATL08 - atl08x
 - **category:** `user_guide`
@@ -61,23 +61,9 @@ PhoREAL processing bug fixes: the median ground height now uses the absolute hei
 at) land_segments/terrain/h_te_uncertainty h_te_median Median height of the terrain meters (float) land_segments/terrain/h_te_median h_canopy 98 percentile height of canopy photons meters (float) land_segments/canopy/h_canopy (or land_segments/canopy/h_canopy_abs if use_abs_h is true) h_canopy_uncertainty Vertical uncertainty of canopy height meters (float) land_segments/canopy/h_canopy_uncertainty segment_cover Average percentage value of the valid Copernicus fractional cover product scalar land_segments/canopy/segment_cover n_ca_photons Number of canopy photons land_segments/canopy/n_ca_photons h_max_canopy Maximum canopy height meters (float) land_segments/canopy/h_max_canopy (or land_segments/canopy/h_max_canopy_abs if use_abs_h is true) h_min_canopy Minimum canopy height meters (float) land_segments/canopy/h_min_canopy (or land_segments/canopy/h_min_canopy_abs if use_abs_h is true) h_mean_canopy Mean canopy height meters (float) land_segments/canopy/h_mean_canopy (or land_segments/canopy/h_mean_canopy_abs if use_abs_h is true) canopy_openness Standard Deviation of all canopy photons meters (float) land_segments/canopy/canopy_openness canopy_h_metrics Cumulative distribution of relative canopy heights calculated at the following percentiles: 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95 meters (float) land_segments/canopy/canopy_h_metrics (or land_segments/canopy/canopy_h_metrics_abs if use_abs_h is true) spot ATLAS detector field of view 1-6 Inde
 ```
 
-#### r4 — score 0.440
+#### r4 — score 0.588
 
-- **url:** https://docs.slideruleearth.io/assets/phoreal.html
-- **title:** Running the PhoREAL algorithm over Grand Mesa, CO
-- **section:** Plot Canopy Height
-- **category:** `tutorial`
-- **matched_tokens:** ['atl08', 'canopy', 'height']
-
-**Full text:**
-
-```
-[6]: canopy_gt1l = atl08 [ atl08 [ 'gt' ] == icesat2 . GT1L ] canopy_gt1l . plot . scatter ( x = 'x_atc' , y = 'h_canopy' ) [6]: <Axes: xlabel='x_atc', ylabel='h_canopy'>
-```
-
-#### r5 — score 0.588
-
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6 PhoREAL Algorithm
 - **category:** `user_guide`
@@ -87,6 +73,20 @@ at) land_segments/terrain/h_te_uncertainty h_te_median Median height of the terr
 
 ```
 The PhoREAL algorithm is a modified version of the ATL08 canopy metrics algorithm developed at the University of Texas at Austin that calculates canopy metrics on a segment of ATL03 photons. The algorithm is run by supplying the phoreal parameter in the atl03x request, but can also be accessed via the legacy endpoints atl08 and atl08p .
+```
+
+#### r5 — score 0.417
+
+- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
+- **title:** SlideRule Web Client
+- **section:** Appendix A. Parameter Components
+- **category:** `developer_guide`
+- **matched_tokens:** ['atl08', 'canopy', 'height']
+
+**Full text:**
+
+```
+ables inputs below) Land Type : label noise : checkbox ground : checkbox canopy : checkbox top_of_canopy : checkbox unclassified : checkbox ATL03 YAPC : input switch (enables inputs below) Score : input number SR YAPC : input switch (enables inputs below) Score : input number Knn : input number Window Height : input number Window Width : input number Version : label version 1 : radio button version 2 : radio button version 3 : radio button Extents (Variable-Length Segmentation) : accordion header [ICESat-2] Length : input number (meters) Step Size : input number (meters) Distance in Segments : checkbox (changes above inputs to segments instead of meters) Pass Invalid : checkbox Along Track Spread : input number [greyed out when pass invalid selected] Minimum Photon Count : input number [greyed out when pass invalid selected] Surface Elevation Algorithm : accordion header [atl06] Maximum Iterations : input number Minimum Window Height : input number (meters) Maximum Robust Dispersion : input number (meters) Vegetation Density Algorithm : accordion header [atl08] Bin Size : input number (meters) Geolocation : label mean : radio button median : radio button center : radio button Use Absolute Heights : checkbox Send Waveforms : checkbox Use ABoVE Classifier : checkbox Ancillary Fields : accordion header [ICESat-2] ATL03 Geospatial Fields : multiselect [atl03, atl06] ATL03 Photon Fields : multiselect [atl03, atl06] ATL06 Ice Segment Fields : multiselect [atl06s] ATL08 Land Segment
 ```
 
 ---

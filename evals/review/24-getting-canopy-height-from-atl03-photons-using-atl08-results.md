@@ -9,9 +9,7 @@
 
 - **corpus:** `docsearch`
 - **expected_urls:**
-  - https://docs.slideruleearth.io/assets/phoreal.html
   - https://docs.slideruleearth.io/user_guide/icesat2.html
-  - https://docs.slideruleearth.io/assets/grandmesa_atl03_classification.html
 - **expected_sections:**
   - `atl08 classification`
   - `phoreal`
@@ -19,7 +17,7 @@
   - `1.6 phoreal`
   - `3. atl08`
 - **expected_pages:** (none)
-- **notes:** phoreal / atl08_class usage
+- **notes:** phoreal / atl08_class usage (assets/phoreal + grandmesa_atl03_classification dropped after testsliderule.org rebaseline)
 
 ---
 
@@ -27,7 +25,7 @@
 
 #### r1 — score 0.688
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.3 ATL08 Classification
 - **category:** `user_guide`
@@ -39,23 +37,9 @@
 If ATL08 classification parameters are specified, the ATL08 (vegetation height) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=0 (land) and cnf=0 (no native filtering) should be specified to allow all ATL08 photons to be used. atl08_class : list of ATL08 classifications used to select which photons are used in the processing (the available classifications are: âatl08_noiseâ, âatl08_groundâ, âatl08_canopyâ, âatl08_top_of_canopyâ, âatl08_unclassifiedâ)
 ```
 
-#### r2 — score 0.651
+#### r2 — score 0.513
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
-- **title:** ICESat-2 Module
-- **section:** 1.6 PhoREAL Algorithm
-- **category:** `user_guide`
-- **matched_tokens:** ['atl03', 'atl08', 'canopy', 'photons']
-
-**Full text:**
-
-```
-The PhoREAL algorithm is a modified version of the ATL08 canopy metrics algorithm developed at the University of Texas at Austin that calculates canopy metrics on a segment of ATL03 photons. The algorithm is run by supplying the phoreal parameter in the atl03x request, but can also be accessed via the legacy endpoints atl08 and atl08p .
-```
-
-#### r3 — score 0.513
-
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.1 Segmented Photon Data - atl03sp
 - **category:** `user_guide`
@@ -67,23 +51,23 @@ The PhoREAL algorithm is a modified version of the ATL08 canopy metrics algorith
 The GeoDataFrame for each photon extent has the following columns: track : reference pair track number (1, 2, 3) sc_orient : spacecraft orientation (0: backwards, 1: forwards) rgt : reference ground track cycle : cycle segment_id : segment ID of first ATL03 segment in result segment_dist : along track distance from the equator to the center of the extent (in meters) count : the number of photons in the segment time : nanoseconds from Unix epoch (January 1, 1970) without leap seconds latitude : latitude (-90.0 to 90.0) longitude : longitude (-180.0 to 180.0) x_atc : along track distance of the photon in meters (with respect to the center of the segment) y_atc : across track distance of the photon in meters across : across track distance of the photon in meters height : height of the photon in meters solar_elevation : solar elevation from ATL03 at time of measurement, in degrees background_rate : background photon counts per second atl08_class : the photonâs ATL08 classification (0: noise, 1: ground, 2: canopy, 3: top of canopy, 4: unclassified) atl03_cnf : the photonâs ATL03 confidence level (-2: TEP, -1: not considered, 0: background, 1: within 10m, 2: low, 3: medium, 4: high) quality_ph : the photonâs quality classification (0: nominal, 1: possible after pulse, 2: possible impulse responpse effect, 3: possible tep) yapc_score : the photonâs YAPC classification (0 - 255, the larger the number the higher the confidence in surface reflection) Note: when PhoREAL is enabl
 ```
 
-#### r4 — score 0.449
+#### r3 — score 0.651
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6 PhoREAL Algorithm
 - **category:** `user_guide`
-- **matched_tokens:** ['atl03', 'atl08', 'canopy', 'height', 'photons']
+- **matched_tokens:** ['atl03', 'atl08', 'canopy', 'photons']
 
 **Full text:**
 
 ```
-This algorithm replaces the columns of the source DataFrame with the following columns: Field Description Units Notes time_ns Unix Time nanoseconds index column of DataFrame latitude EPSG:7912 degrees (double) replaced by geometry column when GeoDataFrame longitude EPSG:7912 degrees (double) replaced by geometry column when GeoDataFrame x_atc Along track distance meters (double) dist_ph_along + segment_distance y_atc Across track distance meters (float) dist_ph_across photon_start ATL03 index (per beam) of the first photon in the segment photon_count Number of ATL03 photons in the segment pflags Processing flags see ICESat-2 Processing Flags ground_photon_count Number of photons classified as ground in the segment vegetation_photon_count Number of photons classified as canopy or top of canopy in the segment landcover ATL08 land cover flags snowcover ATL08 snow cover flags solar_elevation Sun elevation as provided in ATL03 degrees (float) h_te_median Median ellipsoidal height of the ground photons meters (float) vertical datum controlled by parameters, default is ITRF2014 h_max_canopy Maximum relief height for canopy photons meters (float) h_min_canopy Minimum relief height for canopy photons meters (float) h_mean_canopy Mean relief height for canopy photons meters (float) h_canopy 98th percentile relief height for canopy photons meters (float) canopy_openness Standard deviation of relief height for canopy photons canopy_h_metrics relief height at given percentile for canopy p
+The PhoREAL algorithm is a modified version of the ATL08 canopy metrics algorithm developed at the University of Texas at Austin that calculates canopy metrics on a segment of ATL03 photons. The algorithm is run by supplying the phoreal parameter in the atl03x request, but can also be accessed via the legacy endpoints atl08 and atl08p .
 ```
 
-#### r5 — score 0.627
+#### r4 — score 0.627
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -93,6 +77,20 @@ This algorithm replaces the columns of the source DataFrame with the following c
 
 ```
 The SlideRule atl03x endpoint provides a service for ATL03 custom processing. This endpoint queries ATL03 input granules for photon heights and locations based on a set of photon-input parameters that select geographic and temporal ranges. It then selects a subset of these photons based on a set of photon classification parameters, and divides these selected photons into short along-track extents, each of which is suitable for generating a single height estimate. These extents may be returned to the client, or may be passed to downstream algorithms like the ATL06-SR height-estimation module, or the PhoREAL algorithm.
+```
+
+#### r5 — score 0.449
+
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** 1.6 PhoREAL Algorithm
+- **category:** `user_guide`
+- **matched_tokens:** ['atl03', 'atl08', 'canopy', 'height', 'photons']
+
+**Full text:**
+
+```
+This algorithm replaces the columns of the source DataFrame with the following columns: Field Description Units Notes time_ns Unix Time nanoseconds index column of DataFrame latitude EPSG:7912 degrees (double) replaced by geometry column when GeoDataFrame longitude EPSG:7912 degrees (double) replaced by geometry column when GeoDataFrame x_atc Along track distance meters (double) dist_ph_along + segment_distance y_atc Across track distance meters (float) dist_ph_across photon_start ATL03 index (per beam) of the first photon in the segment photon_count Number of ATL03 photons in the segment pflags Processing flags see ICESat-2 Processing Flags ground_photon_count Number of photons classified as ground in the segment vegetation_photon_count Number of photons classified as canopy or top of canopy in the segment landcover ATL08 land cover flags snowcover ATL08 snow cover flags solar_elevation Sun elevation as provided in ATL03 degrees (float) h_te_median Median ellipsoidal height of the ground photons meters (float) vertical datum controlled by parameters, default is ITRF2014 h_max_canopy Maximum relief height for canopy photons meters (float) h_min_canopy Minimum relief height for canopy photons meters (float) h_mean_canopy Mean relief height for canopy photons meters (float) h_canopy 98th percentile relief height for canopy photons meters (float) canopy_openness Standard deviation of relief height for canopy photons canopy_h_metrics relief height at given percentile for canopy p
 ```
 
 ---

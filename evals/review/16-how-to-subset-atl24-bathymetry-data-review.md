@@ -1,9 +1,9 @@
 # Row 16 review
 
-> Companion to `16-example-atl24-subsetting-and-filtering-bathymetry-results.md`. Open both side-by-side;
+> Companion to `16-how-to-subset-atl24-bathymetry-data-results.md`. Open both side-by-side;
 > this file is your editable form.
 
-**Query:** `example atl24 subsetting and filtering bathymetry`
+**Query:** `how to subset atl24 bathymetry data`
 **Labeled corpus:** `docsearch`
 
 ---

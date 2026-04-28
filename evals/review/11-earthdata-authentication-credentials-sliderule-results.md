@@ -21,7 +21,7 @@
 
 #### r1 — score 0.653
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/security_model.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/security_model.html
 - **title:** 2026-03-12: Security Model
 - **section:** Overview
 - **category:** `developer_guide`
@@ -35,7 +35,7 @@ SlideRule Earth leverages GitHub authentication and account membership status wi
 
 #### r2 — score 0.566
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/private_clusters.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/private_clusters.html
 - **title:** 2026-01-20: Private Clusters
 - **section:** SlideRule Authenticator
 - **category:** `developer_guide`
@@ -49,7 +49,7 @@ The SlideRule Authenticator is an AWS Lambdaâbased authentication service t
 
 #### r3 — score 0.613
 
-- **url:** https://docs.slideruleearth.io/user_guide/raster_sampling.html
+- **url:** https://docs.testsliderule.org/user_guide/raster_sampling.html
 - **title:** Raster Sampling
 - **section:** Overview
 - **category:** `user_guide`
@@ -61,9 +61,9 @@ The SlideRule Authenticator is an AWS Lambdaâbased authentication service t
 The second step of obtaining credentials also requires some specialized code, but since most of our datasets are in AWS and authenticated through NASA DAACs, most of the authentication code is generic. But even still, because of this, each raster dataset supported by SlideRule needs to be registered with SlideRule ahead of time and provided in what we call an Asset Directory.
 ```
 
-#### r4 — score 0.493
+#### r4 — score 0.492
 
-- **url:** https://docs.slideruleearth.io/developer_guide/how_tos/amazon_linux_arm_setup.html
+- **url:** https://docs.testsliderule.org/developer_guide/how_tos/amazon_linux_arm_setup.html
 - **title:** Setting Up Amazon Linux Development Environment
 - **section:** 2-Factor Authentication
 - **category:** `developer_guide`
@@ -72,21 +72,21 @@ The second step of obtaining credentials also requires some specialized code, bu
 **Full text:**
 
 ```
-Make sure to setup an initial .aws/credentials file so that it has the sliderule profile access key and secret access key. The credentials file will look something like: [ default ] aws_access_key_id = _ aws_secret_access_key = _ aws_session_token = _ [ sliderule ] aws_access_key_id = _ aws_secret_access_key = _ To populate the default keys and session token, run: aws --profile = sliderule sts get-session-token --serial-number arn:aws:iam:: $account_number :mfa/ $user_name --token-code = $code To login to the AWS Elastic Container Registry, run: aws ecr get-login-password --region $region | docker login --username AWS --password-stdin $account_number .dkr.ecr. $region .amazonaws.com Previous Next © Copyright 2020â2026, University of Washington. Build v5.3.2 . Built with Sphinx using a theme provided by Read the Docs .
+Make sure to setup an initial .aws/credentials file so that it has the sliderule profile access key and secret access key. The credentials file will look something like: [ default ] aws_access_key_id = _ aws_secret_access_key = _ aws_session_token = _ [ sliderule ] aws_access_key_id = _ aws_secret_access_key = _ To populate the default keys and session token, run: aws --profile = sliderule sts get-session-token --serial-number arn:aws:iam:: $account_number :mfa/ $user_name --token-code = $code To login to the AWS Elastic Container Registry, run: aws ecr get-login-password --region $region | docker login --username AWS --password-stdin $account_number .dkr.ecr. $region .amazonaws.com Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
-#### r5 — score 0.555
+#### r5 — score 0.574
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html
-- **title:** Release v5.0.x
-- **section:** Breaking Changes
-- **category:** `release_notes`
-- **matched_tokens:** ['authentication', 'earthdata', 'sliderule']
+- **url:** https://docs.testsliderule.org/background/NASA-Earthdata.html
+- **title:** NASA Earthdata
+- **section:** Steps to Sync from NSIDC
+- **category:** `background`
+- **matched_tokens:** ['credentials', 'earthdata']
 
 **Full text:**
 
 ```
-v5.0.7 - The atl24-s3 asset has been renamed to icesat2-atl24 to reflect that it is now the default asset for ATL24. This will also make the transition from local S3 storage to Earthdata Cloud seamless, as the name will not need to change when that happens. v5.0.3 - The use of the SlideRule Provisioning System has been deprecated. All accounts in the system must be replaced by GitHub accounts. Authentication for private clusters is now handled by the SlideRule Authenticator at https://login.slideruleearth.io. The Python client now supports only two authentication flows: (1) the use of a PAT key from GitHub, and (2) an interactive device-flow login to GitHub Support for .netrc files has been removed The environment variable PS_GITHUB_TOKEN has been renamed to SLIDERULE_GITHUB_TOKEN to remove the âProvisioning Systemâ prefix identifier. The ps_username and ps_password parameters in sliderule.authenticate have been removed. The update_available_servers function can no longer be used to change the number of nodes in a running cluster; it can only be used to initialize the number of nodes in a cluster that is to be deployed and then status the number of nodes that are running. v5.0.3 - The use of the SlideRule Manager has been deprecated.
+Register with NASA Earthdata Login system After registering, login to the system Add NSIDC_DATAPOOL_OPS and nsidc-daacdata applications to Earthdata Copy your NASA Earthdata credentials or create a .netrc file to store your credentials permanently echo "machine urs.earthdata.nasa.gov login <uid> password <password>" >> ~/.netrc chmod 0600 ~/.netrc
 ```
 
 ---

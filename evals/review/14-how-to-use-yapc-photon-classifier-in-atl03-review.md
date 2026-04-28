@@ -1,9 +1,9 @@
-# Row 15 review
+# Row 14 review
 
-> Companion to `15-example-sampling-arcticdem-mosaic-raster-results.md`. Open both side-by-side;
+> Companion to `14-how-to-use-yapc-photon-classifier-in-atl03-results.md`. Open both side-by-side;
 > this file is your editable form.
 
-**Query:** `example sampling ArcticDEM mosaic raster`
+**Query:** `how to use yapc photon classifier in atl03`
 **Labeled corpus:** `docsearch`
 
 ---

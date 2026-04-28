@@ -24,23 +24,9 @@
 
 ## 📚 docsearch results (top 5)
 
-#### r1 — score 0.331
+#### r1 — score 0.315
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
-- **title:** ICESat-2 Module
-- **section:** 5.1 Query Parameters
-- **category:** `user_guide`
-- **matched_tokens:** ['confidence', 'filter']
-
-**Full text:**
-
-```
-The following parameters are supported under the atl24 key for customizing the request to ATL24 and filtering which data is returned. atl24 : compact : reduces number of fields to minimal viable set (boolean) class_ph : ATL24 classification filter (list; 0:unclassified, 40:bathymetry, 41:sea surface) confidence_threshold|minimal bathymetry confidence score|double; 0 to 1.0|0| invalid_kd : invalid kd flag values to allow (âonâ: includes only photons with invalid kd; âoffâ: includes only photons without invalid kd; defaults to both when not specified) invalid_wind_speed : invalid wind speed flag values to allow (âonâ: includes only photons with invalid wind speed; âoffâ: includes only photons without invalid wind speed; defaults to both when not specified) low_confidence : low confidence flag values to allow (âonâ: includes only low confidence photons; âoffâ: includes only high confidence photons; defaults to both when not specified) night : night flag values to allow (âonâ: includes only photons collected at night; âoffâ: includes only photons collected during the day; defaults to both when not specified) sensor_depth_exceeded : sensor depth exceeded flag values to allow (âonâ: includes only photons at a depth greater than the sensor depth; âoffâ: includes only photons at a depth less then the sensor depth; defaults to both when not specified)
-```
-
-#### r2 — score 0.315
-
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.1 Native ATL03 Photon Classification
 - **category:** `user_guide`
@@ -52,9 +38,23 @@ The following parameters are supported under the atl24 key for customizing the r
 ATL03 contains a set of photon classification values, that are designed to identify signal photons for different surface types with specified confidence: srt : surface type: 0-land, 1-ocean, 2-sea ice, 3-land ice, 4-inland water cnf : confidence level for photon selection, can be supplied as a single value (which means the confidence must be at least that), or a list (which means the confidence must be in the list); note - the confidence can be supplied as strings {âatl03_tepâ, âatl03_not_consideredâ, âatl03_backgroundâ, âatl03_within_10mâ, âatl03_lowâ, âatl03_mediumâ, âatl03_highâ} or as numbers {-2, -1, 0, 1, 2, 3, 4}. quality_ph : quality classification based on an ATL03 algorithms that attempt to identify instrumental artifacts, can be supplied as a single value (which means the classification must be exactly that), or a list (which means the classification must be in the list). podppd : pointing/geolocation degradation mask; each bit in the mask represents a pointing/geolocation solution quality assessment to be included; the bits are 0: nominal, 1: pod_degrade, 2: ppd_degrade, 3: podppd_degrade, 4: cal_nominal, 5: cal_pod_degrade, 6: cal_ppd_degrade, 7: cal_podppd_degrade.
 ```
 
+#### r2 — score 0.331
+
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** 5.1 Query Parameters
+- **category:** `user_guide`
+- **matched_tokens:** ['confidence', 'filter']
+
+**Full text:**
+
+```
+The following parameters are supported under the atl24 key for customizing the request to ATL24 and filtering which data is returned. atl24 : compact : reduces number of fields to minimal viable set (boolean) class_ph : ATL24 classification filter (list; 0:unclassified, 40:bathymetry, 41:sea surface) confidence_threshold|minimal bathymetry confidence score|double; 0 to 1.0|0| invalid_kd : invalid kd flag values to allow (âonâ: includes only photons with invalid kd; âoffâ: includes only photons without invalid kd; defaults to both when not specified) invalid_wind_speed : invalid wind speed flag values to allow (âonâ: includes only photons with invalid wind speed; âoffâ: includes only photons without invalid wind speed; defaults to both when not specified) low_confidence : low confidence flag values to allow (âonâ: includes only low confidence photons; âoffâ: includes only high confidence photons; defaults to both when not specified) night : night flag values to allow (âonâ: includes only photons collected at night; âoffâ: includes only photons collected during the day; defaults to both when not specified) sensor_depth_exceeded : sensor depth exceeded flag values to allow (âonâ: includes only photons at a depth greater than the sensor depth; âoffâ: includes only photons at a depth less then the sensor depth; defaults to both when not specified)
+```
+
 #### r3 — score 0.227
 
-- **url:** https://docs.slideruleearth.io/user_guide/basic_usage.html
+- **url:** https://docs.testsliderule.org/user_guide/basic_usage.html
 - **title:** Basic Usage
 - **section:** Define the Request Parameters
 - **category:** `user_guide`
@@ -66,23 +66,9 @@ ATL03 contains a set of photon classification values, that are designed to ident
 When making a request to the SlideRule servers, the parameters of the request (i.e. what the user wants to process and how they want to process it) are supplied in the body of the request as a JSON structure. When using the SlideRule Python client, the parameters are captured and provided by the user in a Python dictionary, and the dictionary is automatically serialized into a JSON structure by the client when making the request. For example, to set the confidence filter on an ATL03 subsetting request, the parameter structure needed by the endpoint can be passed into the sliderule.run() function as a dictionary, like so: sliderule . run ( "atl03x" , { "cnf" : - 1 }, resources = [ "ATL03_20181019065445_03150111_007_01.h5" ])
 ```
 
-#### r4 — score 0.311
+#### r4 — score 0.237
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
-- **title:** ICESat-2 Module
-- **section:** 3.1 Quality Filter Parameters
-- **category:** `user_guide`
-- **matched_tokens:** ['filter']
-
-**Full text:**
-
-```
-The ATL08 data can be filtered based on different quality filters. te_quality_score : terrain quality score threshold can_quality_score : canopy quality score threshold
-```
-
-#### r5 — score 0.237
-
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-04-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-04-00.html
 - **title:** Release v4.4.x
 - **section:** New Features
 - **category:** `release_notes`
@@ -92,6 +78,20 @@ The ATL08 data can be filtered based on different quality filters. te_quality_sc
 
 ```
 v4.4.0 - Resources are queried from servers instead of client. If a processing request does not include a list of resources to process, the server processing the request will query CMR and populate the resources parameter. In addition, any sampling requests that need a populated catalog parameter will also be queried on the server side and have that parameter populated. v4.4.0 - 389 and 383 - updates to demo plotting and added support for downloading results v4.4.0 - Raster sampling support when the output is an Arrow generated format (Geo/Parquet, CSV, Feather). v4.4.0 - Added Feather output support v4.4.0 - 43d536b - Request parameters and record information added to metadata of generated Parquet files. v4.4.0 - 763e553 - max confidence in the signal_conf variable can be selected when filtering ATL03 photons based on confidence level v4.4.0 - 392 - GEBCO raster sampling support added v4.4.0 - 9d71b6e - Meta global canopy height raster support added
+```
+
+#### r5 — score 0.261
+
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** 2. ATL06 - atl06x
+- **category:** `user_guide`
+- **matched_tokens:** ['confidence']
+
+**Full text:**
+
+```
+and the along-track segment fit meters (float) land_ice_segments/fit_statistics/h_robust_sprd w_surface_window_final Width of the surface window, top to bottom meters (float) land_ice_segments/fit_statistics/w_surface_window_final bsnow_conf Confidence flag for presence of blowing snow boolean land_ice_segments/geophysical/bsnow_conf bsnow_h Blowing snow layer top height meters (float) land_ice_segments/geophysical/bsnow_h r_eff Effective reflectance, uncorrected for atmospheric effects. (float) land_ice_segments/geophysical/r_eff tide_ocean Ocean tides meters (float) land_ice_segments/geophysical/tide_ocean n_fit_photons Number of PEs used in determining h_li count land_ice_segments/fit_statistics/n_fit_photons spot ATLAS detector field of view 1-6 Independent of spacecraft orientation cycle ATLAS orbit cycle number region ATLAS granule region 1-14 rgt Reference Ground Track gt Beam âgt1lâ, âgt1râ, âgt2lâ, âgt2râ, âgt3lâ, âgt3râ Dependent on spacecraft orientation
 ```
 
 ---

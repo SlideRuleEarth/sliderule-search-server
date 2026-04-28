@@ -23,7 +23,7 @@
 
 #### r1 — score 0.628
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -37,7 +37,7 @@ The SlideRule atl03x endpoint provides a service for ATL03 custom processing. Th
 
 #### r2 — score 0.538
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.3 Photon-extent Parameters
 - **category:** `user_guide`
@@ -51,7 +51,7 @@ Selected photons are divided and aggregated using along-track samples (âext
 
 #### r3 — score 0.614
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.5.1 ATL06-SR Parameters
 - **category:** `user_guide`
@@ -65,7 +65,7 @@ The ATL06-SR parameters are supplied in user requests under the fit key and incl
 
 #### r4 — score 0.496
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5. ATL24 - atl24x
 - **category:** `user_guide`
@@ -79,7 +79,7 @@ This endpoint is called via: sliderule . run ( 'atl24x' , parms ) The default re
 
 #### r5 — score 0.487
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.4 Ancillary Data
 - **category:** `user_guide`

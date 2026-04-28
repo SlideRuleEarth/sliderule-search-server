@@ -21,7 +21,7 @@
 
 #### r1 — score 0.480
 
-- **url:** https://docs.slideruleearth.io/user_guide/versioning.html
+- **url:** https://docs.testsliderule.org/user_guide/versioning.html
 - **title:** Versioning
 - **section:** Note on Reproducibility
 - **category:** `user_guide`
@@ -30,26 +30,12 @@
 **Full text:**
 
 ```
-It is the goal of the SlideRule development team to create a system where results are able to be reproduced; but this is often times either extremely difficult or impossible for reasons outside of the teams control. SlideRule relies on publicly hosted datasets. When those datasets are updated, older versions of the datasets are often removed. For instance, ICESat-2 Standard Data Products have a 6-month to 1-year release cycle and EarthData Cloud only stores the last two releases. Production systems must stay up-to-date with all security patches. This means libraries used by older versions of SlideRule may not be able to be deployed if newer versions of those libraries contain security patches. While we make every effort to keep backward compatibility for as long as possible, our development time is a limited resource and we are unable to maintain very old architectures of SlideRule. Once we increment a major version number, we often remove deprecated functionality and internal configurations needed to deploy those older system designs. That does not mean it would not be impossible to recreate the environment needed to run the older design - it does mean it becomes more and more impractical to do so. Previous Next © Copyright 2020â2026, University of Washington. Build v5.3.2 . Built with Sphinx using a theme provided by Read the Docs .
+It is the goal of the SlideRule development team to create a system where results are able to be reproduced; but this is often times either extremely difficult or impossible for reasons outside of the teams control. SlideRule relies on publicly hosted datasets. When those datasets are updated, older versions of the datasets are often removed. For instance, ICESat-2 Standard Data Products have a 6-month to 1-year release cycle and EarthData Cloud only stores the last two releases. Production systems must stay up-to-date with all security patches. This means libraries used by older versions of SlideRule may not be able to be deployed if newer versions of those libraries contain security patches. While we make every effort to keep backward compatibility for as long as possible, our development time is a limited resource and we are unable to maintain very old architectures of SlideRule. Once we increment a major version number, we often remove deprecated functionality and internal configurations needed to deploy those older system designs. That does not mean it would not be impossible to recreate the environment needed to run the older design - it does mean it becomes more and more impractical to do so. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
-#### r2 — score 0.455
+#### r2 — score 0.487
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-04-00.html
-- **title:** Release v1.4.x
-- **section:** Required Updates
-- **category:** `release_notes`
-- **matched_tokens:** ['function', 'removed', 'sliderule']
-
-**Full text:**
-
-```
-v1.4.0 - In order to use the latest SlideRule server deployments, the Python client must be updated. For conda users: $ conda update sliderule For developer installs: $ cd sliderule-python $ git checkout main $ git pull $ python3 setup.py install v1.4.0 - User scripts that use the Python client need to make the following updates: The track keyword argument of atl03sp , atl03s , atl06p , and atl06 has moved to the parm dictionary The block keyword argument of atl06p and atl03sp has been removed v1.4.0 - User scripts that use the Python client should make the following updates due to deprecated functionality: The object returned from the icesat2.toregion function is now a dictionary instead of a list; the polygon should be accessed via ["poly"] instead of with a numerical index. If the region of interest contains multiple polygons, the convex hull of those polygons is returned. For compatibility, for this version only, the returned polygon is also accessible at the [0] index.
-```
-
-#### r3 — score 0.487
-
-- **url:** https://docs.slideruleearth.io/api_reference/gedi.html
+- **url:** https://docs.testsliderule.org/api_reference/gedi.html
 - **title:** gedi
 - **section:** init
 - **category:** `api_reference`
@@ -61,9 +47,23 @@ v1.4.0 - In order to use the latest SlideRule server deployments, the Python cli
 sliderule.gedi. init ( url = 'slideruleearth.io' , verbose = False , loglevel = 50 , organization = 'sliderule' , desired_nodes = None , time_to_live = 60 ) [source] Initializes the Python client for use with SlideRule and should be called before other GEDI API calls. This function is a wrapper for the sliderule.init(â¦) function . Examples >>> from sliderule import gedi >>> gedi . init ()
 ```
 
+#### r3 — score 0.455
+
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-04-00.html
+- **title:** Release v1.4.x
+- **section:** Required Updates
+- **category:** `release_notes`
+- **matched_tokens:** ['function', 'removed', 'sliderule']
+
+**Full text:**
+
+```
+v1.4.0 - In order to use the latest SlideRule server deployments, the Python client must be updated. For conda users: $ conda update sliderule For developer installs: $ cd sliderule-python $ git checkout main $ git pull $ python3 setup.py install v1.4.0 - User scripts that use the Python client need to make the following updates: The track keyword argument of atl03sp , atl03s , atl06p , and atl06 has moved to the parm dictionary The block keyword argument of atl06p and atl03sp has been removed v1.4.0 - User scripts that use the Python client should make the following updates due to deprecated functionality: The object returned from the icesat2.toregion function is now a dictionary instead of a list; the polygon should be accessed via ["poly"] instead of with a numerical index. If the region of interest contains multiple polygons, the convex hull of those polygons is returned. For compatibility, for this version only, the returned polygon is also accessible at the [0] index.
+```
+
 #### r4 — score 0.491
 
-- **url:** https://docs.slideruleearth.io/api_reference/sliderule.html
+- **url:** https://docs.testsliderule.org/api_reference/sliderule.html
 - **title:** sliderule
 - **section:** init
 - **category:** `api_reference`
@@ -77,10 +77,10 @@ sliderule. init ( url = 'slideruleearth.io' , verbose = False , loglevel = 20 , 
 
 #### r5 — score 0.495
 
-- **url:** https://docs.slideruleearth.io/user_guide/how_tos/plugins.html
-- **title:** Building a Plugin for SlideRule
+- **url:** https://docs.testsliderule.org/developer_guide/articles/plugins.html
+- **title:** 2025-09-10: Building a Plugin for SlideRule
 - **section:** Shared Object
-- **category:** `user_guide`
+- **category:** `developer_guide`
 - **matched_tokens:** ['api', 'function', 'sliderule']
 
 **Full text:**

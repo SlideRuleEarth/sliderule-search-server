@@ -1,9 +1,9 @@
-# Row 13 review
+# Row 17 review
 
-> Companion to `13-example-custom-atl06-processing-grand-mesa-results.md`. Open both side-by-side;
+> Companion to `17-how-to-query-atl13-lake-by-name-results.md`. Open both side-by-side;
 > this file is your editable form.
 
-**Query:** `example custom atl06 processing Grand Mesa`
+**Query:** `how to query atl13 lake by name`
 **Labeled corpus:** `docsearch`
 
 ---

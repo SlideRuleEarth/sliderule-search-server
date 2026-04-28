@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import sys
 import time
@@ -22,7 +23,7 @@ from urllib.parse import urldefrag, urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup, NavigableString
 
-HOST = "docs.slideruleearth.io"
+HOST = os.environ.get("DOCSEARCH_HOST", "docs.slideruleearth.io")
 BASE_URL = f"https://{HOST}/"
 SITEMAP_URL = f"https://{HOST}/sitemap.xml"
 USER_AGENT = "sliderule-search-server docsearch-builder (https://slideruleearth.io)"

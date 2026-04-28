@@ -25,7 +25,7 @@
 
 #### r1 — score 0.515
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** ICESat-2 Module
 - **category:** `user_guide`
@@ -39,7 +39,7 @@ The ICESat-2 module within SlideRule supports a number of both legacy p-series a
 
 #### r2 — score 0.542
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.1 Native ATL03 Photon Classification
 - **category:** `user_guide`
@@ -51,37 +51,9 @@ The ICESat-2 module within SlideRule supports a number of both legacy p-series a
 ATL03 contains a set of photon classification values, that are designed to identify signal photons for different surface types with specified confidence: srt : surface type: 0-land, 1-ocean, 2-sea ice, 3-land ice, 4-inland water cnf : confidence level for photon selection, can be supplied as a single value (which means the confidence must be at least that), or a list (which means the confidence must be in the list); note - the confidence can be supplied as strings {âatl03_tepâ, âatl03_not_consideredâ, âatl03_backgroundâ, âatl03_within_10mâ, âatl03_lowâ, âatl03_mediumâ, âatl03_highâ} or as numbers {-2, -1, 0, 1, 2, 3, 4}. quality_ph : quality classification based on an ATL03 algorithms that attempt to identify instrumental artifacts, can be supplied as a single value (which means the classification must be exactly that), or a list (which means the classification must be in the list). podppd : pointing/geolocation degradation mask; each bit in the mask represents a pointing/geolocation solution quality assessment to be included; the bits are 0: nominal, 1: pod_degrade, 2: ppd_degrade, 3: podppd_degrade, 4: cal_nominal, 5: cal_pod_degrade, 6: cal_ppd_degrade, 7: cal_podppd_degrade.
 ```
 
-#### r3 — score 0.566
+#### r3 — score 0.432
 
-- **url:** https://docs.slideruleearth.io/assets/grandmesa_atl03_classification.html
-- **title:** Generating ATL03 photon classifications using ATL08 and YAPC
-- **section:** Retrieve ATL03 elevations with ATL08 classifications
-- **category:** `tutorial`
-- **matched_tokens:** ['icesat', 'photons']
-
-**Full text:**
-
-```
-SRT_LAND , "len" : 20 , "res" : 20 , # classification and checks # still return photon segments that fail checks "pass_invalid" : True , # all photons "cnf" : - 2 , # all land classification flags "atl08_class" : [ "atl08_noise" , "atl08_ground" , "atl08_canopy" , "atl08_top_of_canopy" , "atl08_unclassified" ], # all photons "yapc" : dict ( knn = 0 , win_h = 6 , win_x = 11 , min_ph = 4 , score = 0 ), } # ICESat-2 data release release = '006' # region of interest poly = [ { 'lat' : 39.34603060272382 , 'lon' : - 108.40601489205419 }, { 'lat' : 39.32770853617356 , 'lon' : - 107.68485163209928 }, { 'lat' : 38.770676045922684 , 'lon' : - 107.71081820956682 }, { 'lat' : 38.788639821001155 , 'lon' : - 108.42635020791396 }, { 'lat' : 39.34603060272382 , 'lon' : - 108.40601489205419 } ] # time bounds for CMR query time_start = '2019-11-14' time_end = '2019-11-15' # find granule for each region of interest granules_list = earthdata . cmr ( short_name = 'ATL03' , polygon = poly , time_start = time_start , time_end = time_end , version = release ) # create geodataframe gdf = sliderule . run ( "atl03x" , parms , aoi = poly , resources = granules_list ) HTTP Request Error: HTTP Error 400: Bad Request Using simplified polygon (for CMR request only!), 5 points using tolerance of 0.0001 Starting proxy for atl03x to process 1 resource(s) with 1 thread(s) request <AppServer.78978> on ATL03_20191114034331_07370502_006_01.h5 generated dataframe [gt1l] with 66779 rows and 14 columns request <AppSe
-```
-
-#### r4 — score 0.500
-
-- **url:** https://docs.slideruleearth.io/assets/phoreal.html
-- **title:** Running the PhoREAL algorithm over Grand Mesa, CO
-- **section:** Processing parameters
-- **category:** `tutorial`
-- **matched_tokens:** ['confidence', 'photons']
-
-**Full text:**
-
-```
-[3]: parms = { "poly" : sliderule . toregion ( 'grandmesa.geojson' )[ 'poly' ], # subset to Grand Mesa area of interest "t0" : '2019-11-14T00:00:00Z' , # time range is one day - November 14, 2019 "t1" : '2019-11-15T00:00:00Z' , "srt" : icesat2 . SRT_LAND , # use the land surface type for ATL03 photon confidence levels "len" : 100 , # generate statistics over a 100m segment "res" : 100 , # generate statistics every 100m "pass_invalid" : True , # do not perform any segment-level filtering "atl08_class" : [ "atl08_ground" , "atl08_canopy" , "atl08_top_of_canopy" ], # exclude noise and unclassified photons "atl08_fields" : [ "h_dif_ref" ], # include these fields as extra columns in the dataframe "phoreal" : { "binsize" : 1.0 , "geoloc" : "center" } # run the PhoREAL algorithm }
-```
-
-#### r5 — score 0.432
-
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5.1 Query Parameters
 - **category:** `user_guide`
@@ -91,6 +63,34 @@ SRT_LAND , "len" : 20 , "res" : 20 , # classification and checks # still return 
 
 ```
 The following parameters are supported under the atl24 key for customizing the request to ATL24 and filtering which data is returned. atl24 : compact : reduces number of fields to minimal viable set (boolean) class_ph : ATL24 classification filter (list; 0:unclassified, 40:bathymetry, 41:sea surface) confidence_threshold|minimal bathymetry confidence score|double; 0 to 1.0|0| invalid_kd : invalid kd flag values to allow (âonâ: includes only photons with invalid kd; âoffâ: includes only photons without invalid kd; defaults to both when not specified) invalid_wind_speed : invalid wind speed flag values to allow (âonâ: includes only photons with invalid wind speed; âoffâ: includes only photons without invalid wind speed; defaults to both when not specified) low_confidence : low confidence flag values to allow (âonâ: includes only low confidence photons; âoffâ: includes only high confidence photons; defaults to both when not specified) night : night flag values to allow (âonâ: includes only photons collected at night; âoffâ: includes only photons collected during the day; defaults to both when not specified) sensor_depth_exceeded : sensor depth exceeded flag values to allow (âonâ: includes only photons at a depth greater than the sensor depth; âoffâ: includes only photons at a depth less then the sensor depth; defaults to both when not specified)
+```
+
+#### r4 — score 0.438
+
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **title:** ICESat-2
+- **section:** ATL03 - Global Geolocated Photon Data
+- **category:** `background`
+- **matched_tokens:** ['confidence', 'photons']
+
+**Full text:**
+
+```
+Some photons will be returns from the Transmit Echo Path (TEP) Some photons are from the ATLAS instrument that have reflected off the surface or vegetation (these are our signal photons). The ATLAS instrument receives a vast amount of data and decides on-board whether or not to telemeter packets of received photons back to Earth. ATLAS uses a digital elevation model (DEM) and a few simple rules when making this decision. The photon events (PEs) that are returned are classified as being either signal or background for different surface types (land ice, sea ice, land, and ocean). These PEs have a confidence level flag associated with it for each surface type: -2 : possible Transmit Echo Path (TEP) photons -1 : events not associated with a specific surface type 0 : noise 1 : buffer but algorithm classifies as background 2 : low 3 : medium 4 : high There will be photons transmitted by the ATLAS instrument will never be recorded back. The vast majority of these photons never reached the ATLAS instrument again (only about 10 out of the 10 14 photons transmitted are received), but some are not detected due to the âdead timeâ of the instrument. This can create a bias towards the first photons that were received by the instrument, particularly for smooth and highly reflective surfaces. The transmitted pulse is also not symmetric in time, which can introduce a bias when calculating average surfaces.
+```
+
+#### r5 — score 0.471
+
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **title:** ICESat-2
+- **section:** ATL03 - Global Geolocated Photon Data
+- **category:** `background`
+- **matched_tokens:** ['icesat', 'photons']
+
+**Full text:**
+
+```
+The data from ATLAS and the secondary instrumentation onboard the ICESat-2 observatory (the global positioning system (GPS) and the star cameras) are combined to create three primary measurements: the time of flight of a photon transmitted and received from ATLAS, the position of the satellite in space, and the pointing vector of the satellite during the transmission of photons. These three measurements are used to create ATL03 , the geolocated photon product of ICESat-2. ATL03 contains precise latitude, longitude and elevation for every received photon, arranged by beam in the along-track direction. The structure of the ATL03 file has (at most) six beam groups, along with data describing the responses of the ATLAS instrument, ancillary data for correcting and transforming the ATL03 data, and a group of metadata. Photon events can come to the ATLAS receiver in a few different ways: Many photons come from the sun either by reflecting off clouds or the land surface. These photon events are spread in a random distribution along the telemetry band. In ATL03, a large majority of these âbackgroundâ photon events are classified, but some may be incorrectly classified as signal. Some photons are from the ATLAS instrument that have reflected off clouds. These photons can be clustered together or widely dispersed depending on the properties of the cloud and a few other variables.
 ```
 
 ---

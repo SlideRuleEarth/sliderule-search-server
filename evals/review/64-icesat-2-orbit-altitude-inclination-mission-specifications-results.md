@@ -24,7 +24,7 @@
 
 #### r1 — score 0.603
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** Mission
 - **category:** `background`
@@ -38,7 +38,7 @@ The Ice Cloud and land Elevation Satellite-2 (ICESat-2) is NASAâs latest sa
 
 #### r2 — score 0.421
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** ICESat-2 Module
 - **category:** `user_guide`
@@ -52,7 +52,7 @@ The ICESat-2 module within SlideRule supports a number of both legacy p-series a
 
 #### r3 — score 0.392
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.5 ATL06-SR Algorithm
 - **category:** `user_guide`
@@ -64,9 +64,23 @@ The ICESat-2 module within SlideRule supports a number of both legacy p-series a
 This algorithm replaces the columns of the source DataFrame with the following columns: Field Description Units Notes time_ns Unix Time nanoseconds index column of DataFrame latitude Fitted latitude of the segment, EPSG:7912 degrees (double) replaced by geometry column when GeoDataFrame longitude Fitted longitude of the segment, EPSG:7912 degrees (double) replaced by geometry column when GeoDataFrame x_atc Fitted along track distance meters (double) y_atc Fitted across track distance meters (float) photon_start ATL03 index (per beam) of the first photon in the segment photon_count Number of ATL03 photons in the segment pflags Processing flags see ICESat-2 Processing Flags h_mean Fitted elevation of the segment meters (float) vertical datum controlled by parameters, default is ITRF2014 dh_fit_dx Fitted slope of the segment window_height Height of window used in final fit meters rms_misfit h_sigma spot ATLAS detector field of view 1-6 Independent of spacecraft orientation cycle ATLAS orbit cycle number region ATLAS granule region 1-14 rgt Reference Ground Track gt Beam âgt1lâ, âgt1râ, âgt2lâ, âgt2râ, âgt3lâ, âgt3râ Dependent on spacecraft orientation Using the Python client, this service is called via: parms = { "fit" : {} } sliderule . run ( 'atl03x' , parms )
 ```
 
-#### r4 — score 0.529
+#### r4 — score 0.358
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-00-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
+- **title:** SlideRule Web Client
+- **section:** Appendix A. Parameter Components
+- **category:** `developer_guide`
+- **matched_tokens:** ['icesat', 'mission']
+
+**Full text:**
+
+```
+Mission : dropdown or select button ICESat-2 GEDI ICESat-2 APIs : dropdown [ICESat-2] atl03s atl06 atl06s atl08 atl24s GEDI APIs : dropdown [GEDI] gedi01b gedi02a gedi04a General : accordion header Polygon : label Draw On Map : radio button Upload : radio button File Upload : file upload button Rasterize Polygon : checkbox Cell Size : input number (degrees) Ignore Polygon for CMR : checkbox Projection : label auto : radio button plate_carree : radio button north_polar : radio button south_polar : radio button Timeout : input number (seconds) rqst-timeout : input number (seconds) node-timeout : input number (seconds) read-timeout : input number (seconds) Granule Selection : accordion header [ICESat-2] Track : label 1 : checkbox 2 : checkbox 3 : checkbox all : checkbox / toggle others Beam : label gt1l : checkbox gt1r : checkbox gt2l : checkbox gt2r : checkbox gt3l : checkbox gt3r : checkbox all : checkbox / toggle others RGT : input number Cycle : input number Region : input number T0 : calendar T1 : calendar Photon Selection : accordion header [ICESat-2] ATL03 Confidence : input switch (enables inputs below) Surface Reference Type : label land : radio button ocean : radio button sea ice : radio button land_ice : radio button inland_water : radio button Signal Confidence : label tep : radio button not_considered : radio button background : radio button within_10m : radio button low : radio button medium : radio button high : radio button ATL08 Classification : input switch (en
+```
+
+#### r5 — score 0.529
+
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v02-00-00.html
 - **title:** Release v2.0.x
 - **section:** Release v2.0.x
 - **category:** `release_notes`
@@ -76,20 +90,6 @@ This algorithm replaces the columns of the source DataFrame with the following c
 
 ```
 2023-01-11 Version description of the v2.0.0 release of ICESat-2 SlideRule.
-```
-
-#### r5 — score 0.515
-
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-01-00.html
-- **title:** Release v2.1.x
-- **section:** Release v2.1.x
-- **category:** `release_notes`
-- **matched_tokens:** ['icesat']
-
-**Full text:**
-
-```
-2023-03-03 Version description of the v2.1.0 release of ICESat-2 SlideRule.
 ```
 
 ---

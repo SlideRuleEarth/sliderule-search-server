@@ -21,7 +21,7 @@
 
 #### r1 — score 0.497
 
-- **url:** https://docs.slideruleearth.io/user_guide/raster_sampling.html
+- **url:** https://docs.testsliderule.org/user_guide/raster_sampling.html
 - **title:** Raster Sampling
 - **section:** Parameters
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ losest_time : time used to filter rasters to be sampled; only the raster that is
 
 #### r2 — score 0.701
 
-- **url:** https://docs.slideruleearth.io/user_guide/raster_sampling.html
+- **url:** https://docs.testsliderule.org/user_guide/raster_sampling.html
 - **title:** Raster Sampling
 - **section:** Parameters
 - **category:** `user_guide`
@@ -49,7 +49,7 @@ To request raster sampling, the samples parameter must be populated as a diction
 
 #### r3 — score 0.442
 
-- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** SRWC-3.3: Advanced Mode
 - **category:** `developer_guide`
@@ -61,23 +61,9 @@ To request raster sampling, the samples parameter must be populated as a diction
 In advanced mode, the control panel shall display the following controls All control elements present in basic mode Resource query parameter controls specific to the API that has been selected that allow a user to make a processing request without an area of interest A list of parameter controls specific to the API that has been selected; the parameter controls are grouped into exandable category sets (e.g. there might be a âPhoton Classificationâ category with a expansion carrot next to it that once expanded displays a list of selection boxes for each of the photon classifiers supported by SlideRule) A list of selection controls for the different raster datasets that can be sampled as a part of the current processing request. A list of sampling parameter controls used to sample the selected rasters; only displayed once at least one raster is selected for sampling S3 output parameter controls to support the user requesting that the output be written to an S3 bucketâ to include their AWS S3 write credentials, S3 bucket, and output format information
 ```
 
-#### r4 — score 0.442
+#### r4 — score 0.494
 
-- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
-- **title:** SlideRule Web Client
-- **section:** SRWC-3.3: Advanced Mode
-- **category:** `developer_guide`
-- **matched_tokens:** ['api', 'raster', 'sampling']
-
-**Full text:**
-
-```
-In advanced mode, the control panel shall display the following controls All control elements present in basic mode Resource query parameter controls specific to the API that has been selected that allow a user to make a processing request without an area of interest A list of parameter controls specific to the API that has been selected; the parameter controls are grouped into exandable category sets (e.g. there might be a âPhoton Classificationâ category with a expansion carrot next to it that once expanded displays a list of selection boxes for each of the photon classifiers supported by SlideRule) A list of selection controls for the different raster datasets that can be sampled as a part of the current processing request. A list of sampling parameter controls used to sample the selected rasters; only displayed once at least one raster is selected for sampling S3 output parameter controls to support the user requesting that the output be written to an S3 bucketâ to include their AWS S3 write credentials, S3 bucket, and output format information
-```
-
-#### r5 — score 0.494
-
-- **url:** https://docs.slideruleearth.io/user_guide/raster_sampling.html
+- **url:** https://docs.testsliderule.org/user_guide/raster_sampling.html
 - **title:** Raster Sampling
 - **section:** Parameters
 - **category:** `user_guide`
@@ -87,6 +73,20 @@ In advanced mode, the control panel shall display the following controls All con
 
 ```
 Each key in the dictionary is used to label the data returned for that raster in the returned DataFrame. samples : dictionary of rasters to sample <key> : user supplied name used to identify results returned from sampling this raster asset : name of the raster (as supplied in the Asset Directory) to be sampled algorithm : algorithm to use to sample the raster; the available algorithms for sampling rasters are: NearestNeighbour, Bilinear, Cubic, CubicSpline, Lanczos, Average, Mode, Gauss radius : the size of the kernel in meters when sampling a raster; the size of the region in meters for zonal statistics zonal_stats : boolean whether to calculate and return zonal statistics for the region around the location being sampled slope_aspect : boolean whether to calculate slope and aspect for the region around the location being sampled slope_scale_length : the size of the region in meters to use when calculating the slope and aspect with_flags : boolean whether to include auxiliary information about the sampled pixel in the form of a 32-bit flag t0 : start time for filtering rasters to be sampled (format %Y-%m-%dT%H:%M:%SZ, e.g. 2018-10-13T00:00:00Z) t1 : stop time for filtering rasters to be sampled (format %Y-%m-%dT%H:%M:%SZ, e.g. 2018-10-13T00:00:00Z) substr : substring filter for rasters to be sampled; the raster will only be sampled if the name of the raster includes the provided substring (useful for datasets that have multiple rasters for a given geolocation to be sampled) c
+```
+
+#### r5 — score 0.414
+
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-00-00.html
+- **title:** Release v4.0.x
+- **section:** Major Changes
+- **category:** `release_notes`
+- **matched_tokens:** ['api', 'raster', 'sampling']
+
+**Full text:**
+
+```
+v4.0.0 - Added new capability to subset rasters. The subsets endpoint subsets rasters and returns the data back to the user. It works in conjunction with the raster.subset Python API. v4.0.0 - Added new opendata plugin that supports sampling the ESA World Cover 10m dataset. v4.0.0 - The Python client supports returning a GeoDataFrame with 3D point geometry. The user must supply a âheightâ column name in the API call in order to receive back a GeoDataFrame with the 3D point geometry; note there is a performance impact when selected. (See #272 ). v4.0.0 - Userâs can supply their own PROJ pipeline in raster sampling requests. To use this feature, add a âproj_pipelineâ string to your request dictionary: proj_pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1 +step +proj=unitconvert +xy_in=deg +xy_out=rad +step +proj=stere +lat_0=-90 +lat_ts=-71 +lon_0=70 +x_0=6000000 +y_0=6000000 +ellps=WGS84" parms = { "poly" : region [ 'poly' ], "cnf" : "atl03_high" , "ats" : 5.0 , "cnt" : 5 , "len" : 20.0 , "res" : 10.0 , "maxi" : 1 , "samples" : { "mosaic" : { "asset" : "rema-mosaic" , "radius" : 10.0 , "zonal_stats" : True , "proj_pipeline" : proj_pipeline }} } gdf = icesat2 . atl06p ( parms , asset = asset , resources = [ resource ]) v4.0.0 - Localization of the CRS transform when GDAL is trying to select the best transform to use (did I say that right???). If what I said is confusing, please reach out to Eric.
 ```
 
 ---

@@ -14,32 +14,32 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 **docsearch:**
 
-- r1: 
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r1: partial
+- r2: wrong
+- r3: wrong
+- r4: wrong
+- r5: wrong
 
 **nsidc:**
 
-- r1: 
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r1: wrong
+- r2: wrong
+- r3: wrong
+- r4: wrong
+- r5: wrong
 
 ## Overall verdict
 
 One of: `correct` | `partial` | `wrong`
 
-- overall: 
+- overall: wrong
 
 ## Cross-corpus routing
 
 Should this query target a different corpus? One of:
 `keep` | `redirect-to-docsearch` | `redirect-to-nsidc` | `both-corpora`
 
-- routing: 
+- routing: keep
 
 ## Human truth (the actual right answer)
 
@@ -50,9 +50,9 @@ or if you want to override what's correct.
 
 Repeat any field on a new `- field: value` line for multiple values.
 
-- corpus: 
-- url: 
-- section: 
+- corpus: nsidc
+- url: https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
+- section: 5.1.4
 - pages: 
 - notes: 
 

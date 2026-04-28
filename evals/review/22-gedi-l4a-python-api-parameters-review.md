@@ -1,9 +1,9 @@
 # Row 22 review
 
-> Companion to `22-gedil4ap-function-python-api-signature-parameters-results.md`. Open both side-by-side;
+> Companion to `22-gedi-l4a-python-api-parameters-results.md`. Open both side-by-side;
 > this file is your editable form.
 
-**Query:** `gedil4ap function python API signature parameters`
+**Query:** `GEDI L4A python API parameters`
 **Labeled corpus:** `docsearch`
 
 ---

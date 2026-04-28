@@ -23,7 +23,7 @@
 
 #### r1 — score 0.651
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** Mission
 - **category:** `background`
@@ -37,7 +37,7 @@ The Ice Cloud and land Elevation Satellite-2 (ICESat-2) is NASAâs latest sa
 
 #### r2 — score 0.531
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** Mission
 - **category:** `background`
@@ -51,7 +51,7 @@ This is reversed in the backward orientation, and the strong beams lead the weak
 
 #### r3 — score 0.478
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -65,7 +65,7 @@ The data from ATLAS and the secondary instrumentation onboard the ICESat-2 obser
 
 #### r4 — score 0.448
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-01-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-01-00.html
 - **title:** Release v1.1.x
 - **section:** New Features
 - **category:** `release_notes`
@@ -79,7 +79,7 @@ v1.1.5 - Default asset switched from projectâs s3 bucket (atlas-s3) to NSID
 
 #### r5 — score 0.543
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-00-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v02-00-00.html
 - **title:** Release v2.0.x
 - **section:** Release v2.0.x
 - **category:** `release_notes`

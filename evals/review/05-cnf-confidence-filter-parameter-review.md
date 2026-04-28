@@ -22,9 +22,9 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 **nsidc:**
 
-- r1:wrong 
+- r1:partial 
 - r2:wrong 
-- r3:wrong 
+- r3:partial 
 - r4:partial 
 - r5:wrong 
 

@@ -23,7 +23,7 @@
 
 #### r1 — score 0.508
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -37,7 +37,7 @@ The magnitude of this bias depends on the shape of the transmitted waveform, the
 
 #### r2 — score 0.460
 
-- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
+- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl06p
 - **category:** `api_reference`
@@ -51,7 +51,7 @@ sliderule.icesat2. atl06p ( parm , callbacks = {} , resources = None , keep_id =
 
 #### r3 — score 0.445
 
-- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
+- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl03sp
 - **category:** `api_reference`
@@ -65,7 +65,7 @@ sliderule.icesat2. atl03sp ( parm , callbacks = {} , resources = None , keep_id 
 
 #### r4 — score 0.558
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** References
 - **category:** `background`
@@ -79,7 +79,7 @@ ATBD for ATL03 Global Geolocated Photon Data ATBD for ATL03g Received Photon Geo
 
 #### r5 — score 0.423
 
-- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
+- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl03vp
 - **category:** `api_reference`

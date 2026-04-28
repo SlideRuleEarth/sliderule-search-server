@@ -21,7 +21,7 @@
 
 #### r1 — score 0.596
 
-- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
+- **url:** https://docs.testsliderule.org/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 3.4 L4A Footprints
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ The footprint data is stored along-track inside the GEDI granules. The data is r
 
 #### r2 — score 0.598
 
-- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
+- **url:** https://docs.testsliderule.org/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 1. Overview
 - **category:** `user_guide`
@@ -49,7 +49,7 @@ The GEDI API currently provides subsetting and raster sampling capabilities to S
 
 #### r3 — score 0.557
 
-- **url:** https://docs.slideruleearth.io/api_reference/gedi.html
+- **url:** https://docs.testsliderule.org/api_reference/gedi.html
 - **title:** gedi
 - **section:** gedi04a
 - **category:** `api_reference`
@@ -61,9 +61,9 @@ The GEDI API currently provides subsetting and raster sampling capabilities to S
 sliderule.gedi. gedi04a ( parm , resource ) [source] Performs GEDI L4A subsetting of elevation footprints Parameters : parms ( dict ) â parameters used to configure subsetting process resource ( str ) â GEDI HDF5 filename asset ( str ) â data source asset Returns : gridded footrpints Return type : GeoDataFrame
 ```
 
-#### r4 — score 0.654
+#### r4 — score 0.653
 
-- **url:** https://docs.slideruleearth.io/background/GEDI.html
+- **url:** https://docs.testsliderule.org/background/GEDI.html
 - **title:** GEDI
 - **section:** References
 - **category:** `background`
@@ -72,12 +72,12 @@ sliderule.gedi. gedi04a ( parm , resource ) [source] Performs GEDI L4A subsettin
 **Full text:**
 
 ```
-GEDI Project Homepage Earthdata GEDI Project Overview ATBD for GEDI Waveform Geolocation for L1 and L2 Products Previous Next © Copyright 2020â2026, University of Washington. Build v5.3.2 . Built with Sphinx using a theme provided by Read the Docs .
+GEDI Project Homepage Earthdata GEDI Project Overview ATBD for GEDI Waveform Geolocation for L1 and L2 Products Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
 #### r5 — score 0.565
 
-- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
+- **url:** https://docs.testsliderule.org/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 3.2 L2A Footprints
 - **category:** `user_guide`

@@ -23,7 +23,7 @@
 
 #### r1 — score 0.625
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -37,7 +37,7 @@ The SlideRule atl03x endpoint provides a service for ATL03 custom processing. Th
 
 #### r2 — score 0.629
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.1 Segmented Photon Data - atl03sp
 - **category:** `user_guide`
@@ -51,7 +51,7 @@ The photon data is stored as along-track segments inside the ATL03 granules, whi
 
 #### r3 — score 0.539
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.4 Ancillary Data
 - **category:** `user_guide`
@@ -63,23 +63,9 @@ The photon data is stored as along-track segments inside the ATL03 granules, whi
 The ancillary field parameters allow the user to request additional fields from the source datasets being subsetted. Ancillary data returned from the atl03x (as well as the atl03s and atl03sp ) APIs are per-photon values that are read from the ATL03 granules. No processing is performed on the data read out of the ATL03 granule. The fields must come from either a per-photon variable (atl03_ph_fields), a per-segment variable (atl03_geo_fields, atl03_corr_fields), or a rate variable (atl03_bckgrd_fields). Ancillary fields are used to specify additional fields in the ATL03, ATL08, and ATL09 granules to be returned with the photon extent and dowstream customized products. Each field provided by the user will result in a corresponding column added to the returned GeoDataFrame. Note: if a field is requested that is already present in the default GeoDataFrame, then the name of both fields will be changed to include a _x suffix for the default incusion of the field, and a _y for the ancillary inclusion of the field.
 ```
 
-#### r4 — score 0.515
+#### r4 — score 0.501
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
-- **title:** ICESat-2 Module
-- **section:** 1.6.2 ATL08-PhoREAL Ancillary Data
-- **category:** `user_guide`
-- **matched_tokens:** ['photon', 'processing', 'series']
-
-**Full text:**
-
-```
-Ancillary data returned from the atl08 and atl08p APIs come from the land_segments group of the ATL08 granules. The data goes through a series of processing steps before being returned back to the user as per-extent (i.e. variable-length segment) result values. When a user requests an ATL08 ancillary field, the ATL08 classifications are automatically enabled with all unclassified photons filtered out (i.e. noise, ground, canopy, and top of canopy are included; unclassified photons are excluded). If the user is also requesting PhoREAL processing, then noise photons are automatically filtered out as well. Lastly, if the user manually specifies which ATL08 photon classifications to use, then that manual specification takes precedence and is used. If a user manually specifies that unclassified photons are to be included, the value used for an ancillary field for that photon has all 1âs in the binary encoding of that value. For example, if it is an 8-bit unsigned integer, the value would be 255. If it is a double-precision floating point, the value would be -nan. Since the ATL08 APIs return per-extent values and not per-photon values, the set of per-photon ancillary field values must be reduced in some way to a single per-extent value to be returned back to the user. There are currently two options available for how this reduction occurs. Nearest Neighbor (Mode): the value that appears most often in the extent is selected. This is the default method.
-```
-
-#### r5 — score 0.501
-
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** ICESat-2 Module
 - **category:** `user_guide`
@@ -89,6 +75,20 @@ Ancillary data returned from the atl08 and atl08p APIs come from the land_segmen
 
 ```
 The ICESat-2 module within SlideRule supports a number of both legacy p-series and s-series endpoints, as well as the newer DataFrame-based x-series endpoints. This document focuses on the x-series endpoints while still referencing the other legacy endpoints when helpful. Three main kinds of data are returned by the ICESat-2 endpoints: segmented photon data, elevation data (from the ATL06-SR algorithm), and vegetation data (from the PhoREAL algorithm). All data returned by the ICESat-2 endpoints are organized around the concept of an extent . An extent is a variable length, customized ATL03 segment. It takes the ATL03 photons and divides them up based on their along-track distance, filters them, and then packages them together a single new custom segment. Given that the ICESat-2 standard data products have a well defined meaning for segment, SlideRule uses the term extent to indicate this custom-length and custom-filtered segment of photons. The following processing flags are used for all ICESat-2 endpoints: 0x0001 : Along track spread too short 0x0002 : Too few photons 0x0004 : Maximum iterations reached 0x0008 : Out of bounds 0x0010 : Underflow 0x0020 : Overflow In addition, most endpoints support the generation of a name filter using the granule parameter: rgt : Reference ground track cycle : Orbit cycle region : ATL03 region {1 to 14} version : ATL03 release version (e.g. 007)
+```
+
+#### r5 — score 0.452
+
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-15-00.html
+- **title:** Release v4.15.x
+- **section:** Compatibility Changes
+- **category:** `release_notes`
+- **matched_tokens:** ['api', 'atl03x', 'series']
+
+**Full text:**
+
+```
+The h_mean value in the atl03x API when running the ATL06 surface fitting algorithm was changed from a double to a float. This was to make it consistent with the ATL06 standard data product and to normalize all DataFrames with z columns to floating point precision. The x-series APIs provide a different column for the sample time - time_ns instead of time . This is to reflect that the new time_ns is provided as a Unix(ns) time, whereas the old time was provided as a GPS seconds time. The Unix(ns) time makes it compatible with Pandas and easier to display for human readability.
 ```
 
 ---

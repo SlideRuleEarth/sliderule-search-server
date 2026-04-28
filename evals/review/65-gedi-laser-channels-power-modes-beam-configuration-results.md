@@ -22,7 +22,7 @@
 
 #### r1 — score 0.351
 
-- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
+- **url:** https://docs.testsliderule.org/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 3. Returned data
 - **category:** `user_guide`
@@ -36,7 +36,7 @@ The main kind of data returned by the GEDI APIs are elevation and vegetation mea
 
 #### r2 — score 0.283
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** Mission
 - **category:** `background`
@@ -50,7 +50,7 @@ The Ice Cloud and land Elevation Satellite-2 (ICESat-2) is NASAâs latest sa
 
 #### r3 — score 0.331
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-02-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-02-00.html
 - **title:** Release v3.2.x
 - **section:** Development Updates
 - **category:** `release_notes`
@@ -64,7 +64,7 @@ The use_poi_time parameter was added to the raster sampling requests; when set t
 
 #### r4 — score 0.345
 
-- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
+- **url:** https://docs.testsliderule.org/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 2. Parameters
 - **category:** `user_guide`
@@ -76,9 +76,9 @@ The use_poi_time parameter was added to the raster sampling requests; when set t
 The GEDI module provides additional parameters specific to making GEDI processing requests. "beam" : specifies which beam to process (0, 1, 2, 3, 5, 6, 8, 11; -1 for all) "degrade_filter" : if set to true, will filter out footprints that DO have the degrade flag set (default = false) "l2_quality_filter" : if set to true, will filter out footprints that do NOT have the L2 quality flag set (default = false) "l4_quality_filter" : if set to true, will filter footprints that do NOT have the L4 quality flag set (default = false) "surface_filter" : if set to true, will filter out footprints that do NOT have the surface flag set (default = false)
 ```
 
-#### r5 — score 0.370
+#### r5 — score 0.367
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.1 Photon-input Parameters
 - **category:** `user_guide`
@@ -87,7 +87,7 @@ The GEDI module provides additional parameters specific to making GEDI processin
 **Full text:**
 
 ```
-The photon-input parameters allow the user to select an area, a time range, or a specific ATL03 granule to use for input to the photon-selection algorithm. If multiple parameters are specified, the result will be those photons that match all of the parameters. poly : polygon defining region of interest (see polygons ) region_mask : geojson describing region of interest which enables rasterized subsetting on servers (see geojson ) track : reference pair track number (1, 2, 3, or 0 to include for all three; defaults to 0); note that this is combined with the beam selection as a union of the two beams : list of beam identifiers (gt1l, gt1r, gt2l, gt2r, gt3l, gt3r; defaults to all) spots : list of spots (1, 2, 3, 4, 5, 6); this is only supporting by the atl03x endpoint rgt : reference ground track (defaults to all if not specified) cycle : counter of 91-day repeat cycles completed by the mission (defaults to all if not specified) region : geographic region for corresponding standard product (defaults to all if not specified) t0 : start time for filtering granules (format %Y-%m-%dT%H:%M:%SZ, e.g. 2018-10-13T00:00:00Z) t1 : stop time for filtering granuels (format %Y-%m-%dT%H:%M:%SZ, e.g. 2018-10-13T00:00:00Z)
+The photon-input parameters allow the user to select an area, a time range, or a specific ATL03 granule to use for input to the photon-selection algorithm. If multiple parameters are specified, the result will be those photons that match all of the parameters. poly : polygon defining region of interest (see Polygons ) region_mask : geojson describing region of interest which enables rasterized subsetting on servers (see in geojson ) track : reference pair track number (1, 2, 3, or 0 to include for all three; defaults to 0); note that this is combined with the beam selection as a union of the two beams : list of beam identifiers (gt1l, gt1r, gt2l, gt2r, gt3l, gt3r; defaults to all) spots : list of spots (1, 2, 3, 4, 5, 6); this is only supporting by the atl03x endpoint rgt : reference ground track (defaults to all if not specified) cycle : counter of 91-day repeat cycles completed by the mission (defaults to all if not specified) region : geographic region for corresponding standard product (defaults to all if not specified) t0 : start time for filtering granules (format %Y-%m-%dT%H:%M:%SZ, e.g. 2018-10-13T00:00:00Z) t1 : stop time for filtering granuels (format %Y-%m-%dT%H:%M:%SZ, e.g. 2018-10-13T00:00:00Z)
 ```
 
 ---

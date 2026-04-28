@@ -26,6 +26,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
 
 import numpy as np
 
@@ -84,18 +85,26 @@ def _page_match(page: int | None, expected_pages: list[list[int]] | None) -> boo
     return any(start <= page <= end for start, end in expected_pages)
 
 
+def _url_path(url: str) -> str:
+    """Path component of a URL, host-stripped. Lets the golden set keep
+    canonical `docs.slideruleearth.io/...` URLs while we chunk against
+    a mirror like `docs.testsliderule.org/...` — path is what's stable."""
+    return urlparse(url).path
+
+
 def chunk_full_match(
     r: dict,
-    expected_urls_set: set[str],
+    expected_paths: set[str],
     expected_sections: list[str] | None,
     expected_pages: list[list[int]] | None,
 ) -> bool:
     """Does this chunk satisfy URL + (section OR page if narrowing fields are set)?
 
-    URL match is required. If neither narrowing field is provided, URL
-    is sufficient. If either is provided, the chunk must also match at
-    least one of them (OR-combined — see plan)."""
-    if r["url"] not in expected_urls_set:
+    URL match is required (path-only — host is ignored). If neither
+    narrowing field is provided, URL is sufficient. If either is
+    provided, the chunk must also match at least one of them
+    (OR-combined — see plan)."""
+    if _url_path(r["url"]) not in expected_paths:
         return False
     if not expected_sections and not expected_pages:
         return True
@@ -113,9 +122,9 @@ def first_expected_rank(
     """1-based rank of the first result that fully matches the expected
     label (URL + section/page narrowing if provided), or None if no
     chunk in `results` qualifies."""
-    expected_urls_set = set(expected_urls)
+    expected_paths = {_url_path(u) for u in expected_urls}
     for rank_, r in enumerate(results, start=1):
-        if chunk_full_match(r, expected_urls_set, expected_sections, expected_pages):
+        if chunk_full_match(r, expected_paths, expected_sections, expected_pages):
             return rank_
     return None
 
@@ -144,13 +153,13 @@ def evaluate(rows: list[dict], corpora: dict, model) -> list[dict]:
         rank_ = first_expected_rank(
             results, row["expected_urls"], expected_sections, expected_pages
         )
-        expected_set = set(row["expected_urls"])
+        expected_path_set = {_url_path(u) for u in row["expected_urls"]}
         has_narrowing = bool(expected_sections or expected_pages)
         top_results = []
         for i, r in enumerate(results[:AUDIT_TOP_N], start=1):
-            url_match = r["url"] in expected_set
+            url_match = _url_path(r["url"]) in expected_path_set
             full_match = chunk_full_match(
-                r, expected_set, expected_sections, expected_pages
+                r, expected_path_set, expected_sections, expected_pages
             )
             top_results.append({
                 "rank": i,

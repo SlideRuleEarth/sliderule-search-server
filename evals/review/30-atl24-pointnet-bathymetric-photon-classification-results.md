@@ -23,7 +23,7 @@
 
 #### r1 — score 0.592
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/atl24_golden_run.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html
 - **title:** 2025-03-28: ATL24 Processing Run
 - **section:** Background
 - **category:** `developer_guide`
@@ -37,7 +37,7 @@ The University of Texas at Austin and Oregon State University partnered with the
 
 #### r2 — score 0.709
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.4 ATL24 Classification
 - **category:** `user_guide`
@@ -51,7 +51,7 @@ If ATL24 classification parameters are specified, the ATL24 (bathymetry) files c
 
 #### r3 — score 0.543
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -63,23 +63,23 @@ If ATL24 classification parameters are specified, the ATL24 (bathymetry) files c
 , 2:canopy, 3:top of canopy, 4:unclassified Optional: must enable phoreal or specify atl08_class yapc_score YAPC photon weight 0-255, higher is denser Optional: must enable yapc atl24_class ATL24 photon classification 0:unclassified, 40:bathymetry, 41:sea surface Optional: must enable atl24 atl24_confidence ATL24 photon classification bathymetry confidence score 0 to 1.0, higher is more confident (float) Optional: must enable atl24 spot ATLAS detector field of view 1-6 Independent of spacecraft orientation cycle ATLAS orbit cycle number region ATLAS granule region 1-14 rgt Reference Ground Track gt Beam 10: gt1l, 20: gt1r, 30: gt2l, 40: gt2r, 50: gt3l, 60: gt3r Dependent on spacecraft orientation
 ```
 
-#### r4 — score 0.559
+#### r4 — score 0.616
 
-- **url:** https://docs.slideruleearth.io/assets/grandmesa_atl03_classification.html
-- **title:** Generating ATL03 photon classifications using ATL08 and YAPC
-- **section:** Generating ATL03 photon classifications using ATL08 and YAPC
-- **category:** `tutorial`
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** 1.2 Photon-selection Parameters
+- **category:** `user_guide`
 - **matched_tokens:** ['classification', 'photon']
 
 **Full text:**
 
 ```
-Plot ATL03 data with different classifications for a region over the Grand Mesa, CO region ATL08 Land and Vegetation Height product photon classification Experimental YAPC (Yet Another Photon Classification) photon-density-based classification
+Once the ATL03 input data are are selected, a set of photon-selection photon parameters are used to select from among the available photons. At this stage, additional photon-classification algorithms (ATL08, YAPC) may be selected beyond what is available in the ATL03 files. The criterial described by these parameters are applied together, so that only photons that fulfill all of the requirements are returned.
 ```
 
 #### r5 — score 0.490
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5.1 Query Parameters
 - **category:** `user_guide`

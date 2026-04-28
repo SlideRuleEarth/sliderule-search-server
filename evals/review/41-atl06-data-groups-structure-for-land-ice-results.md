@@ -20,7 +20,7 @@
 
 #### r1 — score 0.478
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -32,23 +32,9 @@
 The data from ATLAS and the secondary instrumentation onboard the ICESat-2 observatory (the global positioning system (GPS) and the star cameras) are combined to create three primary measurements: the time of flight of a photon transmitted and received from ATLAS, the position of the satellite in space, and the pointing vector of the satellite during the transmission of photons. These three measurements are used to create ATL03 , the geolocated photon product of ICESat-2. ATL03 contains precise latitude, longitude and elevation for every received photon, arranged by beam in the along-track direction. The structure of the ATL03 file has (at most) six beam groups, along with data describing the responses of the ATLAS instrument, ancillary data for correcting and transforming the ATL03 data, and a group of metadata. Photon events can come to the ATLAS receiver in a few different ways: Many photons come from the sun either by reflecting off clouds or the land surface. These photon events are spread in a random distribution along the telemetry band. In ATL03, a large majority of these âbackgroundâ photon events are classified, but some may be incorrectly classified as signal. Some photons are from the ATLAS instrument that have reflected off clouds. These photons can be clustered together or widely dispersed depending on the properties of the cloud and a few other variables.
 ```
 
-#### r2 — score 0.592
+#### r2 — score 0.496
 
-- **url:** https://docs.slideruleearth.io/assets/grandmesa.html
-- **title:** Generating a Custom ATL06 over Grand Mesa, CO
-- **section:** Generating a Custom ATL06 over Grand Mesa, CO
-- **category:** `tutorial`
-- **matched_tokens:** ['atl06', 'data']
-
-**Full text:**
-
-```
-Process ATL03 data from the Grand Mesa, CO region and produce a customized ATL06 dataset.
-```
-
-#### r3 — score 0.496
-
-- **url:** https://docs.slideruleearth.io/background/NASA-Earthdata.html
+- **url:** https://docs.testsliderule.org/background/NASA-Earthdata.html
 - **title:** NASA Earthdata
 - **section:** NSIDC
 - **category:** `background`
@@ -60,9 +46,23 @@ Process ATL03 data from the Grand Mesa, CO region and produce a customized ATL06
 The National Snow and Ice Data Center (NSIDC) DAAC provides data and information for snow and ice processes, particularly interactions among snow, ice, atmosphere, and ocean, in support of research in global change detection and model validation. If any problems contact NSIDC support at nsidc @ nsidc . org or the NASA EOSDIS support team support @ earthdata . nasa . gov .
 ```
 
+#### r3 — score 0.506
+
+- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
+- **title:** SlideRule Web Client
+- **section:** SRWC-5.1: Raster Sampling
+- **category:** `developer_guide`
+- **matched_tokens:** ['data', 'land']
+
+**Full text:**
+
+```
+The following raster datasets shall be supported for sampling: GEDI L3 gridded ground elevation GEDI L3 gridded canopy height GEDI L3 gridded ground elevation-standard deviation GEDI L3 gridded canopy heigh-standard deviation GEDI L3 gridded counts of valid laser footprints MERIT Digital Elevation Model Simulated SWOT Data Simulated SWOT Data USGS 3DEP 1m Digital Elevation Model Worldwide land cover mapping Harmonized LandSat Sentinal-2 PGC Arctic Digital Elevation Model Mosaic PGC Arctic Digital Elevation Model Strips PGC Reference Elevation Model of Antarctica Mosaic PGC Reference Elevation Model of Antarctica Strips
+```
+
 #### r4 — score 0.482
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3. ATL08 - atl08x
 - **category:** `user_guide`
@@ -76,7 +76,7 @@ Using the Python client, this service is called via: sliderule . run ( 'atl08x' 
 
 #### r5 — score 0.448
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`

@@ -20,7 +20,7 @@
 
 #### r1 — score 0.515
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-00-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v02-00-00.html
 - **title:** Release v2.0.x
 - **section:** New Features
 - **category:** `release_notes`
@@ -34,7 +34,7 @@ Version 2.0.0 of SlideRule represents a major change to the SlideRule architectu
 
 #### r2 — score 0.454
 
-- **url:** https://docs.slideruleearth.io/user_guide/versioning.html
+- **url:** https://docs.testsliderule.org/user_guide/versioning.html
 - **title:** Versioning
 - **section:** Library Version ( version )
 - **category:** `user_guide`
@@ -46,23 +46,9 @@ Version 2.0.0 of SlideRule represents a major change to the SlideRule architectu
 The SlideRule executable version (called the Library Version in the code) is the semantic version used by the SlideRule team to identify a release of SlideRule. It uses the following convention: vX.Y.Z where: X is the major version; when incremented it indicates a break in backward compatibility. Y is the minor version; when incremented it indicates new or significantly changed functionality Z is the patch version; when incremented it indicates a bug fix with no changes in the intended functionality of the system The SlideRule executable is packaged into a Docker container, tagged with the semantic version, which is built at the same time the library and executable is built. For all practical purposes, the building of the SlideRule executable and the building of the SlideRule Docker container image can be thought of as the same thing; the same code base and build information applies to both. In other words, the Docker container image is the final output of, and method of packaging for, the SlideRule executable.
 ```
 
-#### r3 — score 0.526
+#### r3 — score 0.394
 
-- **url:** https://docs.slideruleearth.io/user_guide/versioning.html
-- **title:** Versioning
-- **section:** Note on Reproducibility
-- **category:** `user_guide`
-- **matched_tokens:** ['functionality', 'sliderule', 'version']
-
-**Full text:**
-
-```
-It is the goal of the SlideRule development team to create a system where results are able to be reproduced; but this is often times either extremely difficult or impossible for reasons outside of the teams control. SlideRule relies on publicly hosted datasets. When those datasets are updated, older versions of the datasets are often removed. For instance, ICESat-2 Standard Data Products have a 6-month to 1-year release cycle and EarthData Cloud only stores the last two releases. Production systems must stay up-to-date with all security patches. This means libraries used by older versions of SlideRule may not be able to be deployed if newer versions of those libraries contain security patches. While we make every effort to keep backward compatibility for as long as possible, our development time is a limited resource and we are unable to maintain very old architectures of SlideRule. Once we increment a major version number, we often remove deprecated functionality and internal configurations needed to deploy those older system designs. That does not mean it would not be impossible to recreate the environment needed to run the older design - it does mean it becomes more and more impractical to do so. Previous Next © Copyright 2020â2026, University of Washington. Build v5.3.2 . Built with Sphinx using a theme provided by Read the Docs .
-```
-
-#### r4 — score 0.394
-
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v05-00-00.html
 - **title:** Release v5.0.x
 - **section:** Breaking Changes
 - **category:** `release_notes`
@@ -74,9 +60,23 @@ It is the goal of the SlideRule development team to create a system where result
 All calls to session.manager should no longer be used as that functionality will cease in future releases. v5.0.3 - The main Python module sliderule no longer creates a default session on import but requires either sliderule.init() or sliderule.create_session() . The creation of a default session was confusing when users called sliderule.init() which then created a second session. This caused odd behavior with logging because at that point two loggers exist. Moving forward, users are encouraged to use sliderule.create_session() which returns a session object that can then unambiguously be used to communicate with a SlideRule cluster.. v5.0.3 - Raster sampling support has been optimized for x-series APIs at the cost of legacy p-series API performance. All users are strongly encouraged to switch to x-series APIs when performing raster sampling as the old p-series APIs will take much longer now. v5.0.3 - Removed the sliderule.authenticate function as authentication must now occur when a SlideRule session is created. v5.0.2 - Polygons used for earthdata.stac requests no longer need to be nested lists, but are supplied in the same format as all other requests: poly = [ { "lat" : lat1 , "lon" : lon1 }, { "lat" : lat2 , "lon" : lon2 }, ... { "lat" : lat1 , "lon" : lon1 } ] v5.0.2 - The raster field which was replaced by region_mask and has been deprecated is now no longer supported. v5.0.2 - The nsidc-s3 asset which was replaced by the icesat2 asset, is no longer supported.
 ```
 
+#### r4 — score 0.526
+
+- **url:** https://docs.testsliderule.org/user_guide/versioning.html
+- **title:** Versioning
+- **section:** Note on Reproducibility
+- **category:** `user_guide`
+- **matched_tokens:** ['functionality', 'sliderule', 'version']
+
+**Full text:**
+
+```
+It is the goal of the SlideRule development team to create a system where results are able to be reproduced; but this is often times either extremely difficult or impossible for reasons outside of the teams control. SlideRule relies on publicly hosted datasets. When those datasets are updated, older versions of the datasets are often removed. For instance, ICESat-2 Standard Data Products have a 6-month to 1-year release cycle and EarthData Cloud only stores the last two releases. Production systems must stay up-to-date with all security patches. This means libraries used by older versions of SlideRule may not be able to be deployed if newer versions of those libraries contain security patches. While we make every effort to keep backward compatibility for as long as possible, our development time is a limited resource and we are unable to maintain very old architectures of SlideRule. Once we increment a major version number, we often remove deprecated functionality and internal configurations needed to deploy those older system designs. That does not mean it would not be impossible to recreate the environment needed to run the older design - it does mean it becomes more and more impractical to do so. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+```
+
 #### r5 — score 0.525
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/v5_server_release.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
 - **title:** 2025-12-08: Public Cluster Release v5
 - **section:** 2025-12-08: Public Cluster Release v5
 - **category:** `developer_guide`

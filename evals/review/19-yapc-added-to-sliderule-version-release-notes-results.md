@@ -21,7 +21,7 @@
 
 #### r1 — score 0.537
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/private_clusters.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/private_clusters.html
 - **title:** 2026-01-20: Private Clusters
 - **section:** 2026-01-20: Private Clusters
 - **category:** `developer_guide`
@@ -35,7 +35,7 @@ Note With release v5.0.2, SlideRule has transitioned the management of private c
 
 #### r2 — score 0.502
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/v5_server_release.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
 - **title:** 2025-12-08: Public Cluster Release v5
 - **section:** 2025-12-08: Public Cluster Release v5
 - **category:** `developer_guide`
@@ -47,23 +47,9 @@ Note With release v5.0.2, SlideRule has transitioned the management of private c
 Note Version 5.0 of SlideRule has been officially released. The changes include an overhaul of the private clusters, consistent ATL13 query formats, ATL24 release 002, improved earthdata error handling, and h5p slice support. See release notes for full details.
 ```
 
-#### r3 — score 0.447
+#### r3 — score 0.492
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/web_client_release_notes_4_0_3.html
-- **title:** 2026-02-25: Web Client release v4.0.3
-- **section:** Summary
-- **category:** `developer_guide`
-- **matched_tokens:** ['added', 'notes', 'release', 'sliderule']
-
-**Full text:**
-
-```
-ð SlideRule Web Client v4.0.3 Release Notes Changes since v3.8.0 Infrastructure CloudFront + Route 53 terraform modules added to support hosting the landing page at the root domain New Features Landing Page - The web client now serves as the SlideRule Earth landing page at slideruleearth.io, featuring a hero section with wallpaper image, About/Contact info panels, and a News tab that pulls articles directly from the SlideRule documentation site Home Button - A new Home button in the app bar navigates back to the landing page from anywhere in the app Docs Button - The old âAboutâ menu has been replaced with a streamlined âDocsâ button that links directly to the SlideRule documentation site Feedback Menu - The Feedback button now offers a dropdown with options to email support or open a GitHub issue directly Improvements Full-Width Analysis Map - The analysis map now uses the entire available width instead of a fixed 45vw, providing more room for map exploration Cleaner Analysis Layout - Removed unnecessary card wrapper and margins from the analysis view; the 3D panel is now hidden when not in use instead of taking up empty space Status Tooltips - All request statuses now show tooltip details on hover, including âpendingâ statuses that previously had no tooltip Previous Next © Copyright 2020â2026, University of Washington. Build v5.3.2 . Built with Sphinx using a theme provided by Read the Docs .
-```
-
-#### r4 — score 0.492
-
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-05-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-05-00.html
 - **title:** Release v3.5.x
 - **section:** Release v3.5.x
 - **category:** `release_notes`
@@ -75,9 +61,23 @@ Note Version 5.0 of SlideRule has been officially released. The changes include 
 2023-06-09 Version description of the v3.5.0 release of ICESat-2 SlideRule. This document also captures functionality added in versions v3.4.0 and v3.4.1.
 ```
 
+#### r4 — score 0.447
+
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/web-release-v04-00-03.html
+- **title:** 2026-02-25: Web Client release v4.0.3
+- **section:** Summary
+- **category:** `release_notes`
+- **matched_tokens:** ['added', 'notes', 'release', 'sliderule']
+
+**Full text:**
+
+```
+ð SlideRule Web Client v4.0.3 Release Notes Changes since v3.8.0 Infrastructure CloudFront + Route 53 terraform modules added to support hosting the landing page at the root domain New Features Landing Page - The web client now serves as the SlideRule Earth landing page at slideruleearth.io, featuring a hero section with wallpaper image, About/Contact info panels, and a News tab that pulls articles directly from the SlideRule documentation site Home Button - A new Home button in the app bar navigates back to the landing page from anywhere in the app Docs Button - The old âAboutâ menu has been replaced with a streamlined âDocsâ button that links directly to the SlideRule documentation site Feedback Menu - The Feedback button now offers a dropdown with options to email support or open a GitHub issue directly Improvements Full-Width Analysis Map - The analysis map now uses the entire available width instead of a fixed 45vw, providing more room for map exploration Cleaner Analysis Layout - Removed unnecessary card wrapper and margins from the analysis view; the 3D panel is now hidden when not in use instead of taking up empty space Status Tooltips - All request statuses now show tooltip details on hover, including âpendingâ statuses that previously had no tooltip Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+```
+
 #### r5 — score 0.526
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-01-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-01-00.html
 - **title:** Release v1.1.x
 - **section:** Release v1.1.x
 - **category:** `release_notes`

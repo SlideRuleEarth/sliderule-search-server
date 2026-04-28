@@ -9,19 +9,18 @@
 
 - **corpus:** `docsearch`
 - **expected_urls:**
-  - https://docs.slideruleearth.io/user_guide/how_tos/geoparquet_output.html
   - https://docs.slideruleearth.io/user_guide/arrow_output.html
 - **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** parquet/arrow output; phrased as save-for-later rather than 'return in format'
+- **notes:** parquet/arrow output; phrased as save-for-later rather than 'return in format' (how_tos/geoparquet_output dropped after testsliderule.org rebaseline)
 
 ---
 
 ## 📚 docsearch results (top 5)
 
-#### r1 — score 0.691
+#### r1 — score 0.692
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/geoparquet.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/geoparquet.html
 - **title:** 2023-02-24: GeoParquet
 - **section:** Overview
 - **category:** `developer_guide`
@@ -30,12 +29,12 @@
 **Full text:**
 
 ```
-SlideRule currently supports returning results back to data users as GeoParquet files. These files are built on the server and either streamed back directly to the user, or uploaded to a user-specified S3 bucket for later access. To specify the GeoParquet option, the request must include the output parameter with the output.format field set to âparquetâ . See the section on output parameters for more details.
+SlideRule currently supports returning results back to data users as GeoParquet files. These files are built on the server and either streamed back directly to the user, or uploaded to a user-specified S3 bucket for later access. To specify the GeoParquet option, the request must include the output parameter with the output.format field set to âparquetâ . See the section on output parameters in Arrow Output for more details.
 ```
 
 #### r2 — score 0.642
 
-- **url:** https://docs.slideruleearth.io/user_guide/arrow_output.html
+- **url:** https://docs.testsliderule.org/user_guide/arrow_output.html
 - **title:** Arrow Output
 - **section:** S3 Staging
 - **category:** `user_guide`
@@ -44,12 +43,12 @@ SlideRule currently supports returning results back to data users as GeoParquet 
 **Full text:**
 
 ```
-SlideRule also supports writing the output to its own S3 bucket for times when temporary storage is needed and the user does not have access to a bucket they own. To use this feature, the following parameters can be used: "output" : { "asset" : "sliderule-stage" , "path" : "myfile.parquet" , "open_on_complete" : False , } The sliderule-stage asset tells sliderule to stage the output in SlideRuleâs own bucket. The full path of the file is then returned back to the user so that the user can later open the file directly. For instance, in the above example, a call to icesat2.atl06p could return âs3://sliderule-public/myfile.parquetâ. If no path is specified, the server code generates a random file name and uses it to store the results. The generated file name including the path is returned back to the user. There are a couple of constraints to using this feature: In order to access the file staged in the SlideRule owned bucket, the user has to have read-access to the bucket. Typically, this is only provided through partnered organizations like CryoCloud . When running on CryoCloud, a user can specify the âsliderule-stageâ asset, and know that they returned file path is immediately accessible from their environment. Files are only stored for a short period of time before they are automatically deleted. Typically, the retention time is 2 weeks. Previous Next © Copyright 2020â2026, University of Washington. Build v5.3.2 .
+SlideRule also supports writing the output to its own S3 bucket for times when temporary storage is needed and the user does not have access to a bucket they own. To use this feature, the following parameters can be used: "output" : { "asset" : "sliderule-stage" , "path" : "myfile.parquet" , "open_on_complete" : False , } The sliderule-stage asset tells sliderule to stage the output in SlideRuleâs own bucket. The full path of the file is then returned back to the user so that the user can later open the file directly. For instance, in the above example, a call to icesat2.atl06p could return âs3://sliderule-public/myfile.parquetâ. If no path is specified, the server code generates a random file name and uses it to store the results. The generated file name including the path is returned back to the user. There are a couple of constraints to using this feature: In order to access the file staged in the SlideRule owned bucket, the user has to have read-access to the bucket. Typically, this is only provided through partnered organizations like CryoCloud . When running on CryoCloud, a user can specify the âsliderule-stageâ asset, and know that they returned file path is immediately accessible from their environment. Files are only stored for a short period of time before they are automatically deleted. Typically, the retention time is 2 weeks. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 .
 ```
 
 #### r3 — score 0.646
 
-- **url:** https://docs.slideruleearth.io/user_guide/arrow_output.html
+- **url:** https://docs.testsliderule.org/user_guide/arrow_output.html
 - **title:** Arrow Output
 - **section:** Parameters
 - **category:** `user_guide`
@@ -61,23 +60,9 @@ SlideRule also supports writing the output to its own S3 bucket for times when t
 To control writing the data to an Arrow supported format, the output parameter is used. output : settings to control how SlideRule outputs results path : the full path and filename of the file to be constructed by the client, NOTE - the path MUST BE less than 128 characters format : the format of the file constructed by the servers and sent to the client (currently, only GeoParquet is supported, specified as âparquetâ) open_on_complete : boolean; if true then the client is to open the file as a DataFrame once it is finished receiving it and writing it out; if false then the client returns the name of the file that was written as_geo : if the parquet format is specified, write the data compliant with the GeoParquet specification with_checksum : include a checksum of the returned file in the response with_validation : run the Apache Arrow validation routine on the resulting file before returning it to the user endpoint : AWS endpoint (i.e. region) when the output path is an S3 bucket (e.g. âs3.us-west-2.amazonaws.comâ) asset : the name of the SlideRule asset from which to get credentials for the optionally supplied S3 bucket specified in the output path credentials : the AWS credentials for the optionally supplied S3 bucket specified in the output path aws_access_key_id : AWS access key id aws_secret_access_key : AWS secret access key aws_session_token : AWS session token fields : the list of fields to include in the file output, trimming anything not found in this list
 ```
 
-#### r4 — score 0.625
+#### r4 — score 0.511
 
-- **url:** https://docs.slideruleearth.io/user_guide/how_tos/geoparquet_output.html
-- **title:** Returning Data from SlideRule in the GeoParquet Format
-- **section:** Background
-- **category:** `user_guide`
-- **matched_tokens:** ['file', 'later', 'sliderule']
-
-**Full text:**
-
-```
-But as responses get larger, the client is unable to keep up with the SlideRule servers, and can bottleneck the process or even crash if it runs out of memory. To address these shortcomings, SlideRule supports sending responses back as GeoParquet files. When a GeoParquet file is requested, the results of the request are built entirely on the servers as a GeoParquet file, and then the final file is streamed back to the client where it is directly written to disk. This allows large requests to consume server-side resources in parsing, rearranging, and building a DataFrame-like structure. Clients can then choose to open the resulting GeoParquet file immediately, or open it at some later time with different software.
-```
-
-#### r5 — score 0.511
-
-- **url:** https://docs.slideruleearth.io/user_guide/arrow_output.html
+- **url:** https://docs.testsliderule.org/user_guide/arrow_output.html
 - **title:** Arrow Output
 - **section:** S3 Output to User Bucket
 - **category:** `user_guide`
@@ -87,6 +72,20 @@ But as responses get larger, the client is unable to keep up with the SlideRule 
 
 ```
 SlideRule supports writing the output to an S3 bucket instead of streaming the output back to the client. In order to enable this behavior, the output.path field must start with âs3://â followed by the bucket name and object key. For example, if you wanted the result to be written to a file named âgrandmesa.parquetâ in your S3 bucket âmybucketâ, in the subfolder âmapsâ, then the output.path would be âs3://mybucket/maps/grandmesa.parquetâ. When writing to S3, it is required by the user to supply the necessary credentials. Here is an example code snippet for writing to your own bucket. import os import argparse import configparser # Setup Config Parser for Credentials home_directory = os . path . expanduser ( '~' ) aws_credential_file = os . path . join ( home_directory , '.aws' , 'credentials' ) config = configparser . RawConfigParser () # Read AWS Credentials config . read ( aws_credential_file ) # Populate Output Parameters parms [ "output" ] = { "path" : "s3://mybucket/myfile.parquet" , "format" : "parquet" , "open_on_complete" : False , "region" : "us-west-2" , "credentials" : { "aws_access_key_id" : config . get ( 'default' , 'aws_access_key_id' ), "aws_secret_access_key" : config . get ( 'default' , 'aws_secret_access_key' ), "aws_session_token" : config . get ( 'default' , 'aws_session_token' ) } }
+```
+
+#### r5 — score 0.530
+
+- **url:** https://docs.testsliderule.org/user_guide/arrow_output.html
+- **title:** Arrow Output
+- **section:** Parameters
+- **category:** `user_guide`
+- **matched_tokens:** ['output', 'parquet']
+
+**Full text:**
+
+```
+; this is only supported in x-series endpoints (e.g. atl03x, atl13x, atl24x, etc.) parms { "output" : { "path" : "grandmesa.parquet" , "format" : "parquet" , "open_on_complete" : True } }
 ```
 
 ---

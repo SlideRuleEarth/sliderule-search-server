@@ -23,7 +23,7 @@
 
 #### r1 — score 0.586
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** Mission
 - **category:** `background`
@@ -37,7 +37,7 @@ The Ice Cloud and land Elevation Satellite-2 (ICESat-2) is NASAâs latest sa
 
 #### r2 — score 0.424
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -51,7 +51,7 @@ The data from ATLAS and the secondary instrumentation onboard the ICESat-2 obser
 
 #### r3 — score 0.346
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -65,7 +65,7 @@ Some photons will be returns from the Transmit Echo Path (TEP) Some photons are 
 
 #### r4 — score 0.417
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** Mission
 - **category:** `background`
@@ -79,7 +79,7 @@ This is reversed in the backward orientation, and the strong beams lead the weak
 
 #### r5 — score 0.353
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.2 Elevations - atl06p
 - **category:** `user_guide`

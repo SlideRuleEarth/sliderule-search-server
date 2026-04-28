@@ -1,9 +1,9 @@
-# Row 17 review
+# Row 25 review
 
-> Companion to `17-example-accessing-atl13-lake-by-name-results.md`. Open both side-by-side;
+> Companion to `25-add-ancillary-fields-to-sliderule-atl06-output-results.md`. Open both side-by-side;
 > this file is your editable form.
 
-**Query:** `example accessing atl13 lake by name`
+**Query:** `add ancillary fields to sliderule atl06 output`
 **Labeled corpus:** `docsearch`
 
 ---

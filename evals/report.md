@@ -7,9 +7,9 @@ corpora + `server.ranking.rank()` (no Lambda, no HTTP, no cache).
 
 | Metric | Value | Bar | Pass |
 | --- | --- | --- | --- |
-| recall@5 | 0.691 | ≥ 0.70 | ✗ |
-| hit@1 | 0.324 | ≥ 0.50 | ✗ |
-| MRR | 0.480 | ≥ 0.55 | ✗ |
+| recall@5 | 0.676 | ≥ 0.70 | ✗ |
+| hit@1 | 0.309 | ≥ 0.50 | ✗ |
+| MRR | 0.469 | ≥ 0.55 | ✗ |
 
 **Below bar on: recall_at_5, hit_at_1, mrr.** Investment priority is
 the Tier 1-2 / Tier 3 levers in LongTermIdeas.md whose failure modes
@@ -19,7 +19,7 @@ match the diagnosis section below.
 
 | corpus | n | recall@5 | hit@1 | MRR |
 | --- | --- | --- | --- | --- |
-| docsearch | 35 | 0.829 | 0.400 | 0.583 |
+| docsearch | 35 | 0.800 | 0.371 | 0.561 |
 | nsidc | 33 | 0.545 | 0.242 | 0.371 |
 
 ## Per query type
@@ -28,12 +28,12 @@ Lowest-scoring buckets are the most informative for picking levers.
 
 | corpus | type | n | recall@5 | hit@1 | MRR |
 | --- | --- | --- | --- | --- | --- |
-| docsearch | api_lookup | 6 | 1.000 | 0.500 | 0.672 |
-| docsearch | conceptual | 6 | 0.833 | 0.167 | 0.458 |
-| docsearch | example | 5 | 0.800 | 0.800 | 0.825 |
-| docsearch | identifier | 6 | 1.000 | 0.500 | 0.694 |
-| docsearch | paraphrased | 6 | 0.833 | 0.333 | 0.594 |
-| docsearch | version_history | 6 | 0.500 | 0.167 | 0.296 |
+| docsearch | api_lookup | 6 | 1.000 | 0.667 | 0.833 |
+| docsearch | conceptual | 6 | 1.000 | 0.167 | 0.506 |
+| docsearch | example | 5 | 0.600 | 0.200 | 0.417 |
+| docsearch | identifier | 6 | 0.833 | 0.667 | 0.732 |
+| docsearch | paraphrased | 6 | 0.833 | 0.333 | 0.547 |
+| docsearch | version_history | 6 | 0.500 | 0.167 | 0.310 |
 | nsidc | algorithm | 8 | 0.500 | 0.000 | 0.211 |
 | nsidc | cross_product | 6 | 0.333 | 0.167 | 0.215 |
 | nsidc | instrument | 6 | 0.833 | 0.333 | 0.537 |
@@ -42,47 +42,53 @@ Lowest-scoring buckets are the most informative for picking levers.
 
 ## Queries below recall@5
 
-21 / 68 queries where no expected URL appeared in top 5.
+22 / 68 queries where no expected URL appeared in top 5.
 Each is a candidate for a specific lever — not a mislabel (the URL is
 in the corpus; if it were truly missing, it wouldn't appear in top 50
 either and would show in the Misses section at the end).
 
-- **[docsearch/conceptual]** `earthdata authentication credentials sliderule` (rank 6)
-  - expected: https://docs.slideruleearth.io/api_reference/earthdata.html
+- **[docsearch/example]** `how to query atl13 lake by name` (rank 6)
+  - expected: https://docs.slideruleearth.io/user_guide/icesat2.html
   - top 3 returned:
-    - https://docs.slideruleearth.io/developer_guide/articles/security_model.html
-    - https://docs.slideruleearth.io/developer_guide/articles/private_clusters.html
-    - https://docs.slideruleearth.io/user_guide/raster_sampling.html
+    - https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
+    - https://docs.testsliderule.org/user_guide/icesat2.html
+    - https://docs.testsliderule.org/getting_started/Examples.html
 - **[docsearch/version_history]** `sliderule api deprecation breaking removed old function` (rank 7)
   - expected: https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-00-00.html
   - top 3 returned:
-    - https://docs.slideruleearth.io/user_guide/versioning.html
-    - https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-04-00.html
-    - https://docs.slideruleearth.io/api_reference/gedi.html
-- **[docsearch/example]** `example atl24 subsetting and filtering bathymetry` (rank 8)
-  - expected: https://docs.slideruleearth.io/assets/atl24_access.html
-  - top 3 returned:
-    - https://docs.slideruleearth.io/user_guide/icesat2.html
-    - https://docs.slideruleearth.io/user_guide/icesat2.html
-    - https://docs.slideruleearth.io/user_guide/icesat2.html
+    - https://docs.testsliderule.org/user_guide/versioning.html
+    - https://docs.testsliderule.org/api_reference/gedi.html
+    - https://docs.testsliderule.org/developer_guide/release_notes/release-v01-04-00.html
 - **[docsearch/version_history]** `yapc added to sliderule version release notes` (rank 9)
   - expected: https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-03-00.html
   - top 3 returned:
-    - https://docs.slideruleearth.io/developer_guide/articles/private_clusters.html
-    - https://docs.slideruleearth.io/developer_guide/articles/v5_server_release.html
-    - https://docs.slideruleearth.io/developer_guide/articles/web_client_release_notes_4_0_3.html
-- **[docsearch/paraphrased]** `generate a DEM from ICESat-2 data over my area of interest` (rank 16)
-  - expected: https://docs.slideruleearth.io/assets/grandmesa.html
+    - https://docs.testsliderule.org/developer_guide/articles/private_clusters.html
+    - https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
+    - https://docs.testsliderule.org/developer_guide/release_notes/release-v03-05-00.html
+- **[docsearch/example]** `how to process atl06 elevations` (rank 12)
+  - expected: https://docs.slideruleearth.io/user_guide/icesat2.html
   - top 3 returned:
-    - https://docs.slideruleearth.io/developer_guide/why_sliderule.html
-    - https://docs.slideruleearth.io/user_guide/how_tos/first_request.html
-    - https://docs.slideruleearth.io/user_guide/how_tos/arcticdem_request.html
-- **[docsearch/version_history]** `phoreal added sliderule release notes version` (rank 47)
+    - https://docs.testsliderule.org/api_reference/icesat2.html
+    - https://docs.testsliderule.org/api_reference/icesat2.html
+    - https://docs.testsliderule.org/api_reference/icesat2.html
+- **[docsearch/paraphrased]** `generate a DEM from ICESat-2 data over my area of interest` (rank 12)
+  - expected: https://docs.slideruleearth.io/user_guide/icesat2.html
+  - top 3 returned:
+    - https://docs.testsliderule.org/developer_guide/why_sliderule.html
+    - https://docs.testsliderule.org/getting_started/Examples.html
+    - https://docs.testsliderule.org/developer_guide/articles/h5coro.html
+- **[docsearch/identifier]** `srt surface reference type parameter` (rank 17)
+  - expected: https://docs.slideruleearth.io/api_reference/icesat2.html
+  - top 3 returned:
+    - https://docs.testsliderule.org/user_guide/icesat2.html
+    - https://docs.testsliderule.org/user_guide/icesat2.html
+    - https://docs.testsliderule.org/user_guide/icesat2.html
+- **[docsearch/version_history]** `phoreal added sliderule release notes version` (rank 48)
   - expected: https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-01-00.html
   - top 3 returned:
-    - https://docs.slideruleearth.io/developer_guide/articles/v5_server_release.html
-    - https://docs.slideruleearth.io/developer_guide/articles/v5_server_release.html
-    - https://docs.slideruleearth.io/developer_guide/articles/private_clusters.html
+    - https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
+    - https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
+    - https://docs.testsliderule.org/developer_guide/articles/private_clusters.html
 - **[nsidc/algorithm]** `ATL24 PointNet++ bathymetric photon classification` (rank 6)
   - expected: https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf
   - top 3 returned:
@@ -186,36 +192,36 @@ either and would show in the Misses section at the end).
 | identifier | 3 | atl06x surface fit elevation |
 | identifier | 1 | atl24x bathymetry subsetting |
 | identifier | 1 | yapc photon classifier |
-| identifier | 2 | cnf confidence filter parameter |
-| identifier | 3 | srt surface reference type parameter |
+| identifier | 1 | cnf confidence filter parameter |
+| identifier | 17 | srt surface reference type parameter |
 | conceptual | 2 | how to filter ICESat-2 photons by confidence |
-| conceptual | 3 | how to run atl06 with raster DEM sampling |
+| conceptual | 2 | how to run atl06 with raster DEM sampling |
 | conceptual | 1 | how to use SlideRule Python client install |
-| conceptual | 4 | what is the X-Series API in SlideRule |
-| conceptual | 6 | earthdata authentication credentials sliderule |
+| conceptual | 3 | what is the X-Series API in SlideRule |
+| conceptual | 5 | earthdata authentication credentials sliderule |
 | conceptual | 2 | output SlideRule results as GeoParquet format |
-| example | 1 | example custom atl06 processing Grand Mesa |
-| example | 1 | example ATL03 photon classification with YAPC tutorial |
-| example | 1 | example sampling ArcticDEM mosaic raster |
-| example | 8 | example atl24 subsetting and filtering bathymetry |
-| example | 1 | example accessing atl13 lake by name |
+| example | 12 | how to process atl06 elevations |
+| example | 1 | how to use yapc photon classifier in atl03 |
+| example | 2 | how to sample ArcticDEM raster mosaic |
+| example | 3 | how to subset atl24 bathymetry data |
+| example | 6 | how to query atl13 lake by name |
 | version_history | 1 | when was atl24x added to sliderule release |
 | version_history | 9 | yapc added to sliderule version release notes |
-| version_history | 4 | sliderule version 5 breaking changes new functionality |
+| version_history | 3 | sliderule version 5 breaking changes new functionality |
 | version_history | 4 | recent changes to atl06x release notes |
-| api_lookup | 5 | gedil4ap function python API signature parameters |
+| api_lookup | 1 | GEDI L4A python API parameters |
 | api_lookup | 1 | raster sampling API function parameters |
 | paraphrased | 1 | getting canopy height from atl03 photons using atl08 |
-| paraphrased | 2 | include additional HDF5 variables in sliderule atl06 output |
+| paraphrased | 1 | add ancillary fields to sliderule atl06 output |
 | api_lookup | 2 | sliderule module initialization session setup |
-| api_lookup | 3 | h5 hdf5 read function parameters h5p h5x |
+| api_lookup | 2 | h5 hdf5 read function parameters h5p h5x |
 | api_lookup | 1 | icesat2 atl06p python function parameters |
 | api_lookup | 1 | earthdata CMR search function signature |
-| paraphrased | 16 | generate a DEM from ICESat-2 data over my area of interest |
-| paraphrased | 1 | combine multiple ATL products in one processing pipeline |
+| paraphrased | 12 | generate a DEM from ICESat-2 data over my area of interest |
+| paraphrased | 5 | combine multiple ATL products in one processing pipeline |
 | paraphrased | 2 | filter only vegetation photons from ICESat-2 atl03 |
 | paraphrased | 2 | save sliderule output to a parquet file for later analysis |
-| version_history | 47 | phoreal added sliderule release notes version |
+| version_history | 48 | phoreal added sliderule release notes version |
 | version_history | 7 | sliderule api deprecation breaking removed old function |
 
 ### nsidc

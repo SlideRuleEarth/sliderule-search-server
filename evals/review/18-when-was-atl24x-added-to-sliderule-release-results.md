@@ -20,7 +20,7 @@
 
 #### r1 — score 0.656
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-11-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-11-00.html
 - **title:** Release v4.11.x
 - **section:** Major Changes
 - **category:** `release_notes`
@@ -34,7 +34,7 @@ v4.11.0 - The official release of the SlideRule Web Client at https://client.sli
 
 #### r2 — score 0.638
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5. ATL24 - atl24x
 - **category:** `user_guide`
@@ -48,7 +48,7 @@ The SlideRule atl24x endpoint provides a service for ATL24 subsetting and custom
 
 #### r3 — score 0.586
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5.2 Ancillary Data
 - **category:** `user_guide`
@@ -62,7 +62,7 @@ Ancillary data returned from the atl24x endpoint comes from the {beam} group of 
 
 #### r4 — score 0.462
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v05-00-00.html
 - **title:** Release v5.0.x
 - **section:** New Functionality
 - **category:** `release_notes`
@@ -76,7 +76,7 @@ Rate limiting and endpoint metrics are now handled the SlideRule Intelligent Loa
 
 #### r5 — score 0.635
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/v5_server_release.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
 - **title:** 2025-12-08: Public Cluster Release v5
 - **section:** 2025-12-08: Public Cluster Release v5
 - **category:** `developer_guide`

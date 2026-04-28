@@ -21,7 +21,7 @@
 
 #### r1 — score 0.561
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3. ATL08 - atl08x
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ Using the Python client, this service is called via: sliderule . run ( 'atl08x' 
 
 #### r2 — score 0.629
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.2 Elevations - atl06p
 - **category:** `user_guide`
@@ -47,23 +47,9 @@ Using the Python client, this service is called via: sliderule . run ( 'atl08x' 
 The primary result returned by SlideRule for ICESat-2 ATL06-SR processing requests is a set of geolocated elevations corresponding to a geolocated ATL03 along-track segment. The elevations are contained in a GeoDataFrame where each row represents a calculated elevation. The elevation GeoDataFrame has the following columns: extent_id : unique ID associated with custom ATL03 segment (removed from final GeoDataFrame by default) segment_id : segment ID of first ATL03 segment in result n_fit_photons : number of photons used in final calculation pflags : processing flags (0x1 - spread too short; 0x2 - too few photons; 0x4 - max iterations reached) rgt : reference ground track cycle : cycle region : region of source granule spot : laser spot 1 to 6 gt : ground track (10: GT1L, 20: GT1R, 30: GT2L, 40: GT2R, 50: GT3L, 60: GT3R) x_atc : along track distance from the equator in meters time : nanoseconds from Unix epoch (January 1, 1970) without leap seconds lat : latitude (-90.0 to 90.0) lon : longitude (-180.0 to 180.0) h_mean : elevation in meters from ellipsoid dh_fit_dx : along-track slope y_atc : across-track distance w_surface_window_final : width of the window used to select the final set of photons used in the calculation rms_misfit : measured error in the linear fit of the surface h_sigma : error estimate for the least squares fit model
 ```
 
-#### r3 — score 0.554
+#### r3 — score 0.512
 
-- **url:** https://docs.slideruleearth.io/user_guide/how_tos/first_request.html
-- **title:** Making Your First Request
-- **section:** Your First Processing Request
-- **category:** `user_guide`
-- **matched_tokens:** ['along', 'atl06', 'elevation', 'segment', 'track']
-
-**Full text:**
-
-```
-Step 4 : Create a dictionary of processing parameters specifying how the elevations for the region should be calculated. >>> parms = { "poly": grand_mesa["poly"], "srt": icesat2.SRT_LAND, "cnf": icesat2.CNF_SURFACE_HIGH, "len": 40.0, "res": 20.0 } For a full description of the different processing parameters that are accepted by SlideRule, see parameters . The parameters of interest here are len which specifies the total along-track length of the segment used to calculate an elevation, and res which specifies the along-track posting interval of the calculation. Step 5 : Issue the processing request to SlideRule. >>> rsps = icesat2 . atl06p ( parms ) When you hit enter, you should see a scrolling list of log messages saying â atl06 processing initiated onâ¦ â. These messages are normal and expected (and displayed only because of the verbose setting used when we initialized the icesat2 package). There are many valid reasons for some resources to return no elements, but most often it is because the resource was identified by NASAâs CMR system as crossing the region of interest, yet when SlideRule processed the resource, it did not actually intersect. This happens because the CMR system adds an off-pointing margin to all ground tracks when calculating intersections and therefore over estimates which resources cross any given region. When this completes (~30 seconds), the rsps variable should now contain all of the results of the elevations calculated by SlideRule.
-```
-
-#### r4 — score 0.512
-
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -75,9 +61,23 @@ Step 4 : Create a dictionary of processing parameters specifying how the elevati
 The magnitude of this bias depends on the shape of the transmitted waveform, the width of the window used to calculate the average surface, and the slope and roughness of the surface that broadens the return pulse. ATL03 contains most of the data needed to create the higher level data products (such as the ATL06-SR land ice product). With SlideRule , we will calculate the average elevation of segments for each beam. In SlideRule the average segment elevations will not be corrected for transmit pulse shape biases or first photon biases as compared to the higher level data products.
 ```
 
+#### r4 — score 0.494
+
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** ICESat-2 Module
+- **category:** `user_guide`
+- **matched_tokens:** ['along', 'atl06', 'elevation', 'segment', 'track']
+
+**Full text:**
+
+```
+The ICESat-2 module within SlideRule supports a number of both legacy p-series and s-series endpoints, as well as the newer DataFrame-based x-series endpoints. This document focuses on the x-series endpoints while still referencing the other legacy endpoints when helpful. Three main kinds of data are returned by the ICESat-2 endpoints: segmented photon data, elevation data (from the ATL06-SR algorithm), and vegetation data (from the PhoREAL algorithm). All data returned by the ICESat-2 endpoints are organized around the concept of an extent . An extent is a variable length, customized ATL03 segment. It takes the ATL03 photons and divides them up based on their along-track distance, filters them, and then packages them together a single new custom segment. Given that the ICESat-2 standard data products have a well defined meaning for segment, SlideRule uses the term extent to indicate this custom-length and custom-filtered segment of photons. The following processing flags are used for all ICESat-2 endpoints: 0x0001 : Along track spread too short 0x0002 : Too few photons 0x0004 : Maximum iterations reached 0x0008 : Out of bounds 0x0010 : Underflow 0x0020 : Overflow In addition, most endpoints support the generation of a name filter using the granule parameter: rgt : Reference ground track cycle : Orbit cycle region : ATL03 region {1 to 14} version : ATL03 release version (e.g. 007)
+```
+
 #### r5 — score 0.522
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 2. ATL06 - atl06x
 - **category:** `user_guide`
