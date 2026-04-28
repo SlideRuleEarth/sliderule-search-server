@@ -8,6 +8,6 @@ pydantic>=2.13.3
 # fully initialized. Older versions handled the same sysfs shape gracefully.
 # Pin until the regression is fixed upstream; track the cp313 arm64 wheel
 # availability when bumping.
-onnxruntime==1.22.1
+onnxruntime==1.25.1
 tokenizers>=0.20.0
 numpy>=1.24.0
