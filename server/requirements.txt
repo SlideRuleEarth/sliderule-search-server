@@ -1,4 +1,4 @@
-fastapi>=0.110.0
+fastapi>=0.136.1
 mangum>=0.21.0
 pydantic>=2.13.3
 # onnxruntime 1.23/1.24 terminate with "Attempt to use DefaultLogger but
