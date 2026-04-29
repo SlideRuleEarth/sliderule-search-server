@@ -121,7 +121,13 @@ make freeplay                            # interactive REPL; no Lambda, no netwo
 
 `requirements-dev.lock` is generated from [requirements-dev.txt](requirements-dev.txt)
 (which composes `server/requirements.txt` + `tools/requirements.txt` + `ruff`).
-Regenerate with `uv pip compile requirements-dev.txt -o requirements-dev.lock`
+The lock is **universal**: a single file with platform markers that
+resolves correctly on macOS arm64, Linux x86_64, etc. Regenerate with:
+
+```bash
+uv pip compile --universal requirements-dev.txt -o requirements-dev.lock
+```
+
 when any input changes.
 
 The REPL imports `server.ranking` directly — same implementation the
