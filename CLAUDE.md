@@ -24,7 +24,9 @@ Supporting context, in order of usefulness:
 
 ## Common commands
 
-Python virtualenv lives in `.venv/`. If absent: `python -m venv .venv && .venv/bin/pip install -r tools/requirements.txt`.
+Python virtualenv lives in `.venv/`. If absent:
+`uv venv && uv pip sync requirements-dev.lock` (Python version pinned via `.python-version`,
+deps locked via `requirements-dev.lock`). See [README.md](README.md#dev-environment) for full setup.
 
 ```bash
 # Run the offline retrieval-quality harness (writes report.md + audit.md)

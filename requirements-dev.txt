@@ -1,0 +1,12 @@
+# Dev-only tooling installed into the local .venv.
+# The Lambda image (built from server/Dockerfile) does NOT see this file —
+# only server/requirements.txt ships into production.
+#
+# Lockfile: requirements-dev.lock
+# Regen:    uv pip compile --universal requirements-dev.txt -o requirements-dev.lock
+# Sync:     uv pip sync requirements-dev.lock
+
+-r server/requirements.txt
+-r tools/requirements.txt
+
+ruff
