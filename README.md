@@ -109,16 +109,30 @@ scripts/
 
 ## Local iteration
 
-```bash
-python3 -m venv .venv
-.venv/bin/pip install -r server/requirements.txt
+### Dev environment
 
-# Interactive REPL against the committed corpus; no Lambda, no network.
-make freeplay
+Reproducible setup via [`uv`](https://docs.astral.sh/uv/) (`brew install uv`):
+
+```bash
+uv venv                                  # reads .python-version (3.13)
+uv pip sync requirements-dev.lock        # locked deps for server + tools + ruff
+make freeplay                            # interactive REPL; no Lambda, no network
 ```
+
+`requirements-dev.lock` is generated from [requirements-dev.txt](requirements-dev.txt)
+(which composes `server/requirements.txt` + `tools/requirements.txt` + `ruff`).
+Regenerate with `uv pip compile requirements-dev.txt -o requirements-dev.lock`
+when any input changes.
 
 The REPL imports `server.ranking` directly — same implementation the
 deployed Lambda uses.
+
+VSCode users: open the repo and reload the window — workspace settings
+in [.vscode/](.vscode/) auto-select the local `.venv`, configure Ruff
+as formatter, and run `organizeImports` + `fixAll` on save. The
+recommended extensions (Python, Ruff) will be prompted on first open;
+the standalone `isort`/`black-formatter` extensions are explicitly
+discouraged because Ruff covers both.
 
 ### Local Docker testing
 
@@ -141,7 +155,7 @@ only show up under real AWS.
 The server hosts two corpora, each rebuilt by a distinct target:
 
 ```bash
-.venv/bin/pip install -r tools/requirements.txt   # first time only
+# tools/ deps are already in requirements-dev.lock — see "Dev environment" above.
 make rebuild-corpus-docsearch   # crawls docs.slideruleearth.io
 make rebuild-corpus-nsidc       # downloads NSIDC + ORNL PDFs and the GEDI HTML
 # Review the generated/{docsearch,nsidc}/ diff (chunk counts,
