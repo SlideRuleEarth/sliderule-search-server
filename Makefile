@@ -23,6 +23,16 @@ DOMAIN_ROOT     = $(word 2,$(subst ., ,$(DOMAIN)))
 DOMAIN_APEX     ?= $(DOMAIN)
 DISTRIBUTION_ID = $(shell aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='$(DOMAIN)'].Id" --output text 2>/dev/null)
 
+# Reject DOMAIN=localhost — almost always an unrelated shell export
+# leaking in (e.g. from ~/.zshrc) rather than an intentional override.
+# Without this guard, targets like `make logs` / `make smoketest` /
+# `make deploy-lambda` pass their `test -n "$(DOMAIN)"` checks and
+# silently target the wrong thing. Wrapper targets (update-testsliderule
+# etc.) supply real FQDNs; bare invocations should leave DOMAIN unset.
+ifeq ($(DOMAIN),localhost)
+$(error DOMAIN=localhost is almost certainly a stray shell export, not intent. `unset DOMAIN` (or remove the export from ~/.zshrc) and re-run, or pass an explicit DOMAIN= on the command line. For a real environment use a wrapper like `make update-testsliderule`)
+endif
+
 SRC_DIR      = $(ROOT)/generated
 CORPUS_FILE  = $(SRC_DIR)/docsearch/corpus.json
 
