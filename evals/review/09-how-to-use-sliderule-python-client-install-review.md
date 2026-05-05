@@ -14,7 +14,7 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 **docsearch:**
 
-- r1: correct
+- r1: parital
 - r2: correct
 - r3: correct
 - r4: partial
