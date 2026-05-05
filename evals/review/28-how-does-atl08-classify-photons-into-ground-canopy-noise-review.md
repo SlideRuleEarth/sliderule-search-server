@@ -17,7 +17,7 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 - r1: partial
 - r2: wrong
 - r3: partial
-- r4: wrong
+- r4: partial
 - r5: wrong
 
 **nsidc:**

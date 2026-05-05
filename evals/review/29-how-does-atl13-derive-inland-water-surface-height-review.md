@@ -15,14 +15,14 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 **docsearch:**
 
 - r1: partial
-- r2: partial
-- r3: partial
+- r2: wrong
+- r3: wrong
 - r4: wrong
 - r5: wrong
 
 **nsidc:**
 
-- r1: wrong
+- r1: partial
 - r2: wrong
 - r3: wrong
 - r4: wrong
