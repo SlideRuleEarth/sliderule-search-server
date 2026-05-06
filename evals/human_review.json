@@ -1,15 +1,16 @@
 {
-  "generated_at": "2026-04-27T18:21:01+00:00",
+  "generated_at": "2026-05-06T18:41:14+00:00",
   "summary": {
-    "total_files": 5,
-    "completed": 5,
+    "total_files": 68,
+    "completed": 68,
     "incomplete": 0,
     "overall_verdicts": {
-      "correct": 4,
-      "partial": 1
+      "correct": 31,
+      "partial": 26,
+      "wrong": 11
     },
     "routing_decisions": {
-      "keep": 5
+      "keep": 68
     }
   },
   "records": [
@@ -90,10 +91,10 @@
       "incomplete": false,
       "verdicts": {
         "docsearch": {
-          "r1": "correct",
-          "r2": "correct",
-          "r3": "correct",
-          "r4": "partial",
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
           "r5": "partial"
         },
         "nsidc": {
@@ -124,9 +125,9 @@
         "docsearch": {
           "r1": "correct",
           "r2": "partial",
-          "r3": "partial",
-          "r4": "wrong",
-          "r5": "wrong"
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "partial"
         },
         "nsidc": {
           "r1": "wrong",
@@ -161,11 +162,2058 @@
           "r5": "wrong"
         },
         "nsidc": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 6,
+      "query": "srt surface reference type parameter",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/06-srt-surface-reference-type-parameter-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "correct"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 7,
+      "query": "how to filter ICESat-2 photons by confidence",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/07-how-to-filter-icesat-2-photons-by-confidence-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "correct",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 8,
+      "query": "how to run atl06 with raster DEM sampling",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/08-how-to-run-atl06-with-raster-dem-sampling-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 9,
+      "query": "how to use SlideRule Python client install",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/09-how-to-use-sliderule-python-client-install-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "correct",
+          "r3": "correct",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 10,
+      "query": "what is the X-Series API in SlideRule",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/10-what-is-the-x-series-api-in-sliderule-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 11,
+      "query": "earthdata authentication credentials sliderule",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/11-earthdata-authentication-credentials-sliderule-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [
+          "https://docs.slideruleearth.io/developer_guide/how_tos/accessing_earthdata_cloud.html"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 12,
+      "query": "output SlideRule results as GeoParquet format",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/12-output-sliderule-results-as-geoparquet-format-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "correct",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 13,
+      "query": "how to process atl06 elevations",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/13-how-to-process-atl06-elevations-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [
+          "https://docs.slideruleearth.io/user_guide/icesat2.html"
+        ],
+        "sections": [
+          "ICESat-2 Module",
+          "atl06-atl06x"
+        ],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 14,
+      "query": "how to use yapc photon classifier in atl03",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/14-how-to-use-yapc-photon-classifier-in-atl03-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 15,
+      "query": "how to sample ArcticDEM raster mosaic",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/15-how-to-sample-arcticdem-raster-mosaic-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": "complete answer is in examples github repo"
+      }
+    },
+    {
+      "row_index": 16,
+      "query": "how to subset atl24 bathymetry data",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/16-how-to-subset-atl24-bathymetry-data-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": "examples exist in examples github repo"
+      }
+    },
+    {
+      "row_index": 17,
+      "query": "how to query atl13 lake by name",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/17-how-to-query-atl13-lake-by-name-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": "real answer is in examples github repo"
+      }
+    },
+    {
+      "row_index": 18,
+      "query": "when was atl24x added to sliderule release",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/18-when-was-atl24x-added-to-sliderule-release-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 19,
+      "query": "yapc added to sliderule version release notes",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/19-yapc-added-to-sliderule-version-release-notes-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": "docsearch",
+        "urls": [
+          "https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-03-00.html"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 20,
+      "query": "sliderule version 5 breaking changes new functionality",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/20-sliderule-version-5-breaking-changes-new-functionality-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "correct",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 21,
+      "query": "recent changes to atl06x release notes",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/21-recent-changes-to-atl06x-release-notes-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": "docsearch",
+        "urls": [
+          "https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-03-00.html"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 22,
+      "query": "GEDI L4A python API parameters",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/22-gedi-l4a-python-api-parameters-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "correct"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 23,
+      "query": "raster sampling API function parameters",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/23-raster-sampling-api-function-parameters-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 24,
+      "query": "getting canopy height from atl03 photons using atl08",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/24-getting-canopy-height-from-atl03-photons-using-atl08-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 25,
+      "query": "add ancillary fields to sliderule atl06 output",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/25-add-ancillary-fields-to-sliderule-atl06-output-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 26,
+      "query": "how does ATL03 signal finding algorithm work",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/26-how-does-atl03-signal-finding-algorithm-work-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": "nsidc",
+        "urls": [
+          "https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf"
+        ],
+        "sections": [
+          "5.1.4"
+        ],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 27,
+      "query": "how does ATL06 surface fit algorithm compute elevation",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/27-how-does-atl06-surface-fit-algorithm-compute-elevation-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "correct",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 28,
+      "query": "how does ATL08 classify photons into ground canopy noise",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/28-how-does-atl08-classify-photons-into-ground-canopy-noise-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "wrong",
+          "r3": "correct",
+          "r4": "correct",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 29,
+      "query": "how does ATL13 derive inland water surface height",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/29-how-does-atl13-derive-inland-water-surface-height-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": "nsidc",
+        "urls": [
+          "https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf"
+        ],
+        "sections": [
+          "4.1"
+        ],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 30,
+      "query": "ATL24 PointNet++ bathymetric photon classification",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/30-atl24-pointnet-bathymetric-photon-classification-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "correct"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 31,
+      "query": "GEDI L4A biomass estimation from waveforms algorithm",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/31-gedi-l4a-biomass-estimation-from-waveforms-algorithm-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": "nsidc",
+        "urls": [
+          "https://data.ornldaac.earthdata.nasa.gov/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": "\"broad-scope query — entire ATBD is on-topic\""
+      }
+    },
+    {
+      "row_index": 32,
+      "query": "ATL03 geophysical corrections ocean tides solid earth",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/32-atl03-geophysical-corrections-ocean-tides-solid-earth-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "correct",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 33,
+      "query": "ATL08 canopy height calculation method",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/33-atl08-canopy-height-calculation-method-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 34,
+      "query": "ATL03 HDF5 file structure data groups photon fields",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/34-atl03-hdf5-file-structure-data-groups-photon-fields-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 35,
+      "query": "ATL06 quality flags values interpretation",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/35-atl06-quality-flags-values-interpretation-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "correct"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 36,
+      "query": "ATL08 terrain classification output variables HDF5",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/36-atl08-terrain-classification-output-variables-hdf5-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
           "r1": "wrong",
           "r2": "wrong",
           "r3": "wrong",
           "r4": "partial",
           "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 37,
+      "query": "ATL13 file naming convention granule filename",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/37-atl13-file-naming-convention-granule-filename-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 38,
+      "query": "ATL24 file contents and spatial coverage",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/38-atl24-file-contents-and-spatial-coverage-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 39,
+      "query": "GEDI L4A footprint geolocation variables AGBD",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/39-gedi-l4a-footprint-geolocation-variables-agbd-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 40,
+      "query": "ATL03 h_ph photon height variable description",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/40-atl03-h-ph-photon-height-variable-description-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 41,
+      "query": "ATL06 data groups structure for land ice",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/41-atl06-data-groups-structure-for-land-ice-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 42,
+      "query": "ATL08 DRAGANN noise filtering algorithm",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/42-atl08-dragann-noise-filtering-algorithm-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 43,
+      "query": "ATL24 ensemble classification bathymetry",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/43-atl24-ensemble-classification-bathymetry-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 44,
+      "query": "ATL13 processing workflow and goals",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/44-atl13-processing-workflow-and-goals-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [
+          "https://nsidc.org/sites/default/files/documents/user-guide/atl13-v007-userguide.pdf"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": "\"broad-scope: entire ATBD covers this query; URL-only match by design\""
+      }
+    },
+    {
+      "row_index": 45,
+      "query": "strong versus weak beams ICESat-2 ATLAS",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/45-strong-versus-weak-beams-icesat-2-atlas-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 46,
+      "query": "how ATL08 uses ATL03 photons for classification",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/46-how-atl08-uses-atl03-photons-for-classification-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 47,
+      "query": "photon classification confidence values ATL03",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/47-photon-classification-confidence-values-atl03-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 48,
+      "query": "ATLAS laser altimeter instrument specifications",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/48-atlas-laser-altimeter-instrument-specifications-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 49,
+      "query": "ATL03 photon geolocation algorithm method",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/49-atl03-photon-geolocation-algorithm-method-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 50,
+      "query": "GEDI shot footprint size geometry",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/50-gedi-shot-footprint-size-geometry-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 51,
+      "query": "sliderule module initialization session setup",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/51-sliderule-module-initialization-session-setup-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [
+          "https://docs.testsliderule.org/api_reference/sliderule.html"
+        ],
+        "sections": [
+          "init"
+        ],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 52,
+      "query": "h5 hdf5 read function parameters h5p h5x",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/52-h5-hdf5-read-function-parameters-h5p-h5x-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 53,
+      "query": "icesat2 atl06p python function parameters",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/53-icesat2-atl06p-python-function-parameters-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 54,
+      "query": "earthdata CMR search function signature",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/54-earthdata-cmr-search-function-signature-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 55,
+      "query": "generate a DEM from ICESat-2 data over my area of interest",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/55-generate-a-dem-from-icesat-2-data-over-my-area-of-interest-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": "Examples hold the answer but they are only available thru a url to the examples repo"
+      }
+    },
+    {
+      "row_index": 56,
+      "query": "combine multiple ATL products in one processing pipeline",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/56-combine-multiple-atl-products-in-one-processing-pipeline-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": "none of the partials really explained the concept"
+      }
+    },
+    {
+      "row_index": 57,
+      "query": "filter only vegetation photons from ICESat-2 atl03",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/57-filter-only-vegetation-photons-from-icesat-2-atl03-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 58,
+      "query": "save sliderule output to a parquet file for later analysis",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/58-save-sliderule-output-to-a-parquet-file-for-later-analysis-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "correct",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 59,
+      "query": "phoreal added sliderule release notes version",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/59-phoreal-added-sliderule-release-notes-version-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [
+          "https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-01-00.html"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 60,
+      "query": "sliderule api deprecation breaking removed old function",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/60-sliderule-api-deprecation-breaking-removed-old-function-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [
+          "https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-00-00.html"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 61,
+      "query": "ICESat-2 ground track beam naming GT1L GT1R GT2L convention",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/61-icesat-2-ground-track-beam-naming-gt1l-gt1r-gt2l-convention-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "correct",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 62,
+      "query": "reference ground track RGT cycle number ICESat-2 granule",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/62-reference-ground-track-rgt-cycle-number-icesat-2-granule-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "correct",
+          "r4": "partial",
+          "r5": "correct"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 63,
+      "query": "ATL06 uses ATL03 photons to compute surface elevations algorithm",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/63-atl06-uses-atl03-photons-to-compute-surface-elevations-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 64,
+      "query": "ICESat-2 orbit altitude inclination mission specifications",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/64-icesat-2-orbit-altitude-inclination-mission-specifications-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 65,
+      "query": "GEDI laser channels power modes beam configuration",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/65-gedi-laser-channels-power-modes-beam-configuration-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 66,
+      "query": "ATL03 pointing biases beam geolocation error model",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/66-atl03-pointing-biases-beam-geolocation-error-model-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 67,
+      "query": "ATL06 land ice along-track segment elevation",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/67-atl06-land-ice-along-track-segment-elevation-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 68,
+      "query": "ATL08 100-meter segment terrain canopy height",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/68-atl08-100-meter-segment-terrain-canopy-height-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
         }
       },
       "overall_verdict": "correct",

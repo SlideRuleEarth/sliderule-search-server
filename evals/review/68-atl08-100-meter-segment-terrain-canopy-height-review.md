@@ -26,7 +26,7 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 - r2: partial
 - r3: partial
 - r4: partial
-- r5: partialkeep
+- r5: partial
 
 ## Overall verdict
 
@@ -39,7 +39,7 @@ One of: `correct` | `partial` | `wrong`
 Should this query target a different corpus? One of:
 `keep` | `redirect-to-docsearch` | `redirect-to-nsidc` | `both-corpora`
 
-- routing: 
+- routing: keep
 
 ## Human truth (the actual right answer)
 

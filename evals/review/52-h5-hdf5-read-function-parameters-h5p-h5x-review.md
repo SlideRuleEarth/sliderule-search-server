@@ -32,7 +32,7 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 One of: `correct` | `partial` | `wrong`
 
-- overall: 
+- overall: partial
 
 ## Cross-corpus routing
 

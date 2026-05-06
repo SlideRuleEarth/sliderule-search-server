@@ -39,7 +39,7 @@ One of: `correct` | `partial` | `wrong`
 Should this query target a different corpus? One of:
 `keep` | `redirect-to-docsearch` | `redirect-to-nsidc` | `both-corpora`
 
-- routing: 
+- routing: keep
 
 ## Human truth (the actual right answer)
 

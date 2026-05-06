@@ -32,14 +32,14 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 One of: `correct` | `partial` | `wrong`
 
-- overall: 
+- overall: wrong 
 
 ## Cross-corpus routing
 
 Should this query target a different corpus? One of:
 `keep` | `redirect-to-docsearch` | `redirect-to-nsidc` | `both-corpora`
 
-- routing: 
+- routing: keep
 
 ## Human truth (the actual right answer)
 
