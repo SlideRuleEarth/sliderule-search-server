@@ -4,9 +4,16 @@ Loads both corpora locally, runs each query in evals/golden_set.jsonl
 through server.ranking.rank() (bypassing Lambda, HTTP, and the cache),
 computes recall@5 / hit@1 / MRR, and writes a markdown report.
 
+Two grading modes:
+  --metric=auto  (default) grades against `expected_urls`/`expected_sections`/
+                 `expected_pages` in golden_set.jsonl (cheap, can be wrong)
+  --metric=human grades against per-result verdicts in human_review.json
+                 (trustworthy ground truth, only as good as the reviewer)
+  --metric=both  (recommended for Phase 2 reconciliation) emits both side-by-side
+
 Usage
 -----
-    python tools/eval_retrieval.py
+    python tools/eval_retrieval.py [--metric={auto,human,both}]
 
 Outputs
 -------
@@ -23,6 +30,7 @@ repeat run with unchanged inputs, something stateful leaked in.
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -46,6 +54,7 @@ CORPUS_PATHS = {
 MODEL_PATH = REPO_ROOT / "generated" / "shared" / "model.onnx"
 TOKENIZER_PATH = REPO_ROOT / "generated" / "shared" / "tokenizer.json"
 GOLDEN_SET_PATH = REPO_ROOT / "evals" / "golden_set.jsonl"
+HUMAN_REVIEW_PATH = REPO_ROOT / "evals" / "human_review.json"
 REPORT_PATH = REPO_ROOT / "evals" / "report.md"
 AUDIT_PATH = REPO_ROOT / "evals" / "audit.md"
 
@@ -129,15 +138,47 @@ def first_expected_rank(
     return None
 
 
+def load_human_review() -> dict[int, dict]:
+    """Returns row_index → record from evals/human_review.json. Empty
+    dict if the file doesn't exist yet (first run before any reviews
+    have been ingested). Only completed records are included."""
+    if not HUMAN_REVIEW_PATH.exists():
+        return {}
+    data = json.loads(HUMAN_REVIEW_PATH.read_bytes())
+    return {
+        r["row_index"]: r
+        for r in data.get("records", [])
+        if not r.get("incomplete")
+    }
+
+
+def first_human_rank(verdicts: dict | None) -> int | None:
+    """1-based rank of the first chunk with a `correct` verdict in r1..r5.
+    Returns None if no `correct` verdict in top-5. Strict-mode only —
+    `partial` chunks don't count as hits. The reviewer only saw the top-5,
+    so ranks 6-50 are necessarily None even if the chunk would be correct."""
+    if not verdicts:
+        return None
+    for rank in range(1, 6):
+        if verdicts.get(f"r{rank}") == "correct":
+            return rank
+    return None
+
+
 AUDIT_TOP_N = 5
 AUDIT_TEXT_CHARS = 400
 
 
-def evaluate(rows: list[dict], corpora: dict, model) -> list[dict]:
+def evaluate(rows: list[dict], corpora: dict, model, human_records: dict[int, dict] | None = None) -> list[dict]:
     """Run every query, return per-row records with rank + metrics +
-    enough chunk detail for the audit report."""
+    enough chunk detail for the audit report.
+
+    If `human_records` is provided (row_index → human review record),
+    each record also gets `human_first_rank` populated from the per-result
+    verdicts on the row's labeled corpus."""
+    human_records = human_records or {}
     records = []
-    for row in rows:
+    for idx, row in enumerate(rows, start=1):
         state = corpora[row["corpus"]]
         vec = model.encode([row["query"]])[0]
         results = ranking.rank(
@@ -155,12 +196,22 @@ def evaluate(rows: list[dict], corpora: dict, model) -> list[dict]:
         )
         expected_path_set = {_url_path(u) for u in row["expected_urls"]}
         has_narrowing = bool(expected_sections or expected_pages)
+
+        # Pull the human verdicts for this row's labeled corpus, if any.
+        # Verdicts at ranks 1-5 only — that's all the reviewer was shown.
+        human_rec = human_records.get(idx)
+        human_verdicts = None
+        if human_rec:
+            human_verdicts = (human_rec.get("verdicts") or {}).get(row["corpus"])
+        human_rank = first_human_rank(human_verdicts)
+
         top_results = []
         for i, r in enumerate(results[:AUDIT_TOP_N], start=1):
             url_match = _url_path(r["url"]) in expected_path_set
             full_match = chunk_full_match(
                 r, expected_path_set, expected_sections, expected_pages
             )
+            human_verdict = (human_verdicts or {}).get(f"r{i}") if human_verdicts else None
             top_results.append({
                 "rank": i,
                 "score": r["score"],
@@ -173,8 +224,10 @@ def evaluate(rows: list[dict], corpora: dict, model) -> list[dict]:
                 "source_page": r.get("source_page"),
                 "match": full_match,           # full-hit (URL + narrowing if any)
                 "url_match": url_match,        # URL-only — useful for the audit's tiered flag
+                "human_verdict": human_verdict,  # correct/partial/wrong/None
             })
         records.append({
+            "row_index": idx,
             "corpus": row["corpus"],
             "type": row.get("type", "unknown"),
             "query": row["query"],
@@ -183,6 +236,8 @@ def evaluate(rows: list[dict], corpora: dict, model) -> list[dict]:
             "expected_pages": expected_pages,
             "has_narrowing": has_narrowing,
             "first_rank": rank_,
+            "human_first_rank": human_rank,
+            "human_available": human_verdicts is not None,
             "top_urls": [r["url"] for r in results[:5]],
             "top_results": top_results,
             "notes": row.get("notes", ""),
@@ -190,14 +245,21 @@ def evaluate(rows: list[dict], corpora: dict, model) -> list[dict]:
     return records
 
 
-def aggregate(records: list[dict]) -> dict:
-    """Compute recall@5, hit@1, MRR over a list of per-query records."""
+def aggregate(records: list[dict], rank_field: str = "first_rank") -> dict:
+    """Compute recall@5, hit@1, MRR over a list of per-query records.
+
+    `rank_field` selects which rank column to grade against:
+      - 'first_rank'        (auto-metric — golden_set.jsonl labels)
+      - 'human_first_rank'  (human-metric — per-result verdicts)
+
+    Records where the rank field is None contribute 0 to all three metrics.
+    For the human metric, that includes rows with no completed review."""
     n = len(records)
     if n == 0:
         return {"n": 0, "recall_at_5": 0.0, "hit_at_1": 0.0, "mrr": 0.0}
-    recall5 = sum(1 for r in records if r["first_rank"] is not None and r["first_rank"] <= K_RECALL) / n
-    hit1 = sum(1 for r in records if r["first_rank"] == 1) / n
-    mrr = sum(1.0 / r["first_rank"] if r["first_rank"] else 0.0 for r in records) / n
+    recall5 = sum(1 for r in records if r.get(rank_field) is not None and r[rank_field] <= K_RECALL) / n
+    hit1 = sum(1 for r in records if r.get(rank_field) == 1) / n
+    mrr = sum(1.0 / r[rank_field] if r.get(rank_field) else 0.0 for r in records) / n
     return {"n": n, "recall_at_5": recall5, "hit_at_1": hit1, "mrr": mrr}
 
 
@@ -208,16 +270,11 @@ def _mark(value: float, bar: float) -> str:
     return "✓" if value >= bar else "✗"
 
 
-def write_report(records: list[dict], summary: dict) -> None:
-    """Dump a human-readable breakdown to evals/report.md."""
+def _verdict_section(label: str, summary: dict) -> list[str]:
+    """Emit verdict + bar table for a single metric mode."""
     overall = summary["overall"]
     lines = [
-        "# Retrieval POC — Baseline Report",
-        "",
-        "Generated by `tools/eval_retrieval.py`. Offline run against local",
-        "corpora + `server.ranking.rank()` (no Lambda, no HTTP, no cache).",
-        "",
-        "## Verdict",
+        f"## Verdict — {label}",
         "",
         "| Metric | Value | Bar | Pass |",
         "| --- | --- | --- | --- |",
@@ -226,45 +283,134 @@ def write_report(records: list[dict], summary: dict) -> None:
         f"| MRR | {overall['mrr']:.3f} | ≥ 0.55 | {_mark(overall['mrr'], BAR['mrr'])} |",
         "",
     ]
-
     all_pass = all(overall[k] >= v for k, v in BAR.items())
     if all_pass:
         lines += [
-            "**All three metrics clear the bar.** The retrieval layer is working",
-            "well enough on this golden set that the next investment is either",
-            "Option C (architecture POC: latency / cost / reliability under load)",
-            "or the cheap Tier-2 levers that tackle the specific misses below.",
+            "**All three metrics clear the bar.**",
             "",
         ]
     else:
         failing = [k for k, v in BAR.items() if overall[k] < v]
         lines += [
-            f"**Below bar on: {', '.join(failing)}.** Investment priority is",
-            "the Tier 1-2 / Tier 3 levers in LongTermIdeas.md whose failure modes",
-            "match the diagnosis section below.",
+            f"**Below bar on: {', '.join(failing)}.**",
             "",
         ]
+    return lines
 
-    lines += [
-        "## Per corpus",
+
+def _breakdown_section(label: str, summary: dict) -> list[str]:
+    """Emit per-corpus and per-type tables for one metric mode."""
+    lines = [
+        f"## Per corpus — {label}",
         "",
         "| corpus | n | recall@5 | hit@1 | MRR |",
         "| --- | --- | --- | --- | --- |",
     ]
     for corpus_name, m in summary["by_corpus"].items():
         lines.append(f"| {corpus_name} | {m['n']} | {m['recall_at_5']:.3f} | {m['hit_at_1']:.3f} | {m['mrr']:.3f} |")
-
     lines += [
         "",
-        "## Per query type",
-        "",
-        "Lowest-scoring buckets are the most informative for picking levers.",
+        f"## Per query type — {label}",
         "",
         "| corpus | type | n | recall@5 | hit@1 | MRR |",
         "| --- | --- | --- | --- | --- | --- |",
     ]
     for (corpus_name, type_), m in sorted(summary["by_type"].items()):
         lines.append(f"| {corpus_name} | {type_} | {m['n']} | {m['recall_at_5']:.3f} | {m['hit_at_1']:.3f} | {m['mrr']:.3f} |")
+    lines.append("")
+    return lines
+
+
+def _disagreement_section(records: list[dict]) -> list[str]:
+    """List rows where auto and human disagree on hit-vs-miss in top-5.
+    Only emitted when both metrics are available."""
+    auto_human = [r for r in records if r.get("human_available")]
+    if not auto_human:
+        return []
+
+    auto_hit = lambda r: r["first_rank"] is not None and r["first_rank"] <= K_RECALL
+    human_hit = lambda r: r["human_first_rank"] is not None  # already capped at top-5
+
+    auto_only = [r for r in auto_human if auto_hit(r) and not human_hit(r)]
+    human_only = [r for r in auto_human if human_hit(r) and not auto_hit(r)]
+
+    lines = [
+        "## Auto vs human disagreements",
+        "",
+        f"Out of {len(auto_human)} rows with completed human review:",
+        f"- **{len(auto_only)} rows where auto says hit, human says miss** (auto-label likely too generous)",
+        f"- **{len(human_only)} rows where auto says miss, human says hit** (auto-label likely too narrow)",
+        "",
+        "The disagreements are the work for the auto-vs-human reconciliation step (Phase 2 step 3).",
+        "",
+    ]
+    if auto_only:
+        lines.append("### Auto says hit, human says miss")
+        lines.append("")
+        for r in auto_only:
+            verdicts = [tr.get("human_verdict") or "_" for tr in r["top_results"]]
+            lines.append(f"- **row {r['row_index']} [{r['corpus']}/{r['type']}]** `{r['query']}`")
+            lines.append(f"  - auto first_rank: {r['first_rank']}; human verdicts r1..r5: {' '.join(verdicts)}")
+        lines.append("")
+    if human_only:
+        lines.append("### Auto says miss, human says hit")
+        lines.append("")
+        for r in human_only:
+            verdicts = [tr.get("human_verdict") or "_" for tr in r["top_results"]]
+            lines.append(f"- **row {r['row_index']} [{r['corpus']}/{r['type']}]** `{r['query']}`")
+            lines.append(f"  - auto first_rank: {r['first_rank']}; human verdicts r1..r5: {' '.join(verdicts)}; human first `correct` rank: {r['human_first_rank']}")
+        lines.append("")
+    return lines
+
+
+def write_report(
+    records: list[dict],
+    auto_summary: dict | None,
+    human_summary: dict | None,
+) -> None:
+    """Dump a human-readable breakdown to evals/report.md.
+
+    Pass either or both summary dicts. When both are present, the report
+    shows them side-by-side and includes an auto-vs-human disagreement
+    section."""
+    lines = [
+        "# Retrieval POC — Baseline Report",
+        "",
+        "Generated by `tools/eval_retrieval.py`. Offline run against local",
+        "corpora + `server.ranking.rank()` (no Lambda, no HTTP, no cache).",
+        "",
+    ]
+
+    if auto_summary:
+        lines += _verdict_section("auto-metric", auto_summary)
+    if human_summary:
+        lines += _verdict_section("human-metric", human_summary)
+
+    if auto_summary and human_summary:
+        a, h = auto_summary["overall"], human_summary["overall"]
+        delta = lambda k: h[k] - a[k]
+        sign = lambda x: f"+{x:.3f}" if x >= 0 else f"{x:.3f}"
+        lines += [
+            "## Auto vs human delta (overall)",
+            "",
+            "Positive delta = human-metric is higher (auto-labels too strict).",
+            "Negative delta = human-metric is lower (auto-labels too generous).",
+            "",
+            "| Metric | auto | human | delta |",
+            "| --- | --- | --- | --- |",
+            f"| recall@5 | {a['recall_at_5']:.3f} | {h['recall_at_5']:.3f} | {sign(delta('recall_at_5'))} |",
+            f"| hit@1    | {a['hit_at_1']:.3f} | {h['hit_at_1']:.3f} | {sign(delta('hit_at_1'))} |",
+            f"| MRR      | {a['mrr']:.3f} | {h['mrr']:.3f} | {sign(delta('mrr'))} |",
+            "",
+        ]
+
+    if auto_summary:
+        lines += _breakdown_section("auto-metric", auto_summary)
+    if human_summary:
+        lines += _breakdown_section("human-metric", human_summary)
+
+    if auto_summary and human_summary:
+        lines += _disagreement_section(records)
 
     # Below top-5 are the most diagnostic: expected URL existed in corpus but
     # ranked outside the user-visible top-5 window.
@@ -446,9 +592,47 @@ def write_audit(records: list[dict]) -> None:
     AUDIT_PATH.write_text("\n".join(lines))
 
 
+def _build_summary(records: list[dict], rank_field: str) -> dict:
+    """Aggregate at overall / per-corpus / per-type granularity for a given rank field."""
+    return {
+        "overall": aggregate(records, rank_field),
+        "by_corpus": {
+            c: aggregate([r for r in records if r["corpus"] == c], rank_field)
+            for c in CORPUS_PATHS
+        },
+        "by_type": {
+            (c, t): aggregate([r for r in records if r["corpus"] == c and r["type"] == t], rank_field)
+            for c, t in sorted({(r["corpus"], r["type"]) for r in records})
+        },
+    }
+
+
+def _summary_for_json(summary: dict) -> dict:
+    return {
+        "overall": summary["overall"],
+        "by_corpus": summary["by_corpus"],
+        "by_type": {f"{c}/{t}": m for (c, t), m in summary["by_type"].items()},
+    }
+
+
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument(
+        "--metric",
+        choices=("auto", "human", "both"),
+        default="both",
+        help="Grade against golden_set.jsonl labels (auto), human_review.json verdicts (human), or both (default).",
+    )
+    args = parser.parse_args()
+
     rows = [json.loads(l) for l in GOLDEN_SET_PATH.read_text().splitlines() if l.strip()]
     print(f"loaded {len(rows)} golden-set rows", file=sys.stderr)
+
+    human_records = load_human_review() if args.metric in ("human", "both") else {}
+    if human_records:
+        print(f"loaded {len(human_records)} human-review records", file=sys.stderr)
+    elif args.metric in ("human", "both"):
+        print(f"warning: no human reviews available at {HUMAN_REVIEW_PATH}", file=sys.stderr)
 
     corpora = {name: load_corpus_state(path) for name, path in CORPUS_PATHS.items()}
     for name, s in corpora.items():
@@ -457,25 +641,19 @@ def main() -> int:
     model = MiniLMEmbedder(MODEL_PATH, TOKENIZER_PATH)
     print("loaded embedder", file=sys.stderr)
 
-    records = evaluate(rows, corpora, model)
+    records = evaluate(rows, corpora, model, human_records=human_records)
 
-    summary = {
-        "overall": aggregate(records),
-        "by_corpus": {c: aggregate([r for r in records if r["corpus"] == c]) for c in CORPUS_PATHS},
-        "by_type": {
-            (c, t): aggregate([r for r in records if r["corpus"] == c and r["type"] == t])
-            for c, t in sorted({(r["corpus"], r["type"]) for r in records})
-        },
-    }
+    auto_summary = _build_summary(records, "first_rank") if args.metric in ("auto", "both") else None
+    human_summary = _build_summary(records, "human_first_rank") if args.metric in ("human", "both") and human_records else None
 
-    summary_out = {
-        "overall": summary["overall"],
-        "by_corpus": summary["by_corpus"],
-        "by_type": {f"{c}/{t}": m for (c, t), m in summary["by_type"].items()},
-    }
+    summary_out: dict = {}
+    if auto_summary:
+        summary_out["auto"] = _summary_for_json(auto_summary)
+    if human_summary:
+        summary_out["human"] = _summary_for_json(human_summary)
     print(json.dumps(summary_out, indent=2))
 
-    write_report(records, summary)
+    write_report(records, auto_summary, human_summary)
     print(f"wrote {REPORT_PATH.relative_to(REPO_ROOT)}", file=sys.stderr)
     write_audit(records)
     print(f"wrote {AUDIT_PATH.relative_to(REPO_ROOT)}", file=sys.stderr)

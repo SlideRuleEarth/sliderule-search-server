@@ -16,14 +16,14 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 - r1: wrong 
 - r2: wrong
-- r3: wrong
-- r4: wrong
-- r5: correct
+- r3: partial
+- r4: partial
+- r5: partial
 
 **nsidc:**
 
 - r1: wrong
-- r2: partial
+- r2: wrong
 - r3: partial
 - r4: correct
 - r5: wrong

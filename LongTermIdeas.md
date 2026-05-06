@@ -124,6 +124,17 @@ hours to days; iteration is slower because each A/B requires a rebuild.
 - **int8 embedding quantization** — frees Lambda memory so a bigger
   embedder model fits in the existing image size budget. Not a
   quality lever directly, but unlocks one.
+- **NSIDC PDF text cleanup** — some ATBDs (ATL06, ATL08, ATL24, GEDI L4A)
+  are typeset with line numbers in the margin and page numbers at
+  footers. [tools/build_nsidc_corpus.py](tools/build_nsidc_corpus.py)
+  uses PyMuPDF's plain `page.get_text()` which reads them in with body
+  text, polluting chunks with sequences like `945 ` / `946 ` at line
+  starts and stray digits at chunk ends. Low-impact noise tokens in
+  the lexical index, slight embedding drift, ugly display when an
+  agent surfaces a chunk. Fix: switch to `get_text("dict")`, filter
+  blocks by x-coordinate to drop margin content, then re-chunk and
+  re-run NSIDC reviews. Cheap regex variant possible but risks false-
+  positives on dates / IDs in body text.
 
 ## Tier 4 — Observability & process (the real bottleneck)
 

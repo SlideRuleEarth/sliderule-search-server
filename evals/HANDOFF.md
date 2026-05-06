@@ -112,7 +112,7 @@ this file for "Verdict scale").
 ## How to run
 
 ### Environment
-- Python 3.11+ in `.venv`. Install: `python -m venv .venv && .venv/bin/pip install -r tools/requirements.txt`.
+- Python 3.13 in `.venv` (pinned via `.python-version`). Install: `uv venv && uv pip sync requirements-dev.lock`. See [README.md](../README.md#dev-environment) for full setup.
 - Re-export the embedder if `generated/shared/model.onnx` is missing:
   `.venv/bin/python tools/export_minilm_onnx.py`
 - The corpus files are pre-built and committed; no network needed

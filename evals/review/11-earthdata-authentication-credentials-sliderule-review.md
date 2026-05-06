@@ -18,7 +18,7 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 - r2:wrong 
 - r3:wrong 
 - r4:wrong 
-- r5:wrong 
+- r5:partial 
 
 **nsidc:**
 
@@ -39,7 +39,7 @@ One of: `correct` | `partial` | `wrong`
 Should this query target a different corpus? One of:
 `keep` | `redirect-to-docsearch` | `redirect-to-nsidc` | `both-corpora`
 
-- routing: 
+- routing: keep
 
 ## Human truth (the actual right answer)
 
