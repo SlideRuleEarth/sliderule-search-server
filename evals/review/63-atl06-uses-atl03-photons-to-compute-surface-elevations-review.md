@@ -14,25 +14,25 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 **docsearch:**
 
-- r1: 
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r1: partial
+- r2: partial
+- r3: partial
+- r4: partial
+- r5: partial
 
 **nsidc:**
 
-- r1: 
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r1: wrong
+- r2: partial
+- r3: partial
+- r4: wrong
+- r5: wrong
 
 ## Overall verdict
 
 One of: `correct` | `partial` | `wrong`
 
-- overall: 
+- overall: correct
 
 ## Cross-corpus routing
 
