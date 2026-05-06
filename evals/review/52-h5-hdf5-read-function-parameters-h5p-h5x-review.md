@@ -14,19 +14,19 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 **docsearch:**
 
-- r1: 
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r1: partial
+- r2: partial
+- r3: partial
+- r4: partial
+- r5: partial
 
 **nsidc:**
 
-- r1: 
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r1: partial 
+- r2: wrong
+- r3: wrong
+- r4: wrong
+- r5: partial
 
 ## Overall verdict
 
@@ -39,7 +39,7 @@ One of: `correct` | `partial` | `wrong`
 Should this query target a different corpus? One of:
 `keep` | `redirect-to-docsearch` | `redirect-to-nsidc` | `both-corpora`
 
-- routing: 
+- routing: keep
 
 ## Human truth (the actual right answer)
 
