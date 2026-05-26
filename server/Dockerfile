@@ -32,7 +32,7 @@
 # restricted /sys/devices/system/cpu/*, terminating the container
 # during init. x86_64 Lambda exposes a normal /sys, and cpuinfo works.
 
-FROM public.ecr.aws/lambda/python:3.13
+FROM public.ecr.aws/lambda/python:3.13.2026.05.26.17
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
