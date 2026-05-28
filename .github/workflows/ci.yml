@@ -4,12 +4,11 @@ name: ci
 # required status check for branch protection — if this passes, merging is
 # safe; if it fails, the PR should not merge.
 #
-# Five checks, matching what `make verify` asserts locally:
+# Four checks, matching what `make verify` asserts locally:
 #   1. Python syntax (server/, tools/, skills/) compiles cleanly
 #   2. Committed corpora parse as JSON (both docsearch + nsidc)
 #   3. terraform fmt is clean across terraform/
 #   4. terraform config parses cleanly (no backend to init, so -backend=false)
-#   5. Both skill archives still package
 #
 # No AWS creds required — everything here is read-only against the repo.
 # No docker build — the Lambda image is heavy (torch CPU wheels + MiniLM
@@ -69,12 +68,3 @@ jobs:
         run: |
           terraform init -backend=false -lockfile=readonly
           terraform validate
-
-      # Confirm both skill archives still zip cleanly. Doesn't validate
-      # the skill's network behavior (no deployment exists in CI); just
-      # proves the zip command succeeds and each skill directory is
-      # complete.
-      - name: package skills (sanity)
-        run: |
-          make package-skill-docsearch
-          make package-skill-nsidc

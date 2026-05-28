@@ -91,10 +91,9 @@ generated/docsearch/
 ├── corpus.json                           chunks + embeddings (committed; baked into image)
 └── meta.json                             build metadata (committed)
 
-skills/sliderule-docsearch/               thin HTTP client skill
-├── SKILL.md
-├── requirements.txt                      just `requests`
-└── scripts/search.py
+skills/                                   symlinks into ../sliderule-skills
+├── sliderule-docsearch -> ../../sliderule-skills/sliderule-docsearch
+└── nsidc-reference     -> ../../sliderule-skills/nsidc-reference
 
 tools/
 └── build_docsearch_corpus.py             crawl + chunk + embed docs.slideruleearth.io
@@ -103,8 +102,7 @@ terraform/                                ECR + Lambda + CloudFront + Route 53 +
 scripts/
 ├── deploy_lambda.sh                      docker build → ECR push → update Lambda
 ├── test_image.sh                         build + run image via Lambda RIE locally
-├── smoketest.sh                          curl the deployed endpoints
-└── package_skill.sh                      zip a .skill archive
+└── smoketest.sh                          curl the deployed endpoints
 ```
 
 ## Local iteration
@@ -250,22 +248,12 @@ domain alias.
 - `AWS_REGION` — defaults to `us-east-1`; same for Lambda, ECR, and CloudFront.
 - `terraform/backend.tf` — state is `s3://sliderule/tf-states/search-server.tfstate` with per-domain workspaces.
 
-## Skill packaging
+## Skills
 
-```bash
-make package-skill-docsearch    # → skills/sliderule-docsearch.skill
-make package-skill-nsidc        # → skills/nsidc-reference.skill
-make package-skills             # both
-```
-
-Each `.skill` archive is a zip with the skill directory at the root
-(e.g. `sliderule-docsearch/…`). Packages are ~6 KB — no corpus or
-model bytes bundled, just SKILL.md + the thin Python client.
-
-The packages are environment-independent: the same `.skill` works
-whether it's pointed at `search.testsliderule.org` (current default)
-or `search.slideruleearth.io` (production once we cut over). The
-host is a one-line constant in the skill's `scripts/search.py`.
+The `skills/` directory contains symlinks into the adjacent
+`sliderule-skills` repo, which owns the skill source, packaging, and
+distribution. The symlinks exist here so the corpora and the skills
+that consume them can be inspected side-by-side during development.
 
 ## Operational notes
 

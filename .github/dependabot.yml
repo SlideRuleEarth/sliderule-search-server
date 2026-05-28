@@ -41,23 +41,8 @@ updates:
     commit-message:
       prefix: "tools"
 
-  # Skill client deps (requests). One entry per skill so updates land
-  # independently — the two skills ship as separate .skill archives.
-  - package-ecosystem: "pip"
-    directory: "/skills/sliderule-docsearch"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 2
-    commit-message:
-      prefix: "skills/sliderule-docsearch"
-
-  - package-ecosystem: "pip"
-    directory: "/skills/nsidc-reference"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 2
-    commit-message:
-      prefix: "skills/nsidc-reference"
+  # Skill source lives in the adjacent sliderule-skills repo (skills/* are
+  # symlinks); dependabot for those packages runs there, not here.
 
   # Terraform provider pins in terraform/versions.tf and the
   # committed .terraform.lock.hcl.
