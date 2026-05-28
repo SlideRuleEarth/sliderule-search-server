@@ -6,8 +6,6 @@
 # baked in) fronted by CloudFront via OAC. No S3 artifact hosting, no meta.json
 # polling — a corpus rebuild is just a new image push.
 #
-# Skills are packaged separately via scripts/package_skill.sh.
-#
 ####################################################################################################
 
 SHELL := /bin/bash
@@ -46,7 +44,6 @@ PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/pyt
 
 .PHONY: help clean verify rebuild-corpus-docsearch rebuild-corpus-nsidc \
         build-corpus-image \
-        package-skill-docsearch package-skill-nsidc package-skills \
         freeplay build-image test-image run-image deploy-lambda smoketest query \
         terraform-apply terraform-apply-ecr terraform-destroy check-vars \
         bootstrap-deploy-to-testsliderule bootstrap-deploy-to-slideruleearth \
@@ -94,20 +91,17 @@ help: ## That's me!
 # ---- Local CI (mirrors .github/workflows/ci.yml) --------------------------------------------------
 
 # `make verify` is the one-stop contributor check: py syntax + tf fmt +
-# corpora parse + skills package. The same four steps run in CI as the
-# `verify` job gated by branch protection. If this passes locally, the
-# PR should pass CI.
+# corpora parse. The same steps run in CI as the `verify` job gated by
+# branch protection. If this passes locally, the PR should pass CI.
 #
 # Deliberately *excludes* `make build-image` — the Dockerfile bake pulls
 # torch CPU wheels and downloads the MiniLM model (~1 GB image, several
 # minutes). That path is exercised at deploy time via `make update-<env>`.
-verify: ## Run local CI checks: py syntax, tf fmt, corpora parse, skills package
+verify: ## Run local CI checks: py syntax, tf fmt, corpora parse
 	@python3 -m compileall -q server tools skills
 	@terraform fmt -check -recursive terraform/
 	@python3 -c "import json; json.load(open('generated/docsearch/corpus.json'))"
 	@python3 -c "import json; json.load(open('generated/nsidc/corpus.json'))"
-	@$(MAKE) --no-print-directory package-skill-docsearch > /dev/null
-	@$(MAKE) --no-print-directory package-skill-nsidc > /dev/null
 	@echo "✅ make verify OK"
 
 # ---- Corpus + dev iteration -----------------------------------------------------------------------
@@ -140,14 +134,6 @@ freeplay: ## Interactive search REPL against the committed corpus (no deploy inv
 	  exit 1; \
 	}
 	@cd $(ROOT) && $(PYTHON) -m server.freeplay --corpus-file $(CORPUS_FILE)
-
-package-skill-docsearch: ## Package skills/sliderule-docsearch/ into a .skill zip
-	@bash $(ROOT)/scripts/package_skill.sh sliderule-docsearch
-
-package-skill-nsidc: ## Package skills/nsidc-reference/ into a .skill zip
-	@bash $(ROOT)/scripts/package_skill.sh nsidc-reference
-
-package-skills: package-skill-docsearch package-skill-nsidc ## Package both skills
 
 # ---- Lambda image build + deploy ------------------------------------------------------------------
 

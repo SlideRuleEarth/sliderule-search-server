@@ -85,7 +85,8 @@ skills/
   `/healthz`. Ranking is cosine similarity (MiniLM embeddings) + IDF
   lexical overlap fused via RRF.
 - `skills/` are thin HTTP clients that POST to the hosted endpoint.
-  `make package-skill-<name>` zips them into `.skill` archives.
+  They are symlinks into the adjacent `sliderule-skills` repo, which
+  owns packaging and distribution.
 
 ## Pre-flight validations
 
@@ -97,10 +98,8 @@ skills/
    enforced, not suggested.
 3. JSON parse of both committed corpora — catches truncation /
    invalid escapes before Lambda image bake time.
-4. `make package-skill-docsearch && make package-skill-nsidc` —
-   confirms each skill directory is complete enough to zip.
 
-CI re-runs the same four checks under the `verify` job. If it fails
+CI re-runs the same checks under the `verify` job. If it fails
 on a PR, `make verify` locally will reproduce it.
 
 ## Running the test deploy

@@ -1,15 +1,16 @@
 {
-  "generated_at": "2026-04-27T18:21:01+00:00",
+  "generated_at": "2026-05-07T13:37:50+00:00",
   "summary": {
-    "total_files": 5,
-    "completed": 5,
+    "total_files": 68,
+    "completed": 68,
     "incomplete": 0,
     "overall_verdicts": {
-      "correct": 4,
-      "partial": 1
+      "correct": 31,
+      "partial": 26,
+      "wrong": 11
     },
     "routing_decisions": {
-      "keep": 5
+      "keep": 68
     }
   },
   "records": [
@@ -33,6 +34,22 @@
           "r3": "wrong",
           "r4": "wrong",
           "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||d995c960dace": "correct",
+          "/user_guide/icesat2.html||A.1 Segmented Photon Data - atl03sp||070b1baf046e": "partial",
+          "/user_guide/icesat2.html||1.4 Ancillary Data||8893fca8207c": "partial",
+          "/user_guide/icesat2.html||ICESat-2 Module||64893edf0959": "wrong",
+          "/developer_guide/release_notes/release-v04-15-00.html||Compatibility Changes||a7955d3013dd": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 28||df40c9330cff": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||3.3.1 Range bias determination||bed8cf658e3c": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||2.2 Data Flow Within ATL03||77851d8932b5": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 96||63bbe898408e": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Input Variables||3cca9a734ca8": "wrong"
         }
       },
       "overall_verdict": "correct",
@@ -67,6 +84,22 @@
           "r5": "wrong"
         }
       },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||0a6b4f209e32": "wrong",
+          "/user_guide/icesat2.html||A.2 Elevations - atl06p||bba2c0b85312": "partial",
+          "/user_guide/icesat2.html||2. ATL06 - atl06x||17e48ff8c811": "partial",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||c3ce6434223b": "wrong",
+          "/developer_guide/release_notes/release-v04-15-00.html||Compatibility Changes||a7955d3013dd": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.4.2.5.2 Slant Histogram Along a Specified Surface Slope||cd016f62cadf": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 19||84959833c2bb": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 41||064036ed1789": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 130||9da1839d20a7": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||4.8 Quality and classification flags throughout flow of analysis||00722e8f7e52": "wrong"
+        }
+      },
       "overall_verdict": "partial",
       "routing": "keep",
       "human_truth": {
@@ -90,10 +123,10 @@
       "incomplete": false,
       "verdicts": {
         "docsearch": {
-          "r1": "correct",
-          "r2": "correct",
-          "r3": "correct",
-          "r4": "partial",
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
           "r5": "partial"
         },
         "nsidc": {
@@ -102,6 +135,22 @@
           "r3": "partial",
           "r4": "wrong",
           "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||5. ATL24 - atl24x||46cbf46803a5": "partial",
+          "/developer_guide/articles/atl24_golden_run.html||Background||f235027965fc": "partial",
+          "/developer_guide/articles/atl24_golden_run.html||Statistics||5cb8b2d080c4": "partial",
+          "/developer_guide/articles/atl24_golden_run.html||2025-03-28: ATL24 Processing Run||d32607ed6de4": "wrong",
+          "/getting_started/Examples.html||Examples||753640437778": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||Change History Log||f72eeff00ae6": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Introduction||00a103a9c061": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Data Workflow||29765b13ac1f": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Input Variables||dba14ec21ee6": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||4.5.6 Estimation of short segment bathymetry other subsurface anomalies||3e12f3b601d1": "wrong"
         }
       },
       "overall_verdict": "correct",
@@ -124,9 +173,9 @@
         "docsearch": {
           "r1": "correct",
           "r2": "partial",
-          "r3": "partial",
-          "r4": "wrong",
-          "r5": "wrong"
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "partial"
         },
         "nsidc": {
           "r1": "wrong",
@@ -134,6 +183,22 @@
           "r3": "partial",
           "r4": "wrong",
           "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1.2.2 YAPC Classification||3358d9cd759f": "correct",
+          "/user_guide/icesat2.html||1.2 Photon-selection Parameters||f37cf30e540d": "partial",
+          "/user_guide/icesat2.html||1.6.1 PhoREAL Parameters||20c12a7e5a3c": "wrong",
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "partial",
+          "/user_guide/icesat2.html||A.1 Segmented Photon Data - atl03sp||93e54227aedb": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 111||eb88f1e54ea6": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 112||906874815b7f": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 115||a2f1b20853c8": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Quantile Trees Classification||9f9149600974": "wrong",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||2.3.1.8 Ensemble Classification||376da91e8617": "wrong"
         }
       },
       "overall_verdict": "correct",
@@ -161,11 +226,3082 @@
           "r5": "wrong"
         },
         "nsidc": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1.2.1 Native ATL03 Photon Classification||c09ba3cd4666": "wrong",
+          "/user_guide/icesat2.html||5.1 Query Parameters||1e48c3ebcec0": "correct",
+          "/user_guide/basic_usage.html||Define the Request Parameters||1de8a9eb9c48": "partial",
+          "/developer_guide/release_notes/release-v04-04-00.html||New Features||cb047593fb97": "wrong",
+          "/user_guide/icesat2.html||2. ATL06 - atl06x||9113094fbd83": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||Change History Log||7b39ce1939fc": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 3||f0624912c33b": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.2 Photon Weights||d302fe704fd1": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.4.2.5.2 Slant Histogram Along a Specified Surface Slope||d536d2781993": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 78||bfb83b74458a": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 6,
+      "query": "srt surface reference type parameter",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/06-srt-surface-reference-type-parameter-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "correct"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||2. ATL06 - atl06x||9113094fbd83": "partial",
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "wrong",
+          "/user_guide/icesat2.html||4. ATL13 - atl13x||2827520d4233": "wrong",
+          "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "wrong",
+          "/user_guide/icesat2.html||1.2.1 Native ATL03 Photon Classification||c09ba3cd4666": "correct"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||4.2 Land Ice||7c3019eb2b75": "correct",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 98||d47f62f50265": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||8.0 The Quality Assessment Group||2c3743cdb9fc": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.1 Appendix A – ATL03 Output Parameter Table.||3e6aeba5a49a": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.1 Appendix A – ATL03 Output Parameter Table.||9a499a048cc7": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 7,
+      "query": "how to filter ICESat-2 photons by confidence",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/07-how-to-filter-icesat-2-photons-by-confidence-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "correct",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||ICESat-2 Module||64893edf0959": "wrong",
+          "/user_guide/icesat2.html||1.2.1 Native ATL03 Photon Classification||c09ba3cd4666": "correct",
+          "/user_guide/icesat2.html||5.1 Query Parameters||1e48c3ebcec0": "partial",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||0607ed796370": "partial",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||eb22864fb096": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.2 Overview||bd84d2fac2a9": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.3 Definitions of Variables used in Algorithm||a6c6a64f757b": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.1 Introduction||d313b0a3a558": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.2 Overview||7cb0e7912c4d": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.1 Appendix A – ATL03 Output Parameter Table.||ce8c08247b0a": "partial"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 8,
+      "query": "how to run atl06 with raster DEM sampling",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/08-how-to-run-atl06-with-raster-dem-sampling-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||2. ATL06 - atl06x||17e48ff8c811": "partial",
+          "/user_guide/raster_sampling.html||Overview||58a482e54f3d": "wrong",
+          "/developer_guide/release_notes/release-v03-03-00.html||Major Changes||80112b286165": "partial",
+          "/getting_started/Examples.html||Examples||565e2e775897": "wrong",
+          "/developer_guide/design/SlideRuleWebClient.html||SRWC-5.1: Raster Sampling||d47069cdfacd": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 72||544134c2db23": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 66||d8c58e6f7388": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 117||6566cc045a93": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 57||f45b37393982": "wrong",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||4 Version History||291d99e5f9b6": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 9,
+      "query": "how to use SlideRule Python client install",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/09-how-to-use-sliderule-python-client-install-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "correct",
+          "r3": "correct",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/getting_started/Install.html||PyPI||3af13a099c02": "partial",
+          "/getting_started/Install.html||Installation||82f925b55439": "correct",
+          "/getting_started/Install.html||Developer Install||d214f00bed92": "correct",
+          "/developer_guide/release_notes/release-v01-04-00.html||Required Updates||1d1ce079e9a6": "partial",
+          "/api_reference/gedi.html||init||722200c662ff": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||SlideRule Overview||a9811a62a6d8": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Development Environment||70925ccb617a": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Deployment Environment||81e7dcf47757": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 ATBD Sections||16fd1d34394c": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 10,
+      "query": "what is the X-Series API in SlideRule",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/10-what-is-the-x-series-api-in-sliderule-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/xseries.html||X-Series APIs||ed48047ba1f2": "correct",
+          "/developer_guide/design/SlideRuleWebClient.html||SRWC-4.3: Tutorial||f13ec06b8c0d": "wrong",
+          "/user_guide/icesat2.html||ICESat-2 Module||64893edf0959": "wrong",
+          "/developer_guide/articles/plugins.html||Components of a Plugin||e0bd9a73d50c": "wrong",
+          "/api_reference/sliderule.html||sliderule||fa3d79754c13": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||6aacbf8b81bf": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Development Environment||70925ccb617a": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 ATBD Sections||16fd1d34394c": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Deployment Environment||81e7dcf47757": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 11,
+      "query": "earthdata authentication credentials sliderule",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/11-earthdata-authentication-credentials-sliderule-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/articles/security_model.html||Overview||99a1ee2a4baf": "partial",
+          "/developer_guide/articles/private_clusters.html||SlideRule Authenticator||4c6bc7ff9fb4": "wrong",
+          "/user_guide/raster_sampling.html||Overview||82225a588093": "wrong",
+          "/developer_guide/how_tos/amazon_linux_arm_setup.html||2-Factor Authentication||b2be504e9c57": "wrong",
+          "/background/NASA-Earthdata.html||Steps to Sync from NSIDC||96470b7f3d04": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Historical Perspective||5650508d09fe": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||SlideRule Overview||a9811a62a6d8": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Development Environment||5628a8ed75f6": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 ATBD Sections||16fd1d34394c": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Deployment Environment||81e7dcf47757": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [
+          "https://docs.slideruleearth.io/developer_guide/how_tos/accessing_earthdata_cloud.html"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 12,
+      "query": "output SlideRule results as GeoParquet format",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/12-output-sliderule-results-as-geoparquet-format-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "correct",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/articles/geoparquet.html||Overview||852a861aa437": "correct",
+          "/user_guide/arrow_output.html||Parameters||a99142a25837": "correct",
+          "/user_guide/arrow_output.html||Overview||aca28aa63fbe": "partial",
+          "/developer_guide/articles/geoparquet.html||Constraints||15736aa19106": "partial",
+          "/developer_guide/articles/geoparquet.html||2023-02-24: GeoParquet||65168d0b13b0": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Deployment Environment||81e7dcf47757": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.1 Appendix A – ATL03 Output Parameter Table.||2bf055c08568": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 ATBD Sections||16fd1d34394c": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Page 6||70a4743928c2": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 13,
+      "query": "how to process atl06 elevations",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/13-how-to-process-atl06-elevations-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/api_reference/icesat2.html||atl06||45d8121c5214": "wrong",
+          "/api_reference/icesat2.html||atl08||2f2fd883ca48": "wrong",
+          "/api_reference/icesat2.html||atl06sp||542bff6d1065": "wrong",
+          "/api_reference/icesat2.html||atl06s||f06e6d00f215": "wrong",
+          "/getting_started/Examples.html||Examples||565e2e775897": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 23||94b9dd7b7c65": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||2.1 ATL03 Overview||834cf6f1c5cd": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 32||a1fb3b57dec6": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 66||d8c58e6f7388": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 32||2d971861f7c0": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [
+          "https://docs.slideruleearth.io/user_guide/icesat2.html"
+        ],
+        "sections": [
+          "ICESat-2 Module",
+          "atl06-atl06x"
+        ],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 14,
+      "query": "how to use yapc photon classifier in atl03",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/14-how-to-use-yapc-photon-classifier-in-atl03-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1.2.2 YAPC Classification||3358d9cd759f": "correct",
+          "/user_guide/icesat2.html||1.2 Photon-selection Parameters||f37cf30e540d": "partial",
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "wrong",
+          "/background/ICESat-2.html||References||cefb15cb34e8": "wrong",
+          "/user_guide/icesat2.html||1.6.1 PhoREAL Parameters||20c12a7e5a3c": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 111||eb88f1e54ea6": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 115||a2f1b20853c8": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 112||906874815b7f": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 8||51748692e450": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.1 Appendix A – ATL03 Output Parameter Table.||57ffc99c02bc": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 15,
+      "query": "how to sample ArcticDEM raster mosaic",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/15-how-to-sample-arcticdem-raster-mosaic-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/articles/gdal_vrt_benchmark.html||Overview||f937af000f47": "wrong",
+          "/user_guide/raster_sampling.html||Parameters||5fabd8082ff4": "partial",
+          "/developer_guide/design/SlideRuleWebClient.html||SRWC-5.1: Raster Sampling||d47069cdfacd": "partial",
+          "/getting_started/Examples.html||Examples||565e2e775897": "wrong",
+          "/developer_guide/articles/gdal_vrt_benchmark.html||2022-11-10: VRT Performance Benchmarking||5a2003ef065b": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||4.3.2 Mask Generation||2f73971bbb9b": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 104||da9fa696c58a": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||4.3.2 Mask Generation||d48e4a883b1f": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 66||d8c58e6f7388": "wrong",
+          "/sites/default/files/documents/user-guide/atl06-v006-userguide.pdf||5.2 Date Last Updated||23889b8c79b5": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": "complete answer is in examples github repo"
+      }
+    },
+    {
+      "row_index": 16,
+      "query": "how to subset atl24 bathymetry data",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/16-how-to-subset-atl24-bathymetry-data-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/getting_started/Examples.html||Examples||753640437778": "wrong",
+          "/developer_guide/articles/atl24_golden_run.html||Background||f235027965fc": "partial",
+          "/user_guide/icesat2.html||5. ATL24 - atl24x||46cbf46803a5": "partial",
+          "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "partial",
+          "/developer_guide/articles/atl24_golden_run.html||Statistics||5cb8b2d080c4": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Introduction||00a103a9c061": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Input Variables||abbb4e879762": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Output Variables||c289fe8b56c4": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Data Workflow||29765b13ac1f": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||6aacbf8b81bf": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": "examples exist in examples github repo"
+      }
+    },
+    {
+      "row_index": 17,
+      "query": "how to query atl13 lake by name",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/17-how-to-query-atl13-lake-by-name-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/articles/arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||f532176b2475": "partial",
+          "/user_guide/icesat2.html||4.1 Inland Lake Parameters||3ad4539214ad": "partial",
+          "/getting_started/Examples.html||Examples||753640437778": "wrong",
+          "/developer_guide/release_notes/release-v04-14-00.html||New/Improved Functionality||7ddb4173997f": "wrong",
+          "/developer_guide/articles/arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||069a101f98c6": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||3.4.1 The ATL13 Inland Water Body Mask||cd8f1306fcbd": "partial",
+          "/sites/default/files/documents/user-guide/atl13-v007-userguide.pdf||1.2.2.3 METADATA||e18bd022f13b": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||4.7.1.2 Water Body Reference Identification Scheme:||5379d0cee6be": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||4.1 Overall Approach||f572d5ff50e4": "wrong",
+          "/sites/default/files/documents/user-guide/atl13-v007-userguide.pdf||2.3.2.1 Inland Water Backscatter||4c114244033b": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": "real answer is in examples github repo"
+      }
+    },
+    {
+      "row_index": 18,
+      "query": "when was atl24x added to sliderule release",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/18-when-was-atl24x-added-to-sliderule-release-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/release_notes/release-v04-11-00.html||Major Changes||9b1e72662c45": "wrong",
+          "/user_guide/icesat2.html||5. ATL24 - atl24x||46cbf46803a5": "wrong",
+          "/user_guide/icesat2.html||5.2 Ancillary Data||bcc7377ec4fe": "wrong",
+          "/developer_guide/release_notes/release-v05-00-00.html||New Functionality||437886bc4953": "partial",
+          "/developer_guide/articles/v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||6aacbf8b81bf": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 ATBD Sections||16fd1d34394c": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Deployment Environment||81e7dcf47757": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Development Environment||70925ccb617a": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 19,
+      "query": "yapc added to sliderule version release notes",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/19-yapc-added-to-sliderule-version-release-notes-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/articles/private_clusters.html||2026-01-20: Private Clusters||0093f9b6c44c": "wrong",
+          "/developer_guide/articles/v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "wrong",
+          "/developer_guide/release_notes/release-v03-05-00.html||Release v3.5.x||3bc216cf6c43": "wrong",
+          "/developer_guide/release_notes/web-release-v04-00-03.html||Summary||ae2f42b24210": "wrong",
+          "/developer_guide/release_notes/release-v01-01-00.html||Release v1.1.x||a3ffbacd7c5f": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||SlideRule Overview||a9811a62a6d8": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Deployment Environment||81e7dcf47757": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||6aacbf8b81bf": "wrong",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||1.2.3 Naming Convention||1263659710d2": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": "docsearch",
+        "urls": [
+          "https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-03-00.html"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 20,
+      "query": "sliderule version 5 breaking changes new functionality",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/20-sliderule-version-5-breaking-changes-new-functionality-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "correct",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/release_notes/release-v02-00-00.html||New Features||3caa4a2149b0": "wrong",
+          "/user_guide/versioning.html||Library Version ( version )||d307397026a1": "wrong",
+          "/developer_guide/release_notes/release-v05-00-00.html||Breaking Changes||22aedffe0040": "wrong",
+          "/user_guide/versioning.html||Note on Reproducibility||37df71cfa27c": "correct",
+          "/developer_guide/articles/v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Development Environment||70925ccb617a": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Deployment Environment||81e7dcf47757": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||SlideRule Overview||a9811a62a6d8": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 ATBD Sections||16fd1d34394c": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 21,
+      "query": "recent changes to atl06x release notes",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/21-recent-changes-to-atl06x-release-notes-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/articles/v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "wrong",
+          "/developer_guide/articles/v5_server_release.html||TL;DR||97a4bcf60095": "wrong",
+          "/developer_guide/release_notes/release-v04-11-00.html||Major Changes||9b1e72662c45": "wrong",
+          "/developer_guide/release_notes/release-v05-00-00.html||New Functionality||437886bc4953": "wrong",
+          "/developer_guide/release_notes/release-v05-02-00.html||Issues Resolved||41b831909476": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||1.5 Goals of ICESat-2 Inland Water Body Height Data Products||3a3e70f92e2e": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||7.7 Other ATLAS and Spacecraft Parameters||f69c9ea80532": "wrong",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||4 Version History||2d28f28a981a": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||7.2.1 ATLAS Start Pulse Detector||1c5394d504fc": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.1 Appendix A – ATL03 Output Parameter Table.||945f1fbe8b26": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": "docsearch",
+        "urls": [
+          "https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-03-00.html"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 22,
+      "query": "GEDI L4A python API parameters",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/22-gedi-l4a-python-api-parameters-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "correct"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/api_reference/gedi.html||gedi04a||3ab90d39fcad": "partial",
+          "/developer_guide/release_notes/release-v03-01-00.html||Major Changes||d871e3c7ba7f": "wrong",
+          "/user_guide/gedi.html||1. Overview||6348e5e66ae6": "wrong",
+          "/api_reference/gedi.html||gedi||589c662cecad": "partial",
+          "/api_reference/gedi.html||init||722200c662ff": "correct"
+        },
+        "nsidc": {
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 5||a262c8783856": "wrong",
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 14||69244fece436": "wrong",
+          "/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf||Page 1||9330d64921ea": "wrong",
+          "/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf||Page 22||251c8c0cb116": "wrong",
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 17||38dabbdaf3d7": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 23,
+      "query": "raster sampling API function parameters",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/23-raster-sampling-api-function-parameters-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/raster_sampling.html||Parameters||1ba060bf57d6": "partial",
+          "/user_guide/raster_sampling.html||Parameters||460af08466c2": "partial",
+          "/developer_guide/design/SlideRuleWebClient.html||SRWC-3.3: Advanced Mode||a0e154b47530": "wrong",
+          "/user_guide/raster_sampling.html||Parameters||3b611f9ff586": "wrong",
+          "/developer_guide/release_notes/release-v04-00-00.html||Major Changes||92bde9ab6e57": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 72||544134c2db23": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||2.4.2.1 /atlas_impulse_response/pce1_spot1 or /pce2_spot3||f64100d0f967": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||4.5.2 Solution Approach||85377d201339": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||2.3.3 The Multiple Altimeter Beam Experimental Lidar (MABEL)||319a41878b45": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||4.5.2 Solution Approach||69cb01c8f3ce": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 24,
+      "query": "getting canopy height from atl03 photons using atl08",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/24-getting-canopy-height-from-atl03-photons-using-atl08-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1.2.3 ATL08 Classification||6ee455825e62": "partial",
+          "/user_guide/icesat2.html||A.1 Segmented Photon Data - atl03sp||93e54227aedb": "partial",
+          "/user_guide/icesat2.html||1.6 PhoREAL Algorithm||776152ea628f": "partial",
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||d995c960dace": "partial",
+          "/user_guide/icesat2.html||1.6 PhoREAL Algorithm||25a82f7a4ab0": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||4.2 Date Last Updated||2cf680d446ca": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 7||42b1b847a88a": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 44||0d70d312e416": "partial",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||2.3.1 Noise Filtering||b655270e239d": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 54||38951cd6c2a3": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 25,
+      "query": "add ancillary fields to sliderule atl06 output",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/25-add-ancillary-fields-to-sliderule-atl06-output-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||2.1 Ancillary Data||57a04e6544d8": "partial",
+          "/developer_guide/release_notes/release-v04-01-00.html||Release v4.1.x||30ee1d50c930": "wrong",
+          "/user_guide/icesat2.html||3.2 Ancillary Data||966dc60d4f38": "wrong",
+          "/user_guide/icesat2.html||5.2 Ancillary Data||bcc7377ec4fe": "wrong",
+          "/user_guide/icesat2.html||4.2 Ancillary Data||e406a4a58751": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 53||b9ab158b5df5": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Deployment Environment||81e7dcf47757": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 6||f5d87849c028": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 69||7d4eb1b667e8": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 26,
+      "query": "how does ATL03 signal finding algorithm work",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/26-how-does-atl03-signal-finding-algorithm-work-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||eb22864fb096": "partial",
+          "/user_guide/icesat2.html||1.5.2 ATL06-SR Ancillary Data||f1d3131e6e6c": "wrong",
+          "/user_guide/icesat2.html||1.2.1 Native ATL03 Photon Classification||c09ba3cd4666": "wrong",
+          "/api_reference/icesat2.html||atl08||2f2fd883ca48": "wrong",
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||d995c960dace": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||List of Tables||f3a17663e89e": "wrong",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||2.3.1 Noise Filtering||c51b397c208a": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 30||d58b31b2d4c8": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 95||0b2c4e138ae7": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.1 Appendix A – ATL03 Output Parameter Table.||eff3b45d5c57": "partial"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": "nsidc",
+        "urls": [
+          "https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf"
+        ],
+        "sections": [
+          "5.1.4"
+        ],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 27,
+      "query": "how does ATL06 surface fit algorithm compute elevation",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/27-how-does-atl06-surface-fit-algorithm-compute-elevation-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "correct",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1.5.2 ATL06-SR Ancillary Data||f1d3131e6e6c": "wrong",
+          "/user_guide/icesat2.html||A.2 Elevations - atl06p||bba2c0b85312": "wrong",
+          "/developer_guide/release_notes/release-v04-15-00.html||Compatibility Changes||a7955d3013dd": "partial",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||0a6b4f209e32": "partial",
+          "/user_guide/icesat2.html||1.5 ATL06-SR Algorithm||b6e408a2c938": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.4.2.5.2 Slant Histogram Along a Specified Surface Slope||cd016f62cadf": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 73||baeeac20a65c": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 56||505714ad6488": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 33||b9e0bf1a008f": "correct",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||5.3.3 Compute signal photon histogram of long segments per ground track||4c611976da0a": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 28,
+      "query": "how does ATL08 classify photons into ground canopy noise",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/28-how-does-atl08-classify-photons-into-ground-canopy-noise-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "wrong",
+          "r3": "correct",
+          "r4": "correct",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1.6.2 ATL08-PhoREAL Ancillary Data||c4fed5dee750": "partial",
+          "/developer_guide/release_notes/release-v01-01-00.html||New Features||3186822117a0": "wrong",
+          "/user_guide/icesat2.html||A.1 Segmented Photon Data - atl03sp||93e54227aedb": "partial",
+          "/user_guide/icesat2.html||1.6 PhoREAL Algorithm||776152ea628f": "partial",
+          "/user_guide/icesat2.html||1.5 ATL06-SR Algorithm||a4f5cc1c7001": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||2.3.1 Noise Filtering||b655270e239d": "correct",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||4.2 Date Last Updated||2cf680d446ca": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 76||bc0136af1c3f": "correct",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||2.3.5 Refining the Photon Classifications||6a486fdc410a": "correct",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 31||ea465dbdb7b1": "partial"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 29,
+      "query": "how does ATL13 derive inland water surface height",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/29-how-does-atl13-derive-inland-water-surface-height-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||4. ATL13 - atl13x||2827520d4233": "partial",
+          "/user_guide/icesat2.html||4.1 Inland Lake Parameters||3ad4539214ad": "wrong",
+          "/developer_guide/articles/arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||f532176b2475": "wrong",
+          "/getting_started/Examples.html||Examples||753640437778": "wrong",
+          "/api_reference/icesat2.html||atl13s||0252096e0bd1": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||Abstract||73db446d716e": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||1.2 Data Product Overview||b563186f880a": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||Change History Log||e50c7505e776": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||1.5 Goals of ICESat-2 Inland Water Body Height Data Products||3a3e70f92e2e": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||2.0 PHYSICS OF OPEN WATER||65b338bdde23": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": "nsidc",
+        "urls": [
+          "https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf"
+        ],
+        "sections": [
+          "4.1"
+        ],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 30,
+      "query": "ATL24 PointNet++ bathymetric photon classification",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/30-atl24-pointnet-bathymetric-photon-classification-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "correct"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/articles/atl24_golden_run.html||Background||f235027965fc": "partial",
+          "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "partial",
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "partial",
+          "/user_guide/icesat2.html||1.2 Photon-selection Parameters||f37cf30e540d": "partial",
+          "/user_guide/icesat2.html||5.1 Query Parameters||1e48c3ebcec0": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||2.3.1.4 PointNet++ Classification||b3962f7d682c": "partial",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||2.3.1.8 Ensemble Classification||0e1080adcc8e": "partial",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||2.3.1.4 PointNet++ Classification||16a9d3858fd3": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 ATBD Sections||07cff066838d": "partial",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||2.3.1.4 PointNet++ Classification||7bff0347ff0e": "correct"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 31,
+      "query": "GEDI L4A biomass estimation from waveforms algorithm",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/31-gedi-l4a-biomass-estimation-from-waveforms-algorithm-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/gedi.html||1. Overview||6348e5e66ae6": "partial",
+          "/api_reference/gedi.html||gedi01b||6f8d3aae9e3b": "wrong",
+          "/developer_guide/release_notes/release-v03-01-00.html||Major Changes||d871e3c7ba7f": "wrong",
+          "/developer_guide/release_notes/release-v03-02-00.html||Issues Resolved||386237c608fc": "wrong",
+          "/api_reference/gedi.html||gedi04a||3ab90d39fcad": "wrong"
+        },
+        "nsidc": {
+          "/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf||Page 3||30db14d238ec": "wrong",
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 17||dc0c430d8ff4": "wrong",
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 1||8ed4cd33b934": "wrong",
+          "/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf||Page 1||9330d64921ea": "wrong",
+          "/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf||Page 2||dc448a3457be": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": "nsidc",
+        "urls": [
+          "https://data.ornldaac.earthdata.nasa.gov/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": "\"broad-scope query — entire ATBD is on-topic\""
+      }
+    },
+    {
+      "row_index": 32,
+      "query": "ATL03 geophysical corrections ocean tides solid earth",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/32-atl03-geophysical-corrections-ocean-tides-solid-earth-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "correct",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/background/ICESat-2.html||References||cefb15cb34e8": "wrong",
+          "/user_guide/icesat2.html||2. ATL06 - atl06x||9113094fbd83": "partial",
+          "/developer_guide/release_notes/release-v04-09-00.html||Changes||326421c1352f": "partial",
+          "/developer_guide/release_notes/release-v04-09-00.html||Release v4.9.x||e9504c6ca9ba": "wrong",
+          "/developer_guide/release_notes/release-v05-03-00.html||Release v5.3.x||e822625faff8": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/user-guide/atl06-v006-userguide.pdf||1.2.3 File Contents||f6b3dbe2a7dc": "wrong",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||1.2.3 File Contents||393a551e4653": "wrong",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||2.3.2.2 Photon round-trip range correction||f005e4810541": "correct",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||1.2.3 File Contents||9f9c9731206f": "wrong",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||Appendix A – ICEsat-2/atlas description||dadee56bc22c": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 33,
+      "query": "ATL08 canopy height calculation method",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/33-atl08-canopy-height-calculation-method-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/release_notes/release-v02-01-00.html||Known Issues||7901d640a188": "wrong",
+          "/developer_guide/release_notes/release-v03-00-00.html||Issues Resolved||16b7893d8362": "wrong",
+          "/user_guide/icesat2.html||3. ATL08 - atl08x||f9ba44faf8de": "wrong",
+          "/user_guide/icesat2.html||1.6 PhoREAL Algorithm||776152ea628f": "wrong",
+          "/developer_guide/design/SlideRuleWebClient.html||Appendix A. Parameter Components||5e8288a779c6": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 7||42b1b847a88a": "wrong",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||2.3.2.5 Ground-Finding Filter||c17406d20c6f": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 121||cd9d9642f5c8": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 49||d8d41e1a1dad": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 44||0d70d312e416": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 34,
+      "query": "ATL03 HDF5 file structure data groups photon fields",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/34-atl03-hdf5-file-structure-data-groups-photon-fields-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||eb22864fb096": "wrong",
+          "/user_guide/icesat2.html||1.4 Ancillary Data||8893fca8207c": "partial",
+          "/api_reference/icesat2.html||atl03s||adaec3f171c8": "wrong",
+          "/api_reference/icesat2.html||atl03v||e664bddabcbf": "wrong",
+          "/developer_guide/release_notes/release-v01-01-00.html||New Features||3186822117a0": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.2.5 HDF5 Dataset Information||3770a109329b": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||2.4 ATL03 Data Structure for Each Ground Track||b032fdc5987f": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||9.0 METADATA||903d8d4818bd": "partial",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||1.2.4.1 METADATA||2c1bd61a69cd": "partial",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||1.2.4.5 gt1l–gt3r||6ccab8a1fee9": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 35,
+      "query": "ATL06 quality flags values interpretation",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/35-atl06-quality-flags-values-interpretation-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "correct"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1.2.1 Native ATL03 Photon Classification||c09ba3cd4666": "partial",
+          "/user_guide/icesat2.html||3.1 Quality Filter Parameters||df581eabae98": "wrong",
+          "/developer_guide/release_notes/release-v04-08-00.html||General Changes||8f7b8fdc5dfd": "wrong",
+          "/user_guide/icesat2.html||A.1 Segmented Photon Data - atl03sp||02e61a94cb11": "wrong",
+          "/developer_guide/release_notes/release-v04-00-00.html||Issues Resolved||536d2a63f8a0": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 96||63bbe898408e": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||7.7.5 Geolocation and Calibration Data Quality flag||79d6549c2d68": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Quality and Filtering Flags||d2f6e0d77b9d": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Quality and Filtering Flags||35546b5cdf53": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 57||69d59a205bc9": "correct"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 36,
+      "query": "ATL08 terrain classification output variables HDF5",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/36-atl08-terrain-classification-output-variables-hdf5-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
           "r1": "wrong",
           "r2": "wrong",
           "r3": "wrong",
           "r4": "partial",
           "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||3.1 Quality Filter Parameters||df581eabae98": "wrong",
+          "/developer_guide/release_notes/release-v04-09-00.html||Changes||326421c1352f": "wrong",
+          "/api_reference/icesat2.html||atl08||2f2fd883ca48": "wrong",
+          "/user_guide/icesat2.html||1.2.3 ATL08 Classification||6ee455825e62": "partial",
+          "/developer_guide/release_notes/release-v01-01-00.html||New Features||3186822117a0": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||1.2.5 Naming Convention||a212770ae9de": "correct",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||1.2.2 ATLAS/ICESat-2 Description||4c945ee27730": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 34||b3a5530ddc82": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 7||42b1b847a88a": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Classification Algorithms||87253d15f905": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 37,
+      "query": "ATL13 file naming convention granule filename",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/37-atl13-file-naming-convention-granule-filename-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/api_reference/icesat2.html||atl13s||0252096e0bd1": "wrong",
+          "/user_guide/icesat2.html||4.2 Ancillary Data||e406a4a58751": "wrong",
+          "/developer_guide/articles/arbitrary_code_execution.html||User Lua Script||7dd7c49cacac": "wrong",
+          "/developer_guide/articles/arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||069a101f98c6": "wrong",
+          "/developer_guide/release_notes/release-v05-01-00.html||Issues Resolved||320e145d2df3": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/user-guide/atl13-v007-userguide.pdf||1.2.3 File Naming Convention||552ab850803a": "correct",
+          "/sites/default/files/documents/user-guide/atl13-v007-userguide.pdf||1.2.3 File Naming Convention||4913820f69ff": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 35||7baeaffdccbf": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Classification Algorithms||87253d15f905": "wrong",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||1.2.3 Naming Convention||1263659710d2": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 38,
+      "query": "ATL24 file contents and spatial coverage",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/38-atl24-file-contents-and-spatial-coverage-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/articles/atl24_golden_run.html||Lessons Learned||303fe54ca025": "wrong",
+          "/developer_guide/articles/atl24_golden_run.html||Background||f235027965fc": "partial",
+          "/developer_guide/articles/atl24_golden_run.html||Statistics||5cb8b2d080c4": "wrong",
+          "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "wrong",
+          "/getting_started/Examples.html||Examples||753640437778": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||1.3.2 Resolution||980cf1b8d31c": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Page 4||5668ca7ab5cb": "wrong",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||1.2.2 File Contents||c3aa3366be70": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Performance Assessment and Validation||83e2f2e4fc95": "wrong",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||1.2.3 Naming Convention||75b4d02162c1": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 39,
+      "query": "GEDI L4A footprint geolocation variables AGBD",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/39-gedi-l4a-footprint-geolocation-variables-agbd-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/gedi.html||3.4 L4A Footprints||e598857c2fc7": "partial",
+          "/user_guide/gedi.html||1. Overview||6348e5e66ae6": "partial",
+          "/api_reference/gedi.html||gedi04a||3ab90d39fcad": "wrong",
+          "/background/GEDI.html||References||9d5168f2bfa1": "wrong",
+          "/user_guide/gedi.html||3.2 L2A Footprints||ac52efcdf4b5": "wrong"
+        },
+        "nsidc": {
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 3||cc54512680f2": "wrong",
+          "/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf||Page 10||4cb9b0f16f7f": "partial",
+          "/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf||Page 9||35ddacecea61": "partial",
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 2||abd77268b628": "partial",
+          "/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf||Page 1||9330d64921ea": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 40,
+      "query": "ATL03 h_ph photon height variable description",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/40-atl03-h-ph-photon-height-variable-description-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||d995c960dace": "partial",
+          "/user_guide/icesat2.html||1.3 Photon-extent Parameters||73aebaf1749a": "wrong",
+          "/user_guide/icesat2.html||1.5.1 ATL06-SR Parameters||1d18546f1905": "wrong",
+          "/user_guide/icesat2.html||5. ATL24 - atl24x||280d7018964e": "wrong",
+          "/user_guide/icesat2.html||1.4 Ancillary Data||8893fca8207c": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 96||188468c63d80": "correct",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||4 Version History||2d28f28a981a": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||6.3.9 Atmospheric Delay Correction||d3a544c743a8": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||6.2 List of Geophysical Corrections||c954f704d193": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Input Variables||dba14ec21ee6": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 41,
+      "query": "ATL06 data groups structure for land ice",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/41-atl06-data-groups-structure-for-land-ice-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||eb22864fb096": "wrong",
+          "/background/NASA-Earthdata.html||NSIDC||108ef1527cb9": "wrong",
+          "/developer_guide/design/SlideRuleWebClient.html||SRWC-5.1: Raster Sampling||d47069cdfacd": "wrong",
+          "/user_guide/icesat2.html||3. ATL08 - atl08x||5ec88dff9339": "wrong",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||c3ce6434223b": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 53||0782ff08a89a": "wrong",
+          "/sites/default/files/documents/user-guide/atl06-v006-userguide.pdf||1.2.4.5 quality_assessment||32b7e4221cb5": "partial",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||1.2.4.6 Dimension Scales||a79ee98f07dd": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 55||ae38ef06d09b": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 53||b9ab158b5df5": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 42,
+      "query": "ATL08 DRAGANN noise filtering algorithm",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/42-atl08-dragann-noise-filtering-algorithm-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1.5 ATL06-SR Algorithm||a4f5cc1c7001": "wrong",
+          "/user_guide/icesat2.html||1.6.2 ATL08-PhoREAL Ancillary Data||c4fed5dee750": "partial",
+          "/user_guide/icesat2.html||1.2.3 ATL08 Classification||6ee455825e62": "partial",
+          "/developer_guide/release_notes/release-v01-01-00.html||New Features||3186822117a0": "wrong",
+          "/user_guide/icesat2.html||1.6 PhoREAL Algorithm||776152ea628f": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 15||1b53247b0ac2": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 95||0b2c4e138ae7": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 2||a26428573892": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 57||f45b37393982": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 102||6045537835cd": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 43,
+      "query": "ATL24 ensemble classification bathymetry",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/43-atl24-ensemble-classification-bathymetry-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/articles/atl24_golden_run.html||Background||f235027965fc": "partial",
+          "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "partial",
+          "/developer_guide/release_notes/release-v04-07-00.html||Known Issues and Remaining Tasks||7d1ca0684a85": "partial",
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "partial",
+          "/user_guide/icesat2.html||5.1 Query Parameters||1e48c3ebcec0": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Data Workflow||eb6784875215": "partial",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||2.3 Processing||5686ed85f7ec": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Known Issues||e21003fee215": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Quality and Filtering Flags||80874e5adfc7": "partial",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||2.3.1.8 Ensemble Classification||0e1080adcc8e": "partial"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 44,
+      "query": "ATL13 processing workflow and goals",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/44-atl13-processing-workflow-and-goals-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/api_reference/icesat2.html||atl13sp||88f36f8cef26": "wrong",
+          "/developer_guide/articles/arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||f532176b2475": "partial",
+          "/user_guide/icesat2.html||4. ATL13 - atl13x||2827520d4233": "partial",
+          "/developer_guide/articles/arbitrary_code_execution.html||User Python Script||8d7f821848b7": "wrong",
+          "/developer_guide/articles/arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||069a101f98c6": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Input Variables||3cca9a734ca8": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||1.5 Goals of ICESat-2 Inland Water Body Height Data Products||3a3e70f92e2e": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Data Workflow||29765b13ac1f": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Page 4||5668ca7ab5cb": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [
+          "https://nsidc.org/sites/default/files/documents/user-guide/atl13-v007-userguide.pdf"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": "\"broad-scope: entire ATBD covers this query; URL-only match by design\""
+      }
+    },
+    {
+      "row_index": 45,
+      "query": "strong versus weak beams ICESat-2 ATLAS",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/45-strong-versus-weak-beams-icesat-2-atlas-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/background/ICESat-2.html||Mission||1aeabc060090": "partial",
+          "/background/ICESat-2.html||Mission||d5f1a63b3c0a": "partial",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||eb22864fb096": "wrong",
+          "/developer_guide/release_notes/release-v01-01-00.html||New Features||222e72fa2731": "wrong",
+          "/developer_guide/release_notes/release-v02-00-00.html||Release v2.0.x||b813724f4f3f": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||1.1 Background||e338b350372f": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||7.5 The Spacecraft Orientation Parameter||8fc09fd04d01": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.4 Algorithm Implementation||f687b96b0551": "partial",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||2.2 Acquisition||fcc221755007": "partial",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||1.2.2 ATLAS/ICESat-2 Description||060f16af74b8": "partial"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 46,
+      "query": "how ATL08 uses ATL03 photons for classification",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/46-how-atl08-uses-atl03-photons-for-classification-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1.2 Photon-selection Parameters||f37cf30e540d": "partial",
+          "/user_guide/icesat2.html||1.2.3 ATL08 Classification||6ee455825e62": "partial",
+          "/developer_guide/release_notes/release-v01-01-00.html||New Features||3186822117a0": "wrong",
+          "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "wrong",
+          "/developer_guide/release_notes/release-v04-07-00.html||Development Updates||b0e1a16172eb": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||2.3.1 Noise Filtering||b655270e239d": "partial",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||3 SOFTWARE AND TOOLS||3bac3fabbf30": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 28||df40c9330cff": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 96||63bbe898408e": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.1 Introduction||47bc4adb4be7": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 47,
+      "query": "photon classification confidence values ATL03",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/47-photon-classification-confidence-values-atl03-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1.2.1 Native ATL03 Photon Classification||c09ba3cd4666": "correct",
+          "/user_guide/icesat2.html||1.2.3 ATL08 Classification||6ee455825e62": "wrong",
+          "/user_guide/icesat2.html||1.2 Photon-selection Parameters||f37cf30e540d": "wrong",
+          "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "wrong",
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||2.3 ATL03 ATBD Sections||a615a7f8ccde": "correct",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Quality and Filtering Flags||d2f6e0d77b9d": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 96||63bbe898408e": "partial",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||1.2.2.2 gt1l–gt3r||23978cb0d105": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.2 Overview||bd84d2fac2a9": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 48,
+      "query": "ATLAS laser altimeter instrument specifications",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/48-atlas-laser-altimeter-instrument-specifications-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/background/ICESat-2.html||Mission||1aeabc060090": "partial",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||eb22864fb096": "partial",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||0607ed796370": "wrong",
+          "/background/ICESat-2.html||Mission||d5f1a63b3c0a": "wrong",
+          "/user_guide/icesat2.html||A.2 Elevations - atl06p||bba2c0b85312": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 24||c36827e8236a": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||1.1 Background||2649b7e49f14": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||1.3 ICESat-2 ATLAS Instrument||729faa76ff5b": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 104||975e60ebcb50": "wrong",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||1.2.2 ATLAS/ICESat-2 Description||644d06d2696a": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 49,
+      "query": "ATL03 photon geolocation algorithm method",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/49-atl03-photon-geolocation-algorithm-method-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||1.6.1 PhoREAL Parameters||20c12a7e5a3c": "wrong",
+          "/background/ICESat-2.html||References||cefb15cb34e8": "wrong",
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||d995c960dace": "wrong",
+          "/user_guide/icesat2.html||A.1 Segmented Photon Data - atl03sp||070b1baf046e": "wrong",
+          "/api_reference/icesat2.html||atl03sp||5ca15cc8bba2": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||2.3 ATL03 ATBD Sections||28d2b34b593c": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||3.1 The ICESat-2 Geolocation Along-Track Segments||fdb940fc2436": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||2.3 ATL03 ATBD Sections||84f38e84cf72": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||3.1 The ICESat-2 Geolocation Along-Track Segments||3acf04c09d3c": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||Change History Log||90306ad5bd4b": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 50,
+      "query": "GEDI shot footprint size geometry",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/50-gedi-shot-footprint-size-geometry-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/gedi.html||3. Returned data||5554450744cb": "partial",
+          "/user_guide/gedi.html||3.2 L2A Footprints||ac52efcdf4b5": "partial",
+          "/user_guide/gedi.html||3.4 L4A Footprints||e598857c2fc7": "partial",
+          "/user_guide/gedi.html||1. Overview||6348e5e66ae6": "partial",
+          "/developer_guide/design/SlideRuleWebClient.html||Appendix A. Parameter Components||37b28f75079b": "wrong"
+        },
+        "nsidc": {
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 6||808f26c93737": "partial",
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 11||77c404bf8b08": "partial",
+          "/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf||Page 19||63cd2b4799a8": "partial",
+          "/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf||Page 14||21045659abd3": "partial",
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 42||9c9a3df7f690": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 51,
+      "query": "sliderule module initialization session setup",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/51-sliderule-module-initialization-session-setup-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/release_notes/release-v05-00-00.html||Breaking Changes||22aedffe0040": "wrong",
+          "/api_reference/sliderule.html||set_url||55245ca418c0": "wrong",
+          "/user_guide/versioning.html||Python Client||fc32973556e7": "wrong",
+          "/developer_guide/articles/private_clusters.html||Access||605a000fd120": "wrong",
+          "/getting_started/Getting-Started.html||Common Package Modules||e9bd3e299b74": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Deployment Environment||81e7dcf47757": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||SlideRule Overview||a9811a62a6d8": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Development Environment||70925ccb617a": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 ATBD Sections||16fd1d34394c": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [
+          "https://docs.testsliderule.org/api_reference/sliderule.html"
+        ],
+        "sections": [
+          "init"
+        ],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 52,
+      "query": "h5 hdf5 read function parameters h5p h5x",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/52-h5-hdf5-read-function-parameters-h5p-h5x-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/endpoints.html||h5p||a1cb4afc4323": "partial",
+          "/api_reference/h5.html||h5||f2f5311479d0": "partial",
+          "/developer_guide/endpoints.html||h5||23d07ee1e83d": "partial",
+          "/developer_guide/articles/h5coro.html||H5Coro::read||3acea025f538": "partial",
+          "/api_reference/h5.html||h5x||25467da6e316": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.2.5 HDF5 Dataset Information||d1b8a182cc4d": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.2.5 HDF5 Dataset Information||3770a109329b": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Classification Algorithms||87253d15f905": "wrong",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||1.2.4.5 gt1l–gt3r||6ccab8a1fee9": "wrong",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||1.2.5 Naming Convention||a212770ae9de": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 53,
+      "query": "icesat2 atl06p python function parameters",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/53-icesat2-atl06p-python-function-parameters-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/api_reference/icesat2.html||atl06p||f36997961b08": "correct",
+          "/developer_guide/release_notes/release-v04-00-00.html||Breaking Changes||1e652175209f": "wrong",
+          "/user_guide/basic_usage.html||Issue the Processing Request||e641ea830a46": "partial",
+          "/api_reference/icesat2.html||init||4c52601e0aad": "wrong",
+          "/api_reference/icesat2.html||atl13sp||88f36f8cef26": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 58||e2986b76a8f7": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||2.0 PHYSICS OF OPEN WATER||65b338bdde23": "wrong",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||1.2.4.5 gt1l–gt3r||6ccab8a1fee9": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||2.1 ATL03 Overview||c795c0af726c": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||7.2.2 ATLAS Transmitter Echo Path||5e995beefcc4": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 54,
+      "query": "earthdata CMR search function signature",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/54-earthdata-cmr-search-function-signature-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/api_reference/earthdata.html||cmr||fe2250948821": "correct",
+          "/api_reference/earthdata.html||search||1b0585b02317": "partial",
+          "/api_reference/earthdata.html||stac||6173fb13f41c": "partial",
+          "/developer_guide/release_notes/release-v04-20-00.html||Issues Resolved||198ce303d1d5": "wrong",
+          "/api_reference/earthdata.html||cmr||bbe2f7f28f70": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Appendix A: Acronyms||14ff847911f1": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||CM Foreword||3efb164d95fd": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||9.0 METADATA||903d8d4818bd": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Historical Perspective||5650508d09fe": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||Glossary/Acronyms||0a1b44d81b05": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 55,
+      "query": "generate a DEM from ICESat-2 data over my area of interest",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/55-generate-a-dem-from-icesat-2-data-over-my-area-of-interest-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/why_sliderule.html||Why Develop SlideRule?||a60ad7643d5a": "wrong",
+          "/getting_started/Examples.html||Examples||565e2e775897": "wrong",
+          "/developer_guide/articles/h5coro.html||SlideRule Project Background||9d838db1f04c": "wrong",
+          "/developer_guide/articles/atl24_golden_run.html||Background||f235027965fc": "wrong",
+          "/developer_guide/release_notes/release-v03-03-00.html||Major Changes||80112b286165": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||4.2 Land Ice||17e7b64da1f4": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||4.4.1.2 MOD44W||4865706c459f": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 66||d8c58e6f7388": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||4.2.1.5 Permafrost||28a199c885ad": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||Change History Log||e6060dc2dcc3": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": "Examples hold the answer but they are only available thru a url to the examples repo"
+      }
+    },
+    {
+      "row_index": 56,
+      "query": "combine multiple ATL products in one processing pipeline",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/56-combine-multiple-atl-products-in-one-processing-pipeline-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/why_sliderule.html||Why Develop SlideRule?||16ea72c4094f": "partial",
+          "/developer_guide/why_sliderule.html||Why Develop SlideRule?||c23f20bcc3e1": "partial",
+          "/developer_guide/articles/arbitrary_code_execution.html||User Lua Script||7dd7c49cacac": "wrong",
+          "/developer_guide/articles/arbitrary_code_execution.html||User Python Script||8d7f821848b7": "wrong",
+          "/user_guide/icesat2.html||1.4 Ancillary Data||8893fca8207c": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Input Variables||3cca9a734ca8": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Page 6||70a4743928c2": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Data Workflow||29765b13ac1f": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||Abstract||87a1241665e3": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||SlideRule Overview||96d237ad289b": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": "none of the partials really explained the concept"
+      }
+    },
+    {
+      "row_index": 57,
+      "query": "filter only vegetation photons from ICESat-2 atl03",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/57-filter-only-vegetation-photons-from-icesat-2-atl03-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||ICESat-2 Module||64893edf0959": "partial",
+          "/user_guide/icesat2.html||1.2.3 ATL08 Classification||6ee455825e62": "partial",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||eb22864fb096": "wrong",
+          "/user_guide/icesat2.html||1.2 Photon-selection Parameters||f37cf30e540d": "partial",
+          "/user_guide/icesat2.html||A.2 Elevations - atl06p||bba2c0b85312": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||2.3.5 Refining the Photon Classifications||92a55adc8c7b": "partial",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||2.3.2.1 Signal Photon De-trending||8b942b54b9af": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 3||f0624912c33b": "wrong",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||2.3.1 Noise Filtering||b655270e239d": "partial",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||4.2 Date Last Updated||2cf680d446ca": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 58,
+      "query": "save sliderule output to a parquet file for later analysis",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/58-save-sliderule-output-to-a-parquet-file-for-later-analysis-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "correct",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/articles/geoparquet.html||Overview||852a861aa437": "correct",
+          "/user_guide/arrow_output.html||S3 Staging||2f12d4bfdbc4": "partial",
+          "/user_guide/arrow_output.html||Parameters||a99142a25837": "correct",
+          "/user_guide/arrow_output.html||S3 Output to User Bucket||61d8c54e7684": "partial",
+          "/user_guide/arrow_output.html||Parameters||fa281c2dedb3": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||SlideRule Overview||96d237ad289b": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 ATBD Sections||16fd1d34394c": "wrong",
+          "/sites/default/files/documents/user-guide/atl24-v001-userguide.pdf||1.2.3 Naming Convention||1263659710d2": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Development Environment||70925ccb617a": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 59,
+      "query": "phoreal added sliderule release notes version",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/59-phoreal-added-sliderule-release-notes-version-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/developer_guide/articles/v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "wrong",
+          "/developer_guide/articles/v5_server_release.html||Full release notes||c38de2abf110": "wrong",
+          "/developer_guide/articles/private_clusters.html||2026-01-20: Private Clusters||0093f9b6c44c": "wrong",
+          "/developer_guide/release_notes/web-release-v04-00-03.html||Summary||ae2f42b24210": "wrong",
+          "/developer_guide/release_notes/release-v04-09-00.html||Release v4.9.x||e9504c6ca9ba": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||SlideRule Overview||a9811a62a6d8": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Deployment Environment||81e7dcf47757": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Development Environment||5628a8ed75f6": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 ATBD Sections||16fd1d34394c": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [
+          "https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-01-00.html"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 60,
+      "query": "sliderule api deprecation breaking removed old function",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/60-sliderule-api-deprecation-breaking-removed-old-function-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/versioning.html||Note on Reproducibility||37df71cfa27c": "partial",
+          "/api_reference/gedi.html||init||722200c662ff": "wrong",
+          "/developer_guide/release_notes/release-v01-04-00.html||Required Updates||1d1ce079e9a6": "partial",
+          "/api_reference/sliderule.html||init||cb4cd8cf3bfe": "wrong",
+          "/developer_guide/articles/plugins.html||Shared Object||91fecf32e890": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Development Environment||70925ccb617a": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Deployment Environment||81e7dcf47757": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||SlideRule Overview||a9811a62a6d8": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 155||5ba4093a1708": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [
+          "https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-00-00.html"
+        ],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 61,
+      "query": "ICESat-2 ground track beam naming GT1L GT1R GT2L convention",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/61-icesat-2-ground-track-beam-naming-gt1l-gt1r-gt2l-convention-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "correct",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||A.2 Elevations - atl06p||bba2c0b85312": "partial",
+          "/background/ICESat-2.html||Mission||d5f1a63b3c0a": "partial",
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "partial",
+          "/user_guide/icesat2.html||1.5 ATL06-SR Algorithm||b6e408a2c938": "partial",
+          "/user_guide/icesat2.html||3. ATL08 - atl08x||c30ad80b54aa": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.3 Appendix D - Lexicon for ATBD Writing||f43b8fecd18a": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.3 Appendix D - Lexicon for ATBD Writing||e04f905b0291": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 62||1656c617a7f1": "correct",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||2.4.1.3 Group: /gtx/geophys_corr||d4afe52bdf68": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 98||ee2f095ecff0": "partial"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 62,
+      "query": "reference ground track RGT cycle number ICESat-2 granule",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/62-reference-ground-track-rgt-cycle-number-icesat-2-granule-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "correct",
+          "r4": "partial",
+          "r5": "correct"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||A.2 Elevations - atl06p||bba2c0b85312": "partial",
+          "/user_guide/icesat2.html||3. ATL08 - atl08x||c30ad80b54aa": "partial",
+          "/user_guide/icesat2.html||ICESat-2 Module||64893edf0959": "partial",
+          "/user_guide/icesat2.html||2. ATL06 - atl06x||9113094fbd83": "partial",
+          "/developer_guide/design/SlideRuleWebClient.html||Appendix A. Parameter Components||37b28f75079b": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||1.2.2 ATLAS/ICESat-2 Description||7859d75d4d19": "correct",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 71||ae23bbcb74fa": "partial",
+          "/sites/default/files/documents/user-guide/atl13-v007-userguide.pdf||Appendix A – ICEsat-2/atlas description||de211af8540d": "correct",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||2.5 ATL03 Granules||0686595f82b0": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 97||e5320b12f26b": "correct"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 63,
+      "query": "ATL06 uses ATL03 photons to compute surface elevations algorithm",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/63-atl06-uses-atl03-photons-to-compute-surface-elevations-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||A.2 Elevations - atl06p||bba2c0b85312": "partial",
+          "/user_guide/icesat2.html||1. ATL03 - atl03x||d995c960dace": "partial",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||c3ce6434223b": "partial",
+          "/user_guide/icesat2.html||1.5 ATL06-SR Algorithm||a4f5cc1c7001": "partial",
+          "/user_guide/icesat2.html||A.1 Segmented Photon Data - atl03sp||070b1baf046e": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||OpenOceans++ Classification||60a11abdfc7f": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.1 Introduction||47bc4adb4be7": "partial",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||3 SOFTWARE AND TOOLS||3bac3fabbf30": "partial",
+          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||2.3.1 Noise Filtering||b655270e239d": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.1 Appendix A – ATL03 Output Parameter Table.||eff3b45d5c57": "wrong"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 64,
+      "query": "ICESat-2 orbit altitude inclination mission specifications",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/64-icesat-2-orbit-altitude-inclination-mission-specifications-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/background/ICESat-2.html||Mission||1aeabc060090": "partial",
+          "/user_guide/icesat2.html||ICESat-2 Module||64893edf0959": "wrong",
+          "/user_guide/icesat2.html||1.5 ATL06-SR Algorithm||b6e408a2c938": "wrong",
+          "/developer_guide/design/SlideRuleWebClient.html||Appendix A. Parameter Components||37b28f75079b": "wrong",
+          "/developer_guide/release_notes/release-v02-00-00.html||Release v2.0.x||b813724f4f3f": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||1.3 ICESat-2 ATLAS Instrument||113e2f29c4ad": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 26||721fee3c7cb2": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||3.3.1 Range bias determination||c66528899b46": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 71||ae23bbcb74fa": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 2||24e73572863a": "wrong"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 65,
+      "query": "GEDI laser channels power modes beam configuration",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/65-gedi-laser-channels-power-modes-beam-configuration-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "wrong",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/gedi.html||3. Returned data||5554450744cb": "partial",
+          "/background/ICESat-2.html||Mission||1aeabc060090": "wrong",
+          "/developer_guide/release_notes/release-v03-02-00.html||Development Updates||0c040847b8b1": "wrong",
+          "/user_guide/gedi.html||2. Parameters||48851f79022d": "partial",
+          "/user_guide/icesat2.html||1.1 Photon-input Parameters||a0b91367172b": "wrong"
+        },
+        "nsidc": {
+          "/public/gedi/GEDI_L4A_AGB_Density_GW/comp/GEDI_ATBD_L4A_v1.0.pdf||Page 19||63cd2b4799a8": "wrong",
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 11||77c404bf8b08": "wrong",
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 16||461281578601": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||1.3 ICESat-2 ATLAS Instrument||729faa76ff5b": "wrong",
+          "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 15||52e39d816dd8": "wrong"
+        }
+      },
+      "overall_verdict": "wrong",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 66,
+      "query": "ATL03 pointing biases beam geolocation error model",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/66-atl03-pointing-biases-beam-geolocation-error-model-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "partial",
+          "r2": "wrong",
+          "r3": "wrong",
+          "r4": "wrong",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "partial",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||c3ce6434223b": "partial",
+          "/api_reference/icesat2.html||atl06p||324a7b12a037": "wrong",
+          "/api_reference/icesat2.html||atl03sp||5ca15cc8bba2": "wrong",
+          "/background/ICESat-2.html||References||cefb15cb34e8": "wrong",
+          "/api_reference/icesat2.html||atl03vp||31d8e66add7f": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||2.2 Data Flow Within ATL03||daab1e5227a9": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||3.3.2 Range bias uncertainty||1443f2a5fcab": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||3.3.1 Range bias determination||1bfe157edd2e": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 62||0cbcb920d98a": "partial",
+          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||2.3.6 Surface Masks||d9bd04dce7e1": "partial"
+        }
+      },
+      "overall_verdict": "partial",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 67,
+      "query": "ATL06 land ice along-track segment elevation",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/67-atl06-land-ice-along-track-segment-elevation-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "wrong",
+          "r4": "partial",
+          "r5": "wrong"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||3. ATL08 - atl08x||5ec88dff9339": "wrong",
+          "/user_guide/icesat2.html||A.2 Elevations - atl06p||bba2c0b85312": "partial",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||c3ce6434223b": "wrong",
+          "/user_guide/icesat2.html||ICESat-2 Module||64893edf0959": "partial",
+          "/user_guide/icesat2.html||2. ATL06 - atl06x||64f55d68c0f9": "wrong"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 19||4258b178c6d6": "correct",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 27||340c22ab63be": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 25||57fb6a605732": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 1||c309dc971042": "wrong",
+          "/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf||Page 23||94b9dd7b7c65": "partial"
+        }
+      },
+      "overall_verdict": "correct",
+      "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 68,
+      "query": "ATL08 100-meter segment terrain canopy height",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/68-atl08-100-meter-segment-terrain-canopy-height-review.md",
+      "incomplete": false,
+      "verdicts": {
+        "docsearch": {
+          "r1": "wrong",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "wrong",
+          "r5": "partial"
+        },
+        "nsidc": {
+          "r1": "correct",
+          "r2": "partial",
+          "r3": "partial",
+          "r4": "partial",
+          "r5": "partial"
+        }
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {
+          "/user_guide/icesat2.html||3. ATL08 - atl08x||f9ba44faf8de": "wrong",
+          "/user_guide/icesat2.html||1.6 PhoREAL Algorithm||776152ea628f": "partial",
+          "/user_guide/icesat2.html||A.3 Vegetation Metrics (PhoREAL) - atl08p||7c24a73a2586": "partial",
+          "/developer_guide/design/SlideRuleWebClient.html||Appendix A. Parameter Components||5e8288a779c6": "wrong",
+          "/user_guide/icesat2.html||3.1 Quality Filter Parameters||df581eabae98": "partial"
+        },
+        "nsidc": {
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 44||0d70d312e416": "correct",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 94||3fc54850f771": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 20||4793d2c0a351": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 49||d8d41e1a1dad": "partial",
+          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 48||a02ec6ee12f1": "partial"
         }
       },
       "overall_verdict": "correct",

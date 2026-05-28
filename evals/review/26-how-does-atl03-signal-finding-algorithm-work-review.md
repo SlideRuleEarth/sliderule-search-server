@@ -26,7 +26,7 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 - r2: wrong
 - r3: wrong
 - r4: wrong
-- r5: wrong
+- r5: partial
 
 ## Overall verdict
 
