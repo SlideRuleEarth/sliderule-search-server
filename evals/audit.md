@@ -81,7 +81,7 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 - `atl06x`
 - `2. atl06`
 
-**Author's note:** user_guide/icesat2.html has 'ATL06 - atl06x' section
+**Author's note:** user_guide/icesat2.html has 'ATL06 - atl06x' section; notes: r3 atl06x section description is partial — full answer requires dataframe-contents table that's in a separate chunk; signal for chunk-size/overlap Tier 3 lever
 
 **Top 5 returned:**
 

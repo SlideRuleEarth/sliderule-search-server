@@ -23,11 +23,13 @@ Output
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -176,6 +178,77 @@ def parse_pages(values: list[str]) -> list[list[int]]:
     return ranges
 
 
+RESULTS_CORPUS_HEADER_RE = re.compile(
+    r"^## .*(docsearch|nsidc).*results.*$", re.MULTILINE | re.IGNORECASE
+)
+RESULTS_RANK_RE = re.compile(r"^#### r(\d+)", re.MULTILINE)
+RESULTS_URL_RE = re.compile(r"^- \*\*url:\*\*\s+(.+)$", re.MULTILINE)
+RESULTS_SECTION_RE = re.compile(r"^- \*\*section:\*\*\s+(.+)$", re.MULTILINE)
+# Match the fenced code block right after `**Full text:**`. Non-greedy on
+# the body so we stop at the first closing fence.
+RESULTS_FULLTEXT_RE = re.compile(
+    r"\*\*Full text:\*\*\s*\n+```\n(.*?)\n```",
+    re.DOTALL,
+)
+
+
+def _content_sig(text: str) -> str:
+    """First 12 hex chars of sha1(text). Long sections sometimes split
+    into multiple chunks that share path + section; the text content is
+    what makes them distinct. 12 hex chars = 48 bits, more than enough
+    for our corpus of <2K chunks per index."""
+    return hashlib.sha1(text.encode("utf-8")).hexdigest()[:12]
+
+
+def chunk_key(url: str, section: str, text: str) -> str:
+    """Stable per-chunk identifier: path + section + content signature.
+
+    Path-only URL (host-stripped) so a verdict keyed off slideruleearth.io
+    chunks transfers to a testsliderule.org rebuild. The content
+    signature disambiguates multiple chunks that inherit the same
+    (path, section) — common when CHUNK_CHAR_CAP splits a long section
+    into 2+ pieces."""
+    path = urlparse(url).path
+    return f"{path}||{section.strip()}||{_content_sig(text)}"
+
+
+def parse_results_chunks(results_path: Path) -> dict[str, dict[int, str]]:
+    """Parse the companion -results.md file and return a per-corpus map
+    `{corpus: {rank: chunk_key}}` for ranks 1..5.
+
+    Used by the ingest to translate rank-keyed verdicts into chunk-keyed
+    verdicts, so that reranking levers can be evaluated against the
+    same chunk-level human judgments without re-reviewing."""
+    if not results_path.exists():
+        return {}
+    text = results_path.read_text()
+    out: dict[str, dict[int, str]] = {}
+
+    parts = RESULTS_CORPUS_HEADER_RE.split(text)
+    # parts: [pre, 'docsearch', body, 'nsidc', body]
+    for i in range(1, len(parts), 2):
+        corpus = parts[i].lower()
+        body = parts[i + 1]
+        chunks: dict[int, str] = {}
+        # Each chunk block starts with #### r<N>
+        for blk in re.split(r"(?=^#### r\d+)", body, flags=re.MULTILINE):
+            rm = RESULTS_RANK_RE.match(blk)
+            if not rm:
+                continue
+            rank = int(rm.group(1))
+            url_m = RESULTS_URL_RE.search(blk)
+            sec_m = RESULTS_SECTION_RE.search(blk)
+            text_m = RESULTS_FULLTEXT_RE.search(blk)
+            if url_m and sec_m and text_m:
+                chunks[rank] = chunk_key(
+                    url_m.group(1).strip(),
+                    sec_m.group(1),
+                    text_m.group(1),
+                )
+        out[corpus] = chunks
+    return out
+
+
 def parse_review_file(path: Path) -> dict | None:
     """Parse one filled review markdown file. Returns None if the file
     isn't a review form at all (no `# Row N:` header)."""
@@ -251,6 +324,27 @@ def parse_review_file(path: Path) -> dict | None:
         and not any(human_truth[k] for k in ("urls", "sections", "pages", "notes", "corpus"))
     )
 
+    # Translate rank-keyed verdicts to chunk-keyed verdicts so the
+    # `--metric=human` mode survives reranking levers. Reads the matching
+    # *-results.md and pairs each rank's chunk identity with the verdict
+    # the user wrote at that rank.
+    results_path = path.parent / path.name.replace("-review.md", "-results.md")
+    chunk_ids = parse_results_chunks(results_path)
+    verdicts_by_chunk: dict[str, dict[str, str]] = {"docsearch": {}, "nsidc": {}}
+    for corpus, rank_verdicts in (
+        ("docsearch", docsearch_verdicts),
+        ("nsidc", nsidc_verdicts),
+    ):
+        rank_to_key = chunk_ids.get(corpus, {})
+        for rank_label, verdict in rank_verdicts.items():
+            try:
+                rank = int(rank_label[1:])  # 'r1' -> 1
+            except ValueError:
+                continue
+            key = rank_to_key.get(rank)
+            if key:
+                verdicts_by_chunk[corpus][key] = verdict
+
     return {
         "row_index": row_index,
         "query": query,
@@ -261,6 +355,7 @@ def parse_review_file(path: Path) -> dict | None:
             "docsearch": docsearch_verdicts,
             "nsidc": nsidc_verdicts,
         },
+        "verdicts_by_chunk": verdicts_by_chunk,
         "overall_verdict": overall,
         "routing": routing,
         "human_truth": human_truth,
