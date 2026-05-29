@@ -27,7 +27,7 @@
 
 #### r1 — score 0.654
 
-- **url:** https://docs.testsliderule.org/user_guide/xseries.html
+- **url:** https://docs.slideruleearth.io/user_guide/xseries.html
 - **title:** X-Series APIs
 - **section:** X-Series APIs
 - **category:** `user_guide`
@@ -41,7 +41,7 @@ Note This page documents the x-series APIs that are specifically geared for gene
 
 #### r2 — score 0.542
 
-- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** SRWC-4.3: Tutorial
 - **category:** `developer_guide`
@@ -55,7 +55,7 @@ The UI shall provide a tutorial that guides a user through a series of steps nec
 
 #### r3 — score 0.510
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** ICESat-2 Module
 - **category:** `user_guide`
@@ -67,23 +67,9 @@ The UI shall provide a tutorial that guides a user through a series of steps nec
 The ICESat-2 module within SlideRule supports a number of both legacy p-series and s-series endpoints, as well as the newer DataFrame-based x-series endpoints. This document focuses on the x-series endpoints while still referencing the other legacy endpoints when helpful. Three main kinds of data are returned by the ICESat-2 endpoints: segmented photon data, elevation data (from the ATL06-SR algorithm), and vegetation data (from the PhoREAL algorithm). All data returned by the ICESat-2 endpoints are organized around the concept of an extent . An extent is a variable length, customized ATL03 segment. It takes the ATL03 photons and divides them up based on their along-track distance, filters them, and then packages them together a single new custom segment. Given that the ICESat-2 standard data products have a well defined meaning for segment, SlideRule uses the term extent to indicate this custom-length and custom-filtered segment of photons. The following processing flags are used for all ICESat-2 endpoints: 0x0001 : Along track spread too short 0x0002 : Too few photons 0x0004 : Maximum iterations reached 0x0008 : Out of bounds 0x0010 : Underflow 0x0020 : Overflow In addition, most endpoints support the generation of a name filter using the granule parameter: rgt : Reference ground track cycle : Orbit cycle region : ATL03 region {1 to 14} version : ATL03 release version (e.g. 007)
 ```
 
-#### r4 — score 0.562
+#### r4 — score 0.551
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/plugins.html
-- **title:** 2025-09-10: Building a Plugin for SlideRule
-- **section:** Components of a Plugin
-- **category:** `developer_guide`
-- **matched_tokens:** ['api', 'sliderule']
-
-**Full text:**
-
-```
-A SlideRule plugin consists of three components: (1) a shared object, (2) lua extension scripts, (3) lua api scripts.
-```
-
-#### r5 — score 0.551
-
-- **url:** https://docs.testsliderule.org/api_reference/sliderule.html
+- **url:** https://docs.slideruleearth.io/api_reference/sliderule.html
 - **title:** sliderule
 - **section:** sliderule
 - **category:** `api_reference`
@@ -93,6 +79,20 @@ A SlideRule plugin consists of three components: (1) a shared object, (2) lua ex
 
 ```
 The SlideRule Python API sliderule.py is used to access the services provided by the base SlideRule server. From Python, the module can be imported via: import sliderule
+```
+
+#### r5 — score 0.519
+
+- **url:** https://docs.slideruleearth.io/
+- **title:** SlideRule v5.4.2
+- **section:** SlideRule v5.4.2
+- **category:** `other`
+- **matched_tokens:** ['api', 'sliderule']
+
+**Full text:**
+
+```
+Process Earth science datasets in the cloud through API calls to SlideRule web services. GitHub : https://github.com/SlideRuleEarth/sliderule Documentation : https://docs.slideruleearth.io/ Web Client : https://client.slideruleearth.io/ PyPi : https://pypi.org/project/sliderule/ Conda : https://anaconda.org/conda-forge/sliderule Node.js : https://www.npmjs.com/package/@sliderule/sliderule
 ```
 
 ---

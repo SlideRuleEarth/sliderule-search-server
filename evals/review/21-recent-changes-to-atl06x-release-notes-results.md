@@ -21,10 +21,10 @@
 
 #### r1 — score 0.466
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html
 - **title:** 2025-12-08: Public Cluster Release v5
 - **section:** 2025-12-08: Public Cluster Release v5
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['changes', 'notes', 'release']
 
 **Full text:**
@@ -33,23 +33,9 @@
 Note Version 5.0 of SlideRule has been officially released. The changes include an overhaul of the private clusters, consistent ATL13 query formats, ATL24 release 002, improved earthdata error handling, and h5p slice support. See release notes for full details.
 ```
 
-#### r2 — score 0.472
+#### r2 — score 0.474
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
-- **title:** 2025-12-08: Public Cluster Release v5
-- **section:** TL;DR
-- **category:** `developer_guide`
-- **matched_tokens:** ['changes', 'release']
-
-**Full text:**
-
-```
-ps.slideruleearth.io has been retired and replaced by provisioner.slideruleearth.io There are breaking changes (which will hopefully be minimal because they involved features that have been deprecated for some time) ATL24 release 002 is now the default The internal Asset Metadata Service is used for ATL24, ATL13, and 3DEP (only when specified) Earthdata error reporting was made more intuitive h5p supports slices Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
-```
-
-#### r3 — score 0.474
-
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-11-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-11-00.html
 - **title:** Release v4.11.x
 - **section:** Major Changes
 - **category:** `release_notes`
@@ -61,9 +47,9 @@ ps.slideruleearth.io has been retired and replaced by provisioner.slideruleearth
 v4.11.0 - The official release of the SlideRule Web Client at https://client.slideruleearth.io v4.11.0 - The atl03x endpoint is being previewed. This implements a dataframe model for the data instead of a streaming model. v4.11.0 - The atl24x endpoint provides subsetting support for the ATL24 standard data product.
 ```
 
-#### r4 — score 0.398
+#### r3 — score 0.398
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v05-00-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html
 - **title:** Release v5.0.x
 - **section:** New Functionality
 - **category:** `release_notes`
@@ -75,9 +61,23 @@ v4.11.0 - The official release of the SlideRule Web Client at https://client.sli
 Rate limiting and endpoint metrics are now handled the SlideRule Intelligent Load Balancer . v5.0.3 - #552 - Ancillary field requests now support multidimensional data. v5.0.3 - #553 - Added x-series APIs for ATL06 ( atl06x ) and ATL08 ( atl08x ) v5.0.3 - #562 - Serial-mode raster sampling has been removed. v5.0.3 - #564 - Added x-series APIs for GEDI04A ( gedi04ax ), GEDI02A ( gedi02ax ), and GEDI01B ( gedi01bx ) v5.0.2 - ATL24 uses release 002 by default, which uses the internal Asset Metadata Service (AMS). v5.0.2 - #549 - h5p now supports slices. v5.0.2 - earthdata.py is no longer a standalone implementation of an interface to CMR and TNM, but instead makes a request to the SlideRule cluster to execute the server-side implementations in earth_data_query.lua . This consolidates the interface to these services in one place, and also provides a consistent interface between the web and Python clients. v5.0.2 - Added the 3dep1m asset which accesses the same USGS 3DEP data product but uses the internal AMS service for STAC queries. This is an attempt to alleviate issues with inconsistent availability and functionality in The National Map (TNM) service which made using 3DEP difficult.
 ```
 
+#### r4 — score 0.472
+
+- **url:** https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html
+- **title:** 2025-12-08: Public Cluster Release v5
+- **section:** TL;DR
+- **category:** `user_guide`
+- **matched_tokens:** ['changes', 'release']
+
+**Full text:**
+
+```
+ps.slideruleearth.io has been retired and replaced by provisioner.slideruleearth.io There are breaking changes (which will hopefully be minimal because they involved features that have been deprecated for some time) ATL24 release 002 is now the default The internal Asset Metadata Service is used for ATL24, ATL13, and 3DEP (only when specified) Earthdata error reporting was made more intuitive h5p supports slices Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
+```
+
 #### r5 — score 0.465
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v05-02-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-02-00.html
 - **title:** Release v5.2.x
 - **section:** Issues Resolved
 - **category:** `release_notes`

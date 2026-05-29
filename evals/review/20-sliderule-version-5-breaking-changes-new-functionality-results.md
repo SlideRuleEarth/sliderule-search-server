@@ -20,7 +20,7 @@
 
 #### r1 — score 0.515
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v02-00-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-00-00.html
 - **title:** Release v2.0.x
 - **section:** New Features
 - **category:** `release_notes`
@@ -34,7 +34,7 @@ Version 2.0.0 of SlideRule represents a major change to the SlideRule architectu
 
 #### r2 — score 0.454
 
-- **url:** https://docs.testsliderule.org/user_guide/versioning.html
+- **url:** https://docs.slideruleearth.io/user_guide/versioning.html
 - **title:** Versioning
 - **section:** Library Version ( version )
 - **category:** `user_guide`
@@ -48,7 +48,7 @@ The SlideRule executable version (called the Library Version in the code) is the
 
 #### r3 — score 0.394
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v05-00-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html
 - **title:** Release v5.0.x
 - **section:** Breaking Changes
 - **category:** `release_notes`
@@ -62,7 +62,7 @@ All calls to session.manager should no longer be used as that functionality will
 
 #### r4 — score 0.526
 
-- **url:** https://docs.testsliderule.org/user_guide/versioning.html
+- **url:** https://docs.slideruleearth.io/user_guide/versioning.html
 - **title:** Versioning
 - **section:** Note on Reproducibility
 - **category:** `user_guide`
@@ -71,15 +71,15 @@ All calls to session.manager should no longer be used as that functionality will
 **Full text:**
 
 ```
-It is the goal of the SlideRule development team to create a system where results are able to be reproduced; but this is often times either extremely difficult or impossible for reasons outside of the teams control. SlideRule relies on publicly hosted datasets. When those datasets are updated, older versions of the datasets are often removed. For instance, ICESat-2 Standard Data Products have a 6-month to 1-year release cycle and EarthData Cloud only stores the last two releases. Production systems must stay up-to-date with all security patches. This means libraries used by older versions of SlideRule may not be able to be deployed if newer versions of those libraries contain security patches. While we make every effort to keep backward compatibility for as long as possible, our development time is a limited resource and we are unable to maintain very old architectures of SlideRule. Once we increment a major version number, we often remove deprecated functionality and internal configurations needed to deploy those older system designs. That does not mean it would not be impossible to recreate the environment needed to run the older design - it does mean it becomes more and more impractical to do so. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+It is the goal of the SlideRule development team to create a system where results are able to be reproduced; but this is often times either extremely difficult or impossible for reasons outside of the teams control. SlideRule relies on publicly hosted datasets. When those datasets are updated, older versions of the datasets are often removed. For instance, ICESat-2 Standard Data Products have a 6-month to 1-year release cycle and EarthData Cloud only stores the last two releases. Production systems must stay up-to-date with all security patches. This means libraries used by older versions of SlideRule may not be able to be deployed if newer versions of those libraries contain security patches. While we make every effort to keep backward compatibility for as long as possible, our development time is a limited resource and we are unable to maintain very old architectures of SlideRule. Once we increment a major version number, we often remove deprecated functionality and internal configurations needed to deploy those older system designs. That does not mean it would not be impossible to recreate the environment needed to run the older design - it does mean it becomes more and more impractical to do so. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
 #### r5 — score 0.525
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html
 - **title:** 2025-12-08: Public Cluster Release v5
 - **section:** 2025-12-08: Public Cluster Release v5
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['changes', 'sliderule', 'version']
 
 **Full text:**

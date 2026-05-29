@@ -22,7 +22,7 @@
 
 #### r1 — score 0.485
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.1 Native ATL03 Photon Classification
 - **category:** `user_guide`
@@ -36,7 +36,7 @@ ATL03 contains a set of photon classification values, that are designed to ident
 
 #### r2 — score 0.527
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3.1 Quality Filter Parameters
 - **category:** `user_guide`
@@ -50,7 +50,7 @@ The ATL08 data can be filtered based on different quality filters. te_quality_sc
 
 #### r3 — score 0.373
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-08-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-08-00.html
 - **title:** Release v4.8.x
 - **section:** General Changes
 - **category:** `release_notes`
@@ -64,7 +64,7 @@ The use of next and scroll-after has now been implemented. v4.8.0 - GEDI paramet
 
 #### r4 — score 0.454
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.1 Segmented Photon Data - atl03sp
 - **category:** `user_guide`
@@ -78,7 +78,7 @@ ed, the ATL03 extent records ( atl03rec ) are enhanced to include the following 
 
 #### r5 — score 0.347
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-00-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-00-00.html
 - **title:** Release v4.0.x
 - **section:** Issues Resolved
 - **category:** `release_notes`

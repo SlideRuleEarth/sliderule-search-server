@@ -21,7 +21,7 @@
 
 #### r1 — score 0.484
 
-- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
+- **url:** https://docs.testsliderule.org/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 1. Overview
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ The GEDI API currently provides subsetting and raster sampling capabilities to S
 
 #### r2 — score 0.410
 
-- **url:** https://docs.slideruleearth.io/api_reference/gedi.html
+- **url:** https://docs.testsliderule.org/api_reference/gedi.html
 - **title:** gedi
 - **section:** gedi01b
 - **category:** `api_reference`
@@ -49,7 +49,7 @@ sliderule.gedi. gedi01b ( parm , resource ) [source] Performs GEDI L1B subsettin
 
 #### r3 — score 0.433
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-01-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-01-00.html
 - **title:** Release v3.1.x
 - **section:** Major Changes
 - **category:** `release_notes`
@@ -63,7 +63,7 @@ GEDI functionality officially supported Subsetting for L1B, L2A, L4A datasets (L
 
 #### r4 — score 0.402
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-02-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-02-00.html
 - **title:** Release v3.2.x
 - **section:** Issues Resolved
 - **category:** `release_notes`
@@ -77,7 +77,7 @@ GEDI L01B waveforms fixed (they were being corrupted later in the GeoDataFrame)
 
 #### r5 — score 0.400
 
-- **url:** https://docs.slideruleearth.io/api_reference/gedi.html
+- **url:** https://docs.testsliderule.org/api_reference/gedi.html
 - **title:** gedi
 - **section:** gedi04a
 - **category:** `api_reference`

@@ -21,7 +21,7 @@
 
 #### r1 — score 0.458
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3. ATL08 - atl08x
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ at) land_segments/terrain/h_te_uncertainty h_te_median Median height of the terr
 
 #### r2 — score 0.478
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6 PhoREAL Algorithm
 - **category:** `user_guide`
@@ -49,7 +49,7 @@ The PhoREAL algorithm is a modified version of the ATL08 canopy metrics algorith
 
 #### r3 — score 0.416
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.3 Vegetation Metrics (PhoREAL) - atl08p
 - **category:** `user_guide`
@@ -63,7 +63,7 @@ The vegetation GeoDataFrame has the following columns: extent_id : unique ID ass
 
 #### r4 — score 0.448
 
-- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** Appendix A. Parameter Components
 - **category:** `developer_guide`
@@ -77,7 +77,7 @@ ables inputs below) Land Type : label noise : checkbox ground : checkbox canopy 
 
 #### r5 — score 0.453
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3.1 Quality Filter Parameters
 - **category:** `user_guide`

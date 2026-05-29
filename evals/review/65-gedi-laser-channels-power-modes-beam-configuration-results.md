@@ -22,7 +22,7 @@
 
 #### r1 — score 0.351
 
-- **url:** https://docs.testsliderule.org/user_guide/gedi.html
+- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 3. Returned data
 - **category:** `user_guide`
@@ -36,7 +36,7 @@ The main kind of data returned by the GEDI APIs are elevation and vegetation mea
 
 #### r2 — score 0.283
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** Mission
 - **category:** `background`
@@ -50,7 +50,7 @@ The Ice Cloud and land Elevation Satellite-2 (ICESat-2) is NASAâs latest sa
 
 #### r3 — score 0.331
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-02-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-02-00.html
 - **title:** Release v3.2.x
 - **section:** Development Updates
 - **category:** `release_notes`
@@ -64,7 +64,7 @@ The use_poi_time parameter was added to the raster sampling requests; when set t
 
 #### r4 — score 0.345
 
-- **url:** https://docs.testsliderule.org/user_guide/gedi.html
+- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 2. Parameters
 - **category:** `user_guide`
@@ -78,7 +78,7 @@ The GEDI module provides additional parameters specific to making GEDI processin
 
 #### r5 — score 0.367
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.1 Photon-input Parameters
 - **category:** `user_guide`

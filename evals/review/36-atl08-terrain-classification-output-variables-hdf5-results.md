@@ -23,7 +23,7 @@
 
 #### r1 — score 0.580
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3.1 Quality Filter Parameters
 - **category:** `user_guide`
@@ -37,7 +37,7 @@ The ATL08 data can be filtered based on different quality filters. te_quality_sc
 
 #### r2 — score 0.499
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-09-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-09-00.html
 - **title:** Release v4.9.x
 - **section:** Changes
 - **category:** `release_notes`
@@ -51,7 +51,7 @@ v4.9.2 - Optimized raster sampling code v4.9.2 - Fixed Python client to support 
 
 #### r3 — score 0.574
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl08
 - **category:** `api_reference`
@@ -65,7 +65,7 @@ sliderule.icesat2. atl08 ( parm , resource ) [source] Performs ATL08-PhoREAL pro
 
 #### r4 — score 0.504
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.3 ATL08 Classification
 - **category:** `user_guide`
@@ -79,7 +79,7 @@ If ATL08 classification parameters are specified, the ATL08 (vegetation height) 
 
 #### r5 — score 0.462
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-01-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-01-00.html
 - **title:** Release v1.1.x
 - **section:** New Features
 - **category:** `release_notes`

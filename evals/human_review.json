@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-07T13:37:50+00:00",
+  "generated_at": "2026-05-29T19:10:22+00:00",
   "summary": {
     "total_files": 68,
     "completed": 68,
@@ -39,10 +39,10 @@
       "verdicts_by_chunk": {
         "docsearch": {
           "/user_guide/icesat2.html||1. ATL03 - atl03x||d995c960dace": "correct",
+          "/user_guide/articles/260528_web_client_endpoint_scoped_params.html||Overview||877f08ceef2f": "partial",
           "/user_guide/icesat2.html||A.1 Segmented Photon Data - atl03sp||070b1baf046e": "partial",
-          "/user_guide/icesat2.html||1.4 Ancillary Data||8893fca8207c": "partial",
-          "/user_guide/icesat2.html||ICESat-2 Module||64893edf0959": "wrong",
-          "/developer_guide/release_notes/release-v04-15-00.html||Compatibility Changes||a7955d3013dd": "partial"
+          "/user_guide/icesat2.html||1.4 Ancillary Data||8893fca8207c": "wrong",
+          "/user_guide/articles/260528_web_client_endpoint_scoped_params.html||Request builder||6416080a892d": "partial"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 28||df40c9330cff": "wrong",
@@ -86,11 +86,11 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||0a6b4f209e32": "wrong",
+          "/user_guide/articles/260528_web_client_endpoint_scoped_params.html||Panel visibility by endpoint||afca6923e7f9": "wrong",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||de94abe3dd7c": "partial",
           "/user_guide/icesat2.html||A.2 Elevations - atl06p||bba2c0b85312": "partial",
-          "/user_guide/icesat2.html||2. ATL06 - atl06x||17e48ff8c811": "partial",
           "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||c3ce6434223b": "wrong",
-          "/developer_guide/release_notes/release-v04-15-00.html||Compatibility Changes||a7955d3013dd": "wrong"
+          "/user_guide/icesat2.html||2. ATL06 - atl06x||17e48ff8c811": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.4.2.5.2 Slant Histogram Along a Specified Surface Slope||cd016f62cadf": "partial",
@@ -140,10 +140,10 @@
       "verdicts_by_chunk": {
         "docsearch": {
           "/user_guide/icesat2.html||5. ATL24 - atl24x||46cbf46803a5": "partial",
-          "/developer_guide/articles/atl24_golden_run.html||Background||f235027965fc": "partial",
-          "/developer_guide/articles/atl24_golden_run.html||Statistics||5cb8b2d080c4": "partial",
-          "/developer_guide/articles/atl24_golden_run.html||2025-03-28: ATL24 Processing Run||d32607ed6de4": "wrong",
-          "/getting_started/Examples.html||Examples||753640437778": "partial"
+          "/user_guide/articles/250328_atl24_golden_run.html||Background||f235027965fc": "partial",
+          "/getting_started/Examples.html||Examples||dd44a8ce3bc3": "partial",
+          "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "wrong",
+          "/user_guide/articles/250328_atl24_golden_run.html||Statistics||5cb8b2d080c4": "partial"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||Change History Log||f72eeff00ae6": "wrong",
@@ -191,7 +191,7 @@
           "/user_guide/icesat2.html||1.2 Photon-selection Parameters||f37cf30e540d": "partial",
           "/user_guide/icesat2.html||1.6.1 PhoREAL Parameters||20c12a7e5a3c": "wrong",
           "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "partial",
-          "/user_guide/icesat2.html||A.1 Segmented Photon Data - atl03sp||93e54227aedb": "partial"
+          "/user_guide/articles/260528_web_client_endpoint_scoped_params.html||Request builder||6416080a892d": "partial"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 111||eb88f1e54ea6": "wrong",
@@ -239,7 +239,7 @@
           "/user_guide/icesat2.html||5.1 Query Parameters||1e48c3ebcec0": "correct",
           "/user_guide/basic_usage.html||Define the Request Parameters||1de8a9eb9c48": "partial",
           "/developer_guide/release_notes/release-v04-04-00.html||New Features||cb047593fb97": "wrong",
-          "/user_guide/icesat2.html||2. ATL06 - atl06x||9113094fbd83": "wrong"
+          "/user_guide/articles/260528_web_client_endpoint_scoped_params.html||Request builder||6416080a892d": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||Change History Log||7b39ce1939fc": "partial",
@@ -286,8 +286,8 @@
           "/user_guide/icesat2.html||2. ATL06 - atl06x||9113094fbd83": "partial",
           "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "wrong",
           "/user_guide/icesat2.html||4. ATL13 - atl13x||2827520d4233": "wrong",
-          "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "wrong",
-          "/user_guide/icesat2.html||1.2.1 Native ATL03 Photon Classification||c09ba3cd4666": "correct"
+          "/user_guide/icesat2.html||1.2.1 Native ATL03 Photon Classification||c09ba3cd4666": "wrong",
+          "/user_guide/icesat2.html||A.2 Elevations - atl06p||bba2c0b85312": "correct"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||4.2 Land Ice||7c3019eb2b75": "correct",
@@ -429,7 +429,7 @@
         "docsearch": {
           "/getting_started/Install.html||PyPI||3af13a099c02": "partial",
           "/getting_started/Install.html||Installation||82f925b55439": "correct",
-          "/getting_started/Install.html||Developer Install||d214f00bed92": "correct",
+          "/getting_started/Install.html||Developer Install||14428a9d0e9f": "correct",
           "/developer_guide/release_notes/release-v01-04-00.html||Required Updates||1d1ce079e9a6": "partial",
           "/api_reference/gedi.html||init||722200c662ff": "wrong"
         },
@@ -478,8 +478,8 @@
           "/user_guide/xseries.html||X-Series APIs||ed48047ba1f2": "correct",
           "/developer_guide/design/SlideRuleWebClient.html||SRWC-4.3: Tutorial||f13ec06b8c0d": "wrong",
           "/user_guide/icesat2.html||ICESat-2 Module||64893edf0959": "wrong",
-          "/developer_guide/articles/plugins.html||Components of a Plugin||e0bd9a73d50c": "wrong",
-          "/api_reference/sliderule.html||sliderule||fa3d79754c13": "wrong"
+          "/api_reference/sliderule.html||sliderule||fa3d79754c13": "wrong",
+          "/||SlideRule v5.4.2||77ce1971af95": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||6aacbf8b81bf": "wrong",
@@ -523,10 +523,10 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/developer_guide/articles/security_model.html||Overview||99a1ee2a4baf": "partial",
-          "/developer_guide/articles/private_clusters.html||SlideRule Authenticator||4c6bc7ff9fb4": "wrong",
+          "/user_guide/articles/260312_security_model.html||Overview||99a1ee2a4baf": "partial",
           "/user_guide/raster_sampling.html||Overview||82225a588093": "wrong",
-          "/developer_guide/how_tos/amazon_linux_arm_setup.html||2-Factor Authentication||b2be504e9c57": "wrong",
+          "/user_guide/articles/260120_private_clusters.html||SlideRule Authenticator||4c6bc7ff9fb4": "wrong",
+          "/developer_guide/how_tos/amazon_linux_arm_setup.html||2-Factor Authentication||864a64c1ff78": "wrong",
           "/background/NASA-Earthdata.html||Steps to Sync from NSIDC||96470b7f3d04": "partial"
         },
         "nsidc": {
@@ -573,11 +573,11 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/developer_guide/articles/geoparquet.html||Overview||852a861aa437": "correct",
+          "/user_guide/articles/230224_geoparquet.html||Overview||852a861aa437": "correct",
           "/user_guide/arrow_output.html||Parameters||a99142a25837": "correct",
           "/user_guide/arrow_output.html||Overview||aca28aa63fbe": "partial",
-          "/developer_guide/articles/geoparquet.html||Constraints||15736aa19106": "partial",
-          "/developer_guide/articles/geoparquet.html||2023-02-24: GeoParquet||65168d0b13b0": "partial"
+          "/user_guide/articles/230224_geoparquet.html||Constraints||2a58d99455de": "partial",
+          "/user_guide/articles/230224_geoparquet.html||2023-02-24: GeoParquet||65168d0b13b0": "partial"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Deployment Environment||81e7dcf47757": "wrong",
@@ -677,7 +677,7 @@
           "/user_guide/icesat2.html||1.2.2 YAPC Classification||3358d9cd759f": "correct",
           "/user_guide/icesat2.html||1.2 Photon-selection Parameters||f37cf30e540d": "partial",
           "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "wrong",
-          "/background/ICESat-2.html||References||cefb15cb34e8": "wrong",
+          "/user_guide/articles/260528_web_client_endpoint_scoped_params.html||Request builder||6416080a892d": "wrong",
           "/user_guide/icesat2.html||1.6.1 PhoREAL Parameters||20c12a7e5a3c": "wrong"
         },
         "nsidc": {
@@ -722,11 +722,11 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/developer_guide/articles/gdal_vrt_benchmark.html||Overview||f937af000f47": "wrong",
-          "/user_guide/raster_sampling.html||Parameters||5fabd8082ff4": "partial",
+          "/user_guide/raster_sampling.html||Parameters||5fabd8082ff4": "wrong",
+          "/user_guide/articles/221110_gdal_vrt_benchmark.html||Overview||f937af000f47": "partial",
           "/developer_guide/design/SlideRuleWebClient.html||SRWC-5.1: Raster Sampling||d47069cdfacd": "partial",
           "/getting_started/Examples.html||Examples||565e2e775897": "wrong",
-          "/developer_guide/articles/gdal_vrt_benchmark.html||2022-11-10: VRT Performance Benchmarking||5a2003ef065b": "wrong"
+          "/user_guide/articles/221110_gdal_vrt_benchmark.html||2022-11-10: VRT Performance Benchmarking||5a2003ef065b": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||4.3.2 Mask Generation||2f73971bbb9b": "wrong",
@@ -770,11 +770,11 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/getting_started/Examples.html||Examples||753640437778": "wrong",
-          "/developer_guide/articles/atl24_golden_run.html||Background||f235027965fc": "partial",
+          "/getting_started/Examples.html||Examples||dd44a8ce3bc3": "wrong",
+          "/user_guide/articles/250328_atl24_golden_run.html||Background||f235027965fc": "partial",
           "/user_guide/icesat2.html||5. ATL24 - atl24x||46cbf46803a5": "partial",
           "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "partial",
-          "/developer_guide/articles/atl24_golden_run.html||Statistics||5cb8b2d080c4": "wrong"
+          "/user_guide/articles/250328_atl24_golden_run.html||Statistics||5cb8b2d080c4": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Introduction||00a103a9c061": "wrong",
@@ -818,11 +818,11 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/developer_guide/articles/arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||f532176b2475": "partial",
+          "/user_guide/articles/250530_arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||f532176b2475": "partial",
           "/user_guide/icesat2.html||4.1 Inland Lake Parameters||3ad4539214ad": "partial",
-          "/getting_started/Examples.html||Examples||753640437778": "wrong",
+          "/getting_started/Examples.html||Examples||dd44a8ce3bc3": "wrong",
           "/developer_guide/release_notes/release-v04-14-00.html||New/Improved Functionality||7ddb4173997f": "wrong",
-          "/developer_guide/articles/arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||069a101f98c6": "wrong"
+          "/user_guide/articles/250530_arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||069a101f98c6": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||3.4.1 The ATL13 Inland Water Body Mask||cd8f1306fcbd": "partial",
@@ -870,7 +870,7 @@
           "/user_guide/icesat2.html||5. ATL24 - atl24x||46cbf46803a5": "wrong",
           "/user_guide/icesat2.html||5.2 Ancillary Data||bcc7377ec4fe": "wrong",
           "/developer_guide/release_notes/release-v05-00-00.html||New Functionality||437886bc4953": "partial",
-          "/developer_guide/articles/v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "partial"
+          "/developer_guide/release_notes/release-v03-05-00.html||Release v3.5.x||3bc216cf6c43": "partial"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
@@ -914,11 +914,11 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/developer_guide/articles/private_clusters.html||2026-01-20: Private Clusters||0093f9b6c44c": "wrong",
-          "/developer_guide/articles/v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "wrong",
+          "/user_guide/articles/260120_private_clusters.html||2026-01-20: Private Clusters||0093f9b6c44c": "wrong",
+          "/user_guide/articles/251208_v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "wrong",
           "/developer_guide/release_notes/release-v03-05-00.html||Release v3.5.x||3bc216cf6c43": "wrong",
-          "/developer_guide/release_notes/web-release-v04-00-03.html||Summary||ae2f42b24210": "wrong",
-          "/developer_guide/release_notes/release-v01-01-00.html||Release v1.1.x||a3ffbacd7c5f": "wrong"
+          "/developer_guide/release_notes/web-release-v04-00-03.html||Summary||f74aaaa5acde": "wrong",
+          "/developer_guide/release_notes/release-v02-00-00.html||New Features||50f87ddbb76b": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||SlideRule Overview||a9811a62a6d8": "wrong",
@@ -967,8 +967,8 @@
           "/developer_guide/release_notes/release-v02-00-00.html||New Features||3caa4a2149b0": "wrong",
           "/user_guide/versioning.html||Library Version ( version )||d307397026a1": "wrong",
           "/developer_guide/release_notes/release-v05-00-00.html||Breaking Changes||22aedffe0040": "wrong",
-          "/user_guide/versioning.html||Note on Reproducibility||37df71cfa27c": "correct",
-          "/developer_guide/articles/v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "partial"
+          "/user_guide/versioning.html||Note on Reproducibility||7140987bbb9d": "correct",
+          "/user_guide/articles/251208_v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "partial"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
@@ -1012,10 +1012,10 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/developer_guide/articles/v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "wrong",
-          "/developer_guide/articles/v5_server_release.html||TL;DR||97a4bcf60095": "wrong",
+          "/user_guide/articles/251208_v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "wrong",
           "/developer_guide/release_notes/release-v04-11-00.html||Major Changes||9b1e72662c45": "wrong",
           "/developer_guide/release_notes/release-v05-00-00.html||New Functionality||437886bc4953": "wrong",
+          "/user_guide/articles/251208_v5_server_release.html||TL;DR||0337e537be72": "wrong",
           "/developer_guide/release_notes/release-v05-02-00.html||Issues Resolved||41b831909476": "wrong"
         },
         "nsidc": {
@@ -1309,7 +1309,7 @@
           "/user_guide/icesat2.html||1.5.2 ATL06-SR Ancillary Data||f1d3131e6e6c": "wrong",
           "/user_guide/icesat2.html||A.2 Elevations - atl06p||bba2c0b85312": "wrong",
           "/developer_guide/release_notes/release-v04-15-00.html||Compatibility Changes||a7955d3013dd": "partial",
-          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||0a6b4f209e32": "partial",
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||de94abe3dd7c": "partial",
           "/user_guide/icesat2.html||1.5 ATL06-SR Algorithm||b6e408a2c938": "partial"
         },
         "nsidc": {
@@ -1404,8 +1404,8 @@
         "docsearch": {
           "/user_guide/icesat2.html||4. ATL13 - atl13x||2827520d4233": "partial",
           "/user_guide/icesat2.html||4.1 Inland Lake Parameters||3ad4539214ad": "wrong",
-          "/developer_guide/articles/arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||f532176b2475": "wrong",
-          "/getting_started/Examples.html||Examples||753640437778": "wrong",
+          "/user_guide/articles/250530_arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||f532176b2475": "wrong",
+          "/getting_started/Examples.html||Examples||dd44a8ce3bc3": "wrong",
           "/api_reference/icesat2.html||atl13s||0252096e0bd1": "wrong"
         },
         "nsidc": {
@@ -1454,7 +1454,7 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/developer_guide/articles/atl24_golden_run.html||Background||f235027965fc": "partial",
+          "/user_guide/articles/250328_atl24_golden_run.html||Background||f235027965fc": "partial",
           "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "partial",
           "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "partial",
           "/user_guide/icesat2.html||1.2 Photon-selection Parameters||f37cf30e540d": "partial",
@@ -1555,8 +1555,8 @@
           "/background/ICESat-2.html||References||cefb15cb34e8": "wrong",
           "/user_guide/icesat2.html||2. ATL06 - atl06x||9113094fbd83": "partial",
           "/developer_guide/release_notes/release-v04-09-00.html||Changes||326421c1352f": "partial",
-          "/developer_guide/release_notes/release-v04-09-00.html||Release v4.9.x||e9504c6ca9ba": "wrong",
-          "/developer_guide/release_notes/release-v05-03-00.html||Release v5.3.x||e822625faff8": "wrong"
+          "/developer_guide/release_notes/release-v05-03-00.html||Release v5.3.x||e822625faff8": "wrong",
+          "/developer_guide/release_notes/release-v04-09-00.html||Release v4.9.x||e9504c6ca9ba": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/user-guide/atl06-v006-userguide.pdf||1.2.3 File Contents||f6b3dbe2a7dc": "wrong",
@@ -1794,8 +1794,8 @@
         "docsearch": {
           "/api_reference/icesat2.html||atl13s||0252096e0bd1": "wrong",
           "/user_guide/icesat2.html||4.2 Ancillary Data||e406a4a58751": "wrong",
-          "/developer_guide/articles/arbitrary_code_execution.html||User Lua Script||7dd7c49cacac": "wrong",
-          "/developer_guide/articles/arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||069a101f98c6": "wrong",
+          "/user_guide/articles/250530_arbitrary_code_execution.html||User Lua Script||7dd7c49cacac": "wrong",
+          "/user_guide/articles/250530_arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||069a101f98c6": "wrong",
           "/developer_guide/release_notes/release-v05-01-00.html||Issues Resolved||320e145d2df3": "wrong"
         },
         "nsidc": {
@@ -1840,11 +1840,11 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/developer_guide/articles/atl24_golden_run.html||Lessons Learned||303fe54ca025": "wrong",
-          "/developer_guide/articles/atl24_golden_run.html||Background||f235027965fc": "partial",
-          "/developer_guide/articles/atl24_golden_run.html||Statistics||5cb8b2d080c4": "wrong",
+          "/getting_started/Examples.html||Examples||dd44a8ce3bc3": "wrong",
+          "/developer_guide/release_notes/release-v04-08-00.html||Known Issues and Remaining Tasks||fa8a7da7eef1": "partial",
           "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "wrong",
-          "/getting_started/Examples.html||Examples||753640437778": "wrong"
+          "/user_guide/articles/250328_atl24_golden_run.html||Lessons Learned||303fe54ca025": "wrong",
+          "/user_guide/icesat2.html||5. ATL24 - atl24x||46cbf46803a5": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||1.3.2 Resolution||980cf1b8d31c": "wrong",
@@ -1891,7 +1891,7 @@
           "/user_guide/gedi.html||3.4 L4A Footprints||e598857c2fc7": "partial",
           "/user_guide/gedi.html||1. Overview||6348e5e66ae6": "partial",
           "/api_reference/gedi.html||gedi04a||3ab90d39fcad": "wrong",
-          "/background/GEDI.html||References||9d5168f2bfa1": "wrong",
+          "/background/GEDI.html||References||3875f7ce7e04": "wrong",
           "/user_guide/gedi.html||3.2 L2A Footprints||ac52efcdf4b5": "wrong"
         },
         "nsidc": {
@@ -2080,7 +2080,7 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/developer_guide/articles/atl24_golden_run.html||Background||f235027965fc": "partial",
+          "/user_guide/articles/250328_atl24_golden_run.html||Background||f235027965fc": "partial",
           "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "partial",
           "/developer_guide/release_notes/release-v04-07-00.html||Known Issues and Remaining Tasks||7d1ca0684a85": "partial",
           "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "partial",
@@ -2129,10 +2129,10 @@
       "verdicts_by_chunk": {
         "docsearch": {
           "/api_reference/icesat2.html||atl13sp||88f36f8cef26": "wrong",
-          "/developer_guide/articles/arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||f532176b2475": "partial",
           "/user_guide/icesat2.html||4. ATL13 - atl13x||2827520d4233": "partial",
-          "/developer_guide/articles/arbitrary_code_execution.html||User Python Script||8d7f821848b7": "wrong",
-          "/developer_guide/articles/arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||069a101f98c6": "wrong"
+          "/user_guide/articles/250530_arbitrary_code_execution.html||Example Use Case - ATL13 Lake ID Mapping||f532176b2475": "partial",
+          "/user_guide/articles/250530_arbitrary_code_execution.html||User Python Script||8d7f821848b7": "wrong",
+          "/developer_guide/release_notes/release-v04-14-00.html||New/Improved Functionality||7ddb4173997f": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Input Variables||3cca9a734ca8": "wrong",
@@ -2276,8 +2276,8 @@
         "docsearch": {
           "/user_guide/icesat2.html||1.2.1 Native ATL03 Photon Classification||c09ba3cd4666": "correct",
           "/user_guide/icesat2.html||1.2.3 ATL08 Classification||6ee455825e62": "wrong",
-          "/user_guide/icesat2.html||1.2 Photon-selection Parameters||f37cf30e540d": "wrong",
           "/user_guide/icesat2.html||1.2.4 ATL24 Classification||0806e57b1216": "wrong",
+          "/user_guide/icesat2.html||1.2 Photon-selection Parameters||f37cf30e540d": "wrong",
           "/user_guide/icesat2.html||1. ATL03 - atl03x||9ab8eb51ff33": "wrong"
         },
         "nsidc": {
@@ -2422,7 +2422,7 @@
           "/user_guide/gedi.html||3.2 L2A Footprints||ac52efcdf4b5": "partial",
           "/user_guide/gedi.html||3.4 L4A Footprints||e598857c2fc7": "partial",
           "/user_guide/gedi.html||1. Overview||6348e5e66ae6": "partial",
-          "/developer_guide/design/SlideRuleWebClient.html||Appendix A. Parameter Components||37b28f75079b": "wrong"
+          "/developer_guide/design/SlideRuleWebClient.html||Appendix A. Parameter Components||beaa73543a12": "wrong"
         },
         "nsidc": {
           "/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html||Page 6||808f26c93737": "partial",
@@ -2469,8 +2469,8 @@
           "/developer_guide/release_notes/release-v05-00-00.html||Breaking Changes||22aedffe0040": "wrong",
           "/api_reference/sliderule.html||set_url||55245ca418c0": "wrong",
           "/user_guide/versioning.html||Python Client||fc32973556e7": "wrong",
-          "/developer_guide/articles/private_clusters.html||Access||605a000fd120": "wrong",
-          "/getting_started/Getting-Started.html||Common Package Modules||e9bd3e299b74": "wrong"
+          "/getting_started/Getting-Started.html||Common Package Modules||e9bd3e299b74": "wrong",
+          "/user_guide/articles/260120_private_clusters.html||Access||605a000fd120": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
@@ -2518,11 +2518,11 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/developer_guide/endpoints.html||h5p||a1cb4afc4323": "partial",
           "/api_reference/h5.html||h5||f2f5311479d0": "partial",
-          "/developer_guide/endpoints.html||h5||23d07ee1e83d": "partial",
-          "/developer_guide/articles/h5coro.html||H5Coro::read||3acea025f538": "partial",
-          "/api_reference/h5.html||h5x||25467da6e316": "partial"
+          "/user_guide/articles/210423_h5coro.html||H5Coro::read||3acea025f538": "partial",
+          "/api_reference/h5.html||h5p||d3e919cec69e": "partial",
+          "/api_reference/h5.html||h5x||cda117649cf1": "partial",
+          "/api_reference/h5.html||h5||076932376661": "partial"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.2.5 HDF5 Dataset Information||d1b8a182cc4d": "partial",
@@ -2614,9 +2614,9 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/api_reference/earthdata.html||cmr||fe2250948821": "correct",
-          "/api_reference/earthdata.html||search||1b0585b02317": "partial",
-          "/api_reference/earthdata.html||stac||6173fb13f41c": "partial",
+          "/api_reference/earthdata.html||cmr||1f34bb4e5a5f": "correct",
+          "/api_reference/earthdata.html||search||b07beb0738b0": "partial",
+          "/api_reference/earthdata.html||stac||71fad6a703f1": "partial",
           "/developer_guide/release_notes/release-v04-20-00.html||Issues Resolved||198ce303d1d5": "wrong",
           "/api_reference/earthdata.html||cmr||bbe2f7f28f70": "wrong"
         },
@@ -2664,9 +2664,9 @@
         "docsearch": {
           "/developer_guide/why_sliderule.html||Why Develop SlideRule?||a60ad7643d5a": "wrong",
           "/getting_started/Examples.html||Examples||565e2e775897": "wrong",
-          "/developer_guide/articles/h5coro.html||SlideRule Project Background||9d838db1f04c": "wrong",
-          "/developer_guide/articles/atl24_golden_run.html||Background||f235027965fc": "wrong",
-          "/developer_guide/release_notes/release-v03-03-00.html||Major Changes||80112b286165": "wrong"
+          "/user_guide/articles/210423_h5coro.html||SlideRule Project Background||9d838db1f04c": "wrong",
+          "/user_guide/articles/250328_atl24_golden_run.html||Background||f235027965fc": "wrong",
+          "/user_guide/gedi.html||1. Overview||6348e5e66ae6": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||4.2 Land Ice||17e7b64da1f4": "wrong",
@@ -2712,8 +2712,8 @@
         "docsearch": {
           "/developer_guide/why_sliderule.html||Why Develop SlideRule?||16ea72c4094f": "partial",
           "/developer_guide/why_sliderule.html||Why Develop SlideRule?||c23f20bcc3e1": "partial",
-          "/developer_guide/articles/arbitrary_code_execution.html||User Lua Script||7dd7c49cacac": "wrong",
-          "/developer_guide/articles/arbitrary_code_execution.html||User Python Script||8d7f821848b7": "wrong",
+          "/user_guide/articles/250530_arbitrary_code_execution.html||User Lua Script||7dd7c49cacac": "wrong",
+          "/user_guide/articles/250530_arbitrary_code_execution.html||User Python Script||8d7f821848b7": "wrong",
           "/user_guide/icesat2.html||1.4 Ancillary Data||8893fca8207c": "partial"
         },
         "nsidc": {
@@ -2806,8 +2806,8 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/developer_guide/articles/geoparquet.html||Overview||852a861aa437": "correct",
-          "/user_guide/arrow_output.html||S3 Staging||2f12d4bfdbc4": "partial",
+          "/user_guide/articles/230224_geoparquet.html||Overview||852a861aa437": "correct",
+          "/user_guide/arrow_output.html||S3 Staging||7f40b6598d77": "partial",
           "/user_guide/arrow_output.html||Parameters||a99142a25837": "correct",
           "/user_guide/arrow_output.html||S3 Output to User Bucket||61d8c54e7684": "partial",
           "/user_guide/arrow_output.html||Parameters||fa281c2dedb3": "partial"
@@ -2854,10 +2854,10 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/developer_guide/articles/v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "wrong",
-          "/developer_guide/articles/v5_server_release.html||Full release notes||c38de2abf110": "wrong",
-          "/developer_guide/articles/private_clusters.html||2026-01-20: Private Clusters||0093f9b6c44c": "wrong",
-          "/developer_guide/release_notes/web-release-v04-00-03.html||Summary||ae2f42b24210": "wrong",
+          "/user_guide/articles/251208_v5_server_release.html||2025-12-08: Public Cluster Release v5||a489218531ea": "wrong",
+          "/user_guide/articles/251208_v5_server_release.html||Full release notes||c38de2abf110": "wrong",
+          "/user_guide/articles/260120_private_clusters.html||2026-01-20: Private Clusters||0093f9b6c44c": "wrong",
+          "/developer_guide/release_notes/web-release-v04-00-03.html||Summary||f74aaaa5acde": "wrong",
           "/developer_guide/release_notes/release-v04-09-00.html||Release v4.9.x||e9504c6ca9ba": "wrong"
         },
         "nsidc": {
@@ -2904,11 +2904,11 @@
       },
       "verdicts_by_chunk": {
         "docsearch": {
-          "/user_guide/versioning.html||Note on Reproducibility||37df71cfa27c": "partial",
+          "/user_guide/versioning.html||Note on Reproducibility||7140987bbb9d": "partial",
           "/api_reference/gedi.html||init||722200c662ff": "wrong",
           "/developer_guide/release_notes/release-v01-04-00.html||Required Updates||1d1ce079e9a6": "partial",
           "/api_reference/sliderule.html||init||cb4cd8cf3bfe": "wrong",
-          "/developer_guide/articles/plugins.html||Shared Object||91fecf32e890": "wrong"
+          "/user_guide/articles/250910_plugins.html||Shared Object||91fecf32e890": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||Data Dissemination||c8351fd7c417": "wrong",
@@ -3054,7 +3054,7 @@
           "/user_guide/icesat2.html||1. ATL03 - atl03x||d995c960dace": "partial",
           "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||c3ce6434223b": "partial",
           "/user_guide/icesat2.html||1.5 ATL06-SR Algorithm||a4f5cc1c7001": "partial",
-          "/user_guide/icesat2.html||A.1 Segmented Photon Data - atl03sp||070b1baf046e": "partial"
+          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||de94abe3dd7c": "partial"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||OpenOceans++ Classification||60a11abdfc7f": "wrong",
@@ -3101,8 +3101,8 @@
           "/background/ICESat-2.html||Mission||1aeabc060090": "partial",
           "/user_guide/icesat2.html||ICESat-2 Module||64893edf0959": "wrong",
           "/user_guide/icesat2.html||1.5 ATL06-SR Algorithm||b6e408a2c938": "wrong",
-          "/developer_guide/design/SlideRuleWebClient.html||Appendix A. Parameter Components||37b28f75079b": "wrong",
-          "/developer_guide/release_notes/release-v02-00-00.html||Release v2.0.x||b813724f4f3f": "wrong"
+          "/developer_guide/release_notes/release-v02-00-00.html||Release v2.0.x||b813724f4f3f": "wrong",
+          "/developer_guide/release_notes/release-v02-01-00.html||Release v2.1.x||01fcbebb14f0": "wrong"
         },
         "nsidc": {
           "/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf||1.3 ICESat-2 ATLAS Instrument||113e2f29c4ad": "partial",

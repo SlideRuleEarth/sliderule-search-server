@@ -37,39 +37,39 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.625** — https://docs.testsliderule.org/user_guide/icesat2.html  
+1. [✓✓] **score 0.625** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1. ATL03 - atl03x**  
     category=`user_guide`
 
     > The SlideRule atl03x endpoint provides a service for ATL03 custom processing. This endpoint queries ATL03 input granules for photon heights and locations based on a set of photon-input parameters that select geographic and temporal ranges. It then selects a subset of these photons based on a set of photon classification parameters, and divides these selected photons into short along-track…
 
-2. [✓ ] **score 0.629** — https://docs.testsliderule.org/user_guide/icesat2.html  
+2. [  ] **score 0.581** — https://docs.slideruleearth.io/user_guide/articles/260528_web_client_endpoint_scoped_params.html  
+    *section:* **Overview**  
+    category=`user_guide`
+
+    > The Advanced Options panel now adapts to the endpoint youâve selected. The X-series endpoints ( atl06x , atl08x , atl24x , atl13x ) read pre-computed segments directly from HDF5 products, so the server discards photon-processing parameters for these endpoints. The web client now mirrors that behavior in the UI, eliminating misleading controls and preventing stale store state from leaking into…
+
+3. [✓ ] **score 0.629** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **A.1 Segmented Photon Data - atl03sp**  
     category=`user_guide`
 
     > The photon data is stored as along-track segments inside the ATL03 granules, which is then broken apart by SlideRule and re-segmented according to processing parameters supplied at the time of the request. The new segments are called extents . When the length of an extent is 40 meters, and the step size is 20 meters, the extent matches the ATL06 segments. Most of the time, the photon extents are…
 
-3. [✓ ] **score 0.539** — https://docs.testsliderule.org/user_guide/icesat2.html  
+4. [✓ ] **score 0.539** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.4 Ancillary Data**  
     category=`user_guide`
 
     > The ancillary field parameters allow the user to request additional fields from the source datasets being subsetted. Ancillary data returned from the atl03x (as well as the atl03s and atl03sp ) APIs are per-photon values that are read from the ATL03 granules. No processing is performed on the data read out of the ATL03 granule. The fields must come from either a per-photon variable…
 
-4. [✓ ] **score 0.501** — https://docs.testsliderule.org/user_guide/icesat2.html  
-    *section:* **ICESat-2 Module**  
+5. [  ] **score 0.556** — https://docs.slideruleearth.io/user_guide/articles/260528_web_client_endpoint_scoped_params.html  
+    *section:* **Request builder**  
     category=`user_guide`
 
-    > The ICESat-2 module within SlideRule supports a number of both legacy p-series and s-series endpoints, as well as the newer DataFrame-based x-series endpoints. This document focuses on the x-series endpoints while still referencing the other legacy endpoints when helpful. Three main kinds of data are returned by the ICESat-2 endpoints: segmented photon data, elevation data (from the ATL06-SR…
-
-5. [  ] **score 0.452** — https://docs.testsliderule.org/developer_guide/release_notes/release-v04-15-00.html  
-    *section:* **Compatibility Changes**  
-    category=`release_notes`
-
-    > The h_mean value in the atl03x API when running the ATL06 surface fitting algorithm was changed from a double to a float. This was to make it consistent with the ATL06 standard data product and to normalize all DataFrames with z columns to floating point precision. The x-series APIs provide a different column for the sample time - time_ns instead of time . This is to reflect that the new time_ns…
+    > The request builder gates photon-processing parameters ( fit , len , res , cnf , srt , yapc , atl08_class , pass_invalid , ats , cnt , dist_in_seg ) behind an isPhotonAPI check, so switching from a P-series to an X-series endpoint no longer carries stale parameters into the outgoing request.
 
 ---
 
-### docsearch #2 — `identifier` — ✓ rank 3
+### docsearch #2 — `identifier` — ✓ rank 5
 
 **Query:** `atl06x surface fit elevation`
 
@@ -85,35 +85,35 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.507** — https://docs.testsliderule.org/background/ICESat-2.html  
+1. [  ] **score 0.458** — https://docs.slideruleearth.io/user_guide/articles/260528_web_client_endpoint_scoped_params.html  
+    *section:* **Panel visibility by endpoint**  
+    category=`user_guide`
+
+    > Endpoint Photon Selection Extents Surface Elevation PhoREAL atl03x variants, atl06p , atl06sp , atl08p , atl03vp editable editable if applicable if applicable atl06x hidden read-only: 40m / 20m hidden n/a atl08x hidden read-only: 100m / 100m n/a hidden atl24x , atl13x hidden hidden n/a n/a For atl06x and atl08x , the Extents panel now displays the real segment dimensions baked into the data…
+
+2. [  ] **score 0.508** — https://docs.slideruleearth.io/background/ICESat-2.html  
     *section:* **ATL03 - Global Geolocated Photon Data**  
     category=`background`
 
     > Potential errors in the average surface heights: Sampling error : average height estimates are based upon a random sampling of the surface heights, which might be skewed based on the horizontal distribution of PEs Background noise : signal PEs are intermixed with the background PEs, and so there are random outliers which may affect the surface determination, particularly in conditions with high…
 
-2. [✓ ] **score 0.431** — https://docs.testsliderule.org/user_guide/icesat2.html  
+3. [✓ ] **score 0.431** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **A.2 Elevations - atl06p**  
     category=`user_guide`
 
     > The primary result returned by SlideRule for ICESat-2 ATL06-SR processing requests is a set of geolocated elevations corresponding to a geolocated ATL03 along-track segment. The elevations are contained in a GeoDataFrame where each row represents a calculated elevation. The elevation GeoDataFrame has the following columns: extent_id : unique ID associated with custom ATL03 segment (removed from…
 
-3. [✓✓] **score 0.453** — https://docs.testsliderule.org/user_guide/icesat2.html  
-    *section:* **2. ATL06 - atl06x**  
-    category=`user_guide`
-
-    > The SlideRule atl06x endpoint provides a service for ATL06 subsetting and custom processing. This endpoint queries ATL06 input granules for segment heights and locations based on geographic and temporal ranges. The resulting extents are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster sampling.
-
-4. [  ] **score 0.419** — https://docs.testsliderule.org/background/ICESat-2.html  
+4. [  ] **score 0.419** — https://docs.slideruleearth.io/background/ICESat-2.html  
     *section:* **ATL03 - Global Geolocated Photon Data**  
     category=`background`
 
     > The magnitude of this bias depends on the shape of the transmitted waveform, the width of the window used to calculate the average surface, and the slope and roughness of the surface that broadens the return pulse. ATL03 contains most of the data needed to create the higher level data products (such as the ATL06-SR land ice product). With SlideRule , we will calculate the average elevation of…
 
-5. [  ] **score 0.455** — https://docs.testsliderule.org/developer_guide/release_notes/release-v04-15-00.html  
-    *section:* **Compatibility Changes**  
-    category=`release_notes`
+5. [✓✓] **score 0.453** — https://docs.slideruleearth.io/user_guide/icesat2.html  
+    *section:* **2. ATL06 - atl06x**  
+    category=`user_guide`
 
-    > The h_mean value in the atl03x API when running the ATL06 surface fitting algorithm was changed from a double to a float. This was to make it consistent with the ATL06 standard data product and to normalize all DataFrames with z columns to floating point precision. The x-series APIs provide a different column for the sample time - time_ns instead of time . This is to reflect that the new time_ns…
+    > The SlideRule atl06x endpoint provides a service for ATL06 subsetting and custom processing. This endpoint queries ATL06 input granules for segment heights and locations based on geographic and temporal ranges. The resulting extents are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster sampling.
 
 ---
 
@@ -132,35 +132,35 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.691** — https://docs.testsliderule.org/user_guide/icesat2.html  
+1. [✓✓] **score 0.691** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **5. ATL24 - atl24x**  
     category=`user_guide`
 
     > The SlideRule atl24x endpoint provides a service for ATL24 subsetting and custom processing. This endpoint queries ATL24 input granules for bathymetry data for ATL03 photons based on geographic and temporal ranges. ATL24 provides bathymetry labels and metrics which are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster…
 
-2. [  ] **score 0.616** — https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html  
+2. [  ] **score 0.616** — https://docs.slideruleearth.io/user_guide/articles/250328_atl24_golden_run.html  
     *section:* **Background**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > The University of Texas at Austin and Oregon State University partnered with the SlideRule team (University of Washington, Goddard Space Flight Center, and Wallops Flight Facility) to develop and generate a Near-Shore Coastal Bathymetry Product for ICESat-2 called ATL24. The initial development and generation of the data product was kicked off in January of 2024, started in earnest in May of…
 
-3. [  ] **score 0.555** — https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html  
-    *section:* **Statistics**  
-    category=`developer_guide`
-
-    > 452,173 ATL03 granules were processed (constituting cycles 1 through 25). 277,255 ATL24 granules were produced 145,283 processing runs resulted in empty output (no bathymetry was identified) and therefore no ATL24 granule was produced 29,635 processing runs failed to produce a valid result 27.649 TB of ATL24 data was produced 989.46 B photons were classified 59.19% of classified photons were sea…
-
-4. [  ] **score 0.494** — https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html  
-    *section:* **2025-03-28: ATL24 Processing Run**  
-    category=`developer_guide`
-
-    > Note SlideRule processed ICESat-2 cycles 1 through 25 to produce the first release of the Near-Shore Coastal Bathymetry Product (ATL24) for ICESat-2.
-
-5. [  ] **score 0.578** — https://docs.testsliderule.org/getting_started/Examples.html  
+3. [  ] **score 0.578** — https://docs.slideruleearth.io/getting_started/Examples.html  
     *section:* **Examples**  
     category=`getting_started`
 
-    > ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+    > ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
+
+4. [✓ ] **score 0.598** — https://docs.slideruleearth.io/user_guide/icesat2.html  
+    *section:* **1.2.4 ATL24 Classification**  
+    category=`user_guide`
+
+    > If ATL24 classification parameters are specified, the ATL24 (bathymetry) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=-1 (dynamic) and cnf=-1 (no native filtering) should be specified to allow all ATL24 photons to be used. atl24 class_ph…
+
+5. [  ] **score 0.555** — https://docs.slideruleearth.io/user_guide/articles/250328_atl24_golden_run.html  
+    *section:* **Statistics**  
+    category=`user_guide`
+
+    > 452,173 ATL03 granules were processed (constituting cycles 1 through 25). 277,255 ATL24 granules were produced 145,283 processing runs resulted in empty output (no bathymetry was identified) and therefore no ATL24 granule was produced 29,635 processing runs failed to produce a valid result 27.649 TB of ATL24 data was produced 989.46 B photons were classified 59.19% of classified photons were sea…
 
 ---
 
@@ -178,35 +178,35 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.792** — https://docs.testsliderule.org/user_guide/icesat2.html  
+1. [✓✓] **score 0.792** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.2.2 YAPC Classification**  
     category=`user_guide`
 
     > The experimental YAPC (Yet Another Photon Classifier) photon-classification scheme assigns each photon a score based on the number of adjacent photons. YAPC parameters are provided as a dictionary, with entries described below: yapc : settings for the yapc algorithm; if provided then SlideRule will execute the YAPC classification on all photons score : the minimum yapc classification score of a…
 
-2. [✓ ] **score 0.656** — https://docs.testsliderule.org/user_guide/icesat2.html  
+2. [✓ ] **score 0.656** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.2 Photon-selection Parameters**  
     category=`user_guide`
 
     > Once the ATL03 input data are are selected, a set of photon-selection photon parameters are used to select from among the available photons. At this stage, additional photon-classification algorithms (ATL08, YAPC) may be selected beyond what is available in the ATL03 files. The criterial described by these parameters are applied together, so that only photons that fulfill all of the requirements…
 
-3. [✓ ] **score 0.457** — https://docs.testsliderule.org/user_guide/icesat2.html  
+3. [✓ ] **score 0.457** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.6.1 PhoREAL Parameters**  
     category=`user_guide`
 
     > The PhoREAL parameters are supplied in user requests under the phoreal key and include: phoreal : binsize : size of the vertical photon bin in meters geoloc : algorithm to use to calculate the geolocation (latitude, longitude, along-track distance, and time) of each custom length PhoREAL segment; âmeanâ - takes the average value across all photons in the segment; âmedianâ - takes the…
 
-4. [✓ ] **score 0.461** — https://docs.testsliderule.org/user_guide/icesat2.html  
+4. [✓ ] **score 0.461** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1. ATL03 - atl03x**  
     category=`user_guide`
 
     > , 2:canopy, 3:top of canopy, 4:unclassified Optional: must enable phoreal or specify atl08_class yapc_score YAPC photon weight 0-255, higher is denser Optional: must enable yapc atl24_class ATL24 photon classification 0:unclassified, 40:bathymetry, 41:sea surface Optional: must enable atl24 atl24_confidence ATL24 photon classification bathymetry confidence score 0 to 1.0, higher is more confident…
 
-5. [✓ ] **score 0.418** — https://docs.testsliderule.org/user_guide/icesat2.html  
-    *section:* **A.1 Segmented Photon Data - atl03sp**  
+5. [  ] **score 0.436** — https://docs.slideruleearth.io/user_guide/articles/260528_web_client_endpoint_scoped_params.html  
+    *section:* **Request builder**  
     category=`user_guide`
 
-    > The GeoDataFrame for each photon extent has the following columns: track : reference pair track number (1, 2, 3) sc_orient : spacecraft orientation (0: backwards, 1: forwards) rgt : reference ground track cycle : cycle segment_id : segment ID of first ATL03 segment in result segment_dist : along track distance from the equator to the center of the extent (in meters) count : the number of photons…
+    > The request builder gates photon-processing parameters ( fit , len , res , cnf , srt , yapc , atl08_class , pass_invalid , ats , cnt , dist_in_seg ) behind an isPhotonAPI check, so switching from a P-series to an X-series endpoint no longer carries stale parameters into the outgoing request.
 
 ---
 
@@ -229,39 +229,39 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.315** — https://docs.testsliderule.org/user_guide/icesat2.html  
+1. [✓✓] **score 0.315** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.2.1 Native ATL03 Photon Classification**  
     category=`user_guide`
 
     > ATL03 contains a set of photon classification values, that are designed to identify signal photons for different surface types with specified confidence: srt : surface type: 0-land, 1-ocean, 2-sea ice, 3-land ice, 4-inland water cnf : confidence level for photon selection, can be supplied as a single value (which means the confidence must be at least that), or a list (which means the confidence…
 
-2. [✓ ] **score 0.331** — https://docs.testsliderule.org/user_guide/icesat2.html  
+2. [✓ ] **score 0.331** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **5.1 Query Parameters**  
     category=`user_guide`
 
     > The following parameters are supported under the atl24 key for customizing the request to ATL24 and filtering which data is returned. atl24 : compact : reduces number of fields to minimal viable set (boolean) class_ph : ATL24 classification filter (list; 0:unclassified, 40:bathymetry, 41:sea surface) confidence_threshold|minimal bathymetry confidence score|double; 0 to 1.0|0| invalid_kd : invalid…
 
-3. [  ] **score 0.227** — https://docs.testsliderule.org/user_guide/basic_usage.html  
+3. [  ] **score 0.227** — https://docs.slideruleearth.io/user_guide/basic_usage.html  
     *section:* **Define the Request Parameters**  
     category=`user_guide`
 
     > When making a request to the SlideRule servers, the parameters of the request (i.e. what the user wants to process and how they want to process it) are supplied in the body of the request as a JSON structure. When using the SlideRule Python client, the parameters are captured and provided by the user in a Python dictionary, and the dictionary is automatically serialized into a JSON structure by…
 
-4. [  ] **score 0.237** — https://docs.testsliderule.org/developer_guide/release_notes/release-v04-04-00.html  
+4. [  ] **score 0.237** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-04-00.html  
     *section:* **New Features**  
     category=`release_notes`
 
     > v4.4.0 - Resources are queried from servers instead of client. If a processing request does not include a list of resources to process, the server processing the request will query CMR and populate the resources parameter. In addition, any sampling requests that need a populated catalog parameter will also be queried on the server side and have that parameter populated. v4.4.0 - 389 and 383 -…
 
-5. [✓ ] **score 0.261** — https://docs.testsliderule.org/user_guide/icesat2.html  
-    *section:* **2. ATL06 - atl06x**  
+5. [  ] **score 0.236** — https://docs.slideruleearth.io/user_guide/articles/260528_web_client_endpoint_scoped_params.html  
+    *section:* **Request builder**  
     category=`user_guide`
 
-    > and the along-track segment fit meters (float) land_ice_segments/fit_statistics/h_robust_sprd w_surface_window_final Width of the surface window, top to bottom meters (float) land_ice_segments/fit_statistics/w_surface_window_final bsnow_conf Confidence flag for presence of blowing snow boolean land_ice_segments/geophysical/bsnow_conf bsnow_h Blowing snow layer top height meters (float)…
+    > The request builder gates photon-processing parameters ( fit , len , res , cnf , srt , yapc , atl08_class , pass_invalid , ats , cnt , dist_in_seg ) behind an isPhotonAPI check, so switching from a P-series to an X-series endpoint no longer carries stale parameters into the outgoing request.
 
 ---
 
-### docsearch #6 — `identifier` — ✗ rank 17
+### docsearch #6 — `identifier` — ✗ rank 25
 
 **Query:** `srt surface reference type parameter`
 
@@ -278,35 +278,35 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.337** — https://docs.testsliderule.org/user_guide/icesat2.html  
+1. [  ] **score 0.337** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **2. ATL06 - atl06x**  
     category=`user_guide`
 
     > and the along-track segment fit meters (float) land_ice_segments/fit_statistics/h_robust_sprd w_surface_window_final Width of the surface window, top to bottom meters (float) land_ice_segments/fit_statistics/w_surface_window_final bsnow_conf Confidence flag for presence of blowing snow boolean land_ice_segments/geophysical/bsnow_conf bsnow_h Blowing snow layer top height meters (float)…
 
-2. [  ] **score 0.300** — https://docs.testsliderule.org/user_guide/icesat2.html  
+2. [  ] **score 0.300** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1. ATL03 - atl03x**  
     category=`user_guide`
 
     > , 2:canopy, 3:top of canopy, 4:unclassified Optional: must enable phoreal or specify atl08_class yapc_score YAPC photon weight 0-255, higher is denser Optional: must enable yapc atl24_class ATL24 photon classification 0:unclassified, 40:bathymetry, 41:sea surface Optional: must enable atl24 atl24_confidence ATL24 photon classification bathymetry confidence score 0 to 1.0, higher is more confident…
 
-3. [  ] **score 0.294** — https://docs.testsliderule.org/user_guide/icesat2.html  
+3. [  ] **score 0.294** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **4. ATL13 - atl13x**  
     category=`user_guide`
 
     > The SlideRule atl13x endpoint provides a service for ATL13 subsetting and custom processing. This endpoint queries ATL13 input granules for segment inland lake statistics based on geographic and temporal ranges. These statistics are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster sampling. This endpoint is called via:…
 
-4. [  ] **score 0.323** — https://docs.testsliderule.org/user_guide/icesat2.html  
-    *section:* **1.2.4 ATL24 Classification**  
-    category=`user_guide`
-
-    > If ATL24 classification parameters are specified, the ATL24 (bathymetry) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=-1 (dynamic) and cnf=-1 (no native filtering) should be specified to allow all ATL24 photons to be used. atl24 class_ph…
-
-5. [  ] **score 0.272** — https://docs.testsliderule.org/user_guide/icesat2.html  
+4. [  ] **score 0.272** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.2.1 Native ATL03 Photon Classification**  
     category=`user_guide`
 
     > ATL03 contains a set of photon classification values, that are designed to identify signal photons for different surface types with specified confidence: srt : surface type: 0-land, 1-ocean, 2-sea ice, 3-land ice, 4-inland water cnf : confidence level for photon selection, can be supplied as a single value (which means the confidence must be at least that), or a list (which means the confidence…
+
+5. [  ] **score 0.286** — https://docs.slideruleearth.io/user_guide/icesat2.html  
+    *section:* **A.2 Elevations - atl06p**  
+    category=`user_guide`
+
+    > The primary result returned by SlideRule for ICESat-2 ATL06-SR processing requests is a set of geolocated elevations corresponding to a geolocated ATL03 along-track segment. The elevations are contained in a GeoDataFrame where each row represents a calculated elevation. The elevation GeoDataFrame has the following columns: extent_id : unique ID associated with custom ATL03 segment (removed from…
 
 ---
 
@@ -328,31 +328,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓ ] **score 0.515** — https://docs.testsliderule.org/user_guide/icesat2.html  
+1. [✓ ] **score 0.515** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **ICESat-2 Module**  
     category=`user_guide`
 
     > The ICESat-2 module within SlideRule supports a number of both legacy p-series and s-series endpoints, as well as the newer DataFrame-based x-series endpoints. This document focuses on the x-series endpoints while still referencing the other legacy endpoints when helpful. Three main kinds of data are returned by the ICESat-2 endpoints: segmented photon data, elevation data (from the ATL06-SR…
 
-2. [✓✓] **score 0.542** — https://docs.testsliderule.org/user_guide/icesat2.html  
+2. [✓✓] **score 0.542** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.2.1 Native ATL03 Photon Classification**  
     category=`user_guide`
 
     > ATL03 contains a set of photon classification values, that are designed to identify signal photons for different surface types with specified confidence: srt : surface type: 0-land, 1-ocean, 2-sea ice, 3-land ice, 4-inland water cnf : confidence level for photon selection, can be supplied as a single value (which means the confidence must be at least that), or a list (which means the confidence…
 
-3. [✓ ] **score 0.432** — https://docs.testsliderule.org/user_guide/icesat2.html  
+3. [✓ ] **score 0.432** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **5.1 Query Parameters**  
     category=`user_guide`
 
     > The following parameters are supported under the atl24 key for customizing the request to ATL24 and filtering which data is returned. atl24 : compact : reduces number of fields to minimal viable set (boolean) class_ph : ATL24 classification filter (list; 0:unclassified, 40:bathymetry, 41:sea surface) confidence_threshold|minimal bathymetry confidence score|double; 0 to 1.0|0| invalid_kd : invalid…
 
-4. [  ] **score 0.438** — https://docs.testsliderule.org/background/ICESat-2.html  
+4. [  ] **score 0.438** — https://docs.slideruleearth.io/background/ICESat-2.html  
     *section:* **ATL03 - Global Geolocated Photon Data**  
     category=`background`
 
     > Some photons will be returns from the Transmit Echo Path (TEP) Some photons are from the ATLAS instrument that have reflected off the surface or vegetation (these are our signal photons). The ATLAS instrument receives a vast amount of data and decides on-board whether or not to telemeter packets of received photons back to Earth. ATLAS uses a digital elevation model (DEM) and a few simple rules…
 
-5. [  ] **score 0.471** — https://docs.testsliderule.org/background/ICESat-2.html  
+5. [  ] **score 0.471** — https://docs.slideruleearth.io/background/ICESat-2.html  
     *section:* **ATL03 - Global Geolocated Photon Data**  
     category=`background`
 
@@ -371,31 +371,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.461** — https://docs.testsliderule.org/user_guide/icesat2.html  
+1. [  ] **score 0.461** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **2. ATL06 - atl06x**  
     category=`user_guide`
 
     > The SlideRule atl06x endpoint provides a service for ATL06 subsetting and custom processing. This endpoint queries ATL06 input granules for segment heights and locations based on geographic and temporal ranges. The resulting extents are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster sampling.
 
-2. [✓✓] **score 0.414** — https://docs.testsliderule.org/user_guide/raster_sampling.html  
+2. [✓✓] **score 0.414** — https://docs.slideruleearth.io/user_guide/raster_sampling.html  
     *section:* **Overview**  
     category=`user_guide`
 
     > SlideRule supports sampling raster data at points of interest and including those sampled values alongside its customized data products. For instance, when performing an ATL06-SR processing run ( atl06p ), the returned GeoDataFrame has a row for each calculated elevation; that row can also include values from different raster datasets that have been sampled at the geolocation of the calculated…
 
-3. [  ] **score 0.422** — https://docs.testsliderule.org/developer_guide/release_notes/release-v03-03-00.html  
+3. [  ] **score 0.422** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-03-00.html  
     *section:* **Major Changes**  
     category=`release_notes`
 
     > Sampling support added for the Merit DEM Added raster module to Python client - returns GeoDataFrame of sampled raster points of interest
 
-4. [  ] **score 0.441** — https://docs.testsliderule.org/getting_started/Examples.html  
+4. [  ] **score 0.441** — https://docs.slideruleearth.io/getting_started/Examples.html  
     *section:* **Examples**  
     category=`getting_started`
 
     > The following Jupyter notebooks provide examples of how to use some of SlideRuleâs functionality. They are listed roughly in the order of complexity, with the simpler examples first and the more complex examples farther down. The source code for all of these notebooks as well as additional notebooks can be found in our repository . Additional files are necessary to run some of the notebooks…
 
-5. [  ] **score 0.449** — https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html  
+5. [  ] **score 0.449** — https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html  
     *section:* **SRWC-5.1: Raster Sampling**  
     category=`developer_guide`
 
@@ -416,31 +416,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.897** — https://docs.testsliderule.org/getting_started/Install.html  
+1. [✓✓] **score 0.897** — https://docs.slideruleearth.io/getting_started/Install.html  
     *section:* **PyPI**  
     category=`getting_started`
 
     > Alternatively, you can use the PyPI package manager to install the SlideRule Python client. This is not the recommended way of installing, but is made available as an option for users who prefer to work with pip . pip install sliderule
 
-2. [✓✓] **score 0.804** — https://docs.testsliderule.org/getting_started/Install.html  
+2. [✓✓] **score 0.804** — https://docs.slideruleearth.io/getting_started/Install.html  
     *section:* **Installation**  
     category=`getting_started`
 
     > The recommended way of installing the SlideRule Python client is to use the Conda Python package manager. conda install -c conda-forge sliderule In order to run the example notebooks , we provide an environment.yml that can be used to create an initial conda environment that has the SlideRule Python client installed along with all the dependencies necessary to run the examples. To install the…
 
-3. [✓✓] **score 0.765** — https://docs.testsliderule.org/getting_started/Install.html  
+3. [✓✓] **score 0.765** — https://docs.slideruleearth.io/getting_started/Install.html  
     *section:* **Developer Install**  
     category=`getting_started`
 
     > For developers and contributors, to get the latest unreleased version of the Python client, the contents of the sliderule repository can be cloned or download as a zipped file . If cloning, please consider forking into your own account before cloning onto your system. Warning The main branch is used for the public cluster running at slideruleearth.io . Private clusters may be running versions of…
 
-4. [  ] **score 0.630** — https://docs.testsliderule.org/developer_guide/release_notes/release-v01-04-00.html  
+4. [  ] **score 0.630** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-04-00.html  
     *section:* **Required Updates**  
     category=`release_notes`
 
     > v1.4.0 - In order to use the latest SlideRule server deployments, the Python client must be updated. For conda users: $ conda update sliderule For developer installs: $ cd sliderule-python $ git checkout main $ git pull $ python3 setup.py install v1.4.0 - User scripts that use the Python client need to make the following updates: The track keyword argument of atl03sp , atl03s , atl06p , and atl06…
 
-5. [  ] **score 0.707** — https://docs.testsliderule.org/api_reference/gedi.html  
+5. [  ] **score 0.707** — https://docs.slideruleearth.io/api_reference/gedi.html  
     *section:* **init**  
     category=`api_reference`
 
@@ -468,35 +468,35 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓ ] **score 0.654** — https://docs.testsliderule.org/user_guide/xseries.html  
+1. [✓ ] **score 0.654** — https://docs.slideruleearth.io/user_guide/xseries.html  
     *section:* **X-Series APIs**  
     category=`user_guide`
 
     > Note This page documents the x-series APIs that are specifically geared for generating and processing DataFrames. These APIs were made public in early 2025 starting with version 4.11.0, and have a common methodology for processing the data which makes interfacing to them consistent across multiple datasets. Much of the functionality described here is duplicated in older-style p-series and…
 
-2. [  ] **score 0.542** — https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html  
+2. [  ] **score 0.542** — https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html  
     *section:* **SRWC-4.3: Tutorial**  
     category=`developer_guide`
 
     > The UI shall provide a tutorial that guides a user through a series of steps necessary to make a basic SlideRule request and interact with the data.
 
-3. [✓✓] **score 0.510** — https://docs.testsliderule.org/user_guide/icesat2.html  
+3. [✓✓] **score 0.510** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **ICESat-2 Module**  
     category=`user_guide`
 
     > The ICESat-2 module within SlideRule supports a number of both legacy p-series and s-series endpoints, as well as the newer DataFrame-based x-series endpoints. This document focuses on the x-series endpoints while still referencing the other legacy endpoints when helpful. Three main kinds of data are returned by the ICESat-2 endpoints: segmented photon data, elevation data (from the ATL06-SR…
 
-4. [  ] **score 0.562** — https://docs.testsliderule.org/developer_guide/articles/plugins.html  
-    *section:* **Components of a Plugin**  
-    category=`developer_guide`
-
-    > A SlideRule plugin consists of three components: (1) a shared object, (2) lua extension scripts, (3) lua api scripts.
-
-5. [  ] **score 0.551** — https://docs.testsliderule.org/api_reference/sliderule.html  
+4. [  ] **score 0.551** — https://docs.slideruleearth.io/api_reference/sliderule.html  
     *section:* **sliderule**  
     category=`api_reference`
 
     > The SlideRule Python API sliderule.py is used to access the services provided by the base SlideRule server. From Python, the module can be imported via: import sliderule
+
+5. [  ] **score 0.519** — https://docs.slideruleearth.io/  
+    *section:* **SlideRule v5.4.2**  
+    category=`other`
+
+    > Process Earth science datasets in the cloud through API calls to SlideRule web services. GitHub : https://github.com/SlideRuleEarth/sliderule Documentation : https://docs.slideruleearth.io/ Web Client : https://client.slideruleearth.io/ PyPi : https://pypi.org/project/sliderule/ Conda : https://anaconda.org/conda-forge/sliderule Node.js : https://www.npmjs.com/package/@sliderule/sliderule
 
 ---
 
@@ -512,31 +512,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.653** — https://docs.testsliderule.org/developer_guide/articles/security_model.html  
+1. [  ] **score 0.653** — https://docs.slideruleearth.io/user_guide/articles/260312_security_model.html  
     *section:* **Overview**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > SlideRule Earth leverages GitHub authentication and account membership status within the GitHub SlideRuleEarth organization to authorize access to SlideRule services. Credentials are provided by users using a JSON Web Token (JWT) issued by the SlideRule Earth login service ( login.slideruleearth.io ). A userâs JWT contains claims used and verified by SlideRule services to allow access.
 
-2. [  ] **score 0.566** — https://docs.testsliderule.org/developer_guide/articles/private_clusters.html  
-    *section:* **SlideRule Authenticator**  
-    category=`developer_guide`
-
-    > The SlideRule Authenticator is an AWS Lambdaâbased authentication service that delegates user authentication to GitHub. User login requests are redirected to GitHubâs authorization endpoint, where credentials are verified by GitHub. Upon successful authentication, GitHub returns an authorization grant that the service exchanges for an access token to establish the userâs identity. The…
-
-3. [  ] **score 0.613** — https://docs.testsliderule.org/user_guide/raster_sampling.html  
+2. [  ] **score 0.613** — https://docs.slideruleearth.io/user_guide/raster_sampling.html  
     *section:* **Overview**  
     category=`user_guide`
 
     > The second step of obtaining credentials also requires some specialized code, but since most of our datasets are in AWS and authenticated through NASA DAACs, most of the authentication code is generic. But even still, because of this, each raster dataset supported by SlideRule needs to be registered with SlideRule ahead of time and provided in what we call an Asset Directory.
 
-4. [  ] **score 0.492** — https://docs.testsliderule.org/developer_guide/how_tos/amazon_linux_arm_setup.html  
+3. [  ] **score 0.566** — https://docs.slideruleearth.io/user_guide/articles/260120_private_clusters.html  
+    *section:* **SlideRule Authenticator**  
+    category=`user_guide`
+
+    > The SlideRule Authenticator is an AWS Lambdaâbased authentication service that delegates user authentication to GitHub. User login requests are redirected to GitHubâs authorization endpoint, where credentials are verified by GitHub. Upon successful authentication, GitHub returns an authorization grant that the service exchanges for an access token to establish the userâs identity. The…
+
+4. [  ] **score 0.493** — https://docs.slideruleearth.io/developer_guide/how_tos/amazon_linux_arm_setup.html  
     *section:* **2-Factor Authentication**  
     category=`developer_guide`
 
     > Make sure to setup an initial .aws/credentials file so that it has the sliderule profile access key and secret access key. The credentials file will look something like: [ default ] aws_access_key_id = _ aws_secret_access_key = _ aws_session_token = _ [ sliderule ] aws_access_key_id = _ aws_secret_access_key = _ To populate the default keys and session token, run: aws --profile = sliderule sts…
 
-5. [✓✓] **score 0.574** — https://docs.testsliderule.org/background/NASA-Earthdata.html  
+5. [✓✓] **score 0.574** — https://docs.slideruleearth.io/background/NASA-Earthdata.html  
     *section:* **Steps to Sync from NSIDC**  
     category=`background`
 
@@ -555,33 +555,33 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.711** — https://docs.testsliderule.org/developer_guide/articles/geoparquet.html  
+1. [  ] **score 0.711** — https://docs.slideruleearth.io/user_guide/articles/230224_geoparquet.html  
     *section:* **Overview**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > SlideRule currently supports returning results back to data users as GeoParquet files. These files are built on the server and either streamed back directly to the user, or uploaded to a user-specified S3 bucket for later access. To specify the GeoParquet option, the request must include the output parameter with the output.format field set to âparquetâ . See the section on output parameters…
 
-2. [✓✓] **score 0.632** — https://docs.testsliderule.org/user_guide/arrow_output.html  
+2. [✓✓] **score 0.632** — https://docs.slideruleearth.io/user_guide/arrow_output.html  
     *section:* **Parameters**  
     category=`user_guide`
 
     > To control writing the data to an Arrow supported format, the output parameter is used. output : settings to control how SlideRule outputs results path : the full path and filename of the file to be constructed by the client, NOTE - the path MUST BE less than 128 characters format : the format of the file constructed by the servers and sent to the client (currently, only GeoParquet is supported,…
 
-3. [✓✓] **score 0.638** — https://docs.testsliderule.org/user_guide/arrow_output.html  
+3. [✓✓] **score 0.638** — https://docs.slideruleearth.io/user_guide/arrow_output.html  
     *section:* **Overview**  
     category=`user_guide`
 
     > By default, SlideRule returns all processing results in a native (i.e. custom to SlideRule) format as soon as they are generated. Those results are streamed back to the client and used by the client to construct a (Geo)DataFrame that is presented to the user. But sometimes it is desirable to have SlideRule build a (Geo)DataFrame on the server, and then stream that dataframe back to the client for…
 
-4. [  ] **score 0.605** — https://docs.testsliderule.org/developer_guide/articles/geoparquet.html  
+4. [  ] **score 0.605** — https://docs.slideruleearth.io/user_guide/articles/230224_geoparquet.html  
     *section:* **Constraints**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > Currently, only support for the atl06 , atl08 , and flattened atl03 records is provided. This means that the ICESat-2 compact parameter being set is not supported when outputting to GeoParquet, and the atl03 results may look slightly different between native runs and runs that request the GeoParquet format. The results in the GeoParquet file are not sorted. The SlideRule server side version…
 
-5. [  ] **score 0.710** — https://docs.testsliderule.org/developer_guide/articles/geoparquet.html  
+5. [  ] **score 0.710** — https://docs.slideruleearth.io/user_guide/articles/230224_geoparquet.html  
     *section:* **2023-02-24: GeoParquet**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > Warning SlideRule now supports returning results back to data users as GeoParquet files. The functionality described in this article has been improved with broad support for returning data via Apache Arrow based formats.
 
@@ -602,31 +602,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.569** — https://docs.testsliderule.org/api_reference/icesat2.html  
+1. [  ] **score 0.569** — https://docs.slideruleearth.io/api_reference/icesat2.html  
     *section:* **atl06**  
     category=`api_reference`
 
     > sliderule.icesat2. atl06 ( parm , resource ) [source] Performs ATL06-SR processing on ATL03 data and returns geolocated elevations Parameters : parms ( dict ) â parameters used to configure ATL06-SR algorithm processing (see Parameters ) resource ( str ) â ATL03 HDF5 filename Returns : geolocated elevations (see Elevations ) Return type : GeoDataFrame
 
-2. [  ] **score 0.565** — https://docs.testsliderule.org/api_reference/icesat2.html  
+2. [  ] **score 0.565** — https://docs.slideruleearth.io/api_reference/icesat2.html  
     *section:* **atl08**  
     category=`api_reference`
 
     > sliderule.icesat2. atl08 ( parm , resource ) [source] Performs ATL08-PhoREAL processing on ATL03 and ATL08 data and returns geolocated elevations Parameters : parms ( dict ) â parameters used to configure ATL06-SR algorithm processing (see Parameters ) resource ( str ) â ATL03 HDF5 filename Returns : geolocated vegatation statistics Return type : GeoDataFrame
 
-3. [  ] **score 0.475** — https://docs.testsliderule.org/api_reference/icesat2.html  
+3. [  ] **score 0.475** — https://docs.slideruleearth.io/api_reference/icesat2.html  
     *section:* **atl06sp**  
     category=`api_reference`
 
     > Parameters : parms ( dict ) â parameters used to configure ATL03 subsetting (see Parameters ) callbacks ( dictionary ) â a callback function that is called for each result record resources ( list ) â a list of granules to process (e.g. [âATL03_20181019065445_03150111_007_01.h5â, â¦]) keep_id ( bool ) â whether to retain the âextent_idâ column in the GeoDataFrame for future merges…
 
-4. [  ] **score 0.517** — https://docs.testsliderule.org/api_reference/icesat2.html  
+4. [  ] **score 0.517** — https://docs.slideruleearth.io/api_reference/icesat2.html  
     *section:* **atl06s**  
     category=`api_reference`
 
     > sliderule.icesat2. atl06s ( parm , resource ) [source] Subsets ATL06 data given the polygon and time range provided and returns elevations Parameters : parms ( dict ) â parameters used to configure ATL03 subsetting (see Parameters ) resource ( str ) â ATL06 HDF5 filename Returns : ATL06 elevations Return type : GeoDataFrame
 
-5. [  ] **score 0.521** — https://docs.testsliderule.org/getting_started/Examples.html  
+5. [  ] **score 0.521** — https://docs.slideruleearth.io/getting_started/Examples.html  
     *section:* **Examples**  
     category=`getting_started`
 
@@ -649,31 +649,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.733** — https://docs.testsliderule.org/user_guide/icesat2.html  
+1. [✓✓] **score 0.733** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.2.2 YAPC Classification**  
     category=`user_guide`
 
     > The experimental YAPC (Yet Another Photon Classifier) photon-classification scheme assigns each photon a score based on the number of adjacent photons. YAPC parameters are provided as a dictionary, with entries described below: yapc : settings for the yapc algorithm; if provided then SlideRule will execute the YAPC classification on all photons score : the minimum yapc classification score of a…
 
-2. [✓ ] **score 0.784** — https://docs.testsliderule.org/user_guide/icesat2.html  
+2. [✓ ] **score 0.784** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.2 Photon-selection Parameters**  
     category=`user_guide`
 
     > Once the ATL03 input data are are selected, a set of photon-selection photon parameters are used to select from among the available photons. At this stage, additional photon-classification algorithms (ATL08, YAPC) may be selected beyond what is available in the ATL03 files. The criterial described by these parameters are applied together, so that only photons that fulfill all of the requirements…
 
-3. [✓✓] **score 0.479** — https://docs.testsliderule.org/user_guide/icesat2.html  
+3. [✓✓] **score 0.479** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1. ATL03 - atl03x**  
     category=`user_guide`
 
     > , 2:canopy, 3:top of canopy, 4:unclassified Optional: must enable phoreal or specify atl08_class yapc_score YAPC photon weight 0-255, higher is denser Optional: must enable yapc atl24_class ATL24 photon classification 0:unclassified, 40:bathymetry, 41:sea surface Optional: must enable atl24 atl24_confidence ATL24 photon classification bathymetry confidence score 0 to 1.0, higher is more confident…
 
-4. [  ] **score 0.496** — https://docs.testsliderule.org/background/ICESat-2.html  
-    *section:* **References**  
-    category=`background`
+4. [  ] **score 0.467** — https://docs.slideruleearth.io/user_guide/articles/260528_web_client_endpoint_scoped_params.html  
+    *section:* **Request builder**  
+    category=`user_guide`
 
-    > ATBD for ATL03 Global Geolocated Photon Data ATBD for ATL03g Received Photon Geolocation ATBD for ATL03a Atmospheric Delay Corrections Userâs Guide for ATL03
+    > The request builder gates photon-processing parameters ( fit , len , res , cnf , srt , yapc , atl08_class , pass_invalid , ats , cnt , dist_in_seg ) behind an isPhotonAPI check, so switching from a P-series to an X-series endpoint no longer carries stale parameters into the outgoing request.
 
-5. [✓ ] **score 0.424** — https://docs.testsliderule.org/user_guide/icesat2.html  
+5. [✓ ] **score 0.424** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.6.1 PhoREAL Parameters**  
     category=`user_guide`
 
@@ -681,7 +681,7 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 ---
 
-### docsearch #15 — `example` — ✓ rank 2
+### docsearch #15 — `example` — ✓ rank 1
 
 **Query:** `how to sample ArcticDEM raster mosaic`
 
@@ -692,33 +692,33 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.522** — https://docs.testsliderule.org/developer_guide/articles/gdal_vrt_benchmark.html  
-    *section:* **Overview**  
-    category=`developer_guide`
-
-    > Test reads elevation value from ArcticDem. POI is lon: -74.60 lat: 82.86 Method used vrt file created from mosaic rasters, version 3.0, 2m, hosted on AWS. The mosaic.vrt file is stored locally on aws dev server at /data/ArcticDem/mosaic.vrt The actual raster containing the elevation for POI is: /vsis3/pgc-opendata-dems/arcticdem/mosaics/v3.0/2m/34_37/34_37_1_1_2m_v3.0_reg_dem.tif The elevation…
-
-2. [✓✓] **score 0.533** — https://docs.testsliderule.org/user_guide/raster_sampling.html  
+1. [✓✓] **score 0.533** — https://docs.slideruleearth.io/user_guide/raster_sampling.html  
     *section:* **Parameters**  
     category=`user_guide`
 
     > ds that should be treated as elevation bands which allows a 3D transform to be applied key_space : 64-bit integer defining the upper 32-bits of the file_id ; this in general should never be set as the server will typically do the right thing assigning a key space; but for users that are parallelizing requests on the client-side, this parameter can be usedful when constructing the resulting file…
 
-3. [  ] **score 0.568** — https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html  
+2. [  ] **score 0.522** — https://docs.slideruleearth.io/user_guide/articles/221110_gdal_vrt_benchmark.html  
+    *section:* **Overview**  
+    category=`user_guide`
+
+    > Test reads elevation value from ArcticDem. POI is lon: -74.60 lat: 82.86 Method used vrt file created from mosaic rasters, version 3.0, 2m, hosted on AWS. The mosaic.vrt file is stored locally on aws dev server at /data/ArcticDem/mosaic.vrt The actual raster containing the elevation for POI is: /vsis3/pgc-opendata-dems/arcticdem/mosaics/v3.0/2m/34_37/34_37_1_1_2m_v3.0_reg_dem.tif The elevation…
+
+3. [  ] **score 0.568** — https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html  
     *section:* **SRWC-5.1: Raster Sampling**  
     category=`developer_guide`
 
     > The following raster datasets shall be supported for sampling: GEDI L3 gridded ground elevation GEDI L3 gridded canopy height GEDI L3 gridded ground elevation-standard deviation GEDI L3 gridded canopy heigh-standard deviation GEDI L3 gridded counts of valid laser footprints MERIT Digital Elevation Model Simulated SWOT Data Simulated SWOT Data USGS 3DEP 1m Digital Elevation Model Worldwide land…
 
-4. [  ] **score 0.435** — https://docs.testsliderule.org/getting_started/Examples.html  
+4. [  ] **score 0.435** — https://docs.slideruleearth.io/getting_started/Examples.html  
     *section:* **Examples**  
     category=`getting_started`
 
     > The following Jupyter notebooks provide examples of how to use some of SlideRuleâs functionality. They are listed roughly in the order of complexity, with the simpler examples first and the more complex examples farther down. The source code for all of these notebooks as well as additional notebooks can be found in our repository . Additional files are necessary to run some of the notebooks…
 
-5. [  ] **score 0.517** — https://docs.testsliderule.org/developer_guide/articles/gdal_vrt_benchmark.html  
+5. [  ] **score 0.517** — https://docs.slideruleearth.io/user_guide/articles/221110_gdal_vrt_benchmark.html  
     *section:* **2022-11-10: VRT Performance Benchmarking**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > Note GDAL VRT performance was benchmarked using the ArcticDEM mosaic dataset.
 
@@ -739,33 +739,33 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.689** — https://docs.testsliderule.org/getting_started/Examples.html  
+1. [  ] **score 0.689** — https://docs.slideruleearth.io/getting_started/Examples.html  
     *section:* **Examples**  
     category=`getting_started`
 
-    > ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+    > ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
 
-2. [  ] **score 0.580** — https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html  
+2. [  ] **score 0.580** — https://docs.slideruleearth.io/user_guide/articles/250328_atl24_golden_run.html  
     *section:* **Background**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > The University of Texas at Austin and Oregon State University partnered with the SlideRule team (University of Washington, Goddard Space Flight Center, and Wallops Flight Facility) to develop and generate a Near-Shore Coastal Bathymetry Product for ICESat-2 called ATL24. The initial development and generation of the data product was kicked off in January of 2024, started in earnest in May of…
 
-3. [✓✓] **score 0.675** — https://docs.testsliderule.org/user_guide/icesat2.html  
+3. [✓✓] **score 0.675** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **5. ATL24 - atl24x**  
     category=`user_guide`
 
     > The SlideRule atl24x endpoint provides a service for ATL24 subsetting and custom processing. This endpoint queries ATL24 input granules for bathymetry data for ATL03 photons based on geographic and temporal ranges. ATL24 provides bathymetry labels and metrics which are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster…
 
-4. [✓ ] **score 0.602** — https://docs.testsliderule.org/user_guide/icesat2.html  
+4. [✓ ] **score 0.602** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.2.4 ATL24 Classification**  
     category=`user_guide`
 
     > If ATL24 classification parameters are specified, the ATL24 (bathymetry) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=-1 (dynamic) and cnf=-1 (no native filtering) should be specified to allow all ATL24 photons to be used. atl24 class_ph…
 
-5. [  ] **score 0.536** — https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html  
+5. [  ] **score 0.536** — https://docs.slideruleearth.io/user_guide/articles/250328_atl24_golden_run.html  
     *section:* **Statistics**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > 452,173 ATL03 granules were processed (constituting cycles 1 through 25). 277,255 ATL24 granules were produced 145,283 processing runs resulted in empty output (no bathymetry was identified) and therefore no ATL24 granule was produced 29,635 processing runs failed to produce a valid result 27.649 TB of ATL24 data was produced 989.46 B photons were classified 59.19% of classified photons were sea…
 
@@ -786,33 +786,33 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.599** — https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html  
+1. [  ] **score 0.599** — https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html  
     *section:* **Example Use Case - ATL13 Lake ID Mapping**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > The ATL13 inland lake data product contains along-track water surface characteristics for inland bodies of water. Each measurement (i.e. variable) in the product is tagged with a reference ID which can be used as an index into an internal ATL13 global database of inland water bodies. This database contains a geometry for each body of water and is used in the ATL13 processing to produce the ATL13…
 
-2. [✓ ] **score 0.762** — https://docs.testsliderule.org/user_guide/icesat2.html  
+2. [✓ ] **score 0.762** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **4.1 Inland Lake Parameters**  
     category=`user_guide`
 
     > Inland lake data can be queried using the following parameters under the atl13 key: atl13 : refid : ATL13 reference id name : lake (or body of water) name coord : latitude and longitude coordinates contained within the desired body of water|object {âlatâ: \(lat, "lon": \) lon}
 
-3. [  ] **score 0.669** — https://docs.testsliderule.org/getting_started/Examples.html  
+3. [  ] **score 0.671** — https://docs.slideruleearth.io/getting_started/Examples.html  
     *section:* **Examples**  
     category=`getting_started`
 
-    > ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+    > ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
 
-4. [  ] **score 0.422** — https://docs.testsliderule.org/developer_guide/release_notes/release-v04-14-00.html  
+4. [  ] **score 0.422** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-14-00.html  
     *section:* **New/Improved Functionality**  
     category=`release_notes`
 
     > Arbitrary Code Execution - /source/ace API for executing user supplied lua scripts; only available on private clusters. Asset Metadata Service - /manager/ams API for querying metadata directly from SlideRule; only ATL13 currently supported. ATL13 - /source/atl13x API for subsetting the ATL13 standard data product; in addition to normal temporal/spatial subsetting requests, SlideRule also supports…
 
-5. [  ] **score 0.373** — https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html  
+5. [  ] **score 0.373** — https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html  
     *section:* **Example Use Case - ATL13 Lake ID Mapping**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > Given a user query, the ATL13 global database can be used to get a reference ID, and the reverse lookup table can be used to get all of the granules with data for that reference ID. The first option was the simplest but suffered from relying on CMR which is relatively slow and the possibility of having granules returned for other nearby bodies of water due to buffering on the along-track polygons…
 
@@ -829,39 +829,39 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.656** — https://docs.testsliderule.org/developer_guide/release_notes/release-v04-11-00.html  
+1. [✓✓] **score 0.656** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-11-00.html  
     *section:* **Major Changes**  
     category=`release_notes`
 
     > v4.11.0 - The official release of the SlideRule Web Client at https://client.slideruleearth.io v4.11.0 - The atl03x endpoint is being previewed. This implements a dataframe model for the data instead of a streaming model. v4.11.0 - The atl24x endpoint provides subsetting support for the ATL24 standard data product.
 
-2. [  ] **score 0.638** — https://docs.testsliderule.org/user_guide/icesat2.html  
+2. [  ] **score 0.638** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **5. ATL24 - atl24x**  
     category=`user_guide`
 
     > The SlideRule atl24x endpoint provides a service for ATL24 subsetting and custom processing. This endpoint queries ATL24 input granules for bathymetry data for ATL03 photons based on geographic and temporal ranges. ATL24 provides bathymetry labels and metrics which are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster…
 
-3. [  ] **score 0.586** — https://docs.testsliderule.org/user_guide/icesat2.html  
+3. [  ] **score 0.586** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **5.2 Ancillary Data**  
     category=`user_guide`
 
     > Ancillary data returned from the atl24x endpoint comes from the {beam} group of the ATL24 granules. anc_fields : fields in the beam group of the ATL24 granule, provided as a list of strings For example, parms = { "anc_fields" : [ "index_ph" ], } gdf = sliderule . run ( "atl24x" , parms )
 
-4. [  ] **score 0.462** — https://docs.testsliderule.org/developer_guide/release_notes/release-v05-00-00.html  
+4. [  ] **score 0.462** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html  
     *section:* **New Functionality**  
     category=`release_notes`
 
     > Rate limiting and endpoint metrics are now handled the SlideRule Intelligent Load Balancer . v5.0.3 - #552 - Ancillary field requests now support multidimensional data. v5.0.3 - #553 - Added x-series APIs for ATL06 ( atl06x ) and ATL08 ( atl08x ) v5.0.3 - #562 - Serial-mode raster sampling has been removed. v5.0.3 - #564 - Added x-series APIs for GEDI04A ( gedi04ax ), GEDI02A ( gedi02ax ), and…
 
-5. [  ] **score 0.635** — https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html  
-    *section:* **2025-12-08: Public Cluster Release v5**  
-    category=`developer_guide`
+5. [  ] **score 0.417** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-05-00.html  
+    *section:* **Release v3.5.x**  
+    category=`release_notes`
 
-    > Note Version 5.0 of SlideRule has been officially released. The changes include an overhaul of the private clusters, consistent ATL13 query formats, ATL24 release 002, improved earthdata error handling, and h5p slice support. See release notes for full details.
+    > 2023-06-09 Version description of the v3.5.0 release of ICESat-2 SlideRule. This document also captures functionality added in versions v3.4.0 and v3.4.1.
 
 ---
 
-### docsearch #19 — `version_history` — ✗ rank 9
+### docsearch #19 — `version_history` — ✗ rank 8
 
 **Query:** `yapc added to sliderule version release notes`
 
@@ -873,35 +873,35 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.537** — https://docs.testsliderule.org/developer_guide/articles/private_clusters.html  
+1. [  ] **score 0.537** — https://docs.slideruleearth.io/user_guide/articles/260120_private_clusters.html  
     *section:* **2026-01-20: Private Clusters**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > Note With release v5.0.2, SlideRule has transitioned the management of private clusters from the django-based SlideRule Provisioning System which was deployed in AWS ECS, to the pure Python-based SlideRule Authenticator and SlideRule Provisioner which are deployed via AWS Lambda. The main functions of the original system have been preserved, with a change in focus on clusters for individual users…
 
-2. [  ] **score 0.502** — https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html  
+2. [  ] **score 0.502** — https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html  
     *section:* **2025-12-08: Public Cluster Release v5**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > Note Version 5.0 of SlideRule has been officially released. The changes include an overhaul of the private clusters, consistent ATL13 query formats, ATL24 release 002, improved earthdata error handling, and h5p slice support. See release notes for full details.
 
-3. [  ] **score 0.492** — https://docs.testsliderule.org/developer_guide/release_notes/release-v03-05-00.html  
+3. [  ] **score 0.492** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-05-00.html  
     *section:* **Release v3.5.x**  
     category=`release_notes`
 
     > 2023-06-09 Version description of the v3.5.0 release of ICESat-2 SlideRule. This document also captures functionality added in versions v3.4.0 and v3.4.1.
 
-4. [  ] **score 0.447** — https://docs.testsliderule.org/developer_guide/release_notes/web-release-v04-00-03.html  
+4. [  ] **score 0.447** — https://docs.slideruleearth.io/developer_guide/release_notes/web-release-v04-00-03.html  
     *section:* **Summary**  
     category=`release_notes`
 
     > ð SlideRule Web Client v4.0.3 Release Notes Changes since v3.8.0 Infrastructure CloudFront + Route 53 terraform modules added to support hosting the landing page at the root domain New Features Landing Page - The web client now serves as the SlideRule Earth landing page at slideruleearth.io, featuring a hero section with wallpaper image, About/Contact info panels, and a News tab that pulls…
 
-5. [  ] **score 0.526** — https://docs.testsliderule.org/developer_guide/release_notes/release-v01-01-00.html  
-    *section:* **Release v1.1.x**  
+5. [  ] **score 0.507** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-00-00.html  
+    *section:* **New Features**  
     category=`release_notes`
 
-    > 2021-10-13 Version description of the v1.1.5 release of ICESat-2 SlideRule.
+    > The version string vX.Y.Z indicates the following: X : major version, indicating compatibility; all components of SlideRule that share the same major version are compatible (e.g. the demo, the client, the provisioning system, and the cluster) Y : minor version, indicating new features have been added; features are only guaranteed to work in the lowest common minor version number of the SlideRule…
 
 ---
 
@@ -916,39 +916,39 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.515** — https://docs.testsliderule.org/developer_guide/release_notes/release-v02-00-00.html  
+1. [  ] **score 0.515** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-00-00.html  
     *section:* **New Features**  
     category=`release_notes`
 
     > Version 2.0.0 of SlideRule represents a major change to the SlideRule architecture and is NOT backward compatible with any of the previous releases. The following is a list of changes in this major release. New Domain : SlideRule has moved from http://icesat2sliderule.org to https://slideruleearth.io . This change was made to reflect the new scope of SlideRule which includes datasets (e.g.…
 
-2. [  ] **score 0.454** — https://docs.testsliderule.org/user_guide/versioning.html  
+2. [  ] **score 0.454** — https://docs.slideruleearth.io/user_guide/versioning.html  
     *section:* **Library Version ( version )**  
     category=`user_guide`
 
     > The SlideRule executable version (called the Library Version in the code) is the semantic version used by the SlideRule team to identify a release of SlideRule. It uses the following convention: vX.Y.Z where: X is the major version; when incremented it indicates a break in backward compatibility. Y is the minor version; when incremented it indicates new or significantly changed functionality Z is…
 
-3. [✓✓] **score 0.394** — https://docs.testsliderule.org/developer_guide/release_notes/release-v05-00-00.html  
+3. [✓✓] **score 0.394** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html  
     *section:* **Breaking Changes**  
     category=`release_notes`
 
     > All calls to session.manager should no longer be used as that functionality will cease in future releases. v5.0.3 - The main Python module sliderule no longer creates a default session on import but requires either sliderule.init() or sliderule.create_session() . The creation of a default session was confusing when users called sliderule.init() which then created a second session. This caused odd…
 
-4. [  ] **score 0.526** — https://docs.testsliderule.org/user_guide/versioning.html  
+4. [  ] **score 0.526** — https://docs.slideruleearth.io/user_guide/versioning.html  
     *section:* **Note on Reproducibility**  
     category=`user_guide`
 
     > It is the goal of the SlideRule development team to create a system where results are able to be reproduced; but this is often times either extremely difficult or impossible for reasons outside of the teams control. SlideRule relies on publicly hosted datasets. When those datasets are updated, older versions of the datasets are often removed. For instance, ICESat-2 Standard Data Products have a…
 
-5. [  ] **score 0.525** — https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html  
+5. [  ] **score 0.525** — https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html  
     *section:* **2025-12-08: Public Cluster Release v5**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > Note Version 5.0 of SlideRule has been officially released. The changes include an overhaul of the private clusters, consistent ATL13 query formats, ATL24 release 002, improved earthdata error handling, and h5p slice support. See release notes for full details.
 
 ---
 
-### docsearch #21 — `version_history` — ✓ rank 4
+### docsearch #21 — `version_history` — ✓ rank 3
 
 **Query:** `recent changes to atl06x release notes`
 
@@ -960,31 +960,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.466** — https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html  
+1. [  ] **score 0.466** — https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html  
     *section:* **2025-12-08: Public Cluster Release v5**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > Note Version 5.0 of SlideRule has been officially released. The changes include an overhaul of the private clusters, consistent ATL13 query formats, ATL24 release 002, improved earthdata error handling, and h5p slice support. See release notes for full details.
 
-2. [  ] **score 0.472** — https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html  
-    *section:* **TL;DR**  
-    category=`developer_guide`
-
-    > ps.slideruleearth.io has been retired and replaced by provisioner.slideruleearth.io There are breaking changes (which will hopefully be minimal because they involved features that have been deprecated for some time) ATL24 release 002 is now the default The internal Asset Metadata Service is used for ATL24, ATL13, and 3DEP (only when specified) Earthdata error reporting was made more intuitive h5p…
-
-3. [  ] **score 0.474** — https://docs.testsliderule.org/developer_guide/release_notes/release-v04-11-00.html  
+2. [  ] **score 0.474** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-11-00.html  
     *section:* **Major Changes**  
     category=`release_notes`
 
     > v4.11.0 - The official release of the SlideRule Web Client at https://client.slideruleearth.io v4.11.0 - The atl03x endpoint is being previewed. This implements a dataframe model for the data instead of a streaming model. v4.11.0 - The atl24x endpoint provides subsetting support for the ATL24 standard data product.
 
-4. [✓✓] **score 0.398** — https://docs.testsliderule.org/developer_guide/release_notes/release-v05-00-00.html  
+3. [✓✓] **score 0.398** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html  
     *section:* **New Functionality**  
     category=`release_notes`
 
     > Rate limiting and endpoint metrics are now handled the SlideRule Intelligent Load Balancer . v5.0.3 - #552 - Ancillary field requests now support multidimensional data. v5.0.3 - #553 - Added x-series APIs for ATL06 ( atl06x ) and ATL08 ( atl08x ) v5.0.3 - #562 - Serial-mode raster sampling has been removed. v5.0.3 - #564 - Added x-series APIs for GEDI04A ( gedi04ax ), GEDI02A ( gedi02ax ), and…
 
-5. [  ] **score 0.465** — https://docs.testsliderule.org/developer_guide/release_notes/release-v05-02-00.html  
+4. [  ] **score 0.472** — https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html  
+    *section:* **TL;DR**  
+    category=`user_guide`
+
+    > ps.slideruleearth.io has been retired and replaced by provisioner.slideruleearth.io There are breaking changes (which will hopefully be minimal because they involved features that have been deprecated for some time) ATL24 release 002 is now the default The internal Asset Metadata Service is used for ATL24, ATL13, and 3DEP (only when specified) Earthdata error reporting was made more intuitive h5p…
+
+5. [  ] **score 0.465** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-02-00.html  
     *section:* **Issues Resolved**  
     category=`release_notes`
 
@@ -1007,31 +1007,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.564** — https://docs.testsliderule.org/api_reference/gedi.html  
+1. [✓✓] **score 0.564** — https://docs.slideruleearth.io/api_reference/gedi.html  
     *section:* **gedi04a**  
     category=`api_reference`
 
     > sliderule.gedi. gedi04a ( parm , resource ) [source] Performs GEDI L4A subsetting of elevation footprints Parameters : parms ( dict ) â parameters used to configure subsetting process resource ( str ) â GEDI HDF5 filename asset ( str ) â data source asset Returns : gridded footrpints Return type : GeoDataFrame
 
-2. [  ] **score 0.538** — https://docs.testsliderule.org/developer_guide/release_notes/release-v03-01-00.html  
+2. [  ] **score 0.538** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-01-00.html  
     *section:* **Major Changes**  
     category=`release_notes`
 
     > GEDI functionality officially supported Subsetting for L1B, L2A, L4A datasets (L1 and L2 products limited to Grand Mesa, Colorado area of interest until LP DAAC migrates them to the cloud) Raster Sampling for L3, L4B datasets User Guide: https://slideruleearth.io/user_guide/GEDI.html API Reference: https://slideruleearth.io/api_reference/gedi.html Example Notebooks:…
 
-3. [  ] **score 0.459** — https://docs.testsliderule.org/user_guide/gedi.html  
+3. [  ] **score 0.459** — https://docs.slideruleearth.io/user_guide/gedi.html  
     *section:* **1. Overview**  
     category=`user_guide`
 
     > The GEDI API currently provides subsetting and raster sampling capabilities to SlideRule for the L1B, L2A, L3, L4A, and L4B datasets. * The L1B dataset can be subsetted with waveforms returned for each footprint inside a user-supplied area of interest * The L2A dataset can be subsetted with elevations returned for each footprint inside a user-supplied area of interest * The L3 dataset can be…
 
-4. [✓ ] **score 0.532** — https://docs.testsliderule.org/api_reference/gedi.html  
+4. [✓ ] **score 0.532** — https://docs.slideruleearth.io/api_reference/gedi.html  
     *section:* **gedi**  
     category=`api_reference`
 
     > The GEDI Python API gedi.py is used to access the services provided by the gedi plugin for SlideRule. From Python, the module can be imported via: from sliderule import gedi
 
-5. [✓ ] **score 0.516** — https://docs.testsliderule.org/api_reference/gedi.html  
+5. [✓ ] **score 0.516** — https://docs.slideruleearth.io/api_reference/gedi.html  
     *section:* **init**  
     category=`api_reference`
 
@@ -1051,31 +1051,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.497** — https://docs.testsliderule.org/user_guide/raster_sampling.html  
+1. [✓✓] **score 0.497** — https://docs.slideruleearth.io/user_guide/raster_sampling.html  
     *section:* **Parameters**  
     category=`user_guide`
 
     > losest_time : time used to filter rasters to be sampled; only the raster that is closest in time to the provided time will be sampled - can be multiple rasters if they all share the same time (format %Y-%m-%dT%H:%M:%SZ, e.g. 2018-10-13T00:00:00Z) use_poi_time : overrides the âclosest_timeâ setting (or provides one if not set) with the time associated with the point of interest being sampled…
 
-2. [✓✓] **score 0.701** — https://docs.testsliderule.org/user_guide/raster_sampling.html  
+2. [✓✓] **score 0.701** — https://docs.slideruleearth.io/user_guide/raster_sampling.html  
     *section:* **Parameters**  
     category=`user_guide`
 
     > To request raster sampling, the samples parameter must be populated as a dictionary in the request.
 
-3. [  ] **score 0.442** — https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html  
+3. [  ] **score 0.442** — https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html  
     *section:* **SRWC-3.3: Advanced Mode**  
     category=`developer_guide`
 
     > In advanced mode, the control panel shall display the following controls All control elements present in basic mode Resource query parameter controls specific to the API that has been selected that allow a user to make a processing request without an area of interest A list of parameter controls specific to the API that has been selected; the parameter controls are grouped into exandable category…
 
-4. [✓✓] **score 0.494** — https://docs.testsliderule.org/user_guide/raster_sampling.html  
+4. [✓✓] **score 0.494** — https://docs.slideruleearth.io/user_guide/raster_sampling.html  
     *section:* **Parameters**  
     category=`user_guide`
 
     > Each key in the dictionary is used to label the data returned for that raster in the returned DataFrame. samples : dictionary of rasters to sample <key> : user supplied name used to identify results returned from sampling this raster asset : name of the raster (as supplied in the Asset Directory) to be sampled algorithm : algorithm to use to sample the raster; the available algorithms for…
 
-5. [  ] **score 0.414** — https://docs.testsliderule.org/developer_guide/release_notes/release-v04-00-00.html  
+5. [  ] **score 0.414** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-00-00.html  
     *section:* **Major Changes**  
     category=`release_notes`
 
@@ -1101,31 +1101,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.688** — https://docs.testsliderule.org/user_guide/icesat2.html  
+1. [✓✓] **score 0.688** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.2.3 ATL08 Classification**  
     category=`user_guide`
 
     > If ATL08 classification parameters are specified, the ATL08 (vegetation height) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=0 (land) and cnf=0 (no native filtering) should be specified to allow all ATL08 photons to be used. atl08_class…
 
-2. [✓ ] **score 0.513** — https://docs.testsliderule.org/user_guide/icesat2.html  
+2. [✓ ] **score 0.513** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **A.1 Segmented Photon Data - atl03sp**  
     category=`user_guide`
 
     > The GeoDataFrame for each photon extent has the following columns: track : reference pair track number (1, 2, 3) sc_orient : spacecraft orientation (0: backwards, 1: forwards) rgt : reference ground track cycle : cycle segment_id : segment ID of first ATL03 segment in result segment_dist : along track distance from the equator to the center of the extent (in meters) count : the number of photons…
 
-3. [✓✓] **score 0.651** — https://docs.testsliderule.org/user_guide/icesat2.html  
+3. [✓✓] **score 0.651** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.6 PhoREAL Algorithm**  
     category=`user_guide`
 
     > The PhoREAL algorithm is a modified version of the ATL08 canopy metrics algorithm developed at the University of Texas at Austin that calculates canopy metrics on a segment of ATL03 photons. The algorithm is run by supplying the phoreal parameter in the atl03x request, but can also be accessed via the legacy endpoints atl08 and atl08p .
 
-4. [✓ ] **score 0.627** — https://docs.testsliderule.org/user_guide/icesat2.html  
+4. [✓ ] **score 0.627** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1. ATL03 - atl03x**  
     category=`user_guide`
 
     > The SlideRule atl03x endpoint provides a service for ATL03 custom processing. This endpoint queries ATL03 input granules for photon heights and locations based on a set of photon-input parameters that select geographic and temporal ranges. It then selects a subset of these photons based on a set of photon classification parameters, and divides these selected photons into short along-track…
 
-5. [✓✓] **score 0.449** — https://docs.testsliderule.org/user_guide/icesat2.html  
+5. [✓✓] **score 0.449** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.6 PhoREAL Algorithm**  
     category=`user_guide`
 
@@ -1150,31 +1150,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.529** — https://docs.testsliderule.org/user_guide/icesat2.html  
+1. [✓✓] **score 0.529** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **2.1 Ancillary Data**  
     category=`user_guide`
 
     > Ancillary data returned from the atl06x endpoint (as well as atl06 and atl06p endpoints) come from the land_ice_segments group of the ATL06 granules. The data is mostly returned as-is, with one exception. Double-precision and single-precision floating point variables are checked to see if they contain the maximum value of their respective encodings, and if so, a floating point NaN (not-a-number)…
 
-2. [  ] **score 0.472** — https://docs.testsliderule.org/developer_guide/release_notes/release-v04-01-00.html  
+2. [  ] **score 0.472** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-01-00.html  
     *section:* **Release v4.1.x**  
     category=`release_notes`
 
     > 2023-12-07 Version description of the v4.1.0 release of ICESat-2 SlideRule. * Important : This version requires an update of the Python client to use. The underlying mechanism used in support of including ancillary fields in processing requests was updated to support both the PhoREAL algorithm and the ATL06 subsetter. As a result, in order to include ancillary field requests in your code, you…
 
-3. [✓✓] **score 0.681** — https://docs.testsliderule.org/user_guide/icesat2.html  
+3. [✓✓] **score 0.681** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **3.2 Ancillary Data**  
     category=`user_guide`
 
     > Ancillary data returned from the atl08x endpoint (as well as atl08 and atl08p endpoints) come from the {beam} group of the ATL08 granules. atl08_fields : fields in the beam group of the ATL08 granule, provided as a list of strings For example, parms = { "atl08_fields" : [ "asr" ], } gdf = sliderule . run ( "atl08x" , parms )
 
-4. [✓✓] **score 0.637** — https://docs.testsliderule.org/user_guide/icesat2.html  
+4. [✓✓] **score 0.637** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **5.2 Ancillary Data**  
     category=`user_guide`
 
     > Ancillary data returned from the atl24x endpoint comes from the {beam} group of the ATL24 granules. anc_fields : fields in the beam group of the ATL24 granule, provided as a list of strings For example, parms = { "anc_fields" : [ "index_ph" ], } gdf = sliderule . run ( "atl24x" , parms )
 
-5. [✓✓] **score 0.629** — https://docs.testsliderule.org/user_guide/icesat2.html  
+5. [✓✓] **score 0.629** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **4.2 Ancillary Data**  
     category=`user_guide`
 
@@ -1198,39 +1198,39 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.564** — https://docs.testsliderule.org/developer_guide/release_notes/release-v05-00-00.html  
+1. [  ] **score 0.564** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html  
     *section:* **Breaking Changes**  
     category=`release_notes`
 
     > All calls to session.manager should no longer be used as that functionality will cease in future releases. v5.0.3 - The main Python module sliderule no longer creates a default session on import but requires either sliderule.init() or sliderule.create_session() . The creation of a default session was confusing when users called sliderule.init() which then created a second session. This caused odd…
 
-2. [✓✓] **score 0.589** — https://docs.testsliderule.org/api_reference/sliderule.html  
+2. [✓✓] **score 0.589** — https://docs.slideruleearth.io/api_reference/sliderule.html  
     *section:* **set_url**  
     category=`api_reference`
 
     > sliderule. set_url ( domain , session = None ) [source] Configure sliderule package with URL of service Parameters : urls ( str ) â IP address or hostname of SlideRule service (note, there is a special case where the url is provided as a list of strings instead of just a string; when a list is provided, the client hardcodes the set of servers that are used to process requests to the exact set…
 
-3. [  ] **score 0.487** — https://docs.testsliderule.org/user_guide/versioning.html  
+3. [  ] **score 0.487** — https://docs.slideruleearth.io/user_guide/versioning.html  
     *section:* **Python Client**  
     category=`user_guide`
 
     > To get the version of the SlideRule Python Client: from sliderule import version version . version When the SlideRule Python Client init() function is called, it issues a get_version() request to the SlideRule cluster and then checks that the client version is compatible with the server version. If there is a major version difference, the initialization function will return an error. If there is…
 
-4. [  ] **score 0.583** — https://docs.testsliderule.org/developer_guide/articles/private_clusters.html  
-    *section:* **Access**  
-    category=`developer_guide`
-
-    > Users configure the SlideRule Python client to communicate with their private cluster when the client is initialized. For session based configuration, the following code initializes the client to talk to <my_cluster> : import sliderule session = sliderule . create_session ( cluster = "<my_cluster>" ) For functional configuration, the following code initializes the client to talk to <my_cluster> :…
-
-5. [  ] **score 0.470** — https://docs.testsliderule.org/getting_started/Getting-Started.html  
+4. [  ] **score 0.470** — https://docs.slideruleearth.io/getting_started/Getting-Started.html  
     *section:* **Common Package Modules**  
     category=`getting_started`
 
     > In the SlideRule Python Package there are a few modules that are used more often than the others. Refer to the Userâs Guide and API Reference for further information. sliderule Core SlideRule services for initialization, configuration, processing requests, private cluster provisioning and access, area of interest processing icesat2 ICESat-2 specific services and definitions gedi GEDI specific…
 
+5. [  ] **score 0.583** — https://docs.slideruleearth.io/user_guide/articles/260120_private_clusters.html  
+    *section:* **Access**  
+    category=`user_guide`
+
+    > Users configure the SlideRule Python client to communicate with their private cluster when the client is initialized. For session based configuration, the following code initializes the client to talk to <my_cluster> : import sliderule session = sliderule . create_session ( cluster = "<my_cluster>" ) For functional configuration, the following code initializes the client to talk to <my_cluster> :…
+
 ---
 
-### docsearch #27 — `api_lookup` — ✓ rank 2
+### docsearch #27 — `api_lookup` — ✓ rank 1
 
 **Query:** `h5 hdf5 read function parameters h5p h5x`
 
@@ -1241,35 +1241,35 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.575** — https://docs.testsliderule.org/developer_guide/endpoints.html  
-    *section:* **h5p**  
-    category=`developer_guide`
-
-    > POST /source/h5p <request payload> Reads a list of datasets from an HDF5 file and returns the values of the datasets in a dictionary of lists. See h5.h5p function for a convenient method for accessing HDF5 datasets. Request Payload (application/json) parameter description default asset data source asset (see Assets) required resource HDF5 filename required datasets list of datasets (see h5 for a…
-
-2. [✓✓] **score 0.531** — https://docs.testsliderule.org/api_reference/h5.html  
+1. [✓✓] **score 0.531** — https://docs.slideruleearth.io/api_reference/h5.html  
     *section:* **h5**  
     category=`api_reference`
 
     > sliderule.h5. h5 ( dataset , resource , asset , datatype = 3 , col = 0 , startrow = 0 , numrows = -1 ) [source] Reads a dataset from an HDF5 file and returns the values of the dataset in a list This function provides an easy way for locally run scripts to get direct access to HDF5 data stored in a cloud environment. But it should be noted that this method is not the most efficient way to access…
 
-3. [  ] **score 0.599** — https://docs.testsliderule.org/developer_guide/endpoints.html  
-    *section:* **h5**  
-    category=`developer_guide`
-
-    > POST /source/h5 <request payload> Reads a dataset from an HDF5 file and return the values of the dataset in a list. See h5.h5 function for a convenient method for accessing HDF5 datasets.
-
-4. [  ] **score 0.569** — https://docs.testsliderule.org/developer_guide/articles/h5coro.html  
+2. [  ] **score 0.569** — https://docs.slideruleearth.io/user_guide/articles/210423_h5coro.html  
     *section:* **H5Coro::read**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > H5Coro :: Future * H5Coro :: readp ( const char * asset , const char * resource , const char * datasetname , RecordObject :: valType_t valtype , long col , long startrow , long numrows , Context * context = NULL ) {parameters} see H5Coro::read for parameter descriptions H5Coro::Future* a pointer to a structure that will contain the info_t information read from the H5 file when the read operation…
 
-5. [✓✓] **score 0.374** — https://docs.testsliderule.org/api_reference/h5.html  
+3. [✓✓] **score 0.403** — https://docs.slideruleearth.io/api_reference/h5.html  
+    *section:* **h5p**  
+    category=`api_reference`
+
+    > sliderule.h5. h5p ( datasets , resource , asset ) [source] Reads a list of datasets from an HDF5 file and returns the values of the dataset in a dictionary of lists. This function is considerably faster than the icesat2.h5 function in that it not only reads the datasets in parallel on the server side, but also shares a file context between the reads so that portions of the file that need to be…
+
+4. [✓✓] **score 0.374** — https://docs.slideruleearth.io/api_reference/h5.html  
     *section:* **h5x**  
     category=`api_reference`
 
     > sliderule.h5. h5x ( variables , resource , asset , groups = None , col = None , startrow = None , numrows = None , index_column = None , time_column = None , x_column = None , y_column = None , z_column = None , crs = None , session = None ) [source] Builds a DataFrame from an HDF5 file where each variable in variables is a column. The groups parameter is used to create datasets from multiple…
+
+5. [✓✓] **score 0.410** — https://docs.slideruleearth.io/api_reference/h5.html  
+    *section:* **h5**  
+    category=`api_reference`
+
+    > The data type is supplied as a DATATYPES enumeration: DATATYPES["TEXT"] : return the data as a string of unconverted bytes DATATYPES["INTEGER"] : return the data as an array of integers DATATYPES["REAL"] : return the data as an array of double precision floating point numbers DATATYPES["DYNAMIC"] : return the data in the numpy data type that is the closest match to the data as it is stored in the…
 
 ---
 
@@ -1287,31 +1287,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.616** — https://docs.testsliderule.org/api_reference/icesat2.html  
+1. [✓✓] **score 0.616** — https://docs.slideruleearth.io/api_reference/icesat2.html  
     *section:* **atl06p**  
     category=`api_reference`
 
     > Parameters : parms ( dict ) â parameters used to configure ATL06-SR algorithm processing (see Parameters ) callbacks ( dictionary ) â a callback function that is called for each result record resources ( list ) â a list of granules to process (e.g. [âATL03_20181019065445_03150111_007_01.h5â, â¦]) keep_id ( bool ) â whether to retain the âextent_idâ column in the GeoDataFrame for…
 
-2. [  ] **score 0.611** — https://docs.testsliderule.org/developer_guide/release_notes/release-v04-00-00.html  
+2. [  ] **score 0.611** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-00-00.html  
     *section:* **Breaking Changes**  
     category=`release_notes`
 
     > This version contains a number of backward-incompatible changes, specifically to the names of the fields being returned by the atl03s and atl06 APIs, and the Python client function APIs. These changes were made to standardize the downstream processing of the photon and elevation data, and also to bring the names of the fields being returned by SlideRule closer to the ICESat-2 Standard Data…
 
-3. [  ] **score 0.545** — https://docs.testsliderule.org/user_guide/basic_usage.html  
+3. [  ] **score 0.545** — https://docs.slideruleearth.io/user_guide/basic_usage.html  
     *section:* **Issue the Processing Request**  
     category=`user_guide`
 
     > There are two general purpose routines provided in the SlideRule Python client for issuing processing requests. sliderule.source Implements the low-level protocol for making requests to SlideRule and processing the results. This can be used to issue a request to any SlideRule endpoint. sliderule.run Implements a standard SlideRule convention for making requests to SlideRule endpoints that return…
 
-4. [✓ ] **score 0.572** — https://docs.testsliderule.org/api_reference/icesat2.html  
+4. [✓ ] **score 0.572** — https://docs.slideruleearth.io/api_reference/icesat2.html  
     *section:* **init**  
     category=`api_reference`
 
     > sliderule.icesat2. init ( url = 'slideruleearth.io' , verbose = False , max_resources = None , loglevel = 50 , organization = 'sliderule' , desired_nodes = None , time_to_live = 60 , rethrow = False ) [source] Initializes the Python client for use with SlideRule and should be called before other ICESat-2 API calls. This function is a wrapper for the sliderule.init(â¦) function . Parameters :…
 
-5. [✓ ] **score 0.573** — https://docs.testsliderule.org/api_reference/icesat2.html  
+5. [✓ ] **score 0.573** — https://docs.slideruleearth.io/api_reference/icesat2.html  
     *section:* **atl13sp**  
     category=`api_reference`
 
@@ -1335,31 +1335,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓✓] **score 0.511** — https://docs.testsliderule.org/api_reference/earthdata.html  
+1. [✓✓] **score 0.511** — https://docs.slideruleearth.io/api_reference/earthdata.html  
     *section:* **cmr**  
     category=`api_reference`
 
-    > sliderule.earthdata. cmr ( short_name = None , version = None , polygon = None , time_start = '2018-01-01T00:00:00Z' , time_end = '2026-04-28T19:44:13Z' , return_metadata = False , name_filter = None ) [source] Query the NASA Common Metadata Repository (CMR) for a list of data within temporal and spatial parameters Parameters : short_name ( str ) â dataset short name as defined in the NASA CMR…
+    > sliderule.earthdata. cmr ( short_name = None , version = None , polygon = None , time_start = '2018-01-01T00:00:00Z' , time_end = '2026-05-29T17:12:47Z' , return_metadata = False , name_filter = None ) [source] Query the NASA Common Metadata Repository (CMR) for a list of data within temporal and spatial parameters Parameters : short_name ( str ) â dataset short name as defined in the NASA CMR…
 
-2. [✓✓] **score 0.401** — https://docs.testsliderule.org/api_reference/earthdata.html  
+2. [✓✓] **score 0.401** — https://docs.slideruleearth.io/api_reference/earthdata.html  
     *section:* **search**  
     category=`api_reference`
 
     > sliderule.earthdata. search ( parm , resources = None ) [source] This is the highest-level API call and attempts to automatically determine which service needs to be queried to return the resources being requested. Parameters : parm ( dict ) â request parameters Returns : list of resources to process Return type : list Notes The asset parameter must be supplied Examples >>> from sliderule…
 
-3. [✓ ] **score 0.458** — https://docs.testsliderule.org/api_reference/earthdata.html  
+3. [✓ ] **score 0.457** — https://docs.slideruleearth.io/api_reference/earthdata.html  
     *section:* **stac**  
     category=`api_reference`
 
-    > sliderule.earthdata. stac ( short_name = None , collections = None , polygon = None , time_start = '2018-01-01T00:00:00Z' , time_end = '2026-04-28T19:44:13Z' , as_str = True ) [source] Perform a STAC query of the NASA Common Metadata Repository (CMR) catalog for a list of data within temporal and spatial parameters Parameters : short_name ( str ) â dataset short name as defined in the NASA CMR…
+    > sliderule.earthdata. stac ( short_name = None , collections = None , polygon = None , time_start = '2018-01-01T00:00:00Z' , time_end = '2026-05-29T17:12:47Z' , as_str = True ) [source] Perform a STAC query of the NASA Common Metadata Repository (CMR) catalog for a list of data within temporal and spatial parameters Parameters : short_name ( str ) â dataset short name as defined in the NASA CMR…
 
-4. [  ] **score 0.467** — https://docs.testsliderule.org/developer_guide/release_notes/release-v04-20-00.html  
+4. [  ] **score 0.467** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-20-00.html  
     *section:* **Issues Resolved**  
     category=`release_notes`
 
     > 7d8c96c - Updated playwright version to address vulnerability Added ATL24 support to the Python client earthdata module faf1de0 - Fixed errant CMR failure status message 8856215 - fix for with_flags and bands in dataframe sampling
 
-5. [✓✓] **score 0.419** — https://docs.testsliderule.org/api_reference/earthdata.html  
+5. [✓✓] **score 0.419** — https://docs.slideruleearth.io/api_reference/earthdata.html  
     *section:* **cmr**  
     category=`api_reference`
 
@@ -1383,35 +1383,35 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.540** — https://docs.testsliderule.org/developer_guide/why_sliderule.html  
+1. [  ] **score 0.540** — https://docs.slideruleearth.io/developer_guide/why_sliderule.html  
     *section:* **Why Develop SlideRule?**  
     category=`developer_guide`
 
     > The tremendous growth in the size of Earth science datasets being produced by institutions over the past ten to fifteen years has broken the historical data archive model. When datasets changed from being a few hundred Gigabytes to hundreds of Terabytes (and now Petabytes), comprehensive analysis of those datasets using existing technology became impossible. For example, ICESat (the original…
 
-2. [  ] **score 0.465** — https://docs.testsliderule.org/getting_started/Examples.html  
+2. [  ] **score 0.465** — https://docs.slideruleearth.io/getting_started/Examples.html  
     *section:* **Examples**  
     category=`getting_started`
 
     > The following Jupyter notebooks provide examples of how to use some of SlideRuleâs functionality. They are listed roughly in the order of complexity, with the simpler examples first and the more complex examples farther down. The source code for all of these notebooks as well as additional notebooks can be found in our repository . Additional files are necessary to run some of the notebooks…
 
-3. [  ] **score 0.512** — https://docs.testsliderule.org/developer_guide/articles/h5coro.html  
+3. [  ] **score 0.512** — https://docs.slideruleearth.io/user_guide/articles/210423_h5coro.html  
     *section:* **SlideRule Project Background**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > The NASA/ICESat-2 program is investing in a collaboration between Goddard Space Flight Center and the University of Washington to develop a cloud-based on-demand science data processing system called SlideRule to lower the barrier of entry to using the ICESat-2 data for scientific discovery and integration into other data services. SlideRule is a server-side framework implemented in C++/Lua that…
 
-4. [  ] **score 0.449** — https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html  
+4. [  ] **score 0.449** — https://docs.slideruleearth.io/user_guide/articles/250328_atl24_golden_run.html  
     *section:* **Background**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > The University of Texas at Austin and Oregon State University partnered with the SlideRule team (University of Washington, Goddard Space Flight Center, and Wallops Flight Facility) to develop and generate a Near-Shore Coastal Bathymetry Product for ICESat-2 called ATL24. The initial development and generation of the data product was kicked off in January of 2024, started in earnest in May of…
 
-5. [  ] **score 0.444** — https://docs.testsliderule.org/developer_guide/release_notes/release-v03-03-00.html  
-    *section:* **Major Changes**  
-    category=`release_notes`
+5. [  ] **score 0.448** — https://docs.slideruleearth.io/user_guide/gedi.html  
+    *section:* **1. Overview**  
+    category=`user_guide`
 
-    > Sampling support added for the Merit DEM Added raster module to Python client - returns GeoDataFrame of sampled raster points of interest
+    > The GEDI API currently provides subsetting and raster sampling capabilities to SlideRule for the L1B, L2A, L3, L4A, and L4B datasets. * The L1B dataset can be subsetted with waveforms returned for each footprint inside a user-supplied area of interest * The L2A dataset can be subsetted with elevations returned for each footprint inside a user-supplied area of interest * The L3 dataset can be…
 
 ---
 
@@ -1427,31 +1427,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.274** — https://docs.testsliderule.org/developer_guide/why_sliderule.html  
+1. [  ] **score 0.274** — https://docs.slideruleearth.io/developer_guide/why_sliderule.html  
     *section:* **Why Develop SlideRule?**  
     category=`developer_guide`
 
     > For example, one university could build a data service that leverages the public API of another universityâs data service to produce a combined data product without ever having to rehost the other universityâs data. From a technical implementation standpoint, the two universities remain distinct and decentralized entities, yet by providing their data as a service, they allow for combined data…
 
-2. [  ] **score 0.214** — https://docs.testsliderule.org/developer_guide/why_sliderule.html  
+2. [  ] **score 0.214** — https://docs.slideruleearth.io/developer_guide/why_sliderule.html  
     *section:* **Why Develop SlideRule?**  
     category=`developer_guide`
 
     > New algorithms can be added at any time Instead of institutions running multiple pipelines to produce data products that are released on fixed schedules, institutions run multiple services and new services can be added at any time and have access to all of the data (current and historic) immediately. Improvements and fixes are immediately available Instead of institutions having to replace old…
 
-3. [  ] **score 0.260** — https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html  
+3. [  ] **score 0.260** — https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html  
     *section:* **User Lua Script**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > -- 1. import modules local json = require ( "json" ) -- 2. create an h5coro object from the granule to be processed local asset = core . getbyname ( "icesat2-atl13" ) local h5obj = h5coro . file ( asset , "ATL13_20250302152414_11692601_007_01.h5" ) -- 3. read the reference id out of each of the 6 beams local column_gt1l = h5obj : readp ( "gt1l/atl13refid" ) local column_gt1r = h5obj : readp (…
 
-4. [  ] **score 0.388** — https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html  
+4. [  ] **score 0.388** — https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html  
     *section:* **User Python Script**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > If the user provided script needs to only be run against a single granule, then no additional steps are necessary - the script can be set to the ace API as is and the results processed. But if a user wants to execute the script against multiple granules and take advantage of the cluster computing capabilities of SlideRule, then the user must also write a Python program that manages the…
 
-5. [✓✓] **score 0.273** — https://docs.testsliderule.org/user_guide/icesat2.html  
+5. [✓✓] **score 0.273** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.4 Ancillary Data**  
     category=`user_guide`
 
@@ -1476,31 +1476,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [✓ ] **score 0.571** — https://docs.testsliderule.org/user_guide/icesat2.html  
+1. [✓ ] **score 0.571** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **ICESat-2 Module**  
     category=`user_guide`
 
     > The ICESat-2 module within SlideRule supports a number of both legacy p-series and s-series endpoints, as well as the newer DataFrame-based x-series endpoints. This document focuses on the x-series endpoints while still referencing the other legacy endpoints when helpful. Three main kinds of data are returned by the ICESat-2 endpoints: segmented photon data, elevation data (from the ATL06-SR…
 
-2. [✓✓] **score 0.661** — https://docs.testsliderule.org/user_guide/icesat2.html  
+2. [✓✓] **score 0.661** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.2.3 ATL08 Classification**  
     category=`user_guide`
 
     > If ATL08 classification parameters are specified, the ATL08 (vegetation height) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=0 (land) and cnf=0 (no native filtering) should be specified to allow all ATL08 photons to be used. atl08_class…
 
-3. [  ] **score 0.566** — https://docs.testsliderule.org/background/ICESat-2.html  
+3. [  ] **score 0.566** — https://docs.slideruleearth.io/background/ICESat-2.html  
     *section:* **ATL03 - Global Geolocated Photon Data**  
     category=`background`
 
     > The data from ATLAS and the secondary instrumentation onboard the ICESat-2 observatory (the global positioning system (GPS) and the star cameras) are combined to create three primary measurements: the time of flight of a photon transmitted and received from ATLAS, the position of the satellite in space, and the pointing vector of the satellite during the transmission of photons. These three…
 
-4. [✓ ] **score 0.566** — https://docs.testsliderule.org/user_guide/icesat2.html  
+4. [✓ ] **score 0.566** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **1.2 Photon-selection Parameters**  
     category=`user_guide`
 
     > Once the ATL03 input data are are selected, a set of photon-selection photon parameters are used to select from among the available photons. At this stage, additional photon-classification algorithms (ATL08, YAPC) may be selected beyond what is available in the ATL03 files. The criterial described by these parameters are applied together, so that only photons that fulfill all of the requirements…
 
-5. [✓ ] **score 0.533** — https://docs.testsliderule.org/user_guide/icesat2.html  
+5. [✓ ] **score 0.533** — https://docs.slideruleearth.io/user_guide/icesat2.html  
     *section:* **A.2 Elevations - atl06p**  
     category=`user_guide`
 
@@ -1519,31 +1519,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.692** — https://docs.testsliderule.org/developer_guide/articles/geoparquet.html  
+1. [  ] **score 0.692** — https://docs.slideruleearth.io/user_guide/articles/230224_geoparquet.html  
     *section:* **Overview**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > SlideRule currently supports returning results back to data users as GeoParquet files. These files are built on the server and either streamed back directly to the user, or uploaded to a user-specified S3 bucket for later access. To specify the GeoParquet option, the request must include the output parameter with the output.format field set to âparquetâ . See the section on output parameters…
 
-2. [✓✓] **score 0.642** — https://docs.testsliderule.org/user_guide/arrow_output.html  
+2. [✓✓] **score 0.642** — https://docs.slideruleearth.io/user_guide/arrow_output.html  
     *section:* **S3 Staging**  
     category=`user_guide`
 
     > SlideRule also supports writing the output to its own S3 bucket for times when temporary storage is needed and the user does not have access to a bucket they own. To use this feature, the following parameters can be used: "output" : { "asset" : "sliderule-stage" , "path" : "myfile.parquet" , "open_on_complete" : False , } The sliderule-stage asset tells sliderule to stage the output in…
 
-3. [✓✓] **score 0.646** — https://docs.testsliderule.org/user_guide/arrow_output.html  
+3. [✓✓] **score 0.646** — https://docs.slideruleearth.io/user_guide/arrow_output.html  
     *section:* **Parameters**  
     category=`user_guide`
 
     > To control writing the data to an Arrow supported format, the output parameter is used. output : settings to control how SlideRule outputs results path : the full path and filename of the file to be constructed by the client, NOTE - the path MUST BE less than 128 characters format : the format of the file constructed by the servers and sent to the client (currently, only GeoParquet is supported,…
 
-4. [✓✓] **score 0.511** — https://docs.testsliderule.org/user_guide/arrow_output.html  
+4. [✓✓] **score 0.511** — https://docs.slideruleearth.io/user_guide/arrow_output.html  
     *section:* **S3 Output to User Bucket**  
     category=`user_guide`
 
     > SlideRule supports writing the output to an S3 bucket instead of streaming the output back to the client. In order to enable this behavior, the output.path field must start with âs3://â followed by the bucket name and object key. For example, if you wanted the result to be written to a file named âgrandmesa.parquetâ in your S3 bucket âmybucketâ, in the subfolder âmapsâ, then the…
 
-5. [✓✓] **score 0.530** — https://docs.testsliderule.org/user_guide/arrow_output.html  
+5. [✓✓] **score 0.530** — https://docs.slideruleearth.io/user_guide/arrow_output.html  
     *section:* **Parameters**  
     category=`user_guide`
 
@@ -1551,7 +1551,7 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 ---
 
-### docsearch #34 — `version_history` — ✗ rank 48
+### docsearch #34 — `version_history` — ✗ rank 50
 
 **Query:** `phoreal added sliderule release notes version`
 
@@ -1562,31 +1562,31 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.526** — https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html  
+1. [  ] **score 0.526** — https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html  
     *section:* **2025-12-08: Public Cluster Release v5**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > Note Version 5.0 of SlideRule has been officially released. The changes include an overhaul of the private clusters, consistent ATL13 query formats, ATL24 release 002, improved earthdata error handling, and h5p slice support. See release notes for full details.
 
-2. [  ] **score 0.565** — https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html  
+2. [  ] **score 0.565** — https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html  
     *section:* **Full release notes**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html
 
-3. [  ] **score 0.508** — https://docs.testsliderule.org/developer_guide/articles/private_clusters.html  
+3. [  ] **score 0.508** — https://docs.slideruleearth.io/user_guide/articles/260120_private_clusters.html  
     *section:* **2026-01-20: Private Clusters**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > Note With release v5.0.2, SlideRule has transitioned the management of private clusters from the django-based SlideRule Provisioning System which was deployed in AWS ECS, to the pure Python-based SlideRule Authenticator and SlideRule Provisioner which are deployed via AWS Lambda. The main functions of the original system have been preserved, with a change in focus on clusters for individual users…
 
-4. [  ] **score 0.410** — https://docs.testsliderule.org/developer_guide/release_notes/web-release-v04-00-03.html  
+4. [  ] **score 0.410** — https://docs.slideruleearth.io/developer_guide/release_notes/web-release-v04-00-03.html  
     *section:* **Summary**  
     category=`release_notes`
 
     > ð SlideRule Web Client v4.0.3 Release Notes Changes since v3.8.0 Infrastructure CloudFront + Route 53 terraform modules added to support hosting the landing page at the root domain New Features Landing Page - The web client now serves as the SlideRule Earth landing page at slideruleearth.io, featuring a hero section with wallpaper image, About/Contact info panels, and a News tab that pulls…
 
-5. [  ] **score 0.569** — https://docs.testsliderule.org/developer_guide/release_notes/release-v04-09-00.html  
+5. [  ] **score 0.569** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-09-00.html  
     *section:* **Release v4.9.x**  
     category=`release_notes`
 
@@ -1606,33 +1606,33 @@ alone is sufficient and shows as `[✓✓]` (no narrowing applied).
 
 **Top 5 returned:**
 
-1. [  ] **score 0.480** — https://docs.testsliderule.org/user_guide/versioning.html  
+1. [  ] **score 0.480** — https://docs.slideruleearth.io/user_guide/versioning.html  
     *section:* **Note on Reproducibility**  
     category=`user_guide`
 
     > It is the goal of the SlideRule development team to create a system where results are able to be reproduced; but this is often times either extremely difficult or impossible for reasons outside of the teams control. SlideRule relies on publicly hosted datasets. When those datasets are updated, older versions of the datasets are often removed. For instance, ICESat-2 Standard Data Products have a…
 
-2. [  ] **score 0.487** — https://docs.testsliderule.org/api_reference/gedi.html  
+2. [  ] **score 0.487** — https://docs.slideruleearth.io/api_reference/gedi.html  
     *section:* **init**  
     category=`api_reference`
 
     > sliderule.gedi. init ( url = 'slideruleearth.io' , verbose = False , loglevel = 50 , organization = 'sliderule' , desired_nodes = None , time_to_live = 60 ) [source] Initializes the Python client for use with SlideRule and should be called before other GEDI API calls. This function is a wrapper for the sliderule.init(â¦) function . Examples >>> from sliderule import gedi >>> gedi . init ()
 
-3. [  ] **score 0.455** — https://docs.testsliderule.org/developer_guide/release_notes/release-v01-04-00.html  
+3. [  ] **score 0.455** — https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-04-00.html  
     *section:* **Required Updates**  
     category=`release_notes`
 
     > v1.4.0 - In order to use the latest SlideRule server deployments, the Python client must be updated. For conda users: $ conda update sliderule For developer installs: $ cd sliderule-python $ git checkout main $ git pull $ python3 setup.py install v1.4.0 - User scripts that use the Python client need to make the following updates: The track keyword argument of atl03sp , atl03s , atl06p , and atl06…
 
-4. [  ] **score 0.491** — https://docs.testsliderule.org/api_reference/sliderule.html  
+4. [  ] **score 0.491** — https://docs.slideruleearth.io/api_reference/sliderule.html  
     *section:* **init**  
     category=`api_reference`
 
     > sliderule. init ( url = 'slideruleearth.io' , verbose = False , loglevel = 20 , organization = 'sliderule' , desired_nodes = None , time_to_live = 60 , plugins = None , log_handler = None , github_token = None , rethrow = False , user_service = False ) [source] Initializes the Python client for use with SlideRule, and should be called before other ICESat-2 API calls. This function is a wrapper…
 
-5. [  ] **score 0.495** — https://docs.testsliderule.org/developer_guide/articles/plugins.html  
+5. [  ] **score 0.495** — https://docs.slideruleearth.io/user_guide/articles/250910_plugins.html  
     *section:* **Shared Object**  
-    category=`developer_guide`
+    category=`user_guide`
 
     > The pluginâs shared object must be named <plugin_name>.so and export two âCâ style functions: void init<plugin_name>(void) and void deinit<plugin_name>(void) . At startup, the SlideRule executable loads all plugins and calls their initialization function ( init ). When the SlideRule executable exits, the deinitialization ( deinit ) function for each loaded plugin is called. The init…
 

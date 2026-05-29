@@ -20,10 +20,10 @@
 
 #### r1 — score 0.711
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/geoparquet.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/230224_geoparquet.html
 - **title:** 2023-02-24: GeoParquet
 - **section:** Overview
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['format', 'geoparquet', 'output', 'results', 'sliderule']
 
 **Full text:**
@@ -34,7 +34,7 @@ SlideRule currently supports returning results back to data users as GeoParquet 
 
 #### r2 — score 0.632
 
-- **url:** https://docs.testsliderule.org/user_guide/arrow_output.html
+- **url:** https://docs.slideruleearth.io/user_guide/arrow_output.html
 - **title:** Arrow Output
 - **section:** Parameters
 - **category:** `user_guide`
@@ -48,7 +48,7 @@ To control writing the data to an Arrow supported format, the output parameter i
 
 #### r3 — score 0.638
 
-- **url:** https://docs.testsliderule.org/user_guide/arrow_output.html
+- **url:** https://docs.slideruleearth.io/user_guide/arrow_output.html
 - **title:** Arrow Output
 - **section:** Overview
 - **category:** `user_guide`
@@ -62,24 +62,24 @@ By default, SlideRule returns all processing results in a native (i.e. custom to
 
 #### r4 — score 0.605
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/geoparquet.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/230224_geoparquet.html
 - **title:** 2023-02-24: GeoParquet
 - **section:** Constraints
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['format', 'geoparquet', 'results', 'sliderule']
 
 **Full text:**
 
 ```
-Currently, only support for the atl06 , atl08 , and flattened atl03 records is provided. This means that the ICESat-2 compact parameter being set is not supported when outputting to GeoParquet, and the atl03 results may look slightly different between native runs and runs that request the GeoParquet format. The results in the GeoParquet file are not sorted. The SlideRule server side version information only includes the server core version information and does not include version information for any of the plugins that the server has loaded and is running. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+Currently, only support for the atl06 , atl08 , and flattened atl03 records is provided. This means that the ICESat-2 compact parameter being set is not supported when outputting to GeoParquet, and the atl03 results may look slightly different between native runs and runs that request the GeoParquet format. The results in the GeoParquet file are not sorted. The SlideRule server side version information only includes the server core version information and does not include version information for any of the plugins that the server has loaded and is running. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
 #### r5 — score 0.710
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/geoparquet.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/230224_geoparquet.html
 - **title:** 2023-02-24: GeoParquet
 - **section:** 2023-02-24: GeoParquet
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['geoparquet', 'results', 'sliderule']
 
 **Full text:**

@@ -22,7 +22,7 @@
 
 #### r1 — score 0.733
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.2 YAPC Classification
 - **category:** `user_guide`
@@ -36,7 +36,7 @@ The experimental YAPC (Yet Another Photon Classifier) photon-classification sche
 
 #### r2 — score 0.784
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2 Photon-selection Parameters
 - **category:** `user_guide`
@@ -50,7 +50,7 @@ Once the ATL03 input data are are selected, a set of photon-selection photon par
 
 #### r3 — score 0.479
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -62,23 +62,23 @@ Once the ATL03 input data are are selected, a set of photon-selection photon par
 , 2:canopy, 3:top of canopy, 4:unclassified Optional: must enable phoreal or specify atl08_class yapc_score YAPC photon weight 0-255, higher is denser Optional: must enable yapc atl24_class ATL24 photon classification 0:unclassified, 40:bathymetry, 41:sea surface Optional: must enable atl24 atl24_confidence ATL24 photon classification bathymetry confidence score 0 to 1.0, higher is more confident (float) Optional: must enable atl24 spot ATLAS detector field of view 1-6 Independent of spacecraft orientation cycle ATLAS orbit cycle number region ATLAS granule region 1-14 rgt Reference Ground Track gt Beam 10: gt1l, 20: gt1r, 30: gt2l, 40: gt2r, 50: gt3l, 60: gt3r Dependent on spacecraft orientation
 ```
 
-#### r4 — score 0.467
+#### r4 — score 0.496
 
-- **url:** https://docs.slideruleearth.io/user_guide/articles/260528_web_client_endpoint_scoped_params.html
-- **title:** 2026-05-28: Web Client v4.5.0 - Endpoint-Scoped Advanced Options
-- **section:** Request builder
-- **category:** `user_guide`
-- **matched_tokens:** ['photon', 'yapc']
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **title:** ICESat-2
+- **section:** References
+- **category:** `background`
+- **matched_tokens:** ['atl03', 'photon']
 
 **Full text:**
 
 ```
-The request builder gates photon-processing parameters ( fit , len , res , cnf , srt , yapc , atl08_class , pass_invalid , ats , cnt , dist_in_seg ) behind an isPhotonAPI check, so switching from a P-series to an X-series endpoint no longer carries stale parameters into the outgoing request.
+ATBD for ATL03 Global Geolocated Photon Data ATBD for ATL03g Received Photon Geolocation ATBD for ATL03a Atmospheric Delay Corrections Userâs Guide for ATL03
 ```
 
 #### r5 — score 0.424
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6.1 PhoREAL Parameters
 - **category:** `user_guide`

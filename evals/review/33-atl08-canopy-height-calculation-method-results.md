@@ -21,7 +21,7 @@
 
 #### r1 — score 0.556
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v02-01-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-01-00.html
 - **title:** Release v2.1.x
 - **section:** Known Issues
 - **category:** `release_notes`
@@ -35,7 +35,7 @@ PhoREAL processing includes some known bugs - the median ground height uses the 
 
 #### r2 — score 0.565
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-00-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-00-00.html
 - **title:** Release v3.0.x
 - **section:** Issues Resolved
 - **category:** `release_notes`
@@ -49,7 +49,7 @@ PhoREAL processing bug fixes: the median ground height now uses the absolute hei
 
 #### r3 — score 0.545
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3. ATL08 - atl08x
 - **category:** `user_guide`
@@ -63,7 +63,7 @@ at) land_segments/terrain/h_te_uncertainty h_te_median Median height of the terr
 
 #### r4 — score 0.588
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6 PhoREAL Algorithm
 - **category:** `user_guide`
@@ -77,7 +77,7 @@ The PhoREAL algorithm is a modified version of the ATL08 canopy metrics algorith
 
 #### r5 — score 0.417
 
-- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** Appendix A. Parameter Components
 - **category:** `developer_guide`

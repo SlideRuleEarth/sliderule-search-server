@@ -21,7 +21,7 @@
 
 #### r1 — score 0.638
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6.2 ATL08-PhoREAL Ancillary Data
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ Ancillary data returned from the atl08 and atl08p APIs come from the land_segmen
 
 #### r2 — score 0.514
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-01-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-01-00.html
 - **title:** Release v1.1.x
 - **section:** New Features
 - **category:** `release_notes`
@@ -49,7 +49,7 @@ Time is also used as the index. (APIs affected: atl06 , atl06p , atl03s , atl03s
 
 #### r3 — score 0.490
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.1 Segmented Photon Data - atl03sp
 - **category:** `user_guide`
@@ -63,7 +63,7 @@ The GeoDataFrame for each photon extent has the following columns: track : refer
 
 #### r4 — score 0.528
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6 PhoREAL Algorithm
 - **category:** `user_guide`
@@ -77,7 +77,7 @@ The PhoREAL algorithm is a modified version of the ATL08 canopy metrics algorith
 
 #### r5 — score 0.595
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.5 ATL06-SR Algorithm
 - **category:** `user_guide`

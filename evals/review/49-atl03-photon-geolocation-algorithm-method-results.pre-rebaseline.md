@@ -21,7 +21,7 @@
 
 #### r1 — score 0.530
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6.1 PhoREAL Parameters
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ The PhoREAL parameters are supplied in user requests under the phoreal key and i
 
 #### r2 — score 0.709
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** References
 - **category:** `background`
@@ -49,7 +49,7 @@ ATBD for ATL03 Global Geolocated Photon Data ATBD for ATL03g Received Photon Geo
 
 #### r3 — score 0.582
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -61,23 +61,9 @@ ATBD for ATL03 Global Geolocated Photon Data ATBD for ATL03g Received Photon Geo
 The SlideRule atl03x endpoint provides a service for ATL03 custom processing. This endpoint queries ATL03 input granules for photon heights and locations based on a set of photon-input parameters that select geographic and temporal ranges. It then selects a subset of these photons based on a set of photon classification parameters, and divides these selected photons into short along-track extents, each of which is suitable for generating a single height estimate. These extents may be returned to the client, or may be passed to downstream algorithms like the ATL06-SR height-estimation module, or the PhoREAL algorithm.
 ```
 
-#### r4 — score 0.447
+#### r4 — score 0.529
 
-- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
-- **title:** icesat2
-- **section:** atl03sp
-- **category:** `api_reference`
-- **matched_tokens:** ['atl03', 'geolocation', 'photon']
-
-**Full text:**
-
-```
-sliderule.icesat2. atl03sp ( parm , callbacks = {} , resources = None , keep_id = False , height_key = None ) [source] Performs ATL03 subsetting in parallel on ATL03 data and returns photon segment data. Unlike the atl03s function, this function does not take a resource as a parameter; instead it is expected that the parm argument includes a polygon which is used to fetch all available resources from the CMR system automatically. Warning Note, it is often the case that the list of resources (i.e. granules) returned by the CMR system includes granules that come close, but do not actually intersect the region of interest. This is due to geolocation margin added to all CMR ICESat-2 resources in order to account for the spacecraft off-pointing. The consequence is that SlideRule will return no data for some of the resources and issue a warning statement to that effect; this can be ignored and indicates no issue with the data processing.
-```
-
-#### r5 — score 0.529
-
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.1 Segmented Photon Data - atl03sp
 - **category:** `user_guide`
@@ -87,6 +73,20 @@ sliderule.icesat2. atl03sp ( parm , callbacks = {} , resources = None , keep_id 
 
 ```
 The photon data is stored as along-track segments inside the ATL03 granules, which is then broken apart by SlideRule and re-segmented according to processing parameters supplied at the time of the request. The new segments are called extents . When the length of an extent is 40 meters, and the step size is 20 meters, the extent matches the ATL06 segments. Most of the time, the photon extents are kept internal to SlideRule and not returned to the user. But there are some APIs that do return raw photon extents for the user to process on their own. Even though this offloads processing on the server, the API calls can take longer since more data needs to be returned to the user, which can bottleneck over the network. Photon extents are returned as GeoDataFrames where each row is a photon. Each extent represents the data that the ATL06 algorithm uses to generate a single ATL06 elevation. When the step size is shorter than the length of the extent, the extents returned overlap each other which means that each photon is being returned multiple times and will be duplicated in the resulting GeoDataFrame.
+```
+
+#### r5 — score 0.447
+
+- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **title:** icesat2
+- **section:** atl03sp
+- **category:** `api_reference`
+- **matched_tokens:** ['atl03', 'geolocation', 'photon']
+
+**Full text:**
+
+```
+sliderule.icesat2. atl03sp ( parm , callbacks = {} , resources = None , keep_id = False , height_key = None ) [source] Performs ATL03 subsetting in parallel on ATL03 data and returns photon segment data. Unlike the atl03s function, this function does not take a resource as a parameter; instead it is expected that the parm argument includes a polygon which is used to fetch all available resources from the CMR system automatically. Warning Note, it is often the case that the list of resources (i.e. granules) returned by the CMR system includes granules that come close, but do not actually intersect the region of interest. This is due to geolocation margin added to all CMR ICESat-2 resources in order to account for the spacecraft off-pointing. The consequence is that SlideRule will return no data for some of the resources and issue a warning statement to that effect; this can be ignored and indicates no issue with the data processing.
 ```
 
 ---

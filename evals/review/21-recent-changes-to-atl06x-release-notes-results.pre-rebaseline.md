@@ -21,7 +21,7 @@
 
 #### r1 — score 0.466
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/v5_server_release.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
 - **title:** 2025-12-08: Public Cluster Release v5
 - **section:** 2025-12-08: Public Cluster Release v5
 - **category:** `developer_guide`
@@ -35,7 +35,7 @@ Note Version 5.0 of SlideRule has been officially released. The changes include 
 
 #### r2 — score 0.472
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/v5_server_release.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
 - **title:** 2025-12-08: Public Cluster Release v5
 - **section:** TL;DR
 - **category:** `developer_guide`
@@ -44,12 +44,12 @@ Note Version 5.0 of SlideRule has been officially released. The changes include 
 **Full text:**
 
 ```
-ps.slideruleearth.io has been retired and replaced by provisioner.slideruleearth.io There are breaking changes (which will hopefully be minimal because they involved features that have been deprecated for some time) ATL24 release 002 is now the default The internal Asset Metadata Service is used for ATL24, ATL13, and 3DEP (only when specified) Earthdata error reporting was made more intuitive h5p supports slices Previous Next © Copyright 2020â2026, University of Washington. Build v5.3.2 . Built with Sphinx using a theme provided by Read the Docs .
+ps.slideruleearth.io has been retired and replaced by provisioner.slideruleearth.io There are breaking changes (which will hopefully be minimal because they involved features that have been deprecated for some time) ATL24 release 002 is now the default The internal Asset Metadata Service is used for ATL24, ATL13, and 3DEP (only when specified) Earthdata error reporting was made more intuitive h5p supports slices Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
 #### r3 — score 0.474
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-11-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-11-00.html
 - **title:** Release v4.11.x
 - **section:** Major Changes
 - **category:** `release_notes`
@@ -63,7 +63,7 @@ v4.11.0 - The official release of the SlideRule Web Client at https://client.sli
 
 #### r4 — score 0.398
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v05-00-00.html
 - **title:** Release v5.0.x
 - **section:** New Functionality
 - **category:** `release_notes`
@@ -77,7 +77,7 @@ Rate limiting and endpoint metrics are now handled the SlideRule Intelligent Loa
 
 #### r5 — score 0.465
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-02-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v05-02-00.html
 - **title:** Release v5.2.x
 - **section:** Issues Resolved
 - **category:** `release_notes`

@@ -21,7 +21,7 @@
 
 #### r1 — score 0.274
 
-- **url:** https://docs.testsliderule.org/developer_guide/why_sliderule.html
+- **url:** https://docs.slideruleearth.io/developer_guide/why_sliderule.html
 - **title:** Why SlideRule
 - **section:** Why Develop SlideRule?
 - **category:** `developer_guide`
@@ -35,7 +35,7 @@ For example, one university could build a data service that leverages the public
 
 #### r2 — score 0.214
 
-- **url:** https://docs.testsliderule.org/developer_guide/why_sliderule.html
+- **url:** https://docs.slideruleearth.io/developer_guide/why_sliderule.html
 - **title:** Why SlideRule
 - **section:** Why Develop SlideRule?
 - **category:** `developer_guide`
@@ -49,10 +49,10 @@ New algorithms can be added at any time Instead of institutions running multiple
 
 #### r3 — score 0.260
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html
 - **title:** 2025-05-30: Arbitrary Code Execution
 - **section:** User Lua Script
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['combine']
 
 **Full text:**
@@ -63,10 +63,10 @@ New algorithms can be added at any time Instead of institutions running multiple
 
 #### r4 — score 0.388
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html
 - **title:** 2025-05-30: Arbitrary Code Execution
 - **section:** User Python Script
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['multiple']
 
 **Full text:**
@@ -77,7 +77,7 @@ If the user provided script needs to only be run against a single granule, then 
 
 #### r5 — score 0.273
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.4 Ancillary Data
 - **category:** `user_guide`

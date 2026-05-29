@@ -21,7 +21,7 @@
 
 #### r1 — score 0.662
 
-- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
+- **url:** https://docs.testsliderule.org/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 3. Returned data
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ The main kind of data returned by the GEDI APIs are elevation and vegetation mea
 
 #### r2 — score 0.557
 
-- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
+- **url:** https://docs.testsliderule.org/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 3.2 L2A Footprints
 - **category:** `user_guide`
@@ -49,7 +49,7 @@ The footprint data is stored along-track inside the GEDI granules. The data is r
 
 #### r3 — score 0.546
 
-- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
+- **url:** https://docs.testsliderule.org/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 3.4 L4A Footprints
 - **category:** `user_guide`
@@ -63,7 +63,7 @@ The footprint data is stored along-track inside the GEDI granules. The data is r
 
 #### r4 — score 0.488
 
-- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
+- **url:** https://docs.testsliderule.org/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 1. Overview
 - **category:** `user_guide`
@@ -77,7 +77,7 @@ The GEDI API currently provides subsetting and raster sampling capabilities to S
 
 #### r5 — score 0.288
 
-- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** Appendix A. Parameter Components
 - **category:** `developer_guide`

@@ -25,7 +25,7 @@
 
 #### r1 — score 0.819
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2 Photon-selection Parameters
 - **category:** `user_guide`
@@ -39,7 +39,7 @@ Once the ATL03 input data are are selected, a set of photon-selection photon par
 
 #### r2 — score 0.760
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.3 ATL08 Classification
 - **category:** `user_guide`
@@ -53,7 +53,7 @@ If ATL08 classification parameters are specified, the ATL08 (vegetation height) 
 
 #### r3 — score 0.660
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-01-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-01-00.html
 - **title:** Release v1.1.x
 - **section:** New Features
 - **category:** `release_notes`
@@ -67,7 +67,7 @@ Time is also used as the index. (APIs affected: atl06 , atl06p , atl03s , atl03s
 
 #### r4 — score 0.764
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.4 ATL24 Classification
 - **category:** `user_guide`
@@ -79,18 +79,18 @@ Time is also used as the index. (APIs affected: atl06 , atl06p , atl03s , atl03s
 If ATL24 classification parameters are specified, the ATL24 (bathymetry) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=-1 (dynamic) and cnf=-1 (no native filtering) should be specified to allow all ATL24 photons to be used. atl24 class_ph : list of ATL24 classifications used to select which photons are used in the processing (the available classifications are: âbathymetryâ, âsea_surfaceâ, âunclassifiedâ) Note ATL24 is typically a release behind the ATL03 standard data product which it is based on. In order to correlate ATL24 classifications to ATL03, a release of ATL03 must be selected that has a corresponding ATL24 release.
 ```
 
-#### r5 — score 0.677
+#### r5 — score 0.690
 
-- **url:** https://docs.slideruleearth.io/assets/grandmesa_atl03_classification.html
-- **title:** Generating ATL03 photon classifications using ATL08 and YAPC
-- **section:** Generating ATL03 photon classifications using ATL08 and YAPC
-- **category:** `tutorial`
-- **matched_tokens:** ['atl03', 'atl08', 'classification']
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-07-00.html
+- **title:** Release v4.7.x
+- **section:** Development Updates
+- **category:** `release_notes`
+- **matched_tokens:** ['atl03', 'photons', 'uses']
 
 **Full text:**
 
 ```
-Plot ATL03 data with different classifications for a region over the Grand Mesa, CO region ATL08 Land and Vegetation Height product photon classification Experimental YAPC (Yet Another Photon Classification) photon-density-based classification
+v4.7.1 - The ATL03 photons are stored in a table in memory and operated on in place instead of streamed v4.7.1 - The Python classifiers are all executed from a single Python script that uses multiprocessing instead of having the data transferred to and from disk
 ```
 
 ---

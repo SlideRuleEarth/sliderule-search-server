@@ -22,7 +22,7 @@
 
 #### r1 — score 0.689
 
-- **url:** https://docs.slideruleearth.io/getting_started/Examples.html
+- **url:** https://docs.testsliderule.org/getting_started/Examples.html
 - **title:** Examples
 - **section:** Examples
 - **category:** `getting_started`
@@ -31,15 +31,15 @@
 **Full text:**
 
 ```
-ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
+ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
 #### r2 — score 0.580
 
-- **url:** https://docs.slideruleearth.io/user_guide/articles/250328_atl24_golden_run.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html
 - **title:** 2025-03-28: ATL24 Processing Run
 - **section:** Background
-- **category:** `user_guide`
+- **category:** `developer_guide`
 - **matched_tokens:** ['atl24', 'bathymetry', 'data']
 
 **Full text:**
@@ -50,7 +50,7 @@ The University of Texas at Austin and Oregon State University partnered with the
 
 #### r3 — score 0.675
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5. ATL24 - atl24x
 - **category:** `user_guide`
@@ -64,7 +64,7 @@ The SlideRule atl24x endpoint provides a service for ATL24 subsetting and custom
 
 #### r4 — score 0.602
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.4 ATL24 Classification
 - **category:** `user_guide`
@@ -78,10 +78,10 @@ If ATL24 classification parameters are specified, the ATL24 (bathymetry) files c
 
 #### r5 — score 0.536
 
-- **url:** https://docs.slideruleearth.io/user_guide/articles/250328_atl24_golden_run.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html
 - **title:** 2025-03-28: ATL24 Processing Run
 - **section:** Statistics
-- **category:** `user_guide`
+- **category:** `developer_guide`
 - **matched_tokens:** ['atl24', 'bathymetry', 'data']
 
 **Full text:**

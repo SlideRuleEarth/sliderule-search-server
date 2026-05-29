@@ -22,7 +22,7 @@
 
 #### r1 — score 0.463
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -36,7 +36,7 @@ The data from ATLAS and the secondary instrumentation onboard the ICESat-2 obser
 
 #### r2 — score 0.546
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.5.2 ATL06-SR Ancillary Data
 - **category:** `user_guide`
@@ -50,7 +50,7 @@ Ancillary data returned from the fit algorithm (as well as atl06 and atl06p APIs
 
 #### r3 — score 0.413
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.1 Native ATL03 Photon Classification
 - **category:** `user_guide`
@@ -64,7 +64,7 @@ ATL03 contains a set of photon classification values, that are designed to ident
 
 #### r4 — score 0.429
 
-- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
+- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl08
 - **category:** `api_reference`
@@ -78,7 +78,7 @@ sliderule.icesat2. atl08 ( parm , resource ) [source] Performs ATL08-PhoREAL pro
 
 #### r5 — score 0.460
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`

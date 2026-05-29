@@ -9,12 +9,11 @@
 
 - **corpus:** `docsearch`
 - **expected_urls:**
-  - https://docs.slideruleearth.io/assets/grandmesa_atl03_classification.html
   - https://docs.slideruleearth.io/user_guide/icesat2.html
 - **expected_sections:**
   - `yapc`
 - **expected_pages:** (none)
-- **notes:** yapc = Yet Another Photon Classifier; tutorial demonstrates it
+- **notes:** yapc = Yet Another Photon Classifier; user_guide/icesat2.html has the section (assets/grandmesa tutorial dropped after testsliderule.org rebaseline)
 
 ---
 
@@ -22,7 +21,7 @@
 
 #### r1 — score 0.792
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.2 YAPC Classification
 - **category:** `user_guide`
@@ -34,51 +33,9 @@
 The experimental YAPC (Yet Another Photon Classifier) photon-classification scheme assigns each photon a score based on the number of adjacent photons. YAPC parameters are provided as a dictionary, with entries described below: yapc : settings for the yapc algorithm; if provided then SlideRule will execute the YAPC classification on all photons score : the minimum yapc classification score of a photon to be used in the processing request knn : the number of nearest neighbors to use, or specify 0 to allow automatic selection of the number of neighbors (version 2 only) min_knn : minimum number of k-nearest neighbors (version 3 only) win_h : the window height used to filter the nearest neighbors (overrides calculated value if non-zero) win_x : the window width used to filter the nearest neighbors version : the version of the YAPC algorithm to use; 0:read from ATL03 granule, 1-3:algorithm version (not supported by atl03x ) To run the YAPC algorithm, specify the YAPC settings as a sub-dictionary. Here is an example set of parameters that runs YAPC: parms = { "cnf" : 0 , "yapc" : { "score" : 0 , "version" : 3 , "knn" : 4 }, "ats" : 10.0 , "cnt" : 5 , "len" : 20.0 , "res" : 20.0 }
 ```
 
-#### r2 — score 0.652
+#### r2 — score 0.656
 
-- **url:** https://docs.slideruleearth.io/assets/grandmesa_atl03_classification.html
-- **title:** Generating ATL03 photon classifications using ATL08 and YAPC
-- **section:** Generating ATL03 photon classifications using ATL08 and YAPC
-- **category:** `tutorial`
-- **matched_tokens:** ['photon', 'yapc']
-
-**Full text:**
-
-```
-Plot ATL03 data with different classifications for a region over the Grand Mesa, CO region ATL08 Land and Vegetation Height product photon classification Experimental YAPC (Yet Another Photon Classification) photon-density-based classification
-```
-
-#### r3 — score 0.549
-
-- **url:** https://docs.slideruleearth.io/assets/grandmesa_atl03_classification.html
-- **title:** Generating ATL03 photon classifications using ATL08 and YAPC
-- **section:** Retrieve ATL03 elevations with ATL08 classifications
-- **category:** `tutorial`
-- **matched_tokens:** ['photon', 'yapc']
-
-**Full text:**
-
-```
-SRT_LAND , "len" : 20 , "res" : 20 , # classification and checks # still return photon segments that fail checks "pass_invalid" : True , # all photons "cnf" : - 2 , # all land classification flags "atl08_class" : [ "atl08_noise" , "atl08_ground" , "atl08_canopy" , "atl08_top_of_canopy" , "atl08_unclassified" ], # all photons "yapc" : dict ( knn = 0 , win_h = 6 , win_x = 11 , min_ph = 4 , score = 0 ), } # ICESat-2 data release release = '006' # region of interest poly = [ { 'lat' : 39.34603060272382 , 'lon' : - 108.40601489205419 }, { 'lat' : 39.32770853617356 , 'lon' : - 107.68485163209928 }, { 'lat' : 38.770676045922684 , 'lon' : - 107.71081820956682 }, { 'lat' : 38.788639821001155 , 'lon' : - 108.42635020791396 }, { 'lat' : 39.34603060272382 , 'lon' : - 108.40601489205419 } ] # time bounds for CMR query time_start = '2019-11-14' time_end = '2019-11-15' # find granule for each region of interest granules_list = earthdata . cmr ( short_name = 'ATL03' , polygon = poly , time_start = time_start , time_end = time_end , version = release ) # create geodataframe gdf = sliderule . run ( "atl03x" , parms , aoi = poly , resources = granules_list ) HTTP Request Error: HTTP Error 400: Bad Request Using simplified polygon (for CMR request only!), 5 points using tolerance of 0.0001 Starting proxy for atl03x to process 1 resource(s) with 1 thread(s) request <AppServer.78978> on ATL03_20191114034331_07370502_006_01.h5 generated dataframe [gt1l] with 66779 rows and 14 columns request <AppSe
-```
-
-#### r4 — score 0.540
-
-- **url:** https://docs.slideruleearth.io/assets/grandmesa_atl03_classification.html
-- **title:** Generating ATL03 photon classifications using ATL08 and YAPC
-- **section:** Intro
-- **category:** `tutorial`
-- **matched_tokens:** ['photon', 'yapc']
-
-**Full text:**
-
-```
-This notebook demonstrates how to use the SlideRule Icesat-2 API to retrieve ATL03 data with two different classifications, one based on the external ATL08-product classifications, designed to distinguish between vegetation and ground returns, and the other based on the experimental YAPC (Yet Another Photon Class) algorithm.
-```
-
-#### r5 — score 0.656
-
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2 Photon-selection Parameters
 - **category:** `user_guide`
@@ -88,6 +45,48 @@ This notebook demonstrates how to use the SlideRule Icesat-2 API to retrieve ATL
 
 ```
 Once the ATL03 input data are are selected, a set of photon-selection photon parameters are used to select from among the available photons. At this stage, additional photon-classification algorithms (ATL08, YAPC) may be selected beyond what is available in the ATL03 files. The criterial described by these parameters are applied together, so that only photons that fulfill all of the requirements are returned.
+```
+
+#### r3 — score 0.457
+
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** 1.6.1 PhoREAL Parameters
+- **category:** `user_guide`
+- **matched_tokens:** ['classifier', 'photon']
+
+**Full text:**
+
+```
+The PhoREAL parameters are supplied in user requests under the phoreal key and include: phoreal : binsize : size of the vertical photon bin in meters geoloc : algorithm to use to calculate the geolocation (latitude, longitude, along-track distance, and time) of each custom length PhoREAL segment; âmeanâ - takes the average value across all photons in the segment; âmedianâ - takes the median value across all photons in the segment; âcenterâ - takes the halfway value calculated by the average of the first and last photon in the segment use_abs_h : boolean whether the absolute photon heights are used instead of the normalized heights send_waveform : boolean whether to send to the client the photon height histograms in addition to the vegetation statistics above_classifier : boolean whether to use the ABoVE photon classifier when determining top of canopy photons
+```
+
+#### r4 — score 0.461
+
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** 1. ATL03 - atl03x
+- **category:** `user_guide`
+- **matched_tokens:** ['photon', 'yapc']
+
+**Full text:**
+
+```
+, 2:canopy, 3:top of canopy, 4:unclassified Optional: must enable phoreal or specify atl08_class yapc_score YAPC photon weight 0-255, higher is denser Optional: must enable yapc atl24_class ATL24 photon classification 0:unclassified, 40:bathymetry, 41:sea surface Optional: must enable atl24 atl24_confidence ATL24 photon classification bathymetry confidence score 0 to 1.0, higher is more confident (float) Optional: must enable atl24 spot ATLAS detector field of view 1-6 Independent of spacecraft orientation cycle ATLAS orbit cycle number region ATLAS granule region 1-14 rgt Reference Ground Track gt Beam 10: gt1l, 20: gt1r, 30: gt2l, 40: gt2r, 50: gt3l, 60: gt3r Dependent on spacecraft orientation
+```
+
+#### r5 — score 0.418
+
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** A.1 Segmented Photon Data - atl03sp
+- **category:** `user_guide`
+- **matched_tokens:** ['photon', 'yapc']
+
+**Full text:**
+
+```
+The GeoDataFrame for each photon extent has the following columns: track : reference pair track number (1, 2, 3) sc_orient : spacecraft orientation (0: backwards, 1: forwards) rgt : reference ground track cycle : cycle segment_id : segment ID of first ATL03 segment in result segment_dist : along track distance from the equator to the center of the extent (in meters) count : the number of photons in the segment time : nanoseconds from Unix epoch (January 1, 1970) without leap seconds latitude : latitude (-90.0 to 90.0) longitude : longitude (-180.0 to 180.0) x_atc : along track distance of the photon in meters (with respect to the center of the segment) y_atc : across track distance of the photon in meters across : across track distance of the photon in meters height : height of the photon in meters solar_elevation : solar elevation from ATL03 at time of measurement, in degrees background_rate : background photon counts per second atl08_class : the photonâs ATL08 classification (0: noise, 1: ground, 2: canopy, 3: top of canopy, 4: unclassified) atl03_cnf : the photonâs ATL03 confidence level (-2: TEP, -1: not considered, 0: background, 1: within 10m, 2: low, 3: medium, 4: high) quality_ph : the photonâs quality classification (0: nominal, 1: possible after pulse, 2: possible impulse responpse effect, 3: possible tep) yapc_score : the photonâs YAPC classification (0 - 255, the larger the number the higher the confidence in surface reflection) Note: when PhoREAL is enabl
 ```
 
 ---

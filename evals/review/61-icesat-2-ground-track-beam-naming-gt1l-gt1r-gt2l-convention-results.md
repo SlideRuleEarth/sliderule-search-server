@@ -24,7 +24,7 @@
 
 #### r1 — score 0.515
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.2 Elevations - atl06p
 - **category:** `user_guide`
@@ -38,7 +38,7 @@ The primary result returned by SlideRule for ICESat-2 ATL06-SR processing reques
 
 #### r2 — score 0.470
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** Mission
 - **category:** `background`
@@ -52,7 +52,7 @@ This is reversed in the backward orientation, and the strong beams lead the weak
 
 #### r3 — score 0.441
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -66,7 +66,7 @@ This is reversed in the backward orientation, and the strong beams lead the weak
 
 #### r4 — score 0.423
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.5 ATL06-SR Algorithm
 - **category:** `user_guide`
@@ -80,7 +80,7 @@ This algorithm replaces the columns of the source DataFrame with the following c
 
 #### r5 — score 0.457
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3. ATL08 - atl08x
 - **category:** `user_guide`

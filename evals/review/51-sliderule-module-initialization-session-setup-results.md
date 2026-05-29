@@ -23,7 +23,7 @@
 
 #### r1 — score 0.564
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v05-00-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html
 - **title:** Release v5.0.x
 - **section:** Breaking Changes
 - **category:** `release_notes`
@@ -37,7 +37,7 @@ All calls to session.manager should no longer be used as that functionality will
 
 #### r2 — score 0.589
 
-- **url:** https://docs.testsliderule.org/api_reference/sliderule.html
+- **url:** https://docs.slideruleearth.io/api_reference/sliderule.html
 - **title:** sliderule
 - **section:** set_url
 - **category:** `api_reference`
@@ -51,7 +51,7 @@ sliderule. set_url ( domain , session = None ) [source] Configure sliderule pack
 
 #### r3 — score 0.487
 
-- **url:** https://docs.testsliderule.org/user_guide/versioning.html
+- **url:** https://docs.slideruleearth.io/user_guide/versioning.html
 - **title:** Versioning
 - **section:** Python Client
 - **category:** `user_guide`
@@ -63,23 +63,9 @@ sliderule. set_url ( domain , session = None ) [source] Configure sliderule pack
 To get the version of the SlideRule Python Client: from sliderule import version version . version When the SlideRule Python Client init() function is called, it issues a get_version() request to the SlideRule cluster and then checks that the client version is compatible with the server version. If there is a major version difference, the initialization function will return an error. If there is a minor version difference, the initialization function will return a warning.
 ```
 
-#### r4 — score 0.583
+#### r4 — score 0.470
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/private_clusters.html
-- **title:** 2026-01-20: Private Clusters
-- **section:** Access
-- **category:** `developer_guide`
-- **matched_tokens:** ['session', 'sliderule']
-
-**Full text:**
-
-```
-Users configure the SlideRule Python client to communicate with their private cluster when the client is initialized. For session based configuration, the following code initializes the client to talk to <my_cluster> : import sliderule session = sliderule . create_session ( cluster = "<my_cluster>" ) For functional configuration, the following code initializes the client to talk to <my_cluster> : import sliderule sliderule . init ( organization = "<my_cluster>" ) Note that behind the scenes, the sliderule.init call and sliderule.create_session call makes a call to session.authenticate to automatically authenticate the caller as a user of the cluster. It will first look in the environment for SLIDERULE_GITHUB_TOKEN , and then if not found, will initiate the device flow authentication process.
-```
-
-#### r5 — score 0.470
-
-- **url:** https://docs.testsliderule.org/getting_started/Getting-Started.html
+- **url:** https://docs.slideruleearth.io/getting_started/Getting-Started.html
 - **title:** Getting Started
 - **section:** Common Package Modules
 - **category:** `getting_started`
@@ -89,6 +75,20 @@ Users configure the SlideRule Python client to communicate with their private cl
 
 ```
 In the SlideRule Python Package there are a few modules that are used more often than the others. Refer to the Userâs Guide and API Reference for further information. sliderule Core SlideRule services for initialization, configuration, processing requests, private cluster provisioning and access, area of interest processing icesat2 ICESat-2 specific services and definitions gedi GEDI specific services and definitions earthdata Interface to CMR and other STAC endpoints with helper functions for returning resources given a set of query parameters
+```
+
+#### r5 — score 0.583
+
+- **url:** https://docs.slideruleearth.io/user_guide/articles/260120_private_clusters.html
+- **title:** 2026-01-20: Private Clusters
+- **section:** Access
+- **category:** `user_guide`
+- **matched_tokens:** ['session', 'sliderule']
+
+**Full text:**
+
+```
+Users configure the SlideRule Python client to communicate with their private cluster when the client is initialized. For session based configuration, the following code initializes the client to talk to <my_cluster> : import sliderule session = sliderule . create_session ( cluster = "<my_cluster>" ) For functional configuration, the following code initializes the client to talk to <my_cluster> : import sliderule sliderule . init ( organization = "<my_cluster>" ) Note that behind the scenes, the sliderule.init call and sliderule.create_session call makes a call to session.authenticate to automatically authenticate the caller as a user of the cluster. It will first look in the environment for SLIDERULE_GITHUB_TOKEN , and then if not found, will initiate the device flow authentication process.
 ```
 
 ---

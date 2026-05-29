@@ -11,32 +11,17 @@
 - **expected_urls:**
   - https://docs.slideruleearth.io/user_guide/xseries.html
   - https://docs.slideruleearth.io/user_guide/icesat2.html
-  - https://docs.slideruleearth.io/assets/atl24_access.html
 - **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** multi-product workflow; atl24 tutorial shows combining ATL03 + ATL24
+- **notes:** multi-product workflow (assets/atl24_access.html dropped after testsliderule.org rebaseline)
 
 ---
 
 ## 📚 docsearch results (top 5)
 
-#### r1 — score 0.320
+#### r1 — score 0.274
 
-- **url:** https://docs.slideruleearth.io/assets/atl24_access.html
-- **title:** Subsetting and filtering ATL24 data
-- **section:** (5) Combine ATL03 Filters with ATL24 Classification
-- **category:** `tutorial`
-- **matched_tokens:** ['combine', 'processing']
-
-**Full text:**
-
-```
-[21]: parms = { "atl24" : { "class_ph" : [ "unclassified" , "sea_surface" , "bathymetry" ] }, "cnf" : 2 , "yapc" : { "version" : 0 , "score" : 100 }, "beams" : "gt3r" , "rgt" : 202 , "cycle" : 12 } gdf5 = sliderule . run ( "atl03x" , parms , aoi = aoi ) request <AppServer.64297> retrieved 1 resources Starting proxy for atl03x to process 1 resource(s) with 1 thread(s) request <AppServer.65199> on ATL03_20210706203010_02021201_006_01.h5 generated dataframe [gt3r] with 20773 rows and 15 columns Successfully completed processing resource [1 out of 1]: ATL03_20210706203010_02021201_006_01.h5 Writing arrow file: /tmp/tmphli10s8z Closing arrow file: /tmp/tmphli10s8z [22]: gdf5 [22]: region gt spacecraft_velocity atl24_class solar_elevation atl24_confidence yapc_score rgt ph_index height spot x_atc y_atc srcid cycle atl03_cnf background_rate quality_ph geometry time_ns 2021-07-06 20:35:11.530663168 1 60 7118.208496 0 36.057114 0.000000 63 202 12915866 -22.051737 1 2.146466e+06 -3246.126465 0 12 4 1202043.625 0 POINT (-69.53821 19.31118) 2021-07-06 20:35:11.530963200 1 60 7118.208496 0 36.057114 0.000000 153 202 12915888 -25.586315 1 2.146468e+06 -3246.155029 0 12 4 1202043.625 0 POINT (-69.53821 19.31120) 2021-07-06 20:35:11.531063040 1 60 7118.208496 0 36.057114 0.000000 138 202 12915897 -25.111528 1 2.146469e+06 -3246.154785 0 12 4 1202043.625 0 POINT (-69.53821 19.31120) 2021-07-06 20:35:11.531163136 1 60 7118.208496 0 36.057114 0.000000 78 202 12915898 -14.752754 1 2.146469e+06 -
-```
-
-#### r2 — score 0.274
-
-- **url:** https://docs.slideruleearth.io/developer_guide/why_sliderule.html
+- **url:** https://docs.testsliderule.org/developer_guide/why_sliderule.html
 - **title:** Why SlideRule
 - **section:** Why Develop SlideRule?
 - **category:** `developer_guide`
@@ -48,23 +33,9 @@
 For example, one university could build a data service that leverages the public API of another universityâs data service to produce a combined data product without ever having to rehost the other universityâs data. From a technical implementation standpoint, the two universities remain distinct and decentralized entities, yet by providing their data as a service, they allow for combined data products.
 ```
 
-#### r3 — score 0.388
+#### r2 — score 0.214
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/arbitrary_code_execution.html
-- **title:** 2025-05-30: Arbitrary Code Execution
-- **section:** User Python Script
-- **category:** `developer_guide`
-- **matched_tokens:** ['multiple']
-
-**Full text:**
-
-```
-If the user provided script needs to only be run against a single granule, then no additional steps are necessary - the script can be set to the ace API as is and the results processed. But if a user wants to execute the script against multiple granules and take advantage of the cluster computing capabilities of SlideRule, then the user must also write a Python program that manages the orchestration of those requests to SlideRule. For the ATL13 use case, the Python program used to manage the execution of the above script against all ATL13 granules can be found here: clients/python/utils/atl13_utils.py . This script queries CMR for a complete list of ATL13 granules and then creates a thread pool for workers that go through that list and issue ace API calls for each granule. The default concurrency is set to 8 in the script, but could easily be set to 100 for a private cluster of 10 nodes. As can be seen in the script, the results of each API call are added to a master lookup table (a dictionary of sets in Python) to produce the final lookup table that uses a reference ID to return a list of granules containing data with that ID.
-```
-
-#### r4 — score 0.214
-
-- **url:** https://docs.slideruleearth.io/developer_guide/why_sliderule.html
+- **url:** https://docs.testsliderule.org/developer_guide/why_sliderule.html
 - **title:** Why SlideRule
 - **section:** Why Develop SlideRule?
 - **category:** `developer_guide`
@@ -76,9 +47,9 @@ If the user provided script needs to only be run against a single granule, then 
 New algorithms can be added at any time Instead of institutions running multiple pipelines to produce data products that are released on fixed schedules, institutions run multiple services and new services can be added at any time and have access to all of the data (current and historic) immediately. Improvements and fixes are immediately available Instead of institutions having to replace old versions of data products when processing improvements and fixes are made, and then requiring data users to redownload those data products, institutions deploy improvements and fixes to their services and it immediately becomes available to data users. Multiple science applications benefit from a single investment By parameterizing algorithms, the resources spent developing an algorithm can serve different science applications. Services integrate with other services When institutions move to a service-based model for data distribution, those services can be integrated into other systems and produce synergetic benefits. A data archive stands alone, and the only way to avoid duplicating efforts between different archives is to combine and centralize the functionality. On the other hand, a data service can be integrated with and leverage other data services while still remaining decentralized.
 ```
 
-#### r5 — score 0.260
+#### r3 — score 0.260
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/arbitrary_code_execution.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
 - **title:** 2025-05-30: Arbitrary Code Execution
 - **section:** User Lua Script
 - **category:** `developer_guide`
@@ -88,6 +59,34 @@ New algorithms can be added at any time Instead of institutions running multiple
 
 ```
 -- 1. import modules local json = require ( "json" ) -- 2. create an h5coro object from the granule to be processed local asset = core . getbyname ( "icesat2-atl13" ) local h5obj = h5coro . file ( asset , "ATL13_20250302152414_11692601_007_01.h5" ) -- 3. read the reference id out of each of the 6 beams local column_gt1l = h5obj : readp ( "gt1l/atl13refid" ) local column_gt1r = h5obj : readp ( "gt1r/atl13refid" ) local column_gt2l = h5obj : readp ( "gt2l/atl13refid" ) local column_gt2r = h5obj : readp ( "gt2r/atl13refid" ) local column_gt3l = h5obj : readp ( "gt3l/atl13refid" ) local column_gt3r = h5obj : readp ( "gt3r/atl13refid" ) -- 4. helper function that puts reference ids into a table local function count ( results , column ) local values = column : unique () for k , _ in pairs ( values ) do results [ tostring ( k )] = true end end -- 5. combine the reference ids into a single table local results = {} count ( results , column_gt1l ) count ( results , column_gt1r ) count ( results , column_gt2l ) count ( results , column_gt2r ) count ( results , column_gt3l ) count ( results , column_gt3r ) -- 6. return the results as json return json . encode ( results ) The above user provided script was sent to the SlideRule ace api to execute on a private cluster (in this case, the cluster was the developers cluster). For the purposes of this article, Iâve annotated the script with comments to assist in the explanation below.
+```
+
+#### r4 — score 0.388
+
+- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
+- **title:** 2025-05-30: Arbitrary Code Execution
+- **section:** User Python Script
+- **category:** `developer_guide`
+- **matched_tokens:** ['multiple']
+
+**Full text:**
+
+```
+If the user provided script needs to only be run against a single granule, then no additional steps are necessary - the script can be set to the ace API as is and the results processed. But if a user wants to execute the script against multiple granules and take advantage of the cluster computing capabilities of SlideRule, then the user must also write a Python program that manages the orchestration of those requests to SlideRule. For the ATL13 use case, the Python program used to manage the execution of the above script against all ATL13 granules can be found here: clients/python/utils/atl13_utils.py . This script queries CMR for a complete list of ATL13 granules and then creates a thread pool for workers that go through that list and issue ace API calls for each granule. The default concurrency is set to 8 in the script, but could easily be set to 100 for a private cluster of 10 nodes. As can be seen in the script, the results of each API call are added to a master lookup table (a dictionary of sets in Python) to produce the final lookup table that uses a reference ID to return a list of granules containing data with that ID.
+```
+
+#### r5 — score 0.273
+
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** 1.4 Ancillary Data
+- **category:** `user_guide`
+- **matched_tokens:** ['processing', 'products']
+
+**Full text:**
+
+```
+The ancillary field parameters allow the user to request additional fields from the source datasets being subsetted. Ancillary data returned from the atl03x (as well as the atl03s and atl03sp ) APIs are per-photon values that are read from the ATL03 granules. No processing is performed on the data read out of the ATL03 granule. The fields must come from either a per-photon variable (atl03_ph_fields), a per-segment variable (atl03_geo_fields, atl03_corr_fields), or a rate variable (atl03_bckgrd_fields). Ancillary fields are used to specify additional fields in the ATL03, ATL08, and ATL09 granules to be returned with the photon extent and dowstream customized products. Each field provided by the user will result in a corresponding column added to the returned GeoDataFrame. Note: if a field is requested that is already present in the default GeoDataFrame, then the name of both fields will be changed to include a _x suffix for the default incusion of the field, and a _y for the ancillary inclusion of the field.
 ```
 
 ---

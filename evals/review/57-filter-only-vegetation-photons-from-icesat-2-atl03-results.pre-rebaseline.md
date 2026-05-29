@@ -10,15 +10,13 @@
 - **corpus:** `docsearch`
 - **expected_urls:**
   - https://docs.slideruleearth.io/user_guide/icesat2.html
-  - https://docs.slideruleearth.io/assets/grandmesa_atl03_classification.html
-  - https://docs.slideruleearth.io/assets/phoreal.html
 - **expected_sections:**
   - `atl08 classification`
   - `atl08_class`
   - `1.2.3 atl08`
   - `phoreal`
 - **expected_pages:** (none)
-- **notes:** atl08_class with canopy label; user_guide/icesat2 has the class mapping
+- **notes:** atl08_class with canopy label; user_guide/icesat2 has the class mapping (assets/grandmesa + phoreal dropped after testsliderule.org rebaseline)
 
 ---
 
@@ -26,7 +24,7 @@
 
 #### r1 — score 0.571
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** ICESat-2 Module
 - **category:** `user_guide`
@@ -40,7 +38,7 @@ The ICESat-2 module within SlideRule supports a number of both legacy p-series a
 
 #### r2 — score 0.661
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.3 ATL08 Classification
 - **category:** `user_guide`
@@ -52,37 +50,9 @@ The ICESat-2 module within SlideRule supports a number of both legacy p-series a
 If ATL08 classification parameters are specified, the ATL08 (vegetation height) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=0 (land) and cnf=0 (no native filtering) should be specified to allow all ATL08 photons to be used. atl08_class : list of ATL08 classifications used to select which photons are used in the processing (the available classifications are: âatl08_noiseâ, âatl08_groundâ, âatl08_canopyâ, âatl08_top_of_canopyâ, âatl08_unclassifiedâ)
 ```
 
-#### r3 — score 0.605
+#### r3 — score 0.566
 
-- **url:** https://docs.slideruleearth.io/assets/grandmesa_atl03_classification.html
-- **title:** Generating ATL03 photon classifications using ATL08 and YAPC
-- **section:** Retrieve ATL03 elevations with ATL08 classifications
-- **category:** `tutorial`
-- **matched_tokens:** ['atl03', 'icesat', 'only', 'photons']
-
-**Full text:**
-
-```
-SRT_LAND , "len" : 20 , "res" : 20 , # classification and checks # still return photon segments that fail checks "pass_invalid" : True , # all photons "cnf" : - 2 , # all land classification flags "atl08_class" : [ "atl08_noise" , "atl08_ground" , "atl08_canopy" , "atl08_top_of_canopy" , "atl08_unclassified" ], # all photons "yapc" : dict ( knn = 0 , win_h = 6 , win_x = 11 , min_ph = 4 , score = 0 ), } # ICESat-2 data release release = '006' # region of interest poly = [ { 'lat' : 39.34603060272382 , 'lon' : - 108.40601489205419 }, { 'lat' : 39.32770853617356 , 'lon' : - 107.68485163209928 }, { 'lat' : 38.770676045922684 , 'lon' : - 107.71081820956682 }, { 'lat' : 38.788639821001155 , 'lon' : - 108.42635020791396 }, { 'lat' : 39.34603060272382 , 'lon' : - 108.40601489205419 } ] # time bounds for CMR query time_start = '2019-11-14' time_end = '2019-11-15' # find granule for each region of interest granules_list = earthdata . cmr ( short_name = 'ATL03' , polygon = poly , time_start = time_start , time_end = time_end , version = release ) # create geodataframe gdf = sliderule . run ( "atl03x" , parms , aoi = poly , resources = granules_list ) HTTP Request Error: HTTP Error 400: Bad Request Using simplified polygon (for CMR request only!), 5 points using tolerance of 0.0001 Starting proxy for atl03x to process 1 resource(s) with 1 thread(s) request <AppServer.78978> on ATL03_20191114034331_07370502_006_01.h5 generated dataframe [gt1l] with 66779 rows and 14 columns request <AppSe
-```
-
-#### r4 — score 0.684
-
-- **url:** https://docs.slideruleearth.io/assets/grandmesa_atl03_classification.html
-- **title:** Generating ATL03 photon classifications using ATL08 and YAPC
-- **section:** Intro
-- **category:** `tutorial`
-- **matched_tokens:** ['atl03', 'icesat', 'vegetation']
-
-**Full text:**
-
-```
-This notebook demonstrates how to use the SlideRule Icesat-2 API to retrieve ATL03 data with two different classifications, one based on the external ATL08-product classifications, designed to distinguish between vegetation and ground returns, and the other based on the experimental YAPC (Yet Another Photon Class) algorithm.
-```
-
-#### r5 — score 0.566
-
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -92,6 +62,34 @@ This notebook demonstrates how to use the SlideRule Icesat-2 API to retrieve ATL
 
 ```
 The data from ATLAS and the secondary instrumentation onboard the ICESat-2 observatory (the global positioning system (GPS) and the star cameras) are combined to create three primary measurements: the time of flight of a photon transmitted and received from ATLAS, the position of the satellite in space, and the pointing vector of the satellite during the transmission of photons. These three measurements are used to create ATL03 , the geolocated photon product of ICESat-2. ATL03 contains precise latitude, longitude and elevation for every received photon, arranged by beam in the along-track direction. The structure of the ATL03 file has (at most) six beam groups, along with data describing the responses of the ATLAS instrument, ancillary data for correcting and transforming the ATL03 data, and a group of metadata. Photon events can come to the ATLAS receiver in a few different ways: Many photons come from the sun either by reflecting off clouds or the land surface. These photon events are spread in a random distribution along the telemetry band. In ATL03, a large majority of these âbackgroundâ photon events are classified, but some may be incorrectly classified as signal. Some photons are from the ATLAS instrument that have reflected off clouds. These photons can be clustered together or widely dispersed depending on the properties of the cloud and a few other variables.
+```
+
+#### r4 — score 0.566
+
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** 1.2 Photon-selection Parameters
+- **category:** `user_guide`
+- **matched_tokens:** ['atl03', 'from', 'only', 'photons']
+
+**Full text:**
+
+```
+Once the ATL03 input data are are selected, a set of photon-selection photon parameters are used to select from among the available photons. At this stage, additional photon-classification algorithms (ATL08, YAPC) may be selected beyond what is available in the ATL03 files. The criterial described by these parameters are applied together, so that only photons that fulfill all of the requirements are returned.
+```
+
+#### r5 — score 0.533
+
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** A.2 Elevations - atl06p
+- **category:** `user_guide`
+- **matched_tokens:** ['atl03', 'from', 'icesat', 'photons']
+
+**Full text:**
+
+```
+The primary result returned by SlideRule for ICESat-2 ATL06-SR processing requests is a set of geolocated elevations corresponding to a geolocated ATL03 along-track segment. The elevations are contained in a GeoDataFrame where each row represents a calculated elevation. The elevation GeoDataFrame has the following columns: extent_id : unique ID associated with custom ATL03 segment (removed from final GeoDataFrame by default) segment_id : segment ID of first ATL03 segment in result n_fit_photons : number of photons used in final calculation pflags : processing flags (0x1 - spread too short; 0x2 - too few photons; 0x4 - max iterations reached) rgt : reference ground track cycle : cycle region : region of source granule spot : laser spot 1 to 6 gt : ground track (10: GT1L, 20: GT1R, 30: GT2L, 40: GT2R, 50: GT3L, 60: GT3R) x_atc : along track distance from the equator in meters time : nanoseconds from Unix epoch (January 1, 1970) without leap seconds lat : latitude (-90.0 to 90.0) lon : longitude (-180.0 to 180.0) h_mean : elevation in meters from ellipsoid dh_fit_dx : along-track slope y_atc : across-track distance w_surface_window_final : width of the window used to select the final set of photons used in the calculation rms_misfit : measured error in the linear fit of the surface h_sigma : error estimate for the least squares fit model
 ```
 
 ---

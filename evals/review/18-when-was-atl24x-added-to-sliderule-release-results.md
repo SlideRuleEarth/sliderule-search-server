@@ -20,7 +20,7 @@
 
 #### r1 — score 0.656
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-11-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-11-00.html
 - **title:** Release v4.11.x
 - **section:** Major Changes
 - **category:** `release_notes`
@@ -34,7 +34,7 @@ v4.11.0 - The official release of the SlideRule Web Client at https://client.sli
 
 #### r2 — score 0.638
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5. ATL24 - atl24x
 - **category:** `user_guide`
@@ -48,7 +48,7 @@ The SlideRule atl24x endpoint provides a service for ATL24 subsetting and custom
 
 #### r3 — score 0.586
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5.2 Ancillary Data
 - **category:** `user_guide`
@@ -62,7 +62,7 @@ Ancillary data returned from the atl24x endpoint comes from the {beam} group of 
 
 #### r4 — score 0.462
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v05-00-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html
 - **title:** Release v5.0.x
 - **section:** New Functionality
 - **category:** `release_notes`
@@ -74,18 +74,18 @@ Ancillary data returned from the atl24x endpoint comes from the {beam} group of 
 Rate limiting and endpoint metrics are now handled the SlideRule Intelligent Load Balancer . v5.0.3 - #552 - Ancillary field requests now support multidimensional data. v5.0.3 - #553 - Added x-series APIs for ATL06 ( atl06x ) and ATL08 ( atl08x ) v5.0.3 - #562 - Serial-mode raster sampling has been removed. v5.0.3 - #564 - Added x-series APIs for GEDI04A ( gedi04ax ), GEDI02A ( gedi02ax ), and GEDI01B ( gedi01bx ) v5.0.2 - ATL24 uses release 002 by default, which uses the internal Asset Metadata Service (AMS). v5.0.2 - #549 - h5p now supports slices. v5.0.2 - earthdata.py is no longer a standalone implementation of an interface to CMR and TNM, but instead makes a request to the SlideRule cluster to execute the server-side implementations in earth_data_query.lua . This consolidates the interface to these services in one place, and also provides a consistent interface between the web and Python clients. v5.0.2 - Added the 3dep1m asset which accesses the same USGS 3DEP data product but uses the internal AMS service for STAC queries. This is an attempt to alleviate issues with inconsistent availability and functionality in The National Map (TNM) service which made using 3DEP difficult.
 ```
 
-#### r5 — score 0.635
+#### r5 — score 0.417
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
-- **title:** 2025-12-08: Public Cluster Release v5
-- **section:** 2025-12-08: Public Cluster Release v5
-- **category:** `developer_guide`
-- **matched_tokens:** ['release', 'sliderule']
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-05-00.html
+- **title:** Release v3.5.x
+- **section:** Release v3.5.x
+- **category:** `release_notes`
+- **matched_tokens:** ['added', 'release', 'sliderule']
 
 **Full text:**
 
 ```
-Note Version 5.0 of SlideRule has been officially released. The changes include an overhaul of the private clusters, consistent ATL13 query formats, ATL24 release 002, improved earthdata error handling, and h5p slice support. See release notes for full details.
+2023-06-09 Version description of the v3.5.0 release of ICESat-2 SlideRule. This document also captures functionality added in versions v3.4.0 and v3.4.1.
 ```
 
 ---

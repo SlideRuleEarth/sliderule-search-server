@@ -20,7 +20,7 @@
 
 #### r1 — score 0.402
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.5 ATL06-SR Algorithm
 - **category:** `user_guide`
@@ -34,7 +34,7 @@ The ATL06-SR algorithm fits a line segment to the photons in each extent, using 
 
 #### r2 — score 0.331
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6.2 ATL08-PhoREAL Ancillary Data
 - **category:** `user_guide`
@@ -48,7 +48,7 @@ Ancillary data returned from the atl08 and atl08p APIs come from the land_segmen
 
 #### r3 — score 0.326
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.3 ATL08 Classification
 - **category:** `user_guide`
@@ -60,23 +60,23 @@ Ancillary data returned from the atl08 and atl08p APIs come from the land_segmen
 If ATL08 classification parameters are specified, the ATL08 (vegetation height) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=0 (land) and cnf=0 (no native filtering) should be specified to allow all ATL08 photons to be used. atl08_class : list of ATL08 classifications used to select which photons are used in the processing (the available classifications are: âatl08_noiseâ, âatl08_groundâ, âatl08_canopyâ, âatl08_top_of_canopyâ, âatl08_unclassifiedâ)
 ```
 
-#### r4 — score 0.283
+#### r4 — score 0.258
 
-- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
-- **title:** icesat2
-- **section:** atl08
-- **category:** `api_reference`
-- **matched_tokens:** ['algorithm', 'atl08']
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-01-00.html
+- **title:** Release v1.1.x
+- **section:** New Features
+- **category:** `release_notes`
+- **matched_tokens:** ['atl08', 'noise']
 
 **Full text:**
 
 ```
-sliderule.icesat2. atl08 ( parm , resource ) [source] Performs ATL08-PhoREAL processing on ATL03 and ATL08 data and returns geolocated elevations Parameters : parms ( dict ) â parameters used to configure ATL06-SR algorithm processing (see Parameters ) resource ( str ) â ATL03 HDF5 filename Returns : geolocated vegatation statistics Return type : GeoDataFrame
+Time is also used as the index. (APIs affected: atl06 , atl06p , atl03s , atl03sp ). v1.1.0 - ATL08 classifications are now supported in the atl06 , atl06p , atl03s , atl03sp APIs: sliderule#71 when the request parameters supply a list of ATL08 classifications to use, the server code will read the corresponding ATL08 data and only use the supplied classifications in the calculation the following classifications are supported: noise, ground, canopy, top of canopy, unclassified for the atl03s , atl03sp , the presence of the ATL08 classification list also enables the returned photon data to include each photons classification v1.1.0 - The following APIs now return GeoDataFrames instead of dictionaries: atl06 , atl06p , atl03s , atl03sp . this standardizes the return structure at no cost to performance each GeoDataFrame has a âtimeâ column which is a Python datetime value each GeoDataFrame uses the geometry.x and geometry.y to represent the âlongitudeâ and âlatitudeâ fields respectively. the âdelta_timeâ column now represents the time from the ATLAS Standard Data Product (SDP) epoch (January 1, 2018) The GeoDataFrames returned by atl03s and atl03sp contain a row for each photon that is returned v1.1.0 - All APIs default to using version 004 of the data products. v1.1.0 - Added the ground track field ( âgtâ ) to the atl06 and atl06p elevation returns. added the following constants to the icesat2.py module: GT1L, GT1R, GT2L, GT2R, GT3L, GT3R you can now do thing
 ```
 
 #### r5 — score 0.308
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6 PhoREAL Algorithm
 - **category:** `user_guide`

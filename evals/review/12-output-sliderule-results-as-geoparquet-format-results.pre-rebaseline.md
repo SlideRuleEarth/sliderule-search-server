@@ -9,19 +9,18 @@
 
 - **corpus:** `docsearch`
 - **expected_urls:**
-  - https://docs.slideruleearth.io/user_guide/how_tos/geoparquet_output.html
   - https://docs.slideruleearth.io/user_guide/arrow_output.html
 - **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** GeoParquet output format
+- **notes:** GeoParquet output format (how_tos/geoparquet_output dropped after testsliderule.org rebaseline)
 
 ---
 
 ## 📚 docsearch results (top 5)
 
-#### r1 — score 0.708
+#### r1 — score 0.711
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/geoparquet.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/geoparquet.html
 - **title:** 2023-02-24: GeoParquet
 - **section:** Overview
 - **category:** `developer_guide`
@@ -30,12 +29,12 @@
 **Full text:**
 
 ```
-SlideRule currently supports returning results back to data users as GeoParquet files. These files are built on the server and either streamed back directly to the user, or uploaded to a user-specified S3 bucket for later access. To specify the GeoParquet option, the request must include the output parameter with the output.format field set to âparquetâ . See the section on output parameters for more details.
+SlideRule currently supports returning results back to data users as GeoParquet files. These files are built on the server and either streamed back directly to the user, or uploaded to a user-specified S3 bucket for later access. To specify the GeoParquet option, the request must include the output parameter with the output.format field set to âparquetâ . See the section on output parameters in Arrow Output for more details.
 ```
 
 #### r2 — score 0.632
 
-- **url:** https://docs.slideruleearth.io/user_guide/arrow_output.html
+- **url:** https://docs.testsliderule.org/user_guide/arrow_output.html
 - **title:** Arrow Output
 - **section:** Parameters
 - **category:** `user_guide`
@@ -49,7 +48,7 @@ To control writing the data to an Arrow supported format, the output parameter i
 
 #### r3 — score 0.638
 
-- **url:** https://docs.slideruleearth.io/user_guide/arrow_output.html
+- **url:** https://docs.testsliderule.org/user_guide/arrow_output.html
 - **title:** Arrow Output
 - **section:** Overview
 - **category:** `user_guide`
@@ -61,23 +60,9 @@ To control writing the data to an Arrow supported format, the output parameter i
 By default, SlideRule returns all processing results in a native (i.e. custom to SlideRule) format as soon as they are generated. Those results are streamed back to the client and used by the client to construct a (Geo)DataFrame that is presented to the user. But sometimes it is desirable to have SlideRule build a (Geo)DataFrame on the server, and then stream that dataframe back to the client for easy reconstruction. This could be because the dataframe is quite large and the environment the client is running in does not have the resources to build the dataframe. Or it could be that the results need to be stored directly in an S3 bucket and having the dataframe already built expedites that process. To support this functionality, SlideRule uses the Apache Arrow library to build dataframes in either Parquet, CSV, or Feather formats. When using Parquet, the server also provides the option for using the GeoParquet convention to populate a geometry column and metadata compatible with GeoPandas .
 ```
 
-#### r4 — score 0.635
+#### r4 — score 0.605
 
-- **url:** https://docs.slideruleearth.io/user_guide/how_tos/geoparquet_output.html
-- **title:** Returning Data from SlideRule in the GeoParquet Format
-- **section:** Background
-- **category:** `user_guide`
-- **matched_tokens:** ['format', 'geoparquet', 'results', 'sliderule']
-
-**Full text:**
-
-```
-GeoParquet is a cloud-optimized format for storing geospatial datasets. It is built on top of Apacheâs Parquet format and is fully compatible with all Parquet-based tools. The official specification for GeoParquet can be found here: https://github.com/opengeospatial/geoparquet. By default, SlideRule uses its own native streaming format for de/serializing data across a network. As processing results are produced by SlideRule, they are immediately transmitted over the network to the requester. When the SlideRule Python client is being used, these results are used to construct a GeoDataFrame on the fly. While this approach as some advantages - namely low latency responses and low memory usage on the server - it also has some drawbacks. Chief among them is the processing required to construct the DataFrame. Data returned by the SlideRule service can be thought of as rows of information. As each row is received it is appended to the final DataFrame. But because DataFrames are columnar-based, each time data is appended, costly memory allocations and data copies result. Effort has been made to optimize this processing in the client, but ultimately only so much can be done and the problem remains that it is encumbent on the client to parse, rearrange, and construct the DataFrame. For small responses (less than 1M points), things are okay.
-```
-
-#### r5 — score 0.603
-
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/geoparquet.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/geoparquet.html
 - **title:** 2023-02-24: GeoParquet
 - **section:** Constraints
 - **category:** `developer_guide`
@@ -86,7 +71,21 @@ GeoParquet is a cloud-optimized format for storing geospatial datasets. It is bu
 **Full text:**
 
 ```
-Currently, only support for the atl06 , atl08 , and flattened atl03 records is provided. This means that the ICESat-2 compact parameter being set is not supported when outputting to GeoParquet, and the atl03 results may look slightly different between native runs and runs that request the GeoParquet format. The results in the GeoParquet file are not sorted. The SlideRule server side version information only includes the server core version information and does not include version information for any of the plugins that the server has loaded and is running. Previous Next © Copyright 2020â2026, University of Washington. Build v5.3.2 . Built with Sphinx using a theme provided by Read the Docs .
+Currently, only support for the atl06 , atl08 , and flattened atl03 records is provided. This means that the ICESat-2 compact parameter being set is not supported when outputting to GeoParquet, and the atl03 results may look slightly different between native runs and runs that request the GeoParquet format. The results in the GeoParquet file are not sorted. The SlideRule server side version information only includes the server core version information and does not include version information for any of the plugins that the server has loaded and is running. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+```
+
+#### r5 — score 0.710
+
+- **url:** https://docs.testsliderule.org/developer_guide/articles/geoparquet.html
+- **title:** 2023-02-24: GeoParquet
+- **section:** 2023-02-24: GeoParquet
+- **category:** `developer_guide`
+- **matched_tokens:** ['geoparquet', 'results', 'sliderule']
+
+**Full text:**
+
+```
+Warning SlideRule now supports returning results back to data users as GeoParquet files. The functionality described in this article has been improved with broad support for returning data via Apache Arrow based formats.
 ```
 
 ---

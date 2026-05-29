@@ -22,7 +22,7 @@
 
 #### r1 — score 0.485
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.1 Native ATL03 Photon Classification
 - **category:** `user_guide`
@@ -34,23 +34,9 @@
 ATL03 contains a set of photon classification values, that are designed to identify signal photons for different surface types with specified confidence: srt : surface type: 0-land, 1-ocean, 2-sea ice, 3-land ice, 4-inland water cnf : confidence level for photon selection, can be supplied as a single value (which means the confidence must be at least that), or a list (which means the confidence must be in the list); note - the confidence can be supplied as strings {âatl03_tepâ, âatl03_not_consideredâ, âatl03_backgroundâ, âatl03_within_10mâ, âatl03_lowâ, âatl03_mediumâ, âatl03_highâ} or as numbers {-2, -1, 0, 1, 2, 3, 4}. quality_ph : quality classification based on an ATL03 algorithms that attempt to identify instrumental artifacts, can be supplied as a single value (which means the classification must be exactly that), or a list (which means the classification must be in the list). podppd : pointing/geolocation degradation mask; each bit in the mask represents a pointing/geolocation solution quality assessment to be included; the bits are 0: nominal, 1: pod_degrade, 2: ppd_degrade, 3: podppd_degrade, 4: cal_nominal, 5: cal_pod_degrade, 6: cal_ppd_degrade, 7: cal_podppd_degrade.
 ```
 
-#### r2 — score 0.373
+#### r2 — score 0.527
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-08-00.html
-- **title:** Release v4.8.x
-- **section:** General Changes
-- **category:** `release_notes`
-- **matched_tokens:** ['quality', 'values']
-
-**Full text:**
-
-```
-The use of next and scroll-after has now been implemented. v4.8.0 - GEDI parameters updated to be more accurate an intuitive (the old parameter names are still functional but have been DEPRECATED, please switch to using the new ones in your code). degrade_flag changed to degrade_filter and instead of having to know what the flag values were; the user now just needs to set to True to filter out all degraded footprints. l2_quality_flag changed to l2_quality_filter and instead of having to know what the flag values were; the user now just needs to set to True to filter out anything that does not meet the L2 quality criteria. l4_quality_flag changed to l4_quality_filter and instead of having to know what the flag values were; the user now just needs to set to True to filter out anything that does not meet the L4 quality criteria. surface_flag changed to surface_filter and instead of having to know what the flag values were; the user now just needs to set to True to filter out anything that isnât a surface footprint. beam changed to beams to reflect that it is primarily a list of beams to process and not just a single beam (even though if the user only provides a single beam, the server side code will automatically promote it to a list of beams with only one element). v4.8.0 - Subsetting requests that use a rasterized geojson to perform the subsetting have been changed so that the geojson string is passed via a parameter named region_mask instead of raster .
-```
-
-#### r3 — score 0.527
-
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3.1 Quality Filter Parameters
 - **category:** `user_guide`
@@ -62,9 +48,23 @@ The use of next and scroll-after has now been implemented. v4.8.0 - GEDI paramet
 The ATL08 data can be filtered based on different quality filters. te_quality_score : terrain quality score threshold can_quality_score : canopy quality score threshold
 ```
 
+#### r3 — score 0.373
+
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-08-00.html
+- **title:** Release v4.8.x
+- **section:** General Changes
+- **category:** `release_notes`
+- **matched_tokens:** ['quality', 'values']
+
+**Full text:**
+
+```
+The use of next and scroll-after has now been implemented. v4.8.0 - GEDI parameters updated to be more accurate an intuitive (the old parameter names are still functional but have been DEPRECATED, please switch to using the new ones in your code). degrade_flag changed to degrade_filter and instead of having to know what the flag values were; the user now just needs to set to True to filter out all degraded footprints. l2_quality_flag changed to l2_quality_filter and instead of having to know what the flag values were; the user now just needs to set to True to filter out anything that does not meet the L2 quality criteria. l4_quality_flag changed to l4_quality_filter and instead of having to know what the flag values were; the user now just needs to set to True to filter out anything that does not meet the L4 quality criteria. surface_flag changed to surface_filter and instead of having to know what the flag values were; the user now just needs to set to True to filter out anything that isnât a surface footprint. beam changed to beams to reflect that it is primarily a list of beams to process and not just a single beam (even though if the user only provides a single beam, the server side code will automatically promote it to a list of beams with only one element). v4.8.0 - Subsetting requests that use a rasterized geojson to perform the subsetting have been changed so that the geojson string is passed via a parameter named region_mask instead of raster .
+```
+
 #### r4 — score 0.454
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.1 Segmented Photon Data - atl03sp
 - **category:** `user_guide`
@@ -78,7 +78,7 @@ ed, the ATL03 extent records ( atl03rec ) are enhanced to include the following 
 
 #### r5 — score 0.347
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-00-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-00-00.html
 - **title:** Release v4.0.x
 - **section:** Issues Resolved
 - **category:** `release_notes`

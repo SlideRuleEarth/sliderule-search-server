@@ -20,7 +20,7 @@
 
 #### r1 — score 0.503
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl13sp
 - **category:** `api_reference`
@@ -32,23 +32,9 @@
 sliderule.icesat2. atl13sp ( parm , callbacks = {} , resources = None , keep_id = False , as_numpy_array = False , height_key = None ) [source] Performs ATL13 subsetting in parallel on ATL13 data and returns measurement data. Unlike the atl13s function, this function does not take a resource as a parameter; instead it is expected that the parm argument includes a polygon which is used to fetch all available resources from the CMR system automatically. Parameters : parms ( dict ) â parameters used to configure ATL13 subsetting (see Parameters ) callbacks ( dictionary ) â a callback function that is called for each result record resources ( list ) â a list of granules to process (e.g. [âATL13_20181019065445_03150111_007_01.h5â, â¦]) keep_id ( bool ) â whether to retain the âextent_idâ column in the GeoDataFrame for future merges as_numpy_array ( bool ) â whether to provide all sampled values as numpy arrays even if there is only a single value height_key ( str ) â identifies the name of the column provided for the 3D CRS transformation Returns : ATL13 water measurements Return type : GeoDataFrame
 ```
 
-#### r2 — score 0.416
+#### r2 — score 0.437
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
-- **title:** 2025-05-30: Arbitrary Code Execution
-- **section:** Example Use Case - ATL13 Lake ID Mapping
-- **category:** `developer_guide`
-- **matched_tokens:** ['atl13', 'processing']
-
-**Full text:**
-
-```
-The ATL13 inland lake data product contains along-track water surface characteristics for inland bodies of water. Each measurement (i.e. variable) in the product is tagged with a reference ID which can be used as an index into an internal ATL13 global database of inland water bodies. This database contains a geometry for each body of water and is used in the ATL13 processing to produce the ATL13 data product only over those bodies of water. Researchers requested the ability to retrieve the exact set of ATL13 data generated for a given body of water when supplying one of three pieces of information: (1) the ATL13 reference ID, (2) the name of the body of water, (3) a coordinate contained within a body of water. The ATL13 global database contains the reference ID, name, and geometry of each body of water, but does not contain a list of ATL13 granules that intersect (and therefore have data for) thoes bodies of water. We needed some way to know which granules contained data for each body of water; and we came up with two possibilities: Given a user query, use the global database to pull out the geometry. Use the geometry to query CMR for a list of granules that intersect. Build a reverse lookup table of reference IDs and granules by reading every ATL13 granule and pulling out which reference IDs are contained there in.
-```
-
-#### r3 — score 0.437
-
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 4. ATL13 - atl13x
 - **category:** `user_guide`
@@ -60,12 +46,26 @@ The ATL13 inland lake data product contains along-track water surface characteri
 The SlideRule atl13x endpoint provides a service for ATL13 subsetting and custom processing. This endpoint queries ATL13 input granules for segment inland lake statistics based on geographic and temporal ranges. These statistics are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster sampling. This endpoint is called via: sliderule . run ( 'atl13x' , parms ) The default resulting DataFrame from this API contains the following columns: Field Description Units Notes time_ns Unix Time nanoseconds index column of DataFrame latitude segment coordinate (replaced by geometry column when GeoDataFrame) degrees (double) EPSG:7912 longitude segment coordinate (replaced by geometry column when GeoDataFrame) degrees (double) EPSG:7912 ht_ortho Orthometric height of the water surface meters (float) EGM08 ht_water_surf Ellipsoidal height of the water surface meters (float) WGS84 stdev_water_surf Derived standard deviation of water surface meters (float) water_depth Depth from the mean water surface to detected bottom meters (float) spot ATLAS detector field of view 1-6 Independent of spacecraft orientation cycle ATLAS orbit cycle number rgt Reference Ground Track gt Beam âgt1lâ, âgt1râ, âgt2lâ, âgt2râ, âgt3lâ, âgt3râ Dependent on spacecraft orientation
 ```
 
+#### r3 — score 0.416
+
+- **url:** https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html
+- **title:** 2025-05-30: Arbitrary Code Execution
+- **section:** Example Use Case - ATL13 Lake ID Mapping
+- **category:** `user_guide`
+- **matched_tokens:** ['atl13', 'processing']
+
+**Full text:**
+
+```
+The ATL13 inland lake data product contains along-track water surface characteristics for inland bodies of water. Each measurement (i.e. variable) in the product is tagged with a reference ID which can be used as an index into an internal ATL13 global database of inland water bodies. This database contains a geometry for each body of water and is used in the ATL13 processing to produce the ATL13 data product only over those bodies of water. Researchers requested the ability to retrieve the exact set of ATL13 data generated for a given body of water when supplying one of three pieces of information: (1) the ATL13 reference ID, (2) the name of the body of water, (3) a coordinate contained within a body of water. The ATL13 global database contains the reference ID, name, and geometry of each body of water, but does not contain a list of ATL13 granules that intersect (and therefore have data for) thoes bodies of water. We needed some way to know which granules contained data for each body of water; and we came up with two possibilities: Given a user query, use the global database to pull out the geometry. Use the geometry to query CMR for a list of granules that intersect. Build a reverse lookup table of reference IDs and granules by reading every ATL13 granule and pulling out which reference IDs are contained there in.
+```
+
 #### r4 — score 0.527
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html
 - **title:** 2025-05-30: Arbitrary Code Execution
 - **section:** User Python Script
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['atl13']
 
 **Full text:**
@@ -74,18 +74,18 @@ The SlideRule atl13x endpoint provides a service for ATL13 subsetting and custom
 If the user provided script needs to only be run against a single granule, then no additional steps are necessary - the script can be set to the ace API as is and the results processed. But if a user wants to execute the script against multiple granules and take advantage of the cluster computing capabilities of SlideRule, then the user must also write a Python program that manages the orchestration of those requests to SlideRule. For the ATL13 use case, the Python program used to manage the execution of the above script against all ATL13 granules can be found here: clients/python/utils/atl13_utils.py . This script queries CMR for a complete list of ATL13 granules and then creates a thread pool for workers that go through that list and issue ace API calls for each granule. The default concurrency is set to 8 in the script, but could easily be set to 100 for a private cluster of 10 nodes. As can be seen in the script, the results of each API call are added to a master lookup table (a dictionary of sets in Python) to produce the final lookup table that uses a reference ID to return a list of granules containing data with that ID.
 ```
 
-#### r5 — score 0.443
+#### r5 — score 0.469
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
-- **title:** 2025-05-30: Arbitrary Code Execution
-- **section:** Example Use Case - ATL13 Lake ID Mapping
-- **category:** `developer_guide`
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-14-00.html
+- **title:** Release v4.14.x
+- **section:** New/Improved Functionality
+- **category:** `release_notes`
 - **matched_tokens:** ['atl13']
 
 **Full text:**
 
 ```
-Given a user query, the ATL13 global database can be used to get a reference ID, and the reverse lookup table can be used to get all of the granules with data for that reference ID. The first option was the simplest but suffered from relying on CMR which is relatively slow and the possibility of having granules returned for other nearby bodies of water due to buffering on the along-track polygons CMR uses for their spatial queries. The second option would result in the best performance, but required every ATL13 granule to be read in order to build the reverse lookup table. The second option was chosen, and the Arbitrary Code Execution functionality in SlideRule was used to build the lookup table. Note SlideRule still supports temporal/spatial queries of CMR for ATL13; it is only when a user wants to use the reference ID, name, or containing coordinate that the lookup table option is used.
+Arbitrary Code Execution - /source/ace API for executing user supplied lua scripts; only available on private clusters. Asset Metadata Service - /manager/ams API for querying metadata directly from SlideRule; only ATL13 currently supported. ATL13 - /source/atl13x API for subsetting the ATL13 standard data product; in addition to normal temporal/spatial subsetting requests, SlideRule also supports subsetting based on the ATL13 reference ID, lake name, and coordinate within a body of water.
 ```
 
 ---

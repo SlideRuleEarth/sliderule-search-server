@@ -22,7 +22,7 @@
 
 #### r1 — score 0.564
 
-- **url:** https://docs.testsliderule.org/api_reference/gedi.html
+- **url:** https://docs.slideruleearth.io/api_reference/gedi.html
 - **title:** gedi
 - **section:** gedi04a
 - **category:** `api_reference`
@@ -36,7 +36,7 @@ sliderule.gedi. gedi04a ( parm , resource ) [source] Performs GEDI L4A subsettin
 
 #### r2 — score 0.538
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-01-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-01-00.html
 - **title:** Release v3.1.x
 - **section:** Major Changes
 - **category:** `release_notes`
@@ -50,7 +50,7 @@ GEDI functionality officially supported Subsetting for L1B, L2A, L4A datasets (L
 
 #### r3 — score 0.459
 
-- **url:** https://docs.testsliderule.org/user_guide/gedi.html
+- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 1. Overview
 - **category:** `user_guide`
@@ -64,7 +64,7 @@ The GEDI API currently provides subsetting and raster sampling capabilities to S
 
 #### r4 — score 0.532
 
-- **url:** https://docs.testsliderule.org/api_reference/gedi.html
+- **url:** https://docs.slideruleearth.io/api_reference/gedi.html
 - **title:** gedi
 - **section:** gedi
 - **category:** `api_reference`
@@ -78,7 +78,7 @@ The GEDI Python API gedi.py is used to access the services provided by the gedi 
 
 #### r5 — score 0.516
 
-- **url:** https://docs.testsliderule.org/api_reference/gedi.html
+- **url:** https://docs.slideruleearth.io/api_reference/gedi.html
 - **title:** gedi
 - **section:** init
 - **category:** `api_reference`

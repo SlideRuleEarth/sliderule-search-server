@@ -23,7 +23,7 @@
 
 #### r1 — score 0.625
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -35,9 +35,23 @@
 The SlideRule atl03x endpoint provides a service for ATL03 custom processing. This endpoint queries ATL03 input granules for photon heights and locations based on a set of photon-input parameters that select geographic and temporal ranges. It then selects a subset of these photons based on a set of photon classification parameters, and divides these selected photons into short along-track extents, each of which is suitable for generating a single height estimate. These extents may be returned to the client, or may be passed to downstream algorithms like the ATL06-SR height-estimation module, or the PhoREAL algorithm.
 ```
 
-#### r2 — score 0.629
+#### r2 — score 0.581
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/260528_web_client_endpoint_scoped_params.html
+- **title:** 2026-05-28: Web Client v4.5.0 - Endpoint-Scoped Advanced Options
+- **section:** Overview
+- **category:** `user_guide`
+- **matched_tokens:** ['photon', 'processing', 'series']
+
+**Full text:**
+
+```
+The Advanced Options panel now adapts to the endpoint youâve selected. The X-series endpoints ( atl06x , atl08x , atl24x , atl13x ) read pre-computed segments directly from HDF5 products, so the server discards photon-processing parameters for these endpoints. The web client now mirrors that behavior in the UI, eliminating misleading controls and preventing stale store state from leaking into the request.
+```
+
+#### r3 — score 0.629
+
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.1 Segmented Photon Data - atl03sp
 - **category:** `user_guide`
@@ -49,9 +63,9 @@ The SlideRule atl03x endpoint provides a service for ATL03 custom processing. Th
 The photon data is stored as along-track segments inside the ATL03 granules, which is then broken apart by SlideRule and re-segmented according to processing parameters supplied at the time of the request. The new segments are called extents . When the length of an extent is 40 meters, and the step size is 20 meters, the extent matches the ATL06 segments. Most of the time, the photon extents are kept internal to SlideRule and not returned to the user. But there are some APIs that do return raw photon extents for the user to process on their own. Even though this offloads processing on the server, the API calls can take longer since more data needs to be returned to the user, which can bottleneck over the network. Photon extents are returned as GeoDataFrames where each row is a photon. Each extent represents the data that the ATL06 algorithm uses to generate a single ATL06 elevation. When the step size is shorter than the length of the extent, the extents returned overlap each other which means that each photon is being returned multiple times and will be duplicated in the resulting GeoDataFrame.
 ```
 
-#### r3 — score 0.539
+#### r4 — score 0.539
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.4 Ancillary Data
 - **category:** `user_guide`
@@ -63,32 +77,18 @@ The photon data is stored as along-track segments inside the ATL03 granules, whi
 The ancillary field parameters allow the user to request additional fields from the source datasets being subsetted. Ancillary data returned from the atl03x (as well as the atl03s and atl03sp ) APIs are per-photon values that are read from the ATL03 granules. No processing is performed on the data read out of the ATL03 granule. The fields must come from either a per-photon variable (atl03_ph_fields), a per-segment variable (atl03_geo_fields, atl03_corr_fields), or a rate variable (atl03_bckgrd_fields). Ancillary fields are used to specify additional fields in the ATL03, ATL08, and ATL09 granules to be returned with the photon extent and dowstream customized products. Each field provided by the user will result in a corresponding column added to the returned GeoDataFrame. Note: if a field is requested that is already present in the default GeoDataFrame, then the name of both fields will be changed to include a _x suffix for the default incusion of the field, and a _y for the ancillary inclusion of the field.
 ```
 
-#### r4 — score 0.501
+#### r5 — score 0.556
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
-- **title:** ICESat-2 Module
-- **section:** ICESat-2 Module
+- **url:** https://docs.slideruleearth.io/user_guide/articles/260528_web_client_endpoint_scoped_params.html
+- **title:** 2026-05-28: Web Client v4.5.0 - Endpoint-Scoped Advanced Options
+- **section:** Request builder
 - **category:** `user_guide`
 - **matched_tokens:** ['photon', 'processing', 'series']
 
 **Full text:**
 
 ```
-The ICESat-2 module within SlideRule supports a number of both legacy p-series and s-series endpoints, as well as the newer DataFrame-based x-series endpoints. This document focuses on the x-series endpoints while still referencing the other legacy endpoints when helpful. Three main kinds of data are returned by the ICESat-2 endpoints: segmented photon data, elevation data (from the ATL06-SR algorithm), and vegetation data (from the PhoREAL algorithm). All data returned by the ICESat-2 endpoints are organized around the concept of an extent . An extent is a variable length, customized ATL03 segment. It takes the ATL03 photons and divides them up based on their along-track distance, filters them, and then packages them together a single new custom segment. Given that the ICESat-2 standard data products have a well defined meaning for segment, SlideRule uses the term extent to indicate this custom-length and custom-filtered segment of photons. The following processing flags are used for all ICESat-2 endpoints: 0x0001 : Along track spread too short 0x0002 : Too few photons 0x0004 : Maximum iterations reached 0x0008 : Out of bounds 0x0010 : Underflow 0x0020 : Overflow In addition, most endpoints support the generation of a name filter using the granule parameter: rgt : Reference ground track cycle : Orbit cycle region : ATL03 region {1 to 14} version : ATL03 release version (e.g. 007)
-```
-
-#### r5 — score 0.452
-
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-15-00.html
-- **title:** Release v4.15.x
-- **section:** Compatibility Changes
-- **category:** `release_notes`
-- **matched_tokens:** ['api', 'atl03x', 'series']
-
-**Full text:**
-
-```
-The h_mean value in the atl03x API when running the ATL06 surface fitting algorithm was changed from a double to a float. This was to make it consistent with the ATL06 standard data product and to normalize all DataFrames with z columns to floating point precision. The x-series APIs provide a different column for the sample time - time_ns instead of time . This is to reflect that the new time_ns is provided as a Unix(ns) time, whereas the old time was provided as a GPS seconds time. The Unix(ns) time makes it compatible with Pandas and easier to display for human readability.
+The request builder gates photon-processing parameters ( fit , len , res , cnf , srt , yapc , atl08_class , pass_invalid , ats , cnt , dist_in_seg ) behind an isPhotonAPI check, so switching from a P-series to an X-series endpoint no longer carries stale parameters into the outgoing request.
 ```
 
 ---

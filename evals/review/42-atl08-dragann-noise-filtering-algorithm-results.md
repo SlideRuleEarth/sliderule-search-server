@@ -20,7 +20,7 @@
 
 #### r1 — score 0.402
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.5 ATL06-SR Algorithm
 - **category:** `user_guide`
@@ -34,7 +34,7 @@ The ATL06-SR algorithm fits a line segment to the photons in each extent, using 
 
 #### r2 — score 0.331
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6.2 ATL08-PhoREAL Ancillary Data
 - **category:** `user_guide`
@@ -48,7 +48,7 @@ Ancillary data returned from the atl08 and atl08p APIs come from the land_segmen
 
 #### r3 — score 0.326
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.3 ATL08 Classification
 - **category:** `user_guide`
@@ -62,7 +62,7 @@ If ATL08 classification parameters are specified, the ATL08 (vegetation height) 
 
 #### r4 — score 0.258
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-01-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-01-00.html
 - **title:** Release v1.1.x
 - **section:** New Features
 - **category:** `release_notes`
@@ -76,7 +76,7 @@ Time is also used as the index. (APIs affected: atl06 , atl06p , atl03s , atl03s
 
 #### r5 — score 0.308
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6 PhoREAL Algorithm
 - **category:** `user_guide`

@@ -22,7 +22,7 @@
 
 #### r1 — score 0.897
 
-- **url:** https://docs.slideruleearth.io/getting_started/Install.html
+- **url:** https://docs.testsliderule.org/getting_started/Install.html
 - **title:** Installation
 - **section:** PyPI
 - **category:** `getting_started`
@@ -36,7 +36,7 @@ Alternatively, you can use the PyPI package manager to install the SlideRule Pyt
 
 #### r2 — score 0.804
 
-- **url:** https://docs.slideruleearth.io/getting_started/Install.html
+- **url:** https://docs.testsliderule.org/getting_started/Install.html
 - **title:** Installation
 - **section:** Installation
 - **category:** `getting_started`
@@ -48,9 +48,9 @@ Alternatively, you can use the PyPI package manager to install the SlideRule Pyt
 The recommended way of installing the SlideRule Python client is to use the Conda Python package manager. conda install -c conda-forge sliderule In order to run the example notebooks , we provide an environment.yml that can be used to create an initial conda environment that has the SlideRule Python client installed along with all the dependencies necessary to run the examples. To install the client and its dependencies via the environment file: conda env create -f environment.yml
 ```
 
-#### r3 — score 0.766
+#### r3 — score 0.765
 
-- **url:** https://docs.slideruleearth.io/getting_started/Install.html
+- **url:** https://docs.testsliderule.org/getting_started/Install.html
 - **title:** Installation
 - **section:** Developer Install
 - **category:** `getting_started`
@@ -59,12 +59,12 @@ The recommended way of installing the SlideRule Python client is to use the Cond
 **Full text:**
 
 ```
-For developers and contributors, to get the latest unreleased version of the Python client, the contents of the sliderule repository can be cloned or download as a zipped file . If cloning, please consider forking into your own account before cloning onto your system. Warning The main branch is used for the public cluster running at slideruleearth.io . Private clusters may be running versions of the server code provided in other branches or even forks of the repository. To clone the repository: git clone https://github.com/SlideRuleEarth/sliderule.git You can then install the sliderule python client using setuptools : cd sliderule/clients/python pip install . Previous Next © Copyright 2020â2026, University of Washington. Build v5.3.2 . Built with Sphinx using a theme provided by Read the Docs .
+For developers and contributors, to get the latest unreleased version of the Python client, the contents of the sliderule repository can be cloned or download as a zipped file . If cloning, please consider forking into your own account before cloning onto your system. Warning The main branch is used for the public cluster running at slideruleearth.io . Private clusters may be running versions of the server code provided in other branches or even forks of the repository. To clone the repository: git clone https://github.com/SlideRuleEarth/sliderule.git You can then install the sliderule python client using setuptools : cd sliderule/clients/python pip install . Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
 #### r4 — score 0.630
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-04-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-04-00.html
 - **title:** Release v1.4.x
 - **section:** Required Updates
 - **category:** `release_notes`
@@ -78,7 +78,7 @@ v1.4.0 - In order to use the latest SlideRule server deployments, the Python cli
 
 #### r5 — score 0.707
 
-- **url:** https://docs.slideruleearth.io/api_reference/gedi.html
+- **url:** https://docs.testsliderule.org/api_reference/gedi.html
 - **title:** gedi
 - **section:** init
 - **category:** `api_reference`

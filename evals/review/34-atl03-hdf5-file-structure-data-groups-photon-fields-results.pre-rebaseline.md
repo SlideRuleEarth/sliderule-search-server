@@ -21,23 +21,9 @@
 
 ## 📚 docsearch results (top 5)
 
-#### r1 — score 0.684
+#### r1 — score 0.556
 
-- **url:** https://docs.slideruleearth.io/user_guide/how_tos/ancillary_fields.html
-- **title:** Including Ancillary Fields
-- **section:** Background
-- **category:** `user_guide`
-- **matched_tokens:** ['atl03', 'data', 'fields', 'file', 'hdf5', 'photon']
-
-**Full text:**
-
-```
-The ATL03 granules include data associated with the photons in different subgroups inside the HDF5 file. SlideRule currently supports including ancillary fields from three subgroups inside those granules: gtxx/geolocation gtxx/geophys_corr gtxx/heights When an atl03sp or at06p processing request specifies ancillary fields, SlideRule reads those fields from the ATL03 granules, subsets them to the region of interest, and correlates them to the dynamically generated photon segment (called and âextentâ in the code) they belong to. The result is a GeoDataFrame with a column for each ancillary field populated by the value associated with each photon for atl03sp requests, and elevation for atl06p requests. Note, including ancillary fields in a processing request will increase the amount of time it takes for the request to be processed, and also the amount of data returned, so it should only be used when the fields are needed by the end user.
-```
-
-#### r2 — score 0.556
-
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **url:** https://docs.testsliderule.org/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -49,9 +35,9 @@ The ATL03 granules include data associated with the photons in different subgrou
 The data from ATLAS and the secondary instrumentation onboard the ICESat-2 observatory (the global positioning system (GPS) and the star cameras) are combined to create three primary measurements: the time of flight of a photon transmitted and received from ATLAS, the position of the satellite in space, and the pointing vector of the satellite during the transmission of photons. These three measurements are used to create ATL03 , the geolocated photon product of ICESat-2. ATL03 contains precise latitude, longitude and elevation for every received photon, arranged by beam in the along-track direction. The structure of the ATL03 file has (at most) six beam groups, along with data describing the responses of the ATLAS instrument, ancillary data for correcting and transforming the ATL03 data, and a group of metadata. Photon events can come to the ATLAS receiver in a few different ways: Many photons come from the sun either by reflecting off clouds or the land surface. These photon events are spread in a random distribution along the telemetry band. In ATL03, a large majority of these âbackgroundâ photon events are classified, but some may be incorrectly classified as signal. Some photons are from the ATLAS instrument that have reflected off clouds. These photons can be clustered together or widely dispersed depending on the properties of the cloud and a few other variables.
 ```
 
-#### r3 — score 0.585
+#### r2 — score 0.585
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.4 Ancillary Data
 - **category:** `user_guide`
@@ -63,9 +49,9 @@ The data from ATLAS and the secondary instrumentation onboard the ICESat-2 obser
 The ancillary field parameters allow the user to request additional fields from the source datasets being subsetted. Ancillary data returned from the atl03x (as well as the atl03s and atl03sp ) APIs are per-photon values that are read from the ATL03 granules. No processing is performed on the data read out of the ATL03 granule. The fields must come from either a per-photon variable (atl03_ph_fields), a per-segment variable (atl03_geo_fields, atl03_corr_fields), or a rate variable (atl03_bckgrd_fields). Ancillary fields are used to specify additional fields in the ATL03, ATL08, and ATL09 granules to be returned with the photon extent and dowstream customized products. Each field provided by the user will result in a corresponding column added to the returned GeoDataFrame. Note: if a field is requested that is already present in the default GeoDataFrame, then the name of both fields will be changed to include a _x suffix for the default incusion of the field, and a _y for the ancillary inclusion of the field.
 ```
 
-#### r4 — score 0.562
+#### r3 — score 0.562
 
-- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
+- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl03s
 - **category:** `api_reference`
@@ -77,9 +63,9 @@ The ancillary field parameters allow the user to request additional fields from 
 sliderule.icesat2. atl03s ( parm , resource ) [source] Subsets ATL03 data given the polygon and time range provided and returns segments of photons Parameters : parms ( dict ) â parameters used to configure ATL03 subsetting (see Parameters ) resource ( str ) â ATL03 HDF5 filename Returns : ATL03 extents (see Photon Segments ) Return type : GeoDataFrame
 ```
 
-#### r5 — score 0.555
+#### r4 — score 0.555
 
-- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
+- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl03v
 - **category:** `api_reference`
@@ -89,6 +75,20 @@ sliderule.icesat2. atl03s ( parm , resource ) [source] Subsets ATL03 data given 
 
 ```
 sliderule.icesat2. atl03v ( parm , resource ) [source] Subsets ATL03 data given the polygon and time range provided and returns counts of photons in segments Parameters : parms ( dict ) â parameters used to configure ATL03 subsetting (see Parameters ) resource ( str ) â ATL03 HDF5 filename Returns : ATL03 extents (see Photon Segments ) Return type : GeoDataFrame
+```
+
+#### r5 — score 0.490
+
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-01-00.html
+- **title:** Release v1.1.x
+- **section:** New Features
+- **category:** `release_notes`
+- **matched_tokens:** ['data', 'fields', 'photon', 'structure']
+
+**Full text:**
+
+```
+Time is also used as the index. (APIs affected: atl06 , atl06p , atl03s , atl03sp ). v1.1.0 - ATL08 classifications are now supported in the atl06 , atl06p , atl03s , atl03sp APIs: sliderule#71 when the request parameters supply a list of ATL08 classifications to use, the server code will read the corresponding ATL08 data and only use the supplied classifications in the calculation the following classifications are supported: noise, ground, canopy, top of canopy, unclassified for the atl03s , atl03sp , the presence of the ATL08 classification list also enables the returned photon data to include each photons classification v1.1.0 - The following APIs now return GeoDataFrames instead of dictionaries: atl06 , atl06p , atl03s , atl03sp . this standardizes the return structure at no cost to performance each GeoDataFrame has a âtimeâ column which is a Python datetime value each GeoDataFrame uses the geometry.x and geometry.y to represent the âlongitudeâ and âlatitudeâ fields respectively. the âdelta_timeâ column now represents the time from the ATLAS Standard Data Product (SDP) epoch (January 1, 2018) The GeoDataFrames returned by atl03s and atl03sp contain a row for each photon that is returned v1.1.0 - All APIs default to using version 004 of the data products. v1.1.0 - Added the ground track field ( âgtâ ) to the atl06 and atl06p elevation returns. added the following constants to the icesat2.py module: GT1L, GT1R, GT2L, GT2R, GT3L, GT3R you can now do thing
 ```
 
 ---

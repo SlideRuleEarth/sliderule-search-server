@@ -24,7 +24,7 @@
 
 #### r1 — score 0.587
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.2 Elevations - atl06p
 - **category:** `user_guide`
@@ -38,7 +38,7 @@ The primary result returned by SlideRule for ICESat-2 ATL06-SR processing reques
 
 #### r2 — score 0.564
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3. ATL08 - atl08x
 - **category:** `user_guide`
@@ -52,7 +52,7 @@ pendent of spacecraft orientation cycle ATLAS orbit cycle number region ATLAS gr
 
 #### r3 — score 0.442
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** ICESat-2 Module
 - **category:** `user_guide`
@@ -66,7 +66,7 @@ The ICESat-2 module within SlideRule supports a number of both legacy p-series a
 
 #### r4 — score 0.456
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 2. ATL06 - atl06x
 - **category:** `user_guide`
@@ -80,7 +80,7 @@ and the along-track segment fit meters (float) land_ice_segments/fit_statistics/
 
 #### r5 — score 0.463
 
-- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** Appendix A. Parameter Components
 - **category:** `developer_guide`

@@ -18,23 +18,9 @@
 
 ## 📚 docsearch results (top 5)
 
-#### r1 — score 0.575
+#### r1 — score 0.531
 
-- **url:** https://docs.testsliderule.org/developer_guide/endpoints.html
-- **title:** Endpoints
-- **section:** h5p
-- **category:** `developer_guide`
-- **matched_tokens:** ['function', 'h5', 'h5p', 'hdf5', 'parameters']
-
-**Full text:**
-
-```
-POST /source/h5p <request payload> Reads a list of datasets from an HDF5 file and returns the values of the datasets in a dictionary of lists. See h5.h5p function for a convenient method for accessing HDF5 datasets. Request Payload (application/json) parameter description default asset data source asset (see Assets) required resource HDF5 filename required datasets list of datasets (see h5 for a list of parameters for each dataset) required datasets[*].slice optional multi-dimensional slice for a dataset; list of ranges [[start0, end0], [start1, end1], ...] per dimension. Ranges are half-open [start, end) with -1 meaning âto the endâ. Up to H5Coro::MAX_NDIMS dimensions are honored; missing trailing dimensions default to [0, end] . If slice is omitted, the legacy col , startrow , and numrows parameters are used for 2D column/row selection.
-```
-
-#### r2 — score 0.531
-
-- **url:** https://docs.testsliderule.org/api_reference/h5.html
+- **url:** https://docs.slideruleearth.io/api_reference/h5.html
 - **title:** h5
 - **section:** h5
 - **category:** `api_reference`
@@ -46,26 +32,12 @@ POST /source/h5p <request payload> Reads a list of datasets from an HDF5 file an
 sliderule.h5. h5 ( dataset , resource , asset , datatype = 3 , col = 0 , startrow = 0 , numrows = -1 ) [source] Reads a dataset from an HDF5 file and returns the values of the dataset in a list This function provides an easy way for locally run scripts to get direct access to HDF5 data stored in a cloud environment. But it should be noted that this method is not the most efficient way to access remote H5 data, as the data is accessed one dataset at a time. The h5p api is the preferred solution for reading multiple datasets. One of the difficulties in reading HDF5 data directly from a Python script is converting the format of the data as it is stored in HDF5 to a data format that is easy to use in Python. The compromise that this function takes is that it allows the user to supply the override the data type of the returned data via the datatype parameter, and the function will then return a numpy array of values with that data type. If the datatype parameter is not supplied, then the code does its best to match the HDF5 type to the corresponding Python type.
 ```
 
-#### r3 — score 0.599
+#### r2 — score 0.569
 
-- **url:** https://docs.testsliderule.org/developer_guide/endpoints.html
-- **title:** Endpoints
-- **section:** h5
-- **category:** `developer_guide`
-- **matched_tokens:** ['function', 'h5', 'hdf5']
-
-**Full text:**
-
-```
-POST /source/h5 <request payload> Reads a dataset from an HDF5 file and return the values of the dataset in a list. See h5.h5 function for a convenient method for accessing HDF5 datasets.
-```
-
-#### r4 — score 0.569
-
-- **url:** https://docs.testsliderule.org/developer_guide/articles/h5coro.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/210423_h5coro.html
 - **title:** 2021-04-23: H5Coro
 - **section:** H5Coro::read
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['function', 'h5', 'parameters', 'read']
 
 **Full text:**
@@ -74,9 +46,23 @@ POST /source/h5 <request payload> Reads a dataset from an HDF5 file and return t
 H5Coro :: Future * H5Coro :: readp ( const char * asset , const char * resource , const char * datasetname , RecordObject :: valType_t valtype , long col , long startrow , long numrows , Context * context = NULL ) {parameters} see H5Coro::read for parameter descriptions H5Coro::Future* a pointer to a structure that will contain the info_t information read from the H5 file when the read operation completes The H5Coro::readp call is thread-safe, concurrent, and highly parallel. It is non-blocking and publishes the read request to a read queue that is serviced by a compile-time configurable number of reader threads. This is intended to provide the capability to read data in parallel for applications that are inherently limited in the number of threads they are able to run. Once a read request is picked up by one of the reader threads, the process of reading the dataset is identical to the H5Coro::read function.
 ```
 
-#### r5 — score 0.374
+#### r3 — score 0.403
 
-- **url:** https://docs.testsliderule.org/api_reference/h5.html
+- **url:** https://docs.slideruleearth.io/api_reference/h5.html
+- **title:** h5
+- **section:** h5p
+- **category:** `api_reference`
+- **matched_tokens:** ['function', 'h5', 'h5p', 'hdf5', 'read']
+
+**Full text:**
+
+```
+sliderule.h5. h5p ( datasets , resource , asset ) [source] Reads a list of datasets from an HDF5 file and returns the values of the dataset in a dictionary of lists. This function is considerably faster than the icesat2.h5 function in that it not only reads the datasets in parallel on the server side, but also shares a file context between the reads so that portions of the file that need to be read multiple times do not result in multiple requests to S3. For a full discussion of the data type conversion options, see h5 . The âsliceâ parameter for a dataset allows the user to supply a range for each dimension and then flatten the result. For example, in the case of a 2D variable, the slice is effectively [[start_row, end_row], [start_column, end_column]]. If all data across all dimensions is wanted, the slice becomes [[0,-1]].
+```
+
+#### r4 — score 0.374
+
+- **url:** https://docs.slideruleearth.io/api_reference/h5.html
 - **title:** h5
 - **section:** h5x
 - **category:** `api_reference`
@@ -85,7 +71,21 @@ H5Coro :: Future * H5Coro :: readp ( const char * asset , const char * resource 
 **Full text:**
 
 ```
-sliderule.h5. h5x ( variables , resource , asset , groups = None , col = None , startrow = None , numrows = None , index_column = None , time_column = None , x_column = None , y_column = None , z_column = None , crs = None , session = None ) [source] Builds a DataFrame from an HDF5 file where each variable in variables is a column. The groups parameter is used to create datasets from multiple groups within the file. For example, if groups = ["/data/r1", "/data/r2", "/data/r3"] and datasets = ["x", "y"] then the dataframe will have two columns: âxâ and âyâ that are populated from six datasets within the file: â/data/r1/xâ, â/data/r2/xâ, âdata/r3/xâ, and â/data/r1/yâ, â/data/r2/yâ, âdata/r3/yâ Parameters : variables ( list ) â list of variables to read from each group resource ( str ) â HDF5 filename asset ( str ) â data source asset groups ( list ) â list of full paths to the groups to read from the file Returns : A pandas dataframe of the data read from the file Return type : DataFrame Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+sliderule.h5. h5x ( variables , resource , asset , groups = None , col = None , startrow = None , numrows = None , index_column = None , time_column = None , x_column = None , y_column = None , z_column = None , crs = None , session = None ) [source] Builds a DataFrame from an HDF5 file where each variable in variables is a column. The groups parameter is used to create datasets from multiple groups within the file. For example, if groups = ["/data/r1", "/data/r2", "/data/r3"] and datasets = ["x", "y"] then the dataframe will have two columns: âxâ and âyâ that are populated from six datasets within the file: â/data/r1/xâ, â/data/r2/xâ, âdata/r3/xâ, and â/data/r1/yâ, â/data/r2/yâ, âdata/r3/yâ Parameters : variables ( list ) â list of variables to read from each group resource ( str ) â HDF5 filename asset ( str ) â data source asset groups ( list ) â list of full paths to the groups to read from the file Returns : A pandas dataframe of the data read from the file Return type : DataFrame Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
+```
+
+#### r5 — score 0.410
+
+- **url:** https://docs.slideruleearth.io/api_reference/h5.html
+- **title:** h5
+- **section:** h5
+- **category:** `api_reference`
+- **matched_tokens:** ['h5', 'hdf5', 'parameters', 'read']
+
+**Full text:**
+
+```
+The data type is supplied as a DATATYPES enumeration: DATATYPES["TEXT"] : return the data as a string of unconverted bytes DATATYPES["INTEGER"] : return the data as an array of integers DATATYPES["REAL"] : return the data as an array of double precision floating point numbers DATATYPES["DYNAMIC"] : return the data in the numpy data type that is the closest match to the data as it is stored in the HDF5 file Parameters : dataset ( str ) â full path to dataset variable (e.g. /gt1r/geolocation/segment_ph_cnt ) resource ( str ) â HDF5 filename asset ( str ) â data source asset datatype ( int ) â the type of data the returned dataset list should be in (datasets that are naturally of a different type undergo a best effort conversion to the specified data type before being returned) col ( int ) â the column to read from the dataset for a multi-dimensional dataset; if there are more than two dimensions, all remaining dimensions are flattened out when returned. Ignored if slice is supplied. If the variable has more than one column, then by default the first column is read, if all columns are wanted, then set col=-1 and the result will be a flattened array of all of the data. startrow ( int ) â the first row to start reading from in a multi-dimensional dataset (or starting element if there is only one dimension).
 ```
 
 ---

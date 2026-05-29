@@ -23,7 +23,7 @@
 
 #### r1 — score 0.567
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 4. ATL13 - atl13x
 - **category:** `user_guide`
@@ -37,7 +37,7 @@ The SlideRule atl13x endpoint provides a service for ATL13 subsetting and custom
 
 #### r2 — score 0.577
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 4.1 Inland Lake Parameters
 - **category:** `user_guide`
@@ -51,7 +51,7 @@ Inland lake data can be queried using the following parameters under the atl13 k
 
 #### r3 — score 0.529
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/arbitrary_code_execution.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
 - **title:** 2025-05-30: Arbitrary Code Execution
 - **section:** Example Use Case - ATL13 Lake ID Mapping
 - **category:** `developer_guide`
@@ -63,23 +63,23 @@ Inland lake data can be queried using the following parameters under the atl13 k
 The ATL13 inland lake data product contains along-track water surface characteristics for inland bodies of water. Each measurement (i.e. variable) in the product is tagged with a reference ID which can be used as an index into an internal ATL13 global database of inland water bodies. This database contains a geometry for each body of water and is used in the ATL13 processing to produce the ATL13 data product only over those bodies of water. Researchers requested the ability to retrieve the exact set of ATL13 data generated for a given body of water when supplying one of three pieces of information: (1) the ATL13 reference ID, (2) the name of the body of water, (3) a coordinate contained within a body of water. The ATL13 global database contains the reference ID, name, and geometry of each body of water, but does not contain a list of ATL13 granules that intersect (and therefore have data for) thoes bodies of water. We needed some way to know which granules contained data for each body of water; and we came up with two possibilities: Given a user query, use the global database to pull out the geometry. Use the geometry to query CMR for a list of granules that intersect. Build a reverse lookup table of reference IDs and granules by reading every ATL13 granule and pulling out which reference IDs are contained there in.
 ```
 
-#### r4 — score 0.441
+#### r4 — score 0.596
 
-- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
-- **title:** ICESat-2
-- **section:** ATL03 - Global Geolocated Photon Data
-- **category:** `background`
-- **matched_tokens:** ['height', 'surface']
+- **url:** https://docs.testsliderule.org/getting_started/Examples.html
+- **title:** Examples
+- **section:** Examples
+- **category:** `getting_started`
+- **matched_tokens:** ['atl13', 'inland']
 
 **Full text:**
 
 ```
-Potential errors in the average surface heights: Sampling error : average height estimates are based upon a random sampling of the surface heights, which might be skewed based on the horizontal distribution of PEs Background noise : signal PEs are intermixed with the background PEs, and so there are random outliers which may affect the surface determination, particularly in conditions with high background rates and low surface reflectivity Complex topography : the along-track linear fit will not always resolve complex surface topography Misidentified PEs : the ATL03 processing will not always correctly identify the signal PEs First-photon bias : this bias is inherent to photon-counting detectors and depends on the signal return strength Atmospheric forward scattering : photons traveling through a cloudy atmosphere or a wind-blown snow event may be repeatedly scattered through small angles but still be reflected by the surface and be within the ATLAS field of view Subsurface scattering : photons may be scattered many times within ice or snow before returning to the detector Previous Next © Copyright 2020â2026, University of Washington. Build v5.3.2 . Built with Sphinx using a theme provided by Read the Docs .
+ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
 #### r5 — score 0.416
 
-- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
+- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl13s
 - **category:** `api_reference`

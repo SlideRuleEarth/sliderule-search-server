@@ -24,7 +24,7 @@
 
 #### r1 — score 0.529
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 2.1 Ancillary Data
 - **category:** `user_guide`
@@ -38,7 +38,7 @@ Ancillary data returned from the atl06x endpoint (as well as atl06 and atl06p en
 
 #### r2 — score 0.472
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-01-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-01-00.html
 - **title:** Release v4.1.x
 - **section:** Release v4.1.x
 - **category:** `release_notes`
@@ -52,7 +52,7 @@ Ancillary data returned from the atl06x endpoint (as well as atl06 and atl06p en
 
 #### r3 — score 0.681
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3.2 Ancillary Data
 - **category:** `user_guide`
@@ -66,7 +66,7 @@ Ancillary data returned from the atl08x endpoint (as well as atl08 and atl08p en
 
 #### r4 — score 0.637
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5.2 Ancillary Data
 - **category:** `user_guide`
@@ -80,7 +80,7 @@ Ancillary data returned from the atl24x endpoint comes from the {beam} group of 
 
 #### r5 — score 0.629
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 4.2 Ancillary Data
 - **category:** `user_guide`

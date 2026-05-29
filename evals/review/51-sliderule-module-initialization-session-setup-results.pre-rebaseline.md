@@ -23,7 +23,7 @@
 
 #### r1 — score 0.564
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-00-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v05-00-00.html
 - **title:** Release v5.0.x
 - **section:** Breaking Changes
 - **category:** `release_notes`
@@ -35,23 +35,9 @@
 All calls to session.manager should no longer be used as that functionality will cease in future releases. v5.0.3 - The main Python module sliderule no longer creates a default session on import but requires either sliderule.init() or sliderule.create_session() . The creation of a default session was confusing when users called sliderule.init() which then created a second session. This caused odd behavior with logging because at that point two loggers exist. Moving forward, users are encouraged to use sliderule.create_session() which returns a session object that can then unambiguously be used to communicate with a SlideRule cluster.. v5.0.3 - Raster sampling support has been optimized for x-series APIs at the cost of legacy p-series API performance. All users are strongly encouraged to switch to x-series APIs when performing raster sampling as the old p-series APIs will take much longer now. v5.0.3 - Removed the sliderule.authenticate function as authentication must now occur when a SlideRule session is created. v5.0.2 - Polygons used for earthdata.stac requests no longer need to be nested lists, but are supplied in the same format as all other requests: poly = [ { "lat" : lat1 , "lon" : lon1 }, { "lat" : lat2 , "lon" : lon2 }, ... { "lat" : lat1 , "lon" : lon1 } ] v5.0.2 - The raster field which was replaced by region_mask and has been deprecated is now no longer supported. v5.0.2 - The nsidc-s3 asset which was replaced by the icesat2 asset, is no longer supported.
 ```
 
-#### r2 — score 0.595
+#### r2 — score 0.589
 
-- **url:** https://docs.slideruleearth.io/api_reference/sliderule.html
-- **title:** sliderule
-- **section:** sliderule
-- **category:** `api_reference`
-- **matched_tokens:** ['module', 'sliderule']
-
-**Full text:**
-
-```
-The SlideRule Python API sliderule.py is used to access the services provided by the base SlideRule server. From Python, the module can be imported via: import sliderule
-```
-
-#### r3 — score 0.589
-
-- **url:** https://docs.slideruleearth.io/api_reference/sliderule.html
+- **url:** https://docs.testsliderule.org/api_reference/sliderule.html
 - **title:** sliderule
 - **section:** set_url
 - **category:** `api_reference`
@@ -63,9 +49,9 @@ The SlideRule Python API sliderule.py is used to access the services provided by
 sliderule. set_url ( domain , session = None ) [source] Configure sliderule package with URL of service Parameters : urls ( str ) â IP address or hostname of SlideRule service (note, there is a special case where the url is provided as a list of strings instead of just a string; when a list is provided, the client hardcodes the set of servers that are used to process requests to the exact set provided; this is used for testing and for local installations and can be ignored by most users) Examples >>> import sliderule >>> sliderule . set_url ( "service.my-sliderule-server.org" )
 ```
 
-#### r4 — score 0.487
+#### r3 — score 0.487
 
-- **url:** https://docs.slideruleearth.io/user_guide/versioning.html
+- **url:** https://docs.testsliderule.org/user_guide/versioning.html
 - **title:** Versioning
 - **section:** Python Client
 - **category:** `user_guide`
@@ -77,9 +63,23 @@ sliderule. set_url ( domain , session = None ) [source] Configure sliderule pack
 To get the version of the SlideRule Python Client: from sliderule import version version . version When the SlideRule Python Client init() function is called, it issues a get_version() request to the SlideRule cluster and then checks that the client version is compatible with the server version. If there is a major version difference, the initialization function will return an error. If there is a minor version difference, the initialization function will return a warning.
 ```
 
+#### r4 — score 0.583
+
+- **url:** https://docs.testsliderule.org/developer_guide/articles/private_clusters.html
+- **title:** 2026-01-20: Private Clusters
+- **section:** Access
+- **category:** `developer_guide`
+- **matched_tokens:** ['session', 'sliderule']
+
+**Full text:**
+
+```
+Users configure the SlideRule Python client to communicate with their private cluster when the client is initialized. For session based configuration, the following code initializes the client to talk to <my_cluster> : import sliderule session = sliderule . create_session ( cluster = "<my_cluster>" ) For functional configuration, the following code initializes the client to talk to <my_cluster> : import sliderule sliderule . init ( organization = "<my_cluster>" ) Note that behind the scenes, the sliderule.init call and sliderule.create_session call makes a call to session.authenticate to automatically authenticate the caller as a user of the cluster. It will first look in the environment for SLIDERULE_GITHUB_TOKEN , and then if not found, will initiate the device flow authentication process.
+```
+
 #### r5 — score 0.470
 
-- **url:** https://docs.slideruleearth.io/getting_started/Getting-Started.html
+- **url:** https://docs.testsliderule.org/getting_started/Getting-Started.html
 - **title:** Getting Started
 - **section:** Common Package Modules
 - **category:** `getting_started`

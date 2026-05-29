@@ -22,10 +22,10 @@
 
 #### r1 — score 0.599
 
-- **url:** https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
 - **title:** 2025-05-30: Arbitrary Code Execution
 - **section:** Example Use Case - ATL13 Lake ID Mapping
-- **category:** `user_guide`
+- **category:** `developer_guide`
 - **matched_tokens:** ['atl13', 'lake', 'name', 'query']
 
 **Full text:**
@@ -36,7 +36,7 @@ The ATL13 inland lake data product contains along-track water surface characteri
 
 #### r2 — score 0.762
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 4.1 Inland Lake Parameters
 - **category:** `user_guide`
@@ -48,9 +48,9 @@ The ATL13 inland lake data product contains along-track water surface characteri
 Inland lake data can be queried using the following parameters under the atl13 key: atl13 : refid : ATL13 reference id name : lake (or body of water) name coord : latitude and longitude coordinates contained within the desired body of water|object {âlatâ: \(lat, "lon": \) lon}
 ```
 
-#### r3 — score 0.671
+#### r3 — score 0.669
 
-- **url:** https://docs.slideruleearth.io/getting_started/Examples.html
+- **url:** https://docs.testsliderule.org/getting_started/Examples.html
 - **title:** Examples
 - **section:** Examples
 - **category:** `getting_started`
@@ -59,12 +59,12 @@ Inland lake data can be queried using the following parameters under the atl13 k
 **Full text:**
 
 ```
-ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
+ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
 #### r4 — score 0.422
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-14-00.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-14-00.html
 - **title:** Release v4.14.x
 - **section:** New/Improved Functionality
 - **category:** `release_notes`
@@ -78,10 +78,10 @@ Arbitrary Code Execution - /source/ace API for executing user supplied lua scrip
 
 #### r5 — score 0.373
 
-- **url:** https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
 - **title:** 2025-05-30: Arbitrary Code Execution
 - **section:** Example Use Case - ATL13 Lake ID Mapping
-- **category:** `user_guide`
+- **category:** `developer_guide`
 - **matched_tokens:** ['atl13', 'lake', 'name', 'query']
 
 **Full text:**

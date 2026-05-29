@@ -10,12 +10,11 @@
 - **corpus:** `docsearch`
 - **expected_urls:**
   - https://docs.slideruleearth.io/user_guide/icesat2.html
-  - https://docs.slideruleearth.io/assets/atl24_access.html
 - **expected_sections:**
   - `atl24x`
   - `5. atl24`
 - **expected_pages:** (none)
-- **notes:** atl24x is documented in user_guide/icesat2.html section 5 + atl24_access tutorial
+- **notes:** atl24x is documented in user_guide/icesat2.html section 5 (assets/atl24_access tutorial dropped after testsliderule.org rebaseline)
 
 ---
 
@@ -23,7 +22,7 @@
 
 #### r1 — score 0.691
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5. ATL24 - atl24x
 - **category:** `user_guide`
@@ -35,37 +34,9 @@
 The SlideRule atl24x endpoint provides a service for ATL24 subsetting and custom processing. This endpoint queries ATL24 input granules for bathymetry data for ATL03 photons based on geographic and temporal ranges. ATL24 provides bathymetry labels and metrics which are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster sampling.
 ```
 
-#### r2 — score 0.460
+#### r2 — score 0.616
 
-- **url:** https://docs.slideruleearth.io/assets/atl24_access.html
-- **title:** Subsetting and filtering ATL24 data
-- **section:** (7) Filtered and Ancillary Access to ATL24
-- **category:** `tutorial`
-- **matched_tokens:** ['atl24x', 'bathymetry']
-
-**Full text:**
-
-```
-[29]: parms = { "atl24" : { "class_ph" : [ "bathymetry" ], # "confidence_threshold": 0.6, # "invalid_kd": False, # "invalid_wind_speed": False, "low_confidence" : False , # "night": True, # "sensor_depth_exceeded": False, "anc_fields" : [ "index_ph" , "index_seg" ] }, "beams" : "gt3r" , "rgt" : 202 , "cycle" : 12 } gdf7 = sliderule . run ( "atl24x" , parms , aoi = aoi ) request <AppServer.63882> retrieved 1 resources Starting proxy for atl24x to process 1 resource(s) with 1 thread(s) request <AppServer.93203> on ATL24_20210706203010_02021201_006_01_001_01.h5 generated dataframe [gt3r] with 839 rows and 19 columns Successfully completed processing resource [1 out of 1]: ATL24_20210706203010_02021201_006_01_001_01.h5 Writing arrow file: /tmp/tmpz4o3jz7l Closing arrow file: /tmp/tmpz4o3jz7l [30]: gdf7 [30]: sensor_depth_exceeded night_flag region class_ph gt sigma_tvu surface_h invalid_wind_speed index_seg sigma_thu ... low_confidence_flag index_ph confidence spot x_atc y_atc srcid cycle ellipse_h geometry time_ns 2021-07-06 20:35:11.700463360 0 0 1 40 60 0.166414 0.469926 0 107089 7.071084 ... 0 12931297 0.835062 1 2.147674e+06 -3246.468750 0 12 -44.525597 POINT (-69.53933 19.32204) 2021-07-06 20:35:11.700663040 0 0 1 40 60 0.166414 0.470413 0 107089 7.071082 ... 0 12931326 0.834389 1 2.147675e+06 -3246.466553 0 12 -43.980129 POINT (-69.53934 19.32205) 2021-07-06 20:35:11.701063168 0 0 1 40 60 0.166414 0.471875 0 107089 7.071082 ... 0 12931368 0.902136 1 2.147678e+06 -3246.4697
-```
-
-#### r3 — score 0.438
-
-- **url:** https://docs.slideruleearth.io/assets/atl24_access.html
-- **title:** Subsetting and filtering ATL24 data
-- **section:** (3) Detailed Access of a Single Track
-- **category:** `tutorial`
-- **matched_tokens:** ['atl24x', 'bathymetry']
-
-**Full text:**
-
-```
-[14]: parms = { "atl24" : { "compact" : False , "confidence_threshold" : 0.0 , "class_ph" : [ "unclassified" , "sea_surface" , "bathymetry" ] }, "beams" : "gt3r" , "rgt" : 202 , "cycle" : 12 } gdf3 = sliderule . run ( "atl24x" , parms , aoi = aoi ) request <AppServer.65190> retrieved 1 resources Starting proxy for atl24x to process 1 resource(s) with 1 thread(s) request <AppServer.65191> on ATL24_20210706203010_02021201_006_01_001_01.h5 generated dataframe [gt3r] with 35527 rows and 17 columns Successfully completed processing resource [1 out of 1]: ATL24_20210706203010_02021201_006_01_001_01.h5 Writing arrow file: /tmp/tmpeqf2fes_ Closing arrow file: /tmp/tmpeqf2fes_ [15]: gdf3 [15]: sensor_depth_exceeded night_flag region class_ph gt sigma_tvu surface_h invalid_wind_speed sigma_thu rgt ... invalid_kd low_confidence_flag confidence spot x_atc y_atc srcid cycle ellipse_h geometry time_ns 2021-07-06 20:35:11.531963136 0 0 1 0 60 0.133018 0.367559 0 7.071068 202 ... 1 0 1.005813e-07 1 2.146475e+06 -3246.021484 0 12 1.637071 POINT (-69.53822 19.31126) 2021-07-06 20:35:11.531963136 0 0 1 0 60 0.133018 0.367559 0 7.071068 202 ... 1 0 1.759629e-07 1 2.146475e+06 -3246.173584 0 12 -24.135511 POINT (-69.53821 19.31126) 2021-07-06 20:35:11.532163072 0 0 1 0 60 0.133018 0.367595 0 7.071068 202 ... 1 0 4.991626e-07 1 2.146476e+06 -3246.186035 0 12 -25.274578 POINT (-69.53822 19.31127) 2021-07-06 20:35:11.532163072 0 0 1 0 60 0.133018 0.367595 0 7.071068 202 ... 1 0 1.759629e-07 1 2.1464
-```
-
-#### r4 — score 0.616
-
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/atl24_golden_run.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html
 - **title:** 2025-03-28: ATL24 Processing Run
 - **section:** Background
 - **category:** `developer_guide`
@@ -77,9 +48,37 @@ The SlideRule atl24x endpoint provides a service for ATL24 subsetting and custom
 The University of Texas at Austin and Oregon State University partnered with the SlideRule team (University of Washington, Goddard Space Flight Center, and Wallops Flight Facility) to develop and generate a Near-Shore Coastal Bathymetry Product for ICESat-2 called ATL24. The initial development and generation of the data product was kicked off in January of 2024, started in earnest in May of 2024, and completed April 1st, 2025. ATL24 is a photon classification for ICESat-2 photons in ATL03. Algorithms designed and implemented by UT and OSU were integrated into SlideRule and run as the atl24g service. Each processing request to atl24g provided an ATL03 granule and produced a corresponding ATL24 granule. All ATL03 version 006 photons within a global bathymetry search mask that were within 50m above and 100m below the geoid were processed and labelled as either: unclassified, sea surface, or bathymetry.
 ```
 
-#### r5 — score 0.767
+#### r3 — score 0.555
 
-- **url:** https://docs.slideruleearth.io/getting_started/Examples.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html
+- **title:** 2025-03-28: ATL24 Processing Run
+- **section:** Statistics
+- **category:** `developer_guide`
+- **matched_tokens:** ['bathymetry']
+
+**Full text:**
+
+```
+452,173 ATL03 granules were processed (constituting cycles 1 through 25). 277,255 ATL24 granules were produced 145,283 processing runs resulted in empty output (no bathymetry was identified) and therefore no ATL24 granule was produced 29,635 processing runs failed to produce a valid result 27.649 TB of ATL24 data was produced 989.46 B photons were classified 59.19% of classified photons were sea surface 0.73% of classified photons were bathymetry
+```
+
+#### r4 — score 0.494
+
+- **url:** https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html
+- **title:** 2025-03-28: ATL24 Processing Run
+- **section:** 2025-03-28: ATL24 Processing Run
+- **category:** `developer_guide`
+- **matched_tokens:** ['bathymetry']
+
+**Full text:**
+
+```
+Note SlideRule processed ICESat-2 cycles 1 through 25 to produce the first release of the Near-Shore Coastal Bathymetry Product (ATL24) for ICESat-2.
+```
+
+#### r5 — score 0.578
+
+- **url:** https://docs.testsliderule.org/getting_started/Examples.html
 - **title:** Examples
 - **section:** Examples
 - **category:** `getting_started`
@@ -88,7 +87,7 @@ The University of Texas at Austin and Oregon State University partnered with the
 **Full text:**
 
 ```
-ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.3.2 . Built with Sphinx using a theme provided by Read the Docs .
+ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
 ---

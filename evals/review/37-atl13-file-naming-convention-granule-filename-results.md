@@ -22,7 +22,7 @@
 
 #### r1 — score 0.422
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl13s
 - **category:** `api_reference`
@@ -36,7 +36,7 @@ sliderule.icesat2. atl13s ( parm , resource ) [source] Subsets ATL13 data given 
 
 #### r2 — score 0.437
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 4.2 Ancillary Data
 - **category:** `user_guide`
@@ -50,10 +50,10 @@ Ancillary data returned from the atl13x endpoint comes from the {beam} group of 
 
 #### r3 — score 0.381
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html
 - **title:** 2025-05-30: Arbitrary Code Execution
 - **section:** User Lua Script
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['atl13', 'file', 'granule']
 
 **Full text:**
@@ -64,10 +64,10 @@ Ancillary data returned from the atl13x endpoint comes from the {beam} group of 
 
 #### r4 — score 0.391
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html
 - **title:** 2025-05-30: Arbitrary Code Execution
 - **section:** Example Use Case - ATL13 Lake ID Mapping
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['atl13', 'granule']
 
 **Full text:**
@@ -78,7 +78,7 @@ Given a user query, the ATL13 global database can be used to get a reference ID,
 
 #### r5 — score 0.455
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v05-01-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v05-01-00.html
 - **title:** Release v5.1.x
 - **section:** Issues Resolved
 - **category:** `release_notes`

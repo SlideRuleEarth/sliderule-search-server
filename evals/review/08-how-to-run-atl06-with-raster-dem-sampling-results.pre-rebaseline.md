@@ -10,10 +10,9 @@
 - **corpus:** `docsearch`
 - **expected_urls:**
   - https://docs.slideruleearth.io/user_guide/raster_sampling.html
-  - https://docs.slideruleearth.io/user_guide/how_tos/arcticdem_request.html
 - **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** pairing ATL06 with raster sampling
+- **notes:** pairing ATL06 with raster sampling (how_tos/arcticdem_request dropped after testsliderule.org rebaseline)
 
 ---
 
@@ -21,7 +20,7 @@
 
 #### r1 — score 0.461
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 2. ATL06 - atl06x
 - **category:** `user_guide`
@@ -33,23 +32,9 @@
 The SlideRule atl06x endpoint provides a service for ATL06 subsetting and custom processing. This endpoint queries ATL06 input granules for segment heights and locations based on geographic and temporal ranges. The resulting extents are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster sampling.
 ```
 
-#### r2 — score 0.422
+#### r2 — score 0.414
 
-- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-03-00.html
-- **title:** Release v3.3.x
-- **section:** Major Changes
-- **category:** `release_notes`
-- **matched_tokens:** ['dem', 'raster', 'sampling']
-
-**Full text:**
-
-```
-Sampling support added for the Merit DEM Added raster module to Python client - returns GeoDataFrame of sampled raster points of interest
-```
-
-#### r3 — score 0.414
-
-- **url:** https://docs.slideruleearth.io/user_guide/raster_sampling.html
+- **url:** https://docs.testsliderule.org/user_guide/raster_sampling.html
 - **title:** Raster Sampling
 - **section:** Overview
 - **category:** `user_guide`
@@ -61,9 +46,23 @@ Sampling support added for the Merit DEM Added raster module to Python client - 
 SlideRule supports sampling raster data at points of interest and including those sampled values alongside its customized data products. For instance, when performing an ATL06-SR processing run ( atl06p ), the returned GeoDataFrame has a row for each calculated elevation; that row can also include values from different raster datasets that have been sampled at the geolocation of the calculated elevation. Note Raster data consists of 2-dimensional datasets that form a grid of square pixels, often called an image. A common format for storing raster data is TIFF. GeoTIFF is an extension to the TIFF format that embeds geospatial information into the TIFF file that ties the raster data to a geospatial reference. COGs are cloud-optimized GeoTIFFs that are internally optimized for access in the cloud. For more information see https://www.cogeo.org. In order to sample a raster dataset, SlideRule must first ascertain which individual raster files in the dataset intersect the point of interest, then obtain credentials to access the identified files, and then lastly, open up those files and read the necessary pixels to calculate the returned sample value. Unfortunately, most raster datasets are organized slightly differently and require a small amount of specialized code to perform the first step of determining which raster files need to be sampled.
 ```
 
-#### r4 — score 0.436
+#### r3 — score 0.422
 
-- **url:** https://docs.slideruleearth.io/getting_started/Examples.html
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-03-00.html
+- **title:** Release v3.3.x
+- **section:** Major Changes
+- **category:** `release_notes`
+- **matched_tokens:** ['dem', 'raster', 'sampling']
+
+**Full text:**
+
+```
+Sampling support added for the Merit DEM Added raster module to Python client - returns GeoDataFrame of sampled raster points of interest
+```
+
+#### r4 — score 0.441
+
+- **url:** https://docs.testsliderule.org/getting_started/Examples.html
 - **title:** Examples
 - **section:** Examples
 - **category:** `getting_started`
@@ -72,12 +71,12 @@ SlideRule supports sampling raster data at points of interest and including thos
 **Full text:**
 
 ```
-The following Jupyter notebooks provide examples of how to use some of SlideRuleâs functionality. They are listed roughly in the order of complexity, with the simpler examples first and the more complex examples farther down. The source code for all of these notebooks can be found in our repository . Additional files are necessary to run some of the notebooks locally. grandmesa.geojson dicksonfjord.geojson Notebooks Boulder Watershed ( download ) A simple notebook to demonstrate a basic atl03x processing request. Elevation data is generated for the Boulder watershed region and plotted using matplotlib. Grand Mesa ( download ) Demonstrates how to request custom ATL06 elevations from SlideRule for a region of interest, and then use SlideRule APIs to read and compare the results to the ATL06 standard data product. PhoREAL ( download ) Demonstrate use of the PhoREAL algorithm running inside SlideRule. Vegetation metrics are calculated over the Grand Mesa region and then later combined with calculated elevations. ArcticDEM Mosaic ( download ) Demonstrates how to sample the ArcticDEM Mosaic raster at generated ATL06-SR points and return all of the data as a unified GeoDataFrame. ATL03 Classification ( download ) An in-depth example of requesting ATL03 photon data classified using ATL08 and YAPC. The results are plotted using matplotlib. ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate.
+The following Jupyter notebooks provide examples of how to use some of SlideRuleâs functionality. They are listed roughly in the order of complexity, with the simpler examples first and the more complex examples farther down. The source code for all of these notebooks as well as additional notebooks can be found in our repository . Additional files are necessary to run some of the notebooks locally. grandmesa.geojson dicksonfjord.geojson Notebooks Boulder Watershed ( download ) A simple notebook to demonstrate a basic atl03x processing request. Elevation data is generated for the Boulder watershed region and plotted using matplotlib. Grand Mesa ( download ) Demonstrates how to request custom ATL06 elevations from SlideRule for a region of interest, and then use SlideRule APIs to read and compare the results to the ATL06 standard data product. PhoREAL ( download ) Demonstrate use of the PhoREAL algorithm running inside SlideRule. Vegetation metrics are calculated over the Grand Mesa region and then later combined with calculated elevations. ArcticDEM Mosaic ( download ) Demonstrates how to sample the ArcticDEM Mosaic raster at generated ATL06-SR points and return all of the data as a unified GeoDataFrame. ATL03 Classification ( download ) An in-depth example of requesting ATL03 photon data classified using ATL08 and YAPC. The results are plotted using matplotlib.
 ```
 
 #### r5 — score 0.449
 
-- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** SRWC-5.1: Raster Sampling
 - **category:** `developer_guide`

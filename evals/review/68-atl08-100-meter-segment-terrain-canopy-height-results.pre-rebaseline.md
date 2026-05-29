@@ -21,7 +21,7 @@
 
 #### r1 — score 0.458
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3. ATL08 - atl08x
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ at) land_segments/terrain/h_te_uncertainty h_te_median Median height of the terr
 
 #### r2 — score 0.478
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6 PhoREAL Algorithm
 - **category:** `user_guide`
@@ -47,23 +47,9 @@ at) land_segments/terrain/h_te_uncertainty h_te_median Median height of the terr
 The PhoREAL algorithm is a modified version of the ATL08 canopy metrics algorithm developed at the University of Texas at Austin that calculates canopy metrics on a segment of ATL03 photons. The algorithm is run by supplying the phoreal parameter in the atl03x request, but can also be accessed via the legacy endpoints atl08 and atl08p .
 ```
 
-#### r3 — score 0.448
+#### r3 — score 0.416
 
-- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
-- **title:** SlideRule Web Client
-- **section:** Appendix A. Parameter Components
-- **category:** `developer_guide`
-- **matched_tokens:** ['atl08', 'canopy', 'height', 'segment']
-
-**Full text:**
-
-```
-ables inputs below) Land Type : label noise : checkbox ground : checkbox canopy : checkbox top_of_canopy : checkbox unclassified : checkbox ATL03 YAPC : input switch (enables inputs below) Score : input number SR YAPC : input switch (enables inputs below) Score : input number Knn : input number Window Height : input number Window Width : input number Version : label version 1 : radio button version 2 : radio button version 3 : radio button Extents (Variable-Length Segmentation) : accordion header [ICESat-2] Length : input number (meters) Step Size : input number (meters) Distance in Segments : checkbox (changes above inputs to segments instead of meters) Pass Invalid : checkbox Along Track Spread : input number [greyed out when pass invalid selected] Minimum Photon Count : input number [greyed out when pass invalid selected] Surface Elevation Algorithm : accordion header [atl06] Maximum Iterations : input number Minimum Window Height : input number (meters) Maximum Robust Dispersion : input number (meters) Vegetation Density Algorithm : accordion header [atl08] Bin Size : input number (meters) Geolocation : label mean : radio button median : radio button center : radio button Use Absolute Heights : checkbox Send Waveforms : checkbox Use ABoVE Classifier : checkbox Ancillary Fields : accordion header [ICESat-2] ATL03 Geospatial Fields : multiselect [atl03, atl06] ATL03 Photon Fields : multiselect [atl03, atl06] ATL06 Ice Segment Fields : multiselect [atl06s] ATL08 Land Segment
-```
-
-#### r4 — score 0.416
-
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.3 Vegetation Metrics (PhoREAL) - atl08p
 - **category:** `user_guide`
@@ -75,9 +61,9 @@ ables inputs below) Land Type : label noise : checkbox ground : checkbox canopy 
 The vegetation GeoDataFrame has the following columns: extent_id : unique ID associated with custom ATL03 segment (removed from final GeoDataFrame by default) segment_id : segment ID of first ATL03 segment in result rgt : reference ground track cycle : cycle region : region of source granule spot : laser spot 1 to 6 gt : ground track (10: GT1L, 20: GT1R, 30: GT2L, 40: GT2R, 50: GT3L, 60: GT3R) ph_count : total number of photons used by PhoREAL algorithm for this extent gnd_count : number of ground photons used by PhoREAL algorithm for this extent veg_count : number of vegetation (canopy and top of canopy) photons used by PhoREAL algorithm for this extent landcover : flag indicating if segment includes land surfaces snowcover : flag indicating if snow is present in the segment time : nanoseconds from Unix epoch (January 1, 1970) without leap seconds lat : latitude (-90.0 to 90.0) lon : longitude (-180.0 to 180.0) x_atc : along track distance from the equator in meters solar_elevation : solar elevation from ATL03 at time of measurement, in degrees h_te_median : median terrain elevation in meters (absolute heights) h_max_canopy : maximum relief height for canopy photons h_min_canopy : minimum relief height for canopy photons h_mean_canopy : average relief height for canopy photons h_canopy : 98th percentile relief height for canopy photons canopy_openness : standard deviation of relief height for canopy photons canopy_h_metrics : relief height at given percentile for canopy phot
 ```
 
-#### r5 — score 0.448
+#### r4 — score 0.448
 
-- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** Appendix A. Parameter Components
 - **category:** `developer_guide`
@@ -87,6 +73,20 @@ The vegetation GeoDataFrame has the following columns: extent_id : unique ID ass
 
 ```
 ables inputs below) Land Type : label noise : checkbox ground : checkbox canopy : checkbox top_of_canopy : checkbox unclassified : checkbox ATL03 YAPC : input switch (enables inputs below) Score : input number SR YAPC : input switch (enables inputs below) Score : input number Knn : input number Window Height : input number Window Width : input number Version : label version 1 : radio button version 2 : radio button version 3 : radio button Extents (Variable-Length Segmentation) : accordion header [ICESat-2] Length : input number (meters) Step Size : input number (meters) Distance in Segments : checkbox (changes above inputs to segments instead of meters) Pass Invalid : checkbox Along Track Spread : input number [greyed out when pass invalid selected] Minimum Photon Count : input number [greyed out when pass invalid selected] Surface Elevation Algorithm : accordion header [atl06] Maximum Iterations : input number Minimum Window Height : input number (meters) Maximum Robust Dispersion : input number (meters) Vegetation Density Algorithm : accordion header [atl08] Bin Size : input number (meters) Geolocation : label mean : radio button median : radio button center : radio button Use Absolute Heights : checkbox Send Waveforms : checkbox Use ABoVE Classifier : checkbox Ancillary Fields : accordion header [ICESat-2] ATL03 Geospatial Fields : multiselect [atl03, atl06] ATL03 Photon Fields : multiselect [atl03, atl06] ATL06 Ice Segment Fields : multiselect [atl06s] ATL08 Land Segment
+```
+
+#### r5 — score 0.453
+
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** 3.1 Quality Filter Parameters
+- **category:** `user_guide`
+- **matched_tokens:** ['atl08', 'canopy', 'terrain']
+
+**Full text:**
+
+```
+The ATL08 data can be filtered based on different quality filters. te_quality_score : terrain quality score threshold can_quality_score : canopy quality score threshold
 ```
 
 ---

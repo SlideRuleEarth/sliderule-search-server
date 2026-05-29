@@ -70,12 +70,26 @@ CONTENT_SELECTORS = [
 #   /search.html Sphinx's own client-side search UI — stub page, not
 #                content.
 #
-# /_static/, /_images/, /_downloads/ don't need to appear here because
-# the crawler already rejects non-HTML Content-Type responses (see
-# is_html_response + fetch_page).
+#   /_static/    Sphinx's static asset tree. Most of it (CSS/JS/images)
+#                is already rejected by the non-HTML Content-Type guard,
+#                BUT the live site renders the OpenAPI specs as HTML here
+#                (/_static/openapi/*.html via Redoc). Those are huge
+#                auto-generated, keyword-dense API dumps — a single
+#                sliderule.html is 320 chunks, and /_static/* totals ~40%
+#                of an unfiltered live crawl — and they swamp IDF-lexical
+#                ranking for identifier/conceptual queries exactly like
+#                /_modules/ does. The curated api_reference/ pages cover
+#                the same endpoints in prose, so nothing of value is lost.
+#                (The testsliderule mirror didn't serve these, which is
+#                why the Content-Type guard alone used to suffice.)
+#
+# /_images/, /_downloads/ don't need to appear here because the crawler
+# already rejects non-HTML Content-Type responses (see is_html_response
+# + fetch_page).
 SKIP_PATH_PREFIXES = (
     "/_modules/",
     "/_sources/",
+    "/_static/",
     "/genindex",
     "/py-modindex",
     "/search.html",

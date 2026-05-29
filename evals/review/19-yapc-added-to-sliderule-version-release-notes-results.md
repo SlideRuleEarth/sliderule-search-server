@@ -21,10 +21,10 @@
 
 #### r1 — score 0.537
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/private_clusters.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/260120_private_clusters.html
 - **title:** 2026-01-20: Private Clusters
 - **section:** 2026-01-20: Private Clusters
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['notes', 'release', 'sliderule']
 
 **Full text:**
@@ -35,10 +35,10 @@ Note With release v5.0.2, SlideRule has transitioned the management of private c
 
 #### r2 — score 0.502
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html
 - **title:** 2025-12-08: Public Cluster Release v5
 - **section:** 2025-12-08: Public Cluster Release v5
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['notes', 'release', 'sliderule', 'version']
 
 **Full text:**
@@ -49,7 +49,7 @@ Note Version 5.0 of SlideRule has been officially released. The changes include 
 
 #### r3 — score 0.492
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-05-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-05-00.html
 - **title:** Release v3.5.x
 - **section:** Release v3.5.x
 - **category:** `release_notes`
@@ -63,7 +63,7 @@ Note Version 5.0 of SlideRule has been officially released. The changes include 
 
 #### r4 — score 0.447
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/web-release-v04-00-03.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/web-release-v04-00-03.html
 - **title:** 2026-02-25: Web Client release v4.0.3
 - **section:** Summary
 - **category:** `release_notes`
@@ -72,21 +72,21 @@ Note Version 5.0 of SlideRule has been officially released. The changes include 
 **Full text:**
 
 ```
-ð SlideRule Web Client v4.0.3 Release Notes Changes since v3.8.0 Infrastructure CloudFront + Route 53 terraform modules added to support hosting the landing page at the root domain New Features Landing Page - The web client now serves as the SlideRule Earth landing page at slideruleearth.io, featuring a hero section with wallpaper image, About/Contact info panels, and a News tab that pulls articles directly from the SlideRule documentation site Home Button - A new Home button in the app bar navigates back to the landing page from anywhere in the app Docs Button - The old âAboutâ menu has been replaced with a streamlined âDocsâ button that links directly to the SlideRule documentation site Feedback Menu - The Feedback button now offers a dropdown with options to email support or open a GitHub issue directly Improvements Full-Width Analysis Map - The analysis map now uses the entire available width instead of a fixed 45vw, providing more room for map exploration Cleaner Analysis Layout - Removed unnecessary card wrapper and margins from the analysis view; the 3D panel is now hidden when not in use instead of taking up empty space Status Tooltips - All request statuses now show tooltip details on hover, including âpendingâ statuses that previously had no tooltip Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+ð SlideRule Web Client v4.0.3 Release Notes Changes since v3.8.0 Infrastructure CloudFront + Route 53 terraform modules added to support hosting the landing page at the root domain New Features Landing Page - The web client now serves as the SlideRule Earth landing page at slideruleearth.io, featuring a hero section with wallpaper image, About/Contact info panels, and a News tab that pulls articles directly from the SlideRule documentation site Home Button - A new Home button in the app bar navigates back to the landing page from anywhere in the app Docs Button - The old âAboutâ menu has been replaced with a streamlined âDocsâ button that links directly to the SlideRule documentation site Feedback Menu - The Feedback button now offers a dropdown with options to email support or open a GitHub issue directly Improvements Full-Width Analysis Map - The analysis map now uses the entire available width instead of a fixed 45vw, providing more room for map exploration Cleaner Analysis Layout - Removed unnecessary card wrapper and margins from the analysis view; the 3D panel is now hidden when not in use instead of taking up empty space Status Tooltips - All request statuses now show tooltip details on hover, including âpendingâ statuses that previously had no tooltip Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
-#### r5 — score 0.526
+#### r5 — score 0.507
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-01-00.html
-- **title:** Release v1.1.x
-- **section:** Release v1.1.x
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-00-00.html
+- **title:** Release v2.0.x
+- **section:** New Features
 - **category:** `release_notes`
-- **matched_tokens:** ['release', 'sliderule', 'version']
+- **matched_tokens:** ['added', 'sliderule', 'version']
 
 **Full text:**
 
 ```
-2021-10-13 Version description of the v1.1.5 release of ICESat-2 SlideRule.
+The version string vX.Y.Z indicates the following: X : major version, indicating compatibility; all components of SlideRule that share the same major version are compatible (e.g. the demo, the client, the provisioning system, and the cluster) Y : minor version, indicating new features have been added; features are only guaranteed to work in the lowest common minor version number of the SlideRule components in use Z : revision number, indicating a bug fix or security patch; this can be ignored by end users Provisioning System : SlideRule now includes a full-featured provisioning system for deploying, scaling, and cost tracking public and private clusters. The public cluster will match the user experience provided at the old domain icesat2sliderule.org and will continue to provide a frictionless service for generating on-demand science products. For organizations which want guaranteed availability and large scale processing resources, the Provisioning System provides a way to deploy private clusters accessible only by authenticated users that can scale up and down to match the budget of the owning organization. ArcticDEM : SlideRule now supports sampling the ArcticDEM datasets (both mosaic and strips) at each location an ATL06-SR elevation is produced, and providing those sampled values in the returned GeoDataFrame back to the user. Multiple sampling algorithms are supported, as well as calculating zonal statistics. New raster datasets are forth-coming.
 ```
 
 ---

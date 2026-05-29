@@ -21,7 +21,7 @@
 
 #### r1 — score 0.530
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6.1 PhoREAL Parameters
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ The PhoREAL parameters are supplied in user requests under the phoreal key and i
 
 #### r2 — score 0.709
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** References
 - **category:** `background`
@@ -49,7 +49,7 @@ ATBD for ATL03 Global Geolocated Photon Data ATBD for ATL03g Received Photon Geo
 
 #### r3 — score 0.582
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -63,7 +63,7 @@ The SlideRule atl03x endpoint provides a service for ATL03 custom processing. Th
 
 #### r4 — score 0.529
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.1 Segmented Photon Data - atl03sp
 - **category:** `user_guide`
@@ -77,7 +77,7 @@ The photon data is stored as along-track segments inside the ATL03 granules, whi
 
 #### r5 — score 0.447
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl03sp
 - **category:** `api_reference`

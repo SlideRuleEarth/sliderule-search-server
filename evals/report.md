@@ -8,8 +8,8 @@ corpora + `server.ranking.rank()` (no Lambda, no HTTP, no cache).
 | Metric | Value | Bar | Pass |
 | --- | --- | --- | --- |
 | recall@5 | 0.676 | ≥ 0.70 | ✗ |
-| hit@1 | 0.309 | ≥ 0.50 | ✗ |
-| MRR | 0.469 | ≥ 0.55 | ✗ |
+| hit@1 | 0.338 | ≥ 0.50 | ✗ |
+| MRR | 0.483 | ≥ 0.55 | ✗ |
 
 **Below bar on: recall_at_5, hit_at_1, mrr.**
 
@@ -17,9 +17,9 @@ corpora + `server.ranking.rank()` (no Lambda, no HTTP, no cache).
 
 | Metric | Value | Bar | Pass |
 | --- | --- | --- | --- |
-| recall@5 | 0.397 | ≥ 0.70 | ✗ |
-| hit@1 | 0.235 | ≥ 0.50 | ✗ |
-| MRR | 0.286 | ≥ 0.55 | ✗ |
+| recall@5 | 0.324 | ≥ 0.70 | ✗ |
+| hit@1 | 0.206 | ≥ 0.50 | ✗ |
+| MRR | 0.239 | ≥ 0.55 | ✗ |
 
 **Below bar on: recall_at_5, hit_at_1, mrr.**
 
@@ -30,27 +30,27 @@ Negative delta = human-metric is lower (auto-labels too generous).
 
 | Metric | auto | human | delta |
 | --- | --- | --- | --- |
-| recall@5 | 0.676 | 0.397 | -0.279 |
-| hit@1    | 0.309 | 0.235 | -0.074 |
-| MRR      | 0.469 | 0.286 | -0.183 |
+| recall@5 | 0.676 | 0.324 | -0.353 |
+| hit@1    | 0.338 | 0.206 | -0.132 |
+| MRR      | 0.483 | 0.239 | -0.243 |
 
 ## Per corpus — auto-metric
 
 | corpus | n | recall@5 | hit@1 | MRR |
 | --- | --- | --- | --- | --- |
-| docsearch | 35 | 0.800 | 0.371 | 0.561 |
+| docsearch | 35 | 0.800 | 0.429 | 0.588 |
 | nsidc | 33 | 0.545 | 0.242 | 0.371 |
 
 ## Per query type — auto-metric
 
 | corpus | type | n | recall@5 | hit@1 | MRR |
 | --- | --- | --- | --- | --- | --- |
-| docsearch | api_lookup | 6 | 1.000 | 0.667 | 0.833 |
+| docsearch | api_lookup | 6 | 1.000 | 0.833 | 0.917 |
 | docsearch | conceptual | 6 | 1.000 | 0.167 | 0.506 |
-| docsearch | example | 5 | 0.600 | 0.200 | 0.417 |
-| docsearch | identifier | 6 | 0.833 | 0.667 | 0.732 |
+| docsearch | example | 5 | 0.600 | 0.400 | 0.517 |
+| docsearch | identifier | 6 | 0.833 | 0.667 | 0.707 |
 | docsearch | paraphrased | 6 | 0.833 | 0.333 | 0.547 |
-| docsearch | version_history | 6 | 0.500 | 0.167 | 0.310 |
+| docsearch | version_history | 6 | 0.500 | 0.167 | 0.326 |
 | nsidc | algorithm | 8 | 0.500 | 0.000 | 0.211 |
 | nsidc | cross_product | 6 | 0.333 | 0.167 | 0.215 |
 | nsidc | instrument | 6 | 0.833 | 0.333 | 0.537 |
@@ -61,7 +61,7 @@ Negative delta = human-metric is lower (auto-labels too generous).
 
 | corpus | n | recall@5 | hit@1 | MRR |
 | --- | --- | --- | --- | --- |
-| docsearch | 35 | 0.400 | 0.229 | 0.290 |
+| docsearch | 35 | 0.257 | 0.171 | 0.199 |
 | nsidc | 33 | 0.394 | 0.242 | 0.282 |
 
 ## Per query type — human-metric
@@ -69,9 +69,9 @@ Negative delta = human-metric is lower (auto-labels too generous).
 | corpus | type | n | recall@5 | hit@1 | MRR |
 | --- | --- | --- | --- | --- | --- |
 | docsearch | api_lookup | 6 | 0.500 | 0.333 | 0.367 |
-| docsearch | conceptual | 6 | 0.667 | 0.333 | 0.500 |
+| docsearch | conceptual | 6 | 0.500 | 0.333 | 0.417 |
 | docsearch | example | 5 | 0.200 | 0.200 | 0.200 |
-| docsearch | identifier | 6 | 0.667 | 0.333 | 0.450 |
+| docsearch | identifier | 6 | 0.000 | 0.000 | 0.000 |
 | docsearch | paraphrased | 6 | 0.167 | 0.167 | 0.167 |
 | docsearch | version_history | 6 | 0.167 | 0.000 | 0.042 |
 | nsidc | algorithm | 8 | 0.500 | 0.125 | 0.223 |
@@ -83,35 +83,43 @@ Negative delta = human-metric is lower (auto-labels too generous).
 ## Auto vs human disagreements
 
 Out of 68 rows with completed human review:
-- **28 rows where auto says hit, human says miss** (auto-label likely too generous)
-- **9 rows where auto says miss, human says hit** (auto-label likely too narrow)
+- **32 rows where auto says hit, human says miss** (auto-label likely too generous)
+- **8 rows where auto says miss, human says hit** (auto-label likely too narrow)
 
 The disagreements are the work for the auto-vs-human reconciliation step (Phase 2 step 3).
 
 ### Auto says hit, human says miss
 
+- **row 1 [docsearch/identifier]** `atl03x X-Series API photon processing`
+  - auto first_rank: 1; human verdicts r1..r5: _ _ _ _ _
 - **row 2 [docsearch/identifier]** `atl06x surface fit elevation`
-  - auto first_rank: 3; human verdicts r1..r5: wrong partial partial wrong wrong
+  - auto first_rank: 5; human verdicts r1..r5: wrong _ _ _ _
 - **row 3 [docsearch/identifier]** `atl24x bathymetry subsetting`
-  - auto first_rank: 1; human verdicts r1..r5: partial partial partial wrong partial
+  - auto first_rank: 1; human verdicts r1..r5: partial _ _ _ _
+- **row 4 [docsearch/identifier]** `yapc photon classifier`
+  - auto first_rank: 1; human verdicts r1..r5: _ _ _ _ _
+- **row 5 [docsearch/identifier]** `cnf confidence filter parameter`
+  - auto first_rank: 1; human verdicts r1..r5: wrong partial _ _ _
+- **row 7 [docsearch/conceptual]** `how to filter ICESat-2 photons by confidence`
+  - auto first_rank: 2; human verdicts r1..r5: wrong _ _ _ _
 - **row 8 [docsearch/conceptual]** `how to run atl06 with raster DEM sampling`
-  - auto first_rank: 2; human verdicts r1..r5: partial wrong partial wrong partial
+  - auto first_rank: 2; human verdicts r1..r5: _ wrong partial _ _
 - **row 11 [docsearch/conceptual]** `earthdata authentication credentials sliderule`
-  - auto first_rank: 5; human verdicts r1..r5: partial wrong wrong wrong partial
+  - auto first_rank: 5; human verdicts r1..r5: partial wrong wrong partial _
 - **row 15 [docsearch/example]** `how to sample ArcticDEM raster mosaic`
-  - auto first_rank: 2; human verdicts r1..r5: wrong partial partial wrong wrong
+  - auto first_rank: 1; human verdicts r1..r5: wrong partial partial wrong wrong
 - **row 16 [docsearch/example]** `how to subset atl24 bathymetry data`
-  - auto first_rank: 3; human verdicts r1..r5: wrong partial partial partial wrong
+  - auto first_rank: 3; human verdicts r1..r5: wrong partial partial partial _
 - **row 18 [docsearch/version_history]** `when was atl24x added to sliderule release`
   - auto first_rank: 1; human verdicts r1..r5: wrong wrong wrong partial partial
 - **row 21 [docsearch/version_history]** `recent changes to atl06x release notes`
-  - auto first_rank: 4; human verdicts r1..r5: wrong wrong wrong wrong wrong
+  - auto first_rank: 3; human verdicts r1..r5: wrong wrong wrong wrong wrong
 - **row 23 [docsearch/api_lookup]** `raster sampling API function parameters`
-  - auto first_rank: 1; human verdicts r1..r5: partial partial wrong wrong partial
+  - auto first_rank: 1; human verdicts r1..r5: partial wrong partial partial _
 - **row 24 [docsearch/paraphrased]** `getting canopy height from atl03 photons using atl08`
-  - auto first_rank: 1; human verdicts r1..r5: partial partial partial partial wrong
+  - auto first_rank: 1; human verdicts r1..r5: partial partial partial _ _
 - **row 25 [docsearch/paraphrased]** `add ancillary fields to sliderule atl06 output`
-  - auto first_rank: 1; human verdicts r1..r5: partial wrong wrong wrong wrong
+  - auto first_rank: 1; human verdicts r1..r5: partial wrong wrong _ _
 - **row 29 [nsidc/algorithm]** `how does ATL13 derive inland water surface height`
   - auto first_rank: 4; human verdicts r1..r5: partial wrong wrong wrong wrong
 - **row 33 [nsidc/algorithm]** `ATL08 canopy height calculation method`
@@ -135,13 +143,13 @@ The disagreements are the work for the auto-vs-human reconciliation step (Phase 
 - **row 50 [nsidc/instrument]** `GEDI shot footprint size geometry`
   - auto first_rank: 1; human verdicts r1..r5: partial partial partial partial wrong
 - **row 51 [docsearch/api_lookup]** `sliderule module initialization session setup`
-  - auto first_rank: 2; human verdicts r1..r5: wrong wrong wrong wrong wrong
+  - auto first_rank: 2; human verdicts r1..r5: wrong wrong wrong wrong _
 - **row 52 [docsearch/api_lookup]** `h5 hdf5 read function parameters h5p h5x`
-  - auto first_rank: 2; human verdicts r1..r5: partial partial partial partial partial
+  - auto first_rank: 1; human verdicts r1..r5: partial partial partial partial _
 - **row 56 [docsearch/paraphrased]** `combine multiple ATL products in one processing pipeline`
-  - auto first_rank: 5; human verdicts r1..r5: partial partial wrong wrong partial
+  - auto first_rank: 5; human verdicts r1..r5: _ _ _ _ _
 - **row 57 [docsearch/paraphrased]** `filter only vegetation photons from ICESat-2 atl03`
-  - auto first_rank: 2; human verdicts r1..r5: partial partial wrong partial wrong
+  - auto first_rank: 2; human verdicts r1..r5: partial partial wrong wrong partial
 - **row 65 [nsidc/instrument]** `GEDI laser channels power modes beam configuration`
   - auto first_rank: 1; human verdicts r1..r5: wrong wrong wrong wrong wrong
 - **row 66 [nsidc/instrument]** `ATL03 pointing biases beam geolocation error model`
@@ -149,8 +157,6 @@ The disagreements are the work for the auto-vs-human reconciliation step (Phase 
 
 ### Auto says miss, human says hit
 
-- **row 6 [docsearch/identifier]** `srt surface reference type parameter`
-  - auto first_rank: 17; human verdicts r1..r5: partial wrong wrong wrong correct; human first `correct` rank: 5
 - **row 30 [nsidc/algorithm]** `ATL24 PointNet++ bathymetric photon classification`
   - auto first_rank: 6; human verdicts r1..r5: partial partial partial partial correct; human first `correct` rank: 5
 - **row 32 [nsidc/algorithm]** `ATL03 geophysical corrections ocean tides solid earth`
@@ -179,45 +185,45 @@ either and would show in the Misses section at the end).
 - **[docsearch/example]** `how to query atl13 lake by name` (rank 6)
   - expected: https://docs.slideruleearth.io/user_guide/icesat2.html
   - top 3 returned:
-    - https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
-    - https://docs.testsliderule.org/user_guide/icesat2.html
-    - https://docs.testsliderule.org/getting_started/Examples.html
+    - https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html
+    - https://docs.slideruleearth.io/user_guide/icesat2.html
+    - https://docs.slideruleearth.io/getting_started/Examples.html
 - **[docsearch/version_history]** `sliderule api deprecation breaking removed old function` (rank 7)
   - expected: https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-00-00.html
   - top 3 returned:
-    - https://docs.testsliderule.org/user_guide/versioning.html
-    - https://docs.testsliderule.org/api_reference/gedi.html
-    - https://docs.testsliderule.org/developer_guide/release_notes/release-v01-04-00.html
-- **[docsearch/version_history]** `yapc added to sliderule version release notes` (rank 9)
+    - https://docs.slideruleearth.io/user_guide/versioning.html
+    - https://docs.slideruleearth.io/api_reference/gedi.html
+    - https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-04-00.html
+- **[docsearch/version_history]** `yapc added to sliderule version release notes` (rank 8)
   - expected: https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-03-00.html
   - top 3 returned:
-    - https://docs.testsliderule.org/developer_guide/articles/private_clusters.html
-    - https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
-    - https://docs.testsliderule.org/developer_guide/release_notes/release-v03-05-00.html
+    - https://docs.slideruleearth.io/user_guide/articles/260120_private_clusters.html
+    - https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html
+    - https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-05-00.html
 - **[docsearch/example]** `how to process atl06 elevations` (rank 12)
   - expected: https://docs.slideruleearth.io/user_guide/icesat2.html
   - top 3 returned:
-    - https://docs.testsliderule.org/api_reference/icesat2.html
-    - https://docs.testsliderule.org/api_reference/icesat2.html
-    - https://docs.testsliderule.org/api_reference/icesat2.html
+    - https://docs.slideruleearth.io/api_reference/icesat2.html
+    - https://docs.slideruleearth.io/api_reference/icesat2.html
+    - https://docs.slideruleearth.io/api_reference/icesat2.html
 - **[docsearch/paraphrased]** `generate a DEM from ICESat-2 data over my area of interest` (rank 12)
   - expected: https://docs.slideruleearth.io/user_guide/icesat2.html
   - top 3 returned:
-    - https://docs.testsliderule.org/developer_guide/why_sliderule.html
-    - https://docs.testsliderule.org/getting_started/Examples.html
-    - https://docs.testsliderule.org/developer_guide/articles/h5coro.html
-- **[docsearch/identifier]** `srt surface reference type parameter` (rank 17)
+    - https://docs.slideruleearth.io/developer_guide/why_sliderule.html
+    - https://docs.slideruleearth.io/getting_started/Examples.html
+    - https://docs.slideruleearth.io/user_guide/articles/210423_h5coro.html
+- **[docsearch/identifier]** `srt surface reference type parameter` (rank 25)
   - expected: https://docs.slideruleearth.io/api_reference/icesat2.html
   - top 3 returned:
-    - https://docs.testsliderule.org/user_guide/icesat2.html
-    - https://docs.testsliderule.org/user_guide/icesat2.html
-    - https://docs.testsliderule.org/user_guide/icesat2.html
-- **[docsearch/version_history]** `phoreal added sliderule release notes version` (rank 48)
+    - https://docs.slideruleearth.io/user_guide/icesat2.html
+    - https://docs.slideruleearth.io/user_guide/icesat2.html
+    - https://docs.slideruleearth.io/user_guide/icesat2.html
+- **[docsearch/version_history]** `phoreal added sliderule release notes version` (rank 50)
   - expected: https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-01-00.html
   - top 3 returned:
-    - https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
-    - https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
-    - https://docs.testsliderule.org/developer_guide/articles/private_clusters.html
+    - https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html
+    - https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html
+    - https://docs.slideruleearth.io/user_guide/articles/260120_private_clusters.html
 - **[nsidc/algorithm]** `ATL24 PointNet++ bathymetric photon classification` (rank 6)
   - expected: https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf
   - top 3 returned:
@@ -318,11 +324,11 @@ either and would show in the Misses section at the end).
 | type | rank | query |
 | --- | --- | --- |
 | identifier | 1 | atl03x X-Series API photon processing |
-| identifier | 3 | atl06x surface fit elevation |
+| identifier | 5 | atl06x surface fit elevation |
 | identifier | 1 | atl24x bathymetry subsetting |
 | identifier | 1 | yapc photon classifier |
 | identifier | 1 | cnf confidence filter parameter |
-| identifier | 17 | srt surface reference type parameter |
+| identifier | 25 | srt surface reference type parameter |
 | conceptual | 2 | how to filter ICESat-2 photons by confidence |
 | conceptual | 2 | how to run atl06 with raster DEM sampling |
 | conceptual | 1 | how to use SlideRule Python client install |
@@ -331,26 +337,26 @@ either and would show in the Misses section at the end).
 | conceptual | 2 | output SlideRule results as GeoParquet format |
 | example | 12 | how to process atl06 elevations |
 | example | 1 | how to use yapc photon classifier in atl03 |
-| example | 2 | how to sample ArcticDEM raster mosaic |
+| example | 1 | how to sample ArcticDEM raster mosaic |
 | example | 3 | how to subset atl24 bathymetry data |
 | example | 6 | how to query atl13 lake by name |
 | version_history | 1 | when was atl24x added to sliderule release |
-| version_history | 9 | yapc added to sliderule version release notes |
+| version_history | 8 | yapc added to sliderule version release notes |
 | version_history | 3 | sliderule version 5 breaking changes new functionality |
-| version_history | 4 | recent changes to atl06x release notes |
+| version_history | 3 | recent changes to atl06x release notes |
 | api_lookup | 1 | GEDI L4A python API parameters |
 | api_lookup | 1 | raster sampling API function parameters |
 | paraphrased | 1 | getting canopy height from atl03 photons using atl08 |
 | paraphrased | 1 | add ancillary fields to sliderule atl06 output |
 | api_lookup | 2 | sliderule module initialization session setup |
-| api_lookup | 2 | h5 hdf5 read function parameters h5p h5x |
+| api_lookup | 1 | h5 hdf5 read function parameters h5p h5x |
 | api_lookup | 1 | icesat2 atl06p python function parameters |
 | api_lookup | 1 | earthdata CMR search function signature |
 | paraphrased | 12 | generate a DEM from ICESat-2 data over my area of interest |
 | paraphrased | 5 | combine multiple ATL products in one processing pipeline |
 | paraphrased | 2 | filter only vegetation photons from ICESat-2 atl03 |
 | paraphrased | 2 | save sliderule output to a parquet file for later analysis |
-| version_history | 48 | phoreal added sliderule release notes version |
+| version_history | 50 | phoreal added sliderule release notes version |
 | version_history | 7 | sliderule api deprecation breaking removed old function |
 
 ### nsidc

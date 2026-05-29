@@ -18,9 +18,23 @@
 
 ## 📚 docsearch results (top 5)
 
-#### r1 — score 0.533
+#### r1 — score 0.522
 
-- **url:** https://docs.slideruleearth.io/user_guide/raster_sampling.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/gdal_vrt_benchmark.html
+- **title:** 2022-11-10: VRT Performance Benchmarking
+- **section:** Overview
+- **category:** `developer_guide`
+- **matched_tokens:** ['arcticdem', 'mosaic', 'raster']
+
+**Full text:**
+
+```
+Test reads elevation value from ArcticDem. POI is lon: -74.60 lat: 82.86 Method used vrt file created from mosaic rasters, version 3.0, 2m, hosted on AWS. The mosaic.vrt file is stored locally on aws dev server at /data/ArcticDem/mosaic.vrt The actual raster containing the elevation for POI is: /vsis3/pgc-opendata-dems/arcticdem/mosaics/v3.0/2m/34_37/34_37_1_1_2m_v3.0_reg_dem.tif The elevation can be read from the aws file directly: gdallocationinfo -wgs84 /vsis3/pgc-opendata-dems/arcticdem/mosaics/v3.0/2m/34_37/34_37_1_1_2m_v3.0_reg_dem.tif -valonly -74.6 82.86 The elevation can be read from the mosaic.vrt on our dev server: gdallocationinfo -wgs84 /data/ArcticDem/mosaic.vrt -valonly -74.6 82.86 The test reads the same POI one million times. Gdal library should access the proper raster tile from S3 bucket and use it locally for all remaining elevation reads. In the first implementation the mosaic.vrt is opened, the vrtdataset and vrtband are used to do a direct read via: vrtband->RasterIO(GF_Read, col, row, 1, 1, &elevation, 1, 1, GDT_Float32, 0, 0, 0); col and row are calculated for the mosaic.vrt This approach works correctly but performance is very poor. It took almost 170 seconds to do one million reads. Each 100k reads takes almost 17 seconds.
+```
+
+#### r2 — score 0.533
+
+- **url:** https://docs.testsliderule.org/user_guide/raster_sampling.html
 - **title:** Raster Sampling
 - **section:** Parameters
 - **category:** `user_guide`
@@ -32,23 +46,9 @@
 ds that should be treated as elevation bands which allows a 3D transform to be applied key_space : 64-bit integer defining the upper 32-bits of the file_id ; this in general should never be set as the server will typically do the right thing assigning a key space; but for users that are parallelizing requests on the client-side, this parameter can be usedful when constructing the resulting file dictionaries that come back with the raster samples parms { "samples" : { "mosaic" : { "asset" : "arcticdem-mosaic" , "radius" : 10.0 , "zonal_stats" : True }, "strips" : { "asset" : "arcticdem-strips" , "algorithm" : "CubicSpline" } } } See the asset directory for details on which rasters can be sampled.
 ```
 
-#### r2 — score 0.522
-
-- **url:** https://docs.slideruleearth.io/user_guide/articles/221110_gdal_vrt_benchmark.html
-- **title:** 2022-11-10: VRT Performance Benchmarking
-- **section:** Overview
-- **category:** `user_guide`
-- **matched_tokens:** ['arcticdem', 'mosaic', 'raster']
-
-**Full text:**
-
-```
-Test reads elevation value from ArcticDem. POI is lon: -74.60 lat: 82.86 Method used vrt file created from mosaic rasters, version 3.0, 2m, hosted on AWS. The mosaic.vrt file is stored locally on aws dev server at /data/ArcticDem/mosaic.vrt The actual raster containing the elevation for POI is: /vsis3/pgc-opendata-dems/arcticdem/mosaics/v3.0/2m/34_37/34_37_1_1_2m_v3.0_reg_dem.tif The elevation can be read from the aws file directly: gdallocationinfo -wgs84 /vsis3/pgc-opendata-dems/arcticdem/mosaics/v3.0/2m/34_37/34_37_1_1_2m_v3.0_reg_dem.tif -valonly -74.6 82.86 The elevation can be read from the mosaic.vrt on our dev server: gdallocationinfo -wgs84 /data/ArcticDem/mosaic.vrt -valonly -74.6 82.86 The test reads the same POI one million times. Gdal library should access the proper raster tile from S3 bucket and use it locally for all remaining elevation reads. In the first implementation the mosaic.vrt is opened, the vrtdataset and vrtband are used to do a direct read via: vrtband->RasterIO(GF_Read, col, row, 1, 1, &elevation, 1, 1, GDT_Float32, 0, 0, 0); col and row are calculated for the mosaic.vrt This approach works correctly but performance is very poor. It took almost 170 seconds to do one million reads. Each 100k reads takes almost 17 seconds.
-```
-
 #### r3 — score 0.568
 
-- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** SRWC-5.1: Raster Sampling
 - **category:** `developer_guide`
@@ -62,7 +62,7 @@ The following raster datasets shall be supported for sampling: GEDI L3 gridded g
 
 #### r4 — score 0.435
 
-- **url:** https://docs.slideruleearth.io/getting_started/Examples.html
+- **url:** https://docs.testsliderule.org/getting_started/Examples.html
 - **title:** Examples
 - **section:** Examples
 - **category:** `getting_started`
@@ -76,10 +76,10 @@ The following Jupyter notebooks provide examples of how to use some of SlideRule
 
 #### r5 — score 0.517
 
-- **url:** https://docs.slideruleearth.io/user_guide/articles/221110_gdal_vrt_benchmark.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/gdal_vrt_benchmark.html
 - **title:** 2022-11-10: VRT Performance Benchmarking
 - **section:** 2022-11-10: VRT Performance Benchmarking
-- **category:** `user_guide`
+- **category:** `developer_guide`
 - **matched_tokens:** ['arcticdem', 'mosaic']
 
 **Full text:**

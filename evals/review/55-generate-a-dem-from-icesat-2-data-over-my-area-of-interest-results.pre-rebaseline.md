@@ -9,14 +9,13 @@
 
 - **corpus:** `docsearch`
 - **expected_urls:**
-  - https://docs.slideruleearth.io/assets/grandmesa.html
   - https://docs.slideruleearth.io/user_guide/icesat2.html
 - **expected_sections:**
   - `atl06`
   - `atl06-sr`
   - `2. atl06`
 - **expected_pages:** (none)
-- **notes:** asking for ATL06 elevations without using ATL06 terminology
+- **notes:** asking for ATL06 elevations without using ATL06 terminology (assets/grandmesa.html dropped after testsliderule.org rebaseline)
 
 ---
 
@@ -24,7 +23,7 @@
 
 #### r1 — score 0.540
 
-- **url:** https://docs.slideruleearth.io/developer_guide/why_sliderule.html
+- **url:** https://docs.testsliderule.org/developer_guide/why_sliderule.html
 - **title:** Why SlideRule
 - **section:** Why Develop SlideRule?
 - **category:** `developer_guide`
@@ -36,51 +35,9 @@
 The tremendous growth in the size of Earth science datasets being produced by institutions over the past ten to fifteen years has broken the historical data archive model. When datasets changed from being a few hundred Gigabytes to hundreds of Terabytes (and now Petabytes), comprehensive analysis of those datasets using existing technology became impossible. For example, ICESat (the original mission), launched in 2003 and in its lifetime produced 148GB of global elevation data. That data could be downloaded at 6MBps in just under 1 day, and stored on a single hard drive on a single workstation. ICESat-2 (the follow-on mission), launched in 2018 and has produced 320TB of data as of 2021, with 100TB of data being added each year. In order to download the existing dataset at 100MBps, it would take 296 days, and require 40 workstations with 8TBs of storage each to hold. Performing comprehensive analysis on current Earth science datasets requires sophisticated compute and storage infrastructure, and high bandwidth connectivity to the data sources; both of which are insurmountable barriers of entry to all but the most funded institutions. The interim solution to this problem currently offered by most missions is the pre-generation and distribution of higher level data products which target specific science applications. By targeting a narrow application these data products are smaller and therefore easier to download and work with.
 ```
 
-#### r2 — score 0.555
+#### r2 — score 0.465
 
-- **url:** https://docs.slideruleearth.io/user_guide/how_tos/first_request.html
-- **title:** Making Your First Request
-- **section:** Overview
-- **category:** `user_guide`
-- **matched_tokens:** ['data', 'icesat', 'over']
-
-**Full text:**
-
-```
-This tutorial walks you through the steps necessary to make your first request to SlideRule. By the end of this tutorial you will have used SlideRule to calculate and plot elevations over Grand Mesa, Colorado, using ICESat-2 photon cloud data. Prerequisites : This walk-through assumes you are comfortable using git and the conda Python packaging system. See the installation instructions in the reference documentation for details on other methods of installation.
-```
-
-#### r3 — score 0.489
-
-- **url:** https://docs.slideruleearth.io/user_guide/how_tos/arcticdem_request.html
-- **title:** Including ArcticDEM Samples
-- **section:** Sampling the ArcticDEM mosaic in an atl06p request
-- **category:** `user_guide`
-- **matched_tokens:** ['data', 'from', 'icesat', 'interest']
-
-**Full text:**
-
-```
-The âsamplesâ parameter is used to request ArcticDEM samples be included in atl06p responses. For the ArcticDEM, there are two possible values that can be provided: âarcticdem-mosaicâ and âarcticdem-stripsâ . Step 1 : Import and initialize the SlideRule Python package for ICESat-2. >>> from sliderule import sliderule , icesat2 >>> icesat2 . init ( "slideruleearth.io" ) Step 2 : Create parameters for a typical atl06p processing request. >>> grand_mesa = sliderule . toregion ( 'dicksonfjord.geojson' ) >>> parms = { "poly": grand_mesa["poly"], "srt": icesat2.SRT_LAND, "cnf": icesat2.CNF_SURFACE_HIGH, "len": 40.0, "res": 20.0 } The dicksonfjord.geojson file used in this example can be downloaded by navigating to our downloads page; alternatively, you can create your own GeoJSON file at geojson.io . Be sure that your region of interest is in the arctic, otherwise there will be no data in the ArcticDEM for it.
-```
-
-#### r4 — score 0.402
-
-- **url:** https://docs.slideruleearth.io/assets/phoreal.html
-- **title:** Running the PhoREAL algorithm over Grand Mesa, CO
-- **section:** Processing parameters
-- **category:** `tutorial`
-- **matched_tokens:** ['area', 'generate', 'interest', 'over']
-
-**Full text:**
-
-```
-[3]: parms = { "poly" : sliderule . toregion ( 'grandmesa.geojson' )[ 'poly' ], # subset to Grand Mesa area of interest "t0" : '2019-11-14T00:00:00Z' , # time range is one day - November 14, 2019 "t1" : '2019-11-15T00:00:00Z' , "srt" : icesat2 . SRT_LAND , # use the land surface type for ATL03 photon confidence levels "len" : 100 , # generate statistics over a 100m segment "res" : 100 , # generate statistics every 100m "pass_invalid" : True , # do not perform any segment-level filtering "atl08_class" : [ "atl08_ground" , "atl08_canopy" , "atl08_top_of_canopy" ], # exclude noise and unclassified photons "atl08_fields" : [ "h_dif_ref" ], # include these fields as extra columns in the dataframe "phoreal" : { "binsize" : 1.0 , "geoloc" : "center" } # run the PhoREAL algorithm }
-```
-
-#### r5 — score 0.453
-
-- **url:** https://docs.slideruleearth.io/getting_started/Examples.html
+- **url:** https://docs.testsliderule.org/getting_started/Examples.html
 - **title:** Examples
 - **section:** Examples
 - **category:** `getting_started`
@@ -89,7 +46,49 @@ The âsamplesâ parameter is used to request ArcticDEM samples be includ
 **Full text:**
 
 ```
-The following Jupyter notebooks provide examples of how to use some of SlideRuleâs functionality. They are listed roughly in the order of complexity, with the simpler examples first and the more complex examples farther down. The source code for all of these notebooks can be found in our repository . Additional files are necessary to run some of the notebooks locally. grandmesa.geojson dicksonfjord.geojson Notebooks Boulder Watershed ( download ) A simple notebook to demonstrate a basic atl03x processing request. Elevation data is generated for the Boulder watershed region and plotted using matplotlib. Grand Mesa ( download ) Demonstrates how to request custom ATL06 elevations from SlideRule for a region of interest, and then use SlideRule APIs to read and compare the results to the ATL06 standard data product. PhoREAL ( download ) Demonstrate use of the PhoREAL algorithm running inside SlideRule. Vegetation metrics are calculated over the Grand Mesa region and then later combined with calculated elevations. ArcticDEM Mosaic ( download ) Demonstrates how to sample the ArcticDEM Mosaic raster at generated ATL06-SR points and return all of the data as a unified GeoDataFrame. ATL03 Classification ( download ) An in-depth example of requesting ATL03 photon data classified using ATL08 and YAPC. The results are plotted using matplotlib. ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate.
+The following Jupyter notebooks provide examples of how to use some of SlideRuleâs functionality. They are listed roughly in the order of complexity, with the simpler examples first and the more complex examples farther down. The source code for all of these notebooks as well as additional notebooks can be found in our repository . Additional files are necessary to run some of the notebooks locally. grandmesa.geojson dicksonfjord.geojson Notebooks Boulder Watershed ( download ) A simple notebook to demonstrate a basic atl03x processing request. Elevation data is generated for the Boulder watershed region and plotted using matplotlib. Grand Mesa ( download ) Demonstrates how to request custom ATL06 elevations from SlideRule for a region of interest, and then use SlideRule APIs to read and compare the results to the ATL06 standard data product. PhoREAL ( download ) Demonstrate use of the PhoREAL algorithm running inside SlideRule. Vegetation metrics are calculated over the Grand Mesa region and then later combined with calculated elevations. ArcticDEM Mosaic ( download ) Demonstrates how to sample the ArcticDEM Mosaic raster at generated ATL06-SR points and return all of the data as a unified GeoDataFrame. ATL03 Classification ( download ) An in-depth example of requesting ATL03 photon data classified using ATL08 and YAPC. The results are plotted using matplotlib.
+```
+
+#### r3 — score 0.512
+
+- **url:** https://docs.testsliderule.org/developer_guide/articles/h5coro.html
+- **title:** 2021-04-23: H5Coro
+- **section:** SlideRule Project Background
+- **category:** `developer_guide`
+- **matched_tokens:** ['data', 'icesat', 'interest']
+
+**Full text:**
+
+```
+The NASA/ICESat-2 program is investing in a collaboration between Goddard Space Flight Center and the University of Washington to develop a cloud-based on-demand science data processing system called SlideRule to lower the barrier of entry to using the ICESat-2 data for scientific discovery and integration into other data services. SlideRule is a server-side framework implemented in C++/Lua that provides REST APIs for processing science data and returning results. This enables researchers and other data systems to have low-latency access to generated data products using processing parameters supplied at the time of the request. SlideRule is able to communicate with back-end data services like HSDS as well as directly access H5 data stored in AWS S3 through its H5Coro library. This combination provides cloud-optimized access to the ICESat-2 source datasets while preserving the existing HDF5-based tooling the project has already heavily invested in. The initial target application for SlideRule is processing the ICESat-2 point-cloud and atmospheric datasets for seasonal snow depth mapping and glacier research. We chose this application because there is a growing interest in these areas of research across both universities and government, and because no high-level ICESat-2 data products targeting these communities currently exist.
+```
+
+#### r4 — score 0.449
+
+- **url:** https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html
+- **title:** 2025-03-28: ATL24 Processing Run
+- **section:** Background
+- **category:** `developer_guide`
+- **matched_tokens:** ['data', 'generate', 'icesat']
+
+**Full text:**
+
+```
+The University of Texas at Austin and Oregon State University partnered with the SlideRule team (University of Washington, Goddard Space Flight Center, and Wallops Flight Facility) to develop and generate a Near-Shore Coastal Bathymetry Product for ICESat-2 called ATL24. The initial development and generation of the data product was kicked off in January of 2024, started in earnest in May of 2024, and completed April 1st, 2025. ATL24 is a photon classification for ICESat-2 photons in ATL03. Algorithms designed and implemented by UT and OSU were integrated into SlideRule and run as the atl24g service. Each processing request to atl24g provided an ATL03 granule and produced a corresponding ATL24 granule. All ATL03 version 006 photons within a global bathymetry search mask that were within 50m above and 100m below the geoid were processed and labelled as either: unclassified, sea surface, or bathymetry.
+```
+
+#### r5 — score 0.444
+
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-03-00.html
+- **title:** Release v3.3.x
+- **section:** Major Changes
+- **category:** `release_notes`
+- **matched_tokens:** ['dem', 'interest']
+
+**Full text:**
+
+```
+Sampling support added for the Merit DEM Added raster module to Python client - returns GeoDataFrame of sampled raster points of interest
 ```
 
 ---

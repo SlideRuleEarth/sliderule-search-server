@@ -22,7 +22,7 @@
 
 #### r1 — score 0.422
 
-- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
+- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl13s
 - **category:** `api_reference`
@@ -36,7 +36,7 @@ sliderule.icesat2. atl13s ( parm , resource ) [source] Subsets ATL13 data given 
 
 #### r2 — score 0.437
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 4.2 Ancillary Data
 - **category:** `user_guide`
@@ -50,7 +50,7 @@ Ancillary data returned from the atl13x endpoint comes from the {beam} group of 
 
 #### r3 — score 0.381
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/arbitrary_code_execution.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
 - **title:** 2025-05-30: Arbitrary Code Execution
 - **section:** User Lua Script
 - **category:** `developer_guide`
@@ -64,7 +64,7 @@ Ancillary data returned from the atl13x endpoint comes from the {beam} group of 
 
 #### r4 — score 0.391
 
-- **url:** https://docs.slideruleearth.io/developer_guide/articles/arbitrary_code_execution.html
+- **url:** https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
 - **title:** 2025-05-30: Arbitrary Code Execution
 - **section:** Example Use Case - ATL13 Lake ID Mapping
 - **category:** `developer_guide`
@@ -76,18 +76,18 @@ Ancillary data returned from the atl13x endpoint comes from the {beam} group of 
 Given a user query, the ATL13 global database can be used to get a reference ID, and the reverse lookup table can be used to get all of the granules with data for that reference ID. The first option was the simplest but suffered from relying on CMR which is relatively slow and the possibility of having granules returned for other nearby bodies of water due to buffering on the along-track polygons CMR uses for their spatial queries. The second option would result in the best performance, but required every ATL13 granule to be read in order to build the reverse lookup table. The second option was chosen, and the Arbitrary Code Execution functionality in SlideRule was used to build the lookup table. Note SlideRule still supports temporal/spatial queries of CMR for ATL13; it is only when a user wants to use the reference ID, name, or containing coordinate that the lookup table option is used.
 ```
 
-#### r5 — score 0.544
+#### r5 — score 0.455
 
-- **url:** https://docs.slideruleearth.io/assets/atl13_access.html
-- **title:** Accessing ATL13 data using lake names, reference ids, and contained coordinates
-- **section:** Accessing ATL13 data using lake names, reference ids, and contained coordinates
-- **category:** `tutorial`
+- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v05-01-00.html
+- **title:** Release v5.1.x
+- **section:** Issues Resolved
+- **category:** `release_notes`
 - **matched_tokens:** ['atl13']
 
 **Full text:**
 
 ```
-SlideRule provides an Asset Metadata Service to lookup ATL13 granules using different variables: reference id lake name coordinate within the lake SlideRule can also be used to directly subset ATL13 using the above variables. [1]: # Imports from sliderule import sliderule # Setup sliderule . init ( verbose = True ) [1]: True
+v5.1.0 - Fixed atl13 and atl24 access example notebooks to use latest earthdata endpoint. v5.1.0 - b486378 - Fixed name filter support in AMS
 ```
 
 ---

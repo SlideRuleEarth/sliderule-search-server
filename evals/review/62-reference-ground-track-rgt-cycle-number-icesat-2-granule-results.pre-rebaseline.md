@@ -24,7 +24,7 @@
 
 #### r1 — score 0.587
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.2 Elevations - atl06p
 - **category:** `user_guide`
@@ -38,7 +38,7 @@ The primary result returned by SlideRule for ICESat-2 ATL06-SR processing reques
 
 #### r2 — score 0.564
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3. ATL08 - atl08x
 - **category:** `user_guide`
@@ -50,23 +50,9 @@ The primary result returned by SlideRule for ICESat-2 ATL06-SR processing reques
 pendent of spacecraft orientation cycle ATLAS orbit cycle number region ATLAS granule region 1-14 rgt Reference Ground Track gt Beam âgt1lâ, âgt1râ, âgt2lâ, âgt2râ, âgt3lâ, âgt3râ Dependent on spacecraft orientation
 ```
 
-#### r3 — score 0.539
+#### r3 — score 0.442
 
-- **url:** https://docs.slideruleearth.io/assets/boulder_watershed.html
-- **title:** Using atl03x to get ICESat-2 data over the Boulder Watershed
-- **section:** Execute ATL06 Algorithm using SlideRule
-- **category:** `tutorial`
-- **matched_tokens:** ['cycle', 'ground', 'reference', 'rgt']
-
-**Full text:**
-
-```
-[3]: %%time # Build ATL06 Request parms = { "poly" : region , "srt" : icesat2 . SRT_LAND , "cnf" : icesat2 . CNF_SURFACE_HIGH , "ats" : 10.0 , "cnt" : 10 , "len" : 40.0 , "res" : 20.0 , "fit" : {} } # Request ATL06 Data gdf = sliderule . run ( "atl03x" , parms ) # Display Statistics print ( "Reference Ground Tracks: {} " . format ( gdf [ "rgt" ] . unique ())) print ( "Cycles: {} " . format ( gdf [ "cycle" ] . unique ())) print ( "Received {} elevations" . format ( len ( gdf ))) Exception <-1>: Failure on resource ATL03_20240321233614_00512302_006_01.h5 beam gt3r: H5Coro::Future read failure on gt3r/heights/dist_ph_along Reference Ground Tracks: [531 28 554 51 996 973] Cycles: [24 18 10 25 21 9 12 19 4 20 22 16 15 6 5 8 13 23 1 2 17 7 14 11 26 3] Received 398866 elevations CPU times: user 923 ms, sys: 303 ms, total: 1.23 s Wall time: 50.7 s
-```
-
-#### r4 — score 0.442
-
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** ICESat-2 Module
 - **category:** `user_guide`
@@ -78,9 +64,9 @@ pendent of spacecraft orientation cycle ATLAS orbit cycle number region ATLAS gr
 The ICESat-2 module within SlideRule supports a number of both legacy p-series and s-series endpoints, as well as the newer DataFrame-based x-series endpoints. This document focuses on the x-series endpoints while still referencing the other legacy endpoints when helpful. Three main kinds of data are returned by the ICESat-2 endpoints: segmented photon data, elevation data (from the ATL06-SR algorithm), and vegetation data (from the PhoREAL algorithm). All data returned by the ICESat-2 endpoints are organized around the concept of an extent . An extent is a variable length, customized ATL03 segment. It takes the ATL03 photons and divides them up based on their along-track distance, filters them, and then packages them together a single new custom segment. Given that the ICESat-2 standard data products have a well defined meaning for segment, SlideRule uses the term extent to indicate this custom-length and custom-filtered segment of photons. The following processing flags are used for all ICESat-2 endpoints: 0x0001 : Along track spread too short 0x0002 : Too few photons 0x0004 : Maximum iterations reached 0x0008 : Out of bounds 0x0010 : Underflow 0x0020 : Overflow In addition, most endpoints support the generation of a name filter using the granule parameter: rgt : Reference ground track cycle : Orbit cycle region : ATL03 region {1 to 14} version : ATL03 release version (e.g. 007)
 ```
 
-#### r5 — score 0.456
+#### r4 — score 0.456
 
-- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 2. ATL06 - atl06x
 - **category:** `user_guide`
@@ -90,6 +76,20 @@ The ICESat-2 module within SlideRule supports a number of both legacy p-series a
 
 ```
 and the along-track segment fit meters (float) land_ice_segments/fit_statistics/h_robust_sprd w_surface_window_final Width of the surface window, top to bottom meters (float) land_ice_segments/fit_statistics/w_surface_window_final bsnow_conf Confidence flag for presence of blowing snow boolean land_ice_segments/geophysical/bsnow_conf bsnow_h Blowing snow layer top height meters (float) land_ice_segments/geophysical/bsnow_h r_eff Effective reflectance, uncorrected for atmospheric effects. (float) land_ice_segments/geophysical/r_eff tide_ocean Ocean tides meters (float) land_ice_segments/geophysical/tide_ocean n_fit_photons Number of PEs used in determining h_li count land_ice_segments/fit_statistics/n_fit_photons spot ATLAS detector field of view 1-6 Independent of spacecraft orientation cycle ATLAS orbit cycle number region ATLAS granule region 1-14 rgt Reference Ground Track gt Beam âgt1lâ, âgt1râ, âgt2lâ, âgt2râ, âgt3lâ, âgt3râ Dependent on spacecraft orientation
+```
+
+#### r5 — score 0.463
+
+- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
+- **title:** SlideRule Web Client
+- **section:** Appendix A. Parameter Components
+- **category:** `developer_guide`
+- **matched_tokens:** ['cycle', 'granule', 'icesat', 'number', 'reference', 'rgt', 'track']
+
+**Full text:**
+
+```
+Mission : dropdown or select button ICESat-2 GEDI ICESat-2 APIs : dropdown [ICESat-2] atl03s atl06 atl06s atl08 atl24s GEDI APIs : dropdown [GEDI] gedi01b gedi02a gedi04a General : accordion header Polygon : label Draw On Map : radio button Upload : radio button File Upload : file upload button Rasterize Polygon : checkbox Cell Size : input number (degrees) Ignore Polygon for CMR : checkbox Projection : label auto : radio button plate_carree : radio button north_polar : radio button south_polar : radio button Timeout : input number (seconds) rqst-timeout : input number (seconds) node-timeout : input number (seconds) read-timeout : input number (seconds) Granule Selection : accordion header [ICESat-2] Track : label 1 : checkbox 2 : checkbox 3 : checkbox all : checkbox / toggle others Beam : label gt1l : checkbox gt1r : checkbox gt2l : checkbox gt2r : checkbox gt3l : checkbox gt3r : checkbox all : checkbox / toggle others RGT : input number Cycle : input number Region : input number T0 : calendar T1 : calendar Photon Selection : accordion header [ICESat-2] ATL03 Confidence : input switch (enables inputs below) Surface Reference Type : label land : radio button ocean : radio button sea ice : radio button land_ice : radio button inland_water : radio button Signal Confidence : label tep : radio button not_considered : radio button background : radio button within_10m : radio button low : radio button medium : radio button high : radio button ATL08 Classification : input switch (en
 ```
 
 ---
