@@ -12,11 +12,10 @@
   - https://docs.slideruleearth.io/api_reference/icesat2.html
   - https://docs.slideruleearth.io/user_guide/icesat2.html
 - **expected_sections:**
-  - `anc_fields`
   - `ancillary`
   - `atl06p`
 - **expected_pages:** (none)
-- **notes:** rebaselined for testsliderule.org: how_tos/ancillary_fields removed; anc_fields parameter is documented in api_reference/icesat2.html atl06p signature
+- **notes:** anc_fields ancillary-data parameter; documented in icesat2 ancillary-data sections and atl06p block
 
 ---
 

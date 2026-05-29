@@ -10,9 +10,11 @@
 - **corpus:** `docsearch`
 - **expected_urls:**
   - https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-01-00.html
+  - https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-00-00.html
+  - https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-01-00.html
 - **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** phoreal first mentioned in v02-01-00 Major Changes
+- **notes:** PhoREAL introduced in v02-01-00 and extended through v03-00/01-00
 
 ---
 

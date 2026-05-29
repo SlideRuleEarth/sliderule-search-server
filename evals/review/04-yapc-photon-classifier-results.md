@@ -13,7 +13,7 @@
 - **expected_sections:**
   - `yapc`
 - **expected_pages:** (none)
-- **notes:** yapc = Yet Another Photon Classifier; user_guide/icesat2.html has the section (assets/grandmesa tutorial dropped after testsliderule.org rebaseline)
+- **notes:** yapc = Yet Another Photon Classifier; user_guide/icesat2.html YAPC-classification section
 
 ---
 

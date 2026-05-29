@@ -17,7 +17,7 @@
   - `1.6 phoreal`
   - `3. atl08`
 - **expected_pages:** (none)
-- **notes:** phoreal / atl08_class usage (assets/phoreal + grandmesa_atl03_classification dropped after testsliderule.org rebaseline)
+- **notes:** phoreal / atl08_class canopy-height workflow
 
 ---
 

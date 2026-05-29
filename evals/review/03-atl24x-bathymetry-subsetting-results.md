@@ -14,7 +14,7 @@
   - `atl24x`
   - `5. atl24`
 - **expected_pages:** (none)
-- **notes:** atl24x is documented in user_guide/icesat2.html section 5 (assets/atl24_access tutorial dropped after testsliderule.org rebaseline)
+- **notes:** atl24x bathymetry endpoint documented in user_guide/icesat2.html section 5
 
 ---
 

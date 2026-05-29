@@ -14,7 +14,7 @@
   - `atl24x`
   - `5. atl24`
 - **expected_pages:** (none)
-- **notes:** rebaselined for testsliderule.org: assets/atl24_access.html removed; user_guide section on atl24x is closest substitute
+- **notes:** subsetting ATL24 bathymetry; user_guide/icesat2.html ATL24 section
 
 ---
 

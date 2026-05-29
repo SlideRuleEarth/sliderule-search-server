@@ -14,7 +14,7 @@
   - `yapc`
   - `atl03`
 - **expected_pages:** (none)
-- **notes:** rebaselined for testsliderule.org: assets/grandmesa_atl03_classification.html removed; user_guide yapc/atl03 sections are closest substitute
+- **notes:** using YAPC photon classifier with ATL03; user_guide/icesat2.html YAPC section
 
 ---
 

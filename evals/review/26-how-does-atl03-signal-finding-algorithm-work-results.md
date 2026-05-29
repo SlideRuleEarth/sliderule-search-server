@@ -10,11 +10,10 @@
 - **corpus:** `nsidc`
 - **expected_urls:**
   - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-- **expected_sections:**
-  - `signal finding`
-  - `signal-finding`
-- **expected_pages:** (none)
-- **notes:** ATL03 ATBD Signal Finding chapter
+- **expected_sections:** (none)
+- **expected_pages:**
+  - 80–115
+- **notes:** ATL03 ATBD signal/surface-finding algorithm lives in chapter 5 (~pp.80-115)
 
 ---
 

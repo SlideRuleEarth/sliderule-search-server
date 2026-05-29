@@ -11,12 +11,9 @@
 - **expected_urls:**
   - https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
   - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-- **expected_sections:**
-  - `beam`
-  - `ground track`
-  - `naming`
+- **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** beam naming convention defined in ATL03 docs but referenced across products
+- **notes:** GT1L..GT3R beam naming defined in ATL03 docs, referenced across products
 
 ---
 

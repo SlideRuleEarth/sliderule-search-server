@@ -14,7 +14,7 @@
   - `atl13x`
   - `4. atl13`
 - **expected_pages:** (none)
-- **notes:** rebaselined for testsliderule.org: assets/atl13_access.html removed; user_guide section on atl13x is closest substitute
+- **notes:** querying ATL13 lakes; user_guide/icesat2.html ATL13 section
 
 ---
 

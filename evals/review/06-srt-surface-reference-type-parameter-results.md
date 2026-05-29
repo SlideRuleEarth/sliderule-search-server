@@ -9,14 +9,14 @@
 
 - **corpus:** `docsearch`
 - **expected_urls:**
+  - https://docs.slideruleearth.io/user_guide/icesat2.html
   - https://docs.slideruleearth.io/api_reference/icesat2.html
 - **expected_sections:**
-  - `native atl03`
-  - `photon-selection`
-  - `atl06p`
-  - `atl03sp`
+  - `1.2 photon-selection`
+  - `native atl03 photon classification`
+  - `1.2.1 native atl03`
 - **expected_pages:** (none)
-- **notes:** srt parameter for surface type filter (user_guide/how_tos/ancillary_fields dropped after testsliderule.org rebaseline)
+- **notes:** srt (surface reference type) photon-selection parameter; documented in user_guide/icesat2 photon-selection sections and the api_reference endpoint blocks
 
 ---
 

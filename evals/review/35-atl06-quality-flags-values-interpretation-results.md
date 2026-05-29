@@ -10,11 +10,10 @@
 - **corpus:** `nsidc`
 - **expected_urls:**
   - https://nsidc.org/sites/default/files/documents/user-guide/atl06-v006-userguide.pdf
-- **expected_sections:**
-  - `quality`
-  - `data groups`
-- **expected_pages:** (none)
-- **notes:** ATL06 user guide quality flags
+- **expected_sections:** (none)
+- **expected_pages:**
+  - 8–16
+- **notes:** ATL06 user guide quality_assessment group (p9) and Quality/Errors section (p15)
 
 ---
 

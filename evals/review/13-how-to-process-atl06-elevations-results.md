@@ -14,7 +14,7 @@
   - `atl06x`
   - `2. atl06`
 - **expected_pages:** (none)
-- **notes:** rebaselined for testsliderule.org: assets/grandmesa.html removed; user_guide section on atl06 is closest substitute
+- **notes:** processing ATL06 elevations; user_guide/icesat2.html ATL06 section is canonical
 
 ---
 

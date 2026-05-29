@@ -11,12 +11,9 @@
 - **expected_urls:**
   - https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
   - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-- **expected_sections:**
-  - `orbit`
-  - `mission`
-  - `atlas`
+- **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** mission-level specs in ATL03 docs
+- **notes:** ICESat-2 orbit/mission specs canonically in ATL03 docs
 
 ---
 

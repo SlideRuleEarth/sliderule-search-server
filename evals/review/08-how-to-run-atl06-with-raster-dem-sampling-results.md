@@ -12,7 +12,7 @@
   - https://docs.slideruleearth.io/user_guide/raster_sampling.html
 - **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** pairing ATL06 with raster sampling (how_tos/arcticdem_request dropped after testsliderule.org rebaseline)
+- **notes:** pairing ATL06 with raster DEM sampling
 
 ---
 

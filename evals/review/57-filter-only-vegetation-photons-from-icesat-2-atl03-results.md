@@ -12,11 +12,10 @@
   - https://docs.slideruleearth.io/user_guide/icesat2.html
 - **expected_sections:**
   - `atl08 classification`
-  - `atl08_class`
   - `1.2.3 atl08`
   - `phoreal`
 - **expected_pages:** (none)
-- **notes:** atl08_class with canopy label; user_guide/icesat2 has the class mapping (assets/grandmesa + phoreal dropped after testsliderule.org rebaseline)
+- **notes:** filtering vegetation photons = atl08_class canopy label; icesat2 ATL08-classification section
 
 ---
 

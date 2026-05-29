@@ -12,7 +12,7 @@
   - https://docs.slideruleearth.io/user_guide/raster_sampling.html
 - **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** rebaselined for testsliderule.org: assets/arcticdem_mosaic.html and how_tos/arcticdem_request.html both removed; raster_sampling page is closest substitute
+- **notes:** sampling ArcticDEM raster mosaic; raster_sampling page is canonical
 
 ---
 

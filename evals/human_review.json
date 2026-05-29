@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-05-29T19:10:22+00:00",
+  "generated_at": "2026-05-29T19:55:52+00:00",
   "summary": {
-    "total_files": 68,
-    "completed": 68,
-    "incomplete": 0,
+    "total_files": 100,
+    "completed": 66,
+    "incomplete": 34,
     "overall_verdicts": {
-      "correct": 31,
+      "correct": 29,
       "partial": 26,
       "wrong": 11
     },
     "routing_decisions": {
-      "keep": 68
+      "keep": 66
     }
   },
   "records": [
@@ -491,6 +491,30 @@
       },
       "overall_verdict": "correct",
       "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 100,
+      "query": "ATLAS 532nm green laser photon counting detector",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/100-atlas-532nm-green-laser-photon-counting-detector-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
       "human_truth": {
         "corpus": null,
         "urls": [],
@@ -1914,44 +1938,20 @@
     },
     {
       "row_index": 40,
-      "query": "ATL03 h_ph photon height variable description",
+      "query": "ATL03 ATBD output parameter table photon height h_ph",
       "labeled_corpus": "nsidc",
-      "review_file": "evals/review/40-atl03-h-ph-photon-height-variable-description-review.md",
-      "incomplete": false,
+      "review_file": "evals/review/40-atl03-atbd-output-parameter-table-photon-height-h-ph-review.md",
+      "incomplete": true,
       "verdicts": {
-        "docsearch": {
-          "r1": "partial",
-          "r2": "wrong",
-          "r3": "wrong",
-          "r4": "wrong",
-          "r5": "wrong"
-        },
-        "nsidc": {
-          "r1": "correct",
-          "r2": "wrong",
-          "r3": "partial",
-          "r4": "partial",
-          "r5": "wrong"
-        }
+        "docsearch": {},
+        "nsidc": {}
       },
       "verdicts_by_chunk": {
-        "docsearch": {
-          "/user_guide/icesat2.html||1. ATL03 - atl03x||d995c960dace": "partial",
-          "/user_guide/icesat2.html||1.3 Photon-extent Parameters||73aebaf1749a": "wrong",
-          "/user_guide/icesat2.html||1.5.1 ATL06-SR Parameters||1d18546f1905": "wrong",
-          "/user_guide/icesat2.html||5. ATL24 - atl24x||280d7018964e": "wrong",
-          "/user_guide/icesat2.html||1.4 Ancillary Data||8893fca8207c": "wrong"
-        },
-        "nsidc": {
-          "/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf||Page 96||188468c63d80": "correct",
-          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||4 Version History||2d28f28a981a": "wrong",
-          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||6.3.9 Atmospheric Delay Correction||d3a544c743a8": "partial",
-          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||6.2 List of Geophysical Corrections||c954f704d193": "partial",
-          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||ATL24 Input Variables||dba14ec21ee6": "wrong"
-        }
+        "docsearch": {},
+        "nsidc": {}
       },
-      "overall_verdict": "correct",
-      "routing": "keep",
+      "overall_verdict": null,
+      "routing": null,
       "human_truth": {
         "corpus": null,
         "urls": [],
@@ -3031,41 +3031,17 @@
       "query": "ATL06 uses ATL03 photons to compute surface elevations algorithm",
       "labeled_corpus": "nsidc",
       "review_file": "evals/review/63-atl06-uses-atl03-photons-to-compute-surface-elevations-review.md",
-      "incomplete": false,
+      "incomplete": true,
       "verdicts": {
-        "docsearch": {
-          "r1": "partial",
-          "r2": "partial",
-          "r3": "partial",
-          "r4": "partial",
-          "r5": "partial"
-        },
-        "nsidc": {
-          "r1": "wrong",
-          "r2": "partial",
-          "r3": "partial",
-          "r4": "wrong",
-          "r5": "wrong"
-        }
+        "docsearch": {},
+        "nsidc": {}
       },
       "verdicts_by_chunk": {
-        "docsearch": {
-          "/user_guide/icesat2.html||A.2 Elevations - atl06p||bba2c0b85312": "partial",
-          "/user_guide/icesat2.html||1. ATL03 - atl03x||d995c960dace": "partial",
-          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||c3ce6434223b": "partial",
-          "/user_guide/icesat2.html||1.5 ATL06-SR Algorithm||a4f5cc1c7001": "partial",
-          "/background/ICESat-2.html||ATL03 - Global Geolocated Photon Data||de94abe3dd7c": "partial"
-        },
-        "nsidc": {
-          "/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf||OpenOceans++ Classification||60a11abdfc7f": "wrong",
-          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||5.1.1 Introduction||47bc4adb4be7": "partial",
-          "/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf||3 SOFTWARE AND TOOLS||3bac3fabbf30": "partial",
-          "/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf||2.3.1 Noise Filtering||b655270e239d": "wrong",
-          "/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf||10.1 Appendix A – ATL03 Output Parameter Table.||eff3b45d5c57": "wrong"
-        }
+        "docsearch": {},
+        "nsidc": {}
       },
-      "overall_verdict": "correct",
-      "routing": "keep",
+      "overall_verdict": null,
+      "routing": null,
       "human_truth": {
         "corpus": null,
         "urls": [],
@@ -3306,6 +3282,750 @@
       },
       "overall_verdict": "correct",
       "routing": "keep",
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 69,
+      "query": "atl13x inland water surface height",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/69-atl13x-inland-water-surface-height-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 70,
+      "query": "atl08x vegetation canopy height endpoint",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/70-atl08x-vegetation-canopy-height-endpoint-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 71,
+      "query": "gedi04ap aboveground biomass python endpoint",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/71-gedi04ap-aboveground-biomass-python-endpoint-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 72,
+      "query": "phoreal algorithm parameters atl08",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/72-phoreal-algorithm-parameters-atl08-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 73,
+      "query": "why use SlideRule for ICESat-2 processing",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/73-why-use-sliderule-for-icesat-2-processing-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 74,
+      "query": "how does SlideRule read cloud HDF5 with h5coro",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/74-how-does-sliderule-read-cloud-hdf5-with-h5coro-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 75,
+      "query": "how does SlideRule version its server and client",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/75-how-does-sliderule-version-its-server-and-client-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 76,
+      "query": "what is SlideRule overview on-demand processing",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/76-what-is-sliderule-overview-on-demand-processing-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 77,
+      "query": "sample GEDI L4A biomass over a region",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/77-sample-gedi-l4a-biomass-over-a-region-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 78,
+      "query": "get lake water levels with atl13x",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/78-get-lake-water-levels-with-atl13x-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 79,
+      "query": "sample a raster DEM alongside ICESat-2 elevations",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/79-sample-a-raster-dem-alongside-icesat-2-elevations-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 80,
+      "query": "ATL24 bathymetry golden run end to end",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/80-atl24-bathymetry-golden-run-end-to-end-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 81,
+      "query": "export results to GeoParquet for GIS",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/81-export-results-to-geoparquet-for-gis-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 82,
+      "query": "atl13x added to sliderule release notes",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/82-atl13x-added-to-sliderule-release-notes-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 83,
+      "query": "GEDI support added to sliderule release",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/83-gedi-support-added-to-sliderule-release-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 84,
+      "query": "GeoParquet arrow output format added version",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/84-geoparquet-arrow-output-format-added-version-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 85,
+      "query": "atl08x x-series endpoint added release notes",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/85-atl08x-x-series-endpoint-added-release-notes-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 86,
+      "query": "atl08p phoreal vegetation api parameters",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/86-atl08p-phoreal-vegetation-api-parameters-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 87,
+      "query": "atl03sp segmented photon api parameters",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/87-atl03sp-segmented-photon-api-parameters-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 88,
+      "query": "gedi gedi02ap canopy api parameters",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/88-gedi-gedi02ap-canopy-api-parameters-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 89,
+      "query": "sliderule toregion polygon helper api",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/89-sliderule-toregion-polygon-helper-api-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 90,
+      "query": "get lake water levels from satellite altimetry",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/90-get-lake-water-levels-from-satellite-altimetry-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 91,
+      "query": "measure forest canopy height with space lidar",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/91-measure-forest-canopy-height-with-space-lidar-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 92,
+      "query": "find seafloor depth from ICESat-2 photons",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/92-find-seafloor-depth-from-icesat-2-photons-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 93,
+      "query": "read cloud HDF5 files without downloading them",
+      "labeled_corpus": "docsearch",
+      "review_file": "evals/review/93-read-cloud-hdf5-files-without-downloading-them-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 94,
+      "query": "ATL13 inland water surface height variables file contents",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/94-atl13-inland-water-surface-height-variables-file-contents-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 95,
+      "query": "ATL03 signal_conf_ph photon confidence flag",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/95-atl03-signal-conf-ph-photon-confidence-flag-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 96,
+      "query": "GEDI L4A aboveground biomass density AGBD product",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/96-gedi-l4a-aboveground-biomass-density-agbd-product-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 97,
+      "query": "ATL24 uses ATL03 photons for bathymetry classification",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/97-atl24-uses-atl03-photons-for-bathymetry-classification-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 98,
+      "query": "ATL13 uses ATL03 geolocation for inland water bodies",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/98-atl13-uses-atl03-geolocation-for-inland-water-bodies-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
+      "human_truth": {
+        "corpus": null,
+        "urls": [],
+        "sections": [],
+        "pages": [],
+        "notes": null
+      }
+    },
+    {
+      "row_index": 99,
+      "query": "ICESat-2 six beam pairs ground track spacing geometry",
+      "labeled_corpus": "nsidc",
+      "review_file": "evals/review/99-icesat-2-six-beam-pairs-ground-track-spacing-geometry-review.md",
+      "incomplete": true,
+      "verdicts": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "verdicts_by_chunk": {
+        "docsearch": {},
+        "nsidc": {}
+      },
+      "overall_verdict": null,
+      "routing": null,
       "human_truth": {
         "corpus": null,
         "urls": [],

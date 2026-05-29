@@ -15,7 +15,7 @@
   - `atl06-sr`
   - `2. atl06`
 - **expected_pages:** (none)
-- **notes:** asking for ATL06 elevations without using ATL06 terminology (assets/grandmesa.html dropped after testsliderule.org rebaseline)
+- **notes:** asking for ATL06 elevations without ATL06 terminology
 
 ---
 

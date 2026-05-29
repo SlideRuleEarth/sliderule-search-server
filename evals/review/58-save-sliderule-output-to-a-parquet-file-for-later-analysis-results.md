@@ -12,7 +12,7 @@
   - https://docs.slideruleearth.io/user_guide/arrow_output.html
 - **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** parquet/arrow output; phrased as save-for-later rather than 'return in format' (how_tos/geoparquet_output dropped after testsliderule.org rebaseline)
+- **notes:** parquet/arrow output, phrased as save-for-later
 
 ---
 

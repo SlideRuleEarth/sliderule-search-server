@@ -10,12 +10,10 @@
 - **corpus:** `nsidc`
 - **expected_urls:**
   - https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-- **expected_sections:**
-  - `data groups`
-  - `file contents`
-  - `file structure`
-- **expected_pages:** (none)
-- **notes:** ATL03 user guide HDF5 structure
+- **expected_sections:** (none)
+- **expected_pages:**
+  - 6–10
+- **notes:** ATL03 user guide File Contents / data-group structure (1.2.3-1.2.4, pp.7-9)
 
 ---
 

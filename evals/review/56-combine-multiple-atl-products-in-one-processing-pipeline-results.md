@@ -13,7 +13,7 @@
   - https://docs.slideruleearth.io/user_guide/icesat2.html
 - **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** multi-product workflow (assets/atl24_access.html dropped after testsliderule.org rebaseline)
+- **notes:** multi-product x-series workflow
 
 ---
 

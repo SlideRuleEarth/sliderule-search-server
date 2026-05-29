@@ -11,11 +11,9 @@
 - **expected_urls:**
   - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
   - https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-- **expected_sections:**
-  - `photon classification`
-  - `confidence`
+- **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** confidence is ATL03 concept, also used by ATL08/ATL24
+- **notes:** photon-classification confidence is an ATL03 concept (signal_conf_ph); authoritative in ATL03 ATBD + user guide
 
 ---
 

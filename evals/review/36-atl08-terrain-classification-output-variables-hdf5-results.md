@@ -10,12 +10,10 @@
 - **corpus:** `nsidc`
 - **expected_urls:**
   - https://nsidc.org/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf
-- **expected_sections:**
-  - `classification`
-  - `data groups`
-  - `ground`
-- **expected_pages:** (none)
-- **notes:** ATL08 user guide terrain variables
+- **expected_sections:** (none)
+- **expected_pages:**
+  - 6–18
+- **notes:** ATL08 user guide File Contents and terrain/canopy classification variables (pp.7-18)
 
 ---
 

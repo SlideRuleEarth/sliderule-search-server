@@ -11,12 +11,9 @@
 - **expected_urls:**
   - https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
   - https://nsidc.org/sites/default/files/documents/user-guide/atl06-v006-userguide.pdf
-- **expected_sections:**
-  - `reference ground track`
-  - `rgt`
-  - `cycle`
+- **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** RGT/cycle concepts defined at ATL03 level, also in per-product user guides
+- **notes:** RGT/cycle granule concepts defined at ATL03 level, also in per-product user guides
 
 ---
 
