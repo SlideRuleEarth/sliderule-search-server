@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL06 data groups structure for land ice`
+**Panel signature:** `70572d61c9b7`
 
 ## Auto-labeled (current ground truth)
 

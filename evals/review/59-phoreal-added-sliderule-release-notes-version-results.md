@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `phoreal added sliderule release notes version`
+**Panel signature:** `0ace35ec6482`
 
 ## Auto-labeled (current ground truth)
 

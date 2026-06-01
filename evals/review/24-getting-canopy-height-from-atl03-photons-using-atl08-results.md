@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `getting canopy height from atl03 photons using atl08`
+**Panel signature:** `2f00f2fc1b2e`
 
 ## Auto-labeled (current ground truth)
 

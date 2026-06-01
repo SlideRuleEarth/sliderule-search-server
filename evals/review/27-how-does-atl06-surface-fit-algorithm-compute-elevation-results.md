@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how does ATL06 surface fit algorithm compute elevation`
+**Panel signature:** `95543d5f44a7`
 
 ## Auto-labeled (current ground truth)
 

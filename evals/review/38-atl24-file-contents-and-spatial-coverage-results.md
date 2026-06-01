@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL24 file contents and spatial coverage`
+**Panel signature:** `57f85e3ea7bb`
 
 ## Auto-labeled (current ground truth)
 

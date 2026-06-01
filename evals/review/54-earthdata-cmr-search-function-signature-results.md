@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `earthdata CMR search function signature`
+**Panel signature:** `1ea76ecd83a3`
 
 ## Auto-labeled (current ground truth)
 

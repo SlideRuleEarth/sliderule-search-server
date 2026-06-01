@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `get lake water levels with atl13x`
+**Panel signature:** `ed7fa111e41f`
 
 ## Auto-labeled (current ground truth)
 

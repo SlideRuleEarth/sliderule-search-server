@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `generate a DEM from ICESat-2 data over my area of interest`
+**Panel signature:** `f2c7696768e9`
 
 ## Auto-labeled (current ground truth)
 

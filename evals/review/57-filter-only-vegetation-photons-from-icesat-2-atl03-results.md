@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `filter only vegetation photons from ICESat-2 atl03`
+**Panel signature:** `4a66f59a011b`
 
 ## Auto-labeled (current ground truth)
 

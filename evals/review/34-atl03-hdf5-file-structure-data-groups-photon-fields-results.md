@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL03 HDF5 file structure data groups photon fields`
+**Panel signature:** `a32d93cbd07e`
 
 ## Auto-labeled (current ground truth)
 

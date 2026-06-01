@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `GeoParquet arrow output format added version`
+**Panel signature:** `c1dddf910070`
 
 ## Auto-labeled (current ground truth)
 

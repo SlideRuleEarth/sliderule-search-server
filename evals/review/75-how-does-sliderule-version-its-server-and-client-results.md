@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how does SlideRule version its server and client`
+**Panel signature:** `9db83f4b800b`
 
 ## Auto-labeled (current ground truth)
 

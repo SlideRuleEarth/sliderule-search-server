@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `output SlideRule results as GeoParquet format`
+**Panel signature:** `c1fbb231a9cc`
 
 ## Auto-labeled (current ground truth)
 

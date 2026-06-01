@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `photon classification confidence values ATL03`
+**Panel signature:** `073407bef3b6`
 
 ## Auto-labeled (current ground truth)
 

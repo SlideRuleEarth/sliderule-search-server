@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `strong versus weak beams ICESat-2 ATLAS`
+**Panel signature:** `3f23b7b02cf5`
 
 ## Auto-labeled (current ground truth)
 

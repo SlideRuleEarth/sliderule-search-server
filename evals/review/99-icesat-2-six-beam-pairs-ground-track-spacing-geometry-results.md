@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ICESat-2 six beam pairs ground track spacing geometry`
+**Panel signature:** `e70f9d757a48`
 
 ## Auto-labeled (current ground truth)
 

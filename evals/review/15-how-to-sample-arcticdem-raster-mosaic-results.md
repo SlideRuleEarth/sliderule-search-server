@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how to sample ArcticDEM raster mosaic`
+**Panel signature:** `687b6742e3b5`
 
 ## Auto-labeled (current ground truth)
 

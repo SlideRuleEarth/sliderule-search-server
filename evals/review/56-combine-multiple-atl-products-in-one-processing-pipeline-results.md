@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `combine multiple ATL products in one processing pipeline`
+**Panel signature:** `e0ebc3de4576`
 
 ## Auto-labeled (current ground truth)
 

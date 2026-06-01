@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `find seafloor depth from ICESat-2 photons`
+**Panel signature:** `f6285781904a`
 
 ## Auto-labeled (current ground truth)
 

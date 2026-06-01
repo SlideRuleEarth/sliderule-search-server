@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `atl03x X-Series API photon processing`
+**Panel signature:** `b133500c74f9`
 
 ## Auto-labeled (current ground truth)
 

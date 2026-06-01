@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `srt surface reference type parameter`
+**Panel signature:** `a2f720200bc3`
 
 ## Auto-labeled (current ground truth)
 

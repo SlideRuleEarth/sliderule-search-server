@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL06 land ice along-track segment elevation`
+**Panel signature:** `217aab84ce49`
 
 ## Auto-labeled (current ground truth)
 

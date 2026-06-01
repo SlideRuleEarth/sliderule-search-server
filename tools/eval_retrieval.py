@@ -8,7 +8,10 @@ Two grading modes:
   --metric=auto  (default) grades against `expected_urls`/`expected_sections`/
                  `expected_pages` in golden_set.jsonl (cheap, can be wrong)
   --metric=human grades against per-result verdicts in human_review.json
-                 (trustworthy ground truth, only as good as the reviewer)
+                 (trustworthy ground truth, only as good as the reviewer).
+                 Computed over completed reviews only — coverage against the
+                 full golden set and the count of excluded incomplete forms
+                 are reported alongside the metric, not folded into it.
   --metric=both  (recommended for Phase 2 reconciliation) emits both side-by-side
 
 Usage
@@ -33,6 +36,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import sys
 from pathlib import Path
 from urllib.parse import urlparse
@@ -139,18 +143,39 @@ def first_expected_rank(
     return None
 
 
-def load_human_review() -> dict[int, dict]:
-    """Returns row_index → record from evals/human_review.json. Empty
-    dict if the file doesn't exist yet (first run before any reviews
-    have been ingested). Only completed records are included."""
+def load_human_review() -> tuple[dict[int, dict], dict]:
+    """Returns (row_index → record, meta) from evals/human_review.json.
+
+    Only *usable* records land in the map — those that are both completed
+    (not every-blank-empty) AND scored against the panel still in the
+    corpus (`panel_status == "current"`). Incomplete, stale (corpus
+    rechunked since scoring), and unverifiable (pre-guard, no panel
+    signature) forms are excluded so they neither drag the metric toward
+    zero nor — worse — attach a reviewer's verdict to a chunk they never
+    saw. `meta` carries the ingest summary's coverage bookkeeping verbatim
+    (incomplete / stale / unverifiable counts) so the report can state
+    scope and excluded-reason explicitly.
+
+    Records written before the staleness guard carry no `usable` flag; for
+    those we fall back to the old completed-only rule so pre-guard
+    human_review.json files keep working until re-ingested.
+
+    Empty map + zeroed meta if the file doesn't exist yet (first run
+    before any reviews have been ingested)."""
     if not HUMAN_REVIEW_PATH.exists():
-        return {}
+        return {}, {"total_files": 0, "completed": 0, "incomplete": 0}
     data = json.loads(HUMAN_REVIEW_PATH.read_bytes())
-    return {
-        r["row_index"]: r
-        for r in data.get("records", [])
-        if not r.get("incomplete")
+
+    def _usable(r: dict) -> bool:
+        flag = r.get("usable")
+        if flag is None:  # pre-guard record: no staleness info to act on
+            return not r.get("incomplete")
+        return flag
+
+    records_map = {
+        r["row_index"]: r for r in data.get("records", []) if _usable(r)
     }
+    return records_map, data.get("summary", {})
 
 
 def _content_sig(text: str) -> str:
@@ -193,6 +218,62 @@ def first_human_rank(
 
 AUDIT_TOP_N = 5
 AUDIT_TEXT_CHARS = 400
+
+# Graded relevance scale for the human verdicts. Binary metrics treat
+# only `correct` as a hit; the graded family below gives `partial` half
+# credit, so a near-miss ranked highly scores better than a flat wrong.
+GRADE = {"correct": 1.0, "partial": 0.5, "wrong": 0.0}
+
+
+def _grade(verdict: str | None) -> float:
+    """Map a verdict to its graded relevance. Unknown/None (a chunk the
+    reviewer never saw, e.g. one a lever surfaced into top-5) scores 0 —
+    same treatment as `wrong`, since we have no evidence it's relevant."""
+    return GRADE.get(verdict or "", 0.0)
+
+
+def _dcg(grades: list[float]) -> float:
+    """Discounted cumulative gain with the standard log2(rank+1) discount
+    (rank is 1-based, so rank 1 gets the full grade)."""
+    return sum(g / math.log2(i + 1) for i, g in enumerate(grades, start=1))
+
+
+def graded_metrics_at_5(
+    top_verdicts: list[str | None],
+    judged_grades: list[float],
+) -> dict:
+    """Graded relevance metrics over the retrieved top-5.
+
+    `top_verdicts` are the verdicts at the current top-5 ranks (in order);
+    `judged_grades` are the grades of *every* chunk the reviewer judged
+    for this row — the pool the ideal ranking is drawn from, so a known-
+    good chunk that a lever pushed out of top-5 still costs nDCG.
+
+    Returns:
+      - ndcg_at_5            DCG of the retrieved top-5 over the ideal DCG
+      - graded_rr            grade of the first relevant (grade>0) result,
+                             divided by its rank — the graded reciprocal
+                             rank; aggregates to graded MRR. Binary MRR is
+                             the special case where every hit grades 1.0.
+      - strict_success_5     1.0 if any `correct` in top-5, else 0.0
+      - partial_success_5    1.0 if any `partial`-or-better in top-5, else 0.0
+    """
+    retrieved = [_grade(v) for v in top_verdicts]
+    idcg = _dcg(sorted(judged_grades, reverse=True)[:5])
+    ndcg = _dcg(retrieved) / idcg if idcg > 0 else 0.0
+
+    graded_rr = 0.0
+    for rank, g in enumerate(retrieved, start=1):
+        if g > 0:
+            graded_rr = g / rank
+            break
+
+    return {
+        "ndcg_at_5": ndcg,
+        "graded_rr": graded_rr,
+        "strict_success_5": 1.0 if any(g >= 1.0 for g in retrieved) else 0.0,
+        "partial_success_5": 1.0 if any(g > 0 for g in retrieved) else 0.0,
+    }
 
 
 def evaluate(rows: list[dict], corpora: dict, model, human_records: dict[int, dict] | None = None) -> list[dict]:
@@ -258,6 +339,17 @@ def evaluate(rows: list[dict], corpora: dict, model, human_records: dict[int, di
                 "url_match": url_match,        # URL-only — useful for the audit's tiered flag
                 "human_verdict": human_verdict,  # correct/partial/wrong/None
             })
+
+        # Graded human metrics over the retrieved top-5. Only meaningful
+        # when the row has verdicts; otherwise left None so the aggregate
+        # can skip it (same gating as the binary human metric).
+        graded = None
+        if chunk_verdicts is not None:
+            graded = graded_metrics_at_5(
+                [tr["human_verdict"] for tr in top_results],
+                [_grade(v) for v in chunk_verdicts.values()],
+            )
+
         records.append({
             "row_index": idx,
             "corpus": row["corpus"],
@@ -270,6 +362,7 @@ def evaluate(rows: list[dict], corpora: dict, model, human_records: dict[int, di
             "first_rank": rank_,
             "human_first_rank": human_rank,
             "human_available": chunk_verdicts is not None,
+            "graded": graded,
             "top_urls": [r["url"] for r in results[:5]],
             "top_results": top_results,
             "notes": row.get("notes", ""),
@@ -284,8 +377,11 @@ def aggregate(records: list[dict], rank_field: str = "first_rank") -> dict:
       - 'first_rank'        (auto-metric — golden_set.jsonl labels)
       - 'human_first_rank'  (human-metric — per-result verdicts)
 
-    Records where the rank field is None contribute 0 to all three metrics.
-    For the human metric, that includes rows with no completed review."""
+    Records where the rank field is None contribute 0 to all three
+    metrics. The caller controls the denominator by choosing which
+    records to pass: the auto-metric grades over every golden-set row,
+    while the human-metric is given only the reviewed subset so that
+    unreviewed rows don't masquerade as retrieval misses."""
     n = len(records)
     if n == 0:
         return {"n": 0, "recall_at_5": 0.0, "hit_at_1": 0.0, "mrr": 0.0}
@@ -293,6 +389,34 @@ def aggregate(records: list[dict], rank_field: str = "first_rank") -> dict:
     hit1 = sum(1 for r in records if r.get(rank_field) == 1) / n
     mrr = sum(1.0 / r[rank_field] if r.get(rank_field) else 0.0 for r in records) / n
     return {"n": n, "recall_at_5": recall5, "hit_at_1": hit1, "mrr": mrr}
+
+
+def aggregate_graded(records: list[dict]) -> dict:
+    """Mean of the per-record graded metrics over `records`.
+
+    Pass the reviewed subset (records carrying a non-None `graded`); any
+    record without graded metrics contributes 0, matching the binary
+    human metric's denominator convention. Reports nDCG@5, graded MRR,
+    strict success@5 (any `correct` in top-5), and partial-or-better
+    success@5 (any `partial`-or-better in top-5)."""
+    n = len(records)
+    keys = ("ndcg_at_5", "graded_rr", "strict_success_5", "partial_success_5")
+    if n == 0:
+        return {"n": 0, **{k: 0.0 for k in keys}}
+    sums = {k: 0.0 for k in keys}
+    for r in records:
+        g = r.get("graded")
+        if not g:
+            continue
+        for k in keys:
+            sums[k] += g[k]
+    out = {"n": n}
+    # graded_rr aggregates to "graded MRR" — surface it under that name.
+    out["ndcg_at_5"] = sums["ndcg_at_5"] / n
+    out["graded_mrr"] = sums["graded_rr"] / n
+    out["strict_success_at_5"] = sums["strict_success_5"] / n
+    out["partial_success_at_5"] = sums["partial_success_5"] / n
+    return out
 
 
 BAR = {"recall_at_5": 0.70, "hit_at_1": 0.50, "mrr": 0.55}
@@ -330,6 +454,43 @@ def _verdict_section(label: str, summary: dict) -> list[str]:
     return lines
 
 
+def _coverage_note(cov: dict) -> list[str]:
+    """Blockquote stating the human-metric's scope: it grades only the
+    usable subset, so the denominator and every excluded reason must be
+    spelled out or the numbers read as if they covered the whole set."""
+    lines = [
+        "> **Scope:** the human-metric is computed over *usable reviews only* —",
+        "> completed AND scored against the panel still in the corpus. Unreviewed,",
+        "> incomplete, stale, and unverifiable rows are excluded from the",
+        "> denominator (rather than counted as misses).",
+        ">",
+        f"> - reviewed_n (usable): **{cov['reviewed_n']}** of {cov['total_rows']} golden-set rows",
+        f"> - coverage: **{cov['coverage']:.1%}**",
+        f"> - incomplete rows excluded: **{cov['incomplete_excluded']}**",
+        f"> - stale rows excluded (corpus rechunked since scoring): **{cov.get('stale_excluded', 0)}**",
+        f"> - unverifiable rows excluded (no panel signature): **{cov.get('unverifiable_excluded', 0)}**",
+        "",
+    ]
+    return lines
+
+
+def _human_suppressed_section(cov: dict) -> list[str]:
+    """When completed reviews exist but none are usable, the human metric
+    can't be computed — say so loudly and show the excluded breakdown,
+    rather than letting the section silently disappear from the report."""
+    return [
+        "## Verdict — human-metric (suppressed)",
+        "",
+        "**No usable human reviews.** Completed verdicts exist but every one was",
+        "excluded, so the human metric is not computed. Most often this means the",
+        "corpus was rechunked since the reviews were scored (stale), or the review",
+        "forms predate the panel-signature guard (unverifiable). Re-score against",
+        "the regenerated `-results.md` panels and re-run `ingest_review.py`.",
+        "",
+        *_coverage_note(cov),
+    ]
+
+
 def _breakdown_section(label: str, summary: dict) -> list[str]:
     """Emit per-corpus and per-type tables for one metric mode."""
     lines = [
@@ -349,6 +510,56 @@ def _breakdown_section(label: str, summary: dict) -> list[str]:
     ]
     for (corpus_name, type_), m in sorted(summary["by_type"].items()):
         lines.append(f"| {corpus_name} | {type_} | {m['n']} | {m['recall_at_5']:.3f} | {m['hit_at_1']:.3f} | {m['mrr']:.3f} |")
+    lines.append("")
+    return lines
+
+
+def _graded_verdict_section(summary: dict) -> list[str]:
+    """Overall graded-relevance table. No pass/fail bars — these are
+    diagnostic, the binary human-metric carries the bars."""
+    o = summary["overall"]
+    return [
+        "## Verdict — human-metric (graded)",
+        "",
+        "Graded relevance: `correct`=1.0, `partial`=0.5, `wrong`=0.0.",
+        "`strict success@5` counts a row a hit only on a `correct` in top-5;",
+        "`partial-or-better success@5` also accepts a `partial`.",
+        "",
+        "| Metric | Value |",
+        "| --- | --- |",
+        f"| nDCG@5 | {o['ndcg_at_5']:.3f} |",
+        f"| graded MRR | {o['graded_mrr']:.3f} |",
+        f"| strict success@5 | {o['strict_success_at_5']:.3f} |",
+        f"| partial-or-better success@5 | {o['partial_success_at_5']:.3f} |",
+        "",
+    ]
+
+
+def _graded_breakdown_section(summary: dict) -> list[str]:
+    """Per-corpus and per-type graded-metric tables."""
+    header = "| nDCG@5 | gradedMRR | strict@5 | partial@5 |"
+    sep = "| --- | --- | --- | --- |"
+    fmt = lambda m: (
+        f"{m['ndcg_at_5']:.3f} | {m['graded_mrr']:.3f} | "
+        f"{m['strict_success_at_5']:.3f} | {m['partial_success_at_5']:.3f}"
+    )
+    lines = [
+        "## Per corpus — human-metric (graded)",
+        "",
+        f"| corpus | n | {header[2:]}",
+        f"| --- | --- | {sep[2:]}",
+    ]
+    for corpus_name, m in summary["by_corpus"].items():
+        lines.append(f"| {corpus_name} | {m['n']} | {fmt(m)} |")
+    lines += [
+        "",
+        "## Per query type — human-metric (graded)",
+        "",
+        f"| corpus | type | n | {header[2:]}",
+        f"| --- | --- | --- | {sep[2:]}",
+    ]
+    for (corpus_name, type_), m in sorted(summary["by_type"].items()):
+        lines.append(f"| {corpus_name} | {type_} | {m['n']} | {fmt(m)} |")
     lines.append("")
     return lines
 
@@ -399,12 +610,17 @@ def write_report(
     records: list[dict],
     auto_summary: dict | None,
     human_summary: dict | None,
+    human_coverage: dict | None = None,
+    graded_summary: dict | None = None,
 ) -> None:
     """Dump a human-readable breakdown to evals/report.md.
 
     Pass either or both summary dicts. When both are present, the report
     shows them side-by-side and includes an auto-vs-human disagreement
-    section."""
+    section. `human_coverage`, when given, is rendered as a scope note
+    under the human-metric verdict (reviewed_n / coverage / excluded).
+    `graded_summary`, when given, adds the graded-relevance verdict and
+    breakdown tables; it shares the human-metric's reviewed-subset scope."""
     lines = [
         "# Retrieval POC — Baseline Report",
         "",
@@ -417,6 +633,12 @@ def write_report(
         lines += _verdict_section("auto-metric", auto_summary)
     if human_summary:
         lines += _verdict_section("human-metric", human_summary)
+        if human_coverage:
+            lines += _coverage_note(human_coverage)
+        if graded_summary:
+            lines += _graded_verdict_section(graded_summary)
+    elif human_coverage:
+        lines += _human_suppressed_section(human_coverage)
 
     if auto_summary and human_summary:
         a, h = auto_summary["overall"], human_summary["overall"]
@@ -440,6 +662,8 @@ def write_report(
         lines += _breakdown_section("auto-metric", auto_summary)
     if human_summary:
         lines += _breakdown_section("human-metric", human_summary)
+    if graded_summary:
+        lines += _graded_breakdown_section(graded_summary)
 
     if auto_summary and human_summary:
         lines += _disagreement_section(records)
@@ -639,6 +863,22 @@ def _build_summary(records: list[dict], rank_field: str) -> dict:
     }
 
 
+def _build_graded_summary(records: list[dict]) -> dict:
+    """Same overall / per-corpus / per-type shape as _build_summary, but
+    using the graded aggregator. Pass the reviewed subset."""
+    return {
+        "overall": aggregate_graded(records),
+        "by_corpus": {
+            c: aggregate_graded([r for r in records if r["corpus"] == c])
+            for c in CORPUS_PATHS
+        },
+        "by_type": {
+            (c, t): aggregate_graded([r for r in records if r["corpus"] == c and r["type"] == t])
+            for c, t in sorted({(r["corpus"], r["type"]) for r in records})
+        },
+    }
+
+
 def _summary_for_json(summary: dict) -> dict:
     return {
         "overall": summary["overall"],
@@ -660,11 +900,24 @@ def main() -> int:
     rows = [json.loads(l) for l in GOLDEN_SET_PATH.read_text().splitlines() if l.strip()]
     print(f"loaded {len(rows)} golden-set rows", file=sys.stderr)
 
-    human_records = load_human_review() if args.metric in ("human", "both") else {}
+    if args.metric in ("human", "both"):
+        human_records, human_meta = load_human_review()
+    else:
+        human_records, human_meta = {}, {}
     if human_records:
-        print(f"loaded {len(human_records)} human-review records", file=sys.stderr)
+        print(f"loaded {len(human_records)} usable human-review records", file=sys.stderr)
     elif args.metric in ("human", "both"):
-        print(f"warning: no human reviews available at {HUMAN_REVIEW_PATH}", file=sys.stderr)
+        completed = human_meta.get("completed", 0)
+        if completed:
+            print(
+                f"warning: {completed} completed review(s) exist but none are "
+                f"usable ({human_meta.get('stale', 0)} stale, "
+                f"{human_meta.get('unverifiable', 0)} unverifiable) — "
+                f"human metric suppressed",
+                file=sys.stderr,
+            )
+        else:
+            print(f"warning: no human reviews available at {HUMAN_REVIEW_PATH}", file=sys.stderr)
 
     corpora = {name: load_corpus_state(path) for name, path in CORPUS_PATHS.items()}
     for name, s in corpora.items():
@@ -676,16 +929,59 @@ def main() -> int:
     records = evaluate(rows, corpora, model, human_records=human_records)
 
     auto_summary = _build_summary(records, "first_rank") if args.metric in ("auto", "both") else None
-    human_summary = _build_summary(records, "human_first_rank") if args.metric in ("human", "both") and human_records else None
+
+    # The human-metric grades only the reviewed subset. Unreviewed rows
+    # have human_first_rank=None; folding them into the denominator would
+    # conflate "nobody reviewed this" with "retrieval missed it". Coverage
+    # against the full golden set is reported separately, alongside the
+    # count of incomplete forms the ingest dropped.
+    human_summary = None
+    human_coverage = None
+    graded_summary = None
+    # Build the coverage block whenever any review forms have been ingested
+    # — even if none are usable — so a fully-stale/unverifiable corpus still
+    # gets an explicit "metric suppressed, here's why" note rather than the
+    # human section silently vanishing. The metric tables themselves are
+    # built only when there's a usable subset to grade.
+    if args.metric in ("human", "both") and (human_records or human_meta.get("completed")):
+        reviewed_records = [r for r in records if r.get("human_available")]
+        total_rows = len(records)
+        reviewed_n = len(reviewed_records)
+        human_coverage = {
+            "reviewed_n": reviewed_n,
+            "total_rows": total_rows,
+            "coverage": reviewed_n / total_rows if total_rows else 0.0,
+            "incomplete_excluded": human_meta.get("incomplete", 0),
+            "stale_excluded": human_meta.get("stale", 0),
+            "unverifiable_excluded": human_meta.get("unverifiable", 0),
+        }
+        if reviewed_records:
+            human_summary = _build_summary(reviewed_records, "human_first_rank")
+            graded_summary = _build_graded_summary(reviewed_records)
+        print(
+            f"human-metric scope: {reviewed_n}/{total_rows} rows usable "
+            f"({human_coverage['coverage']:.1%} coverage); excluded "
+            f"{human_coverage['incomplete_excluded']} incomplete, "
+            f"{human_coverage['stale_excluded']} stale, "
+            f"{human_coverage['unverifiable_excluded']} unverifiable",
+            file=sys.stderr,
+        )
 
     summary_out: dict = {}
     if auto_summary:
         summary_out["auto"] = _summary_for_json(auto_summary)
     if human_summary:
-        summary_out["human"] = _summary_for_json(human_summary)
+        human_out = _summary_for_json(human_summary)
+        human_out["coverage"] = human_coverage
+        summary_out["human"] = human_out
+    elif human_coverage:
+        # completed reviews exist but none usable — emit coverage + suppressed flag
+        summary_out["human"] = {"suppressed": True, "coverage": human_coverage}
+    if graded_summary:
+        summary_out["human_graded"] = _summary_for_json(graded_summary)
     print(json.dumps(summary_out, indent=2))
 
-    write_report(records, auto_summary, human_summary)
+    write_report(records, auto_summary, human_summary, human_coverage, graded_summary)
     print(f"wrote {REPORT_PATH.relative_to(REPO_ROOT)}", file=sys.stderr)
     write_audit(records)
     print(f"wrote {AUDIT_PATH.relative_to(REPO_ROOT)}", file=sys.stderr)

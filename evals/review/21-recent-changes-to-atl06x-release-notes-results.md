@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `recent changes to atl06x release notes`
+**Panel signature:** `27383ccb70a6`
 
 ## Auto-labeled (current ground truth)
 

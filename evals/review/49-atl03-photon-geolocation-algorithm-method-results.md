@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL03 photon geolocation algorithm method`
+**Panel signature:** `4bf2b6db8c10`
 
 ## Auto-labeled (current ground truth)
 

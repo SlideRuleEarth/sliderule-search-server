@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL08 DRAGANN noise filtering algorithm`
+**Panel signature:** `517b6d4aae21`
 
 ## Auto-labeled (current ground truth)
 

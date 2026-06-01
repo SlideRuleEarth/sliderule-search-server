@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL24 uses ATL03 photons for bathymetry classification`
+**Panel signature:** `2c8a46f66928`
 
 ## Auto-labeled (current ground truth)
 

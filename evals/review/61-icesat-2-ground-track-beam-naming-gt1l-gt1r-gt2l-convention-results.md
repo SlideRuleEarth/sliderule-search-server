@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ICESat-2 ground track beam naming GT1L GT1R GT2L convention`
+**Panel signature:** `bb4abe5c9869`
 
 ## Auto-labeled (current ground truth)
 

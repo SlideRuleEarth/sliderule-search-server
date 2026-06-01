@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL08 100-meter segment terrain canopy height`
+**Panel signature:** `d890f2b0f44d`
 
 ## Auto-labeled (current ground truth)
 

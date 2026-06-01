@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `get lake water levels from satellite altimetry`
+**Panel signature:** `1e318d8f4a01`
 
 ## Auto-labeled (current ground truth)
 

@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `reference ground track RGT cycle number ICESat-2 granule`
+**Panel signature:** `5b4c88b74ad7`
 
 ## Auto-labeled (current ground truth)
 

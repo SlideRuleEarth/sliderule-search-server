@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how to use SlideRule Python client install`
+**Panel signature:** `6b03d4080f7a`
 
 ## Auto-labeled (current ground truth)
 

@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `when was atl24x added to sliderule release`
+**Panel signature:** `7392063bf092`
 
 ## Auto-labeled (current ground truth)
 

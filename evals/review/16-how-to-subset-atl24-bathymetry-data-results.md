@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how to subset atl24 bathymetry data`
+**Panel signature:** `ee6cad52bccb`
 
 ## Auto-labeled (current ground truth)
 

@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `measure forest canopy height with space lidar`
+**Panel signature:** `0c7ae3622e99`
 
 ## Auto-labeled (current ground truth)
 

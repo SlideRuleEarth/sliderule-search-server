@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL24 ensemble classification bathymetry`
+**Panel signature:** `48addb12e88f`
 
 ## Auto-labeled (current ground truth)
 

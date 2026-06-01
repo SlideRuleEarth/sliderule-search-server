@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `atl13x added to sliderule release notes`
+**Panel signature:** `384e77dd098c`
 
 ## Auto-labeled (current ground truth)
 

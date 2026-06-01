@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how does SlideRule read cloud HDF5 with h5coro`
+**Panel signature:** `20725cf1a8a1`
 
 ## Auto-labeled (current ground truth)
 

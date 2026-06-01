@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `sliderule api deprecation breaking removed old function`
+**Panel signature:** `35be16bb1081`
 
 ## Auto-labeled (current ground truth)
 

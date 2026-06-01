@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL24 bathymetry golden run end to end`
+**Panel signature:** `b6c3dac74219`
 
 ## Auto-labeled (current ground truth)
 

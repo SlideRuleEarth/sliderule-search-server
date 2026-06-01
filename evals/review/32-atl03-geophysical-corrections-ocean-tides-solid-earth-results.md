@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL03 geophysical corrections ocean tides solid earth`
+**Panel signature:** `9ffabd7001ab`
 
 ## Auto-labeled (current ground truth)
 

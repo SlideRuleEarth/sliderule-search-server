@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how does ATL03 signal finding algorithm work`
+**Panel signature:** `49036d5eeded`
 
 ## Auto-labeled (current ground truth)
 

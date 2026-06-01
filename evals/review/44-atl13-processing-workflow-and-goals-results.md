@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL13 processing workflow and goals`
+**Panel signature:** `8fe230211a77`
 
 ## Auto-labeled (current ground truth)
 

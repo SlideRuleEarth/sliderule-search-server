@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL03 ATBD output parameter table photon height h_ph`
+**Panel signature:** `616a19a21689`
 
 ## Auto-labeled (current ground truth)
 

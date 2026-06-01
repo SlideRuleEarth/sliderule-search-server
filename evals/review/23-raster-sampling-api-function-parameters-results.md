@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `raster sampling API function parameters`
+**Panel signature:** `2006e2b0edfd`
 
 ## Auto-labeled (current ground truth)
 

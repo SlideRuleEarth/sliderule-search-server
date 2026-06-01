@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `sliderule version 5 breaking changes new functionality`
+**Panel signature:** `33fac049ec0d`
 
 ## Auto-labeled (current ground truth)
 

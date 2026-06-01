@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `atl13x inland water surface height`
+**Panel signature:** `04e5570cdaa9`
 
 ## Auto-labeled (current ground truth)
 

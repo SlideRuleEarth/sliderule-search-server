@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `atl08x vegetation canopy height endpoint`
+**Panel signature:** `30eaf1cfec17`
 
 ## Auto-labeled (current ground truth)
 

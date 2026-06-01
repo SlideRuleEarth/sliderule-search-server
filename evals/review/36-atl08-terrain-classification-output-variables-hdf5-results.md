@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL08 terrain classification output variables HDF5`
+**Panel signature:** `6cc99603a8e6`
 
 ## Auto-labeled (current ground truth)
 

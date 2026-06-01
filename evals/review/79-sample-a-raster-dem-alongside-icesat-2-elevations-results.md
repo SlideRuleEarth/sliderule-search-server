@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `sample a raster DEM alongside ICESat-2 elevations`
+**Panel signature:** `670842a899fa`
 
 ## Auto-labeled (current ground truth)
 

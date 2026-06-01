@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how to process atl06 elevations`
+**Panel signature:** `42a31e61a073`
 
 ## Auto-labeled (current ground truth)
 

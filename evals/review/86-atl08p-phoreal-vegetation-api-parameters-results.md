@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `atl08p phoreal vegetation api parameters`
+**Panel signature:** `ec5548a2ca6b`
 
 ## Auto-labeled (current ground truth)
 

@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `save sliderule output to a parquet file for later analysis`
+**Panel signature:** `6f42ee744ca0`
 
 ## Auto-labeled (current ground truth)
 

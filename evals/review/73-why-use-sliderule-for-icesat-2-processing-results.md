@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `why use SlideRule for ICESat-2 processing`
+**Panel signature:** `ac411100c26f`
 
 ## Auto-labeled (current ground truth)
 

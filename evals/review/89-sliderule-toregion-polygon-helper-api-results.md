@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `sliderule toregion polygon helper api`
+**Panel signature:** `fcb62227556a`
 
 ## Auto-labeled (current ground truth)
 

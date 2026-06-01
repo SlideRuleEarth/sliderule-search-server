@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `yapc photon classifier`
+**Panel signature:** `6ba18924f50e`
 
 ## Auto-labeled (current ground truth)
 

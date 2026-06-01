@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `GEDI L4A footprint geolocation variables AGBD`
+**Panel signature:** `81003caeee97`
 
 ## Auto-labeled (current ground truth)
 
