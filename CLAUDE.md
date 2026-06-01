@@ -7,8 +7,9 @@ semantic + lexical retrieval over two corpora:
 - **docsearch**: SlideRule documentation (built from `docs.slideruleearth.io`)
 - **nsidc**: NASA + ORNL DAAC user guides and ATBDs (built from PDFs)
 
-Used by the [`sliderule-docsearch`](https://github.com/SlideRuleEarth/sliderule-analysis-claude-plugin)
-skill and other agent skills. See [README.md](README.md) for service-level details.
+Used by the [`sliderule-docsearch`](https://github.com/SlideRuleEarth/sliderule-skills)
+skill and other agent skills. The `skills/` dir here is symlinked to the
+adjacent `sliderule-skills` repo. See [README.md](README.md) for service-level details.
 
 ## If you're picking up the retrieval-quality POC
 
