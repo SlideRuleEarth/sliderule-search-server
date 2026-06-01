@@ -5,6 +5,9 @@
 
 **Query:** `generate a DEM from ICESat-2 data over my area of interest`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `f2c7696768e9` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 
@@ -14,32 +17,32 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 **docsearch:**
 
-- r1: wrong
-- r2: wrong
-- r3: wrong
-- r4: wrong
-- r5: wrong
+- r1: 
+- r2: 
+- r3: 
+- r4: 
+- r5: 
 
 **nsidc:**
 
-- r1: wrong
-- r2: wrong
-- r3: wrong
-- r4: wrong
-- r5: wrong
+- r1: 
+- r2: 
+- r3: 
+- r4: 
+- r5: 
 
 ## Overall verdict
 
 One of: `correct` | `partial` | `wrong`
 
-- overall: wrong
+- overall: 
 
 ## Cross-corpus routing
 
 Should this query target a different corpus? One of:
 `keep` | `redirect-to-docsearch` | `redirect-to-nsidc` | `both-corpora`
 
-- routing: keep
+- routing: 
 
 ## Human truth (the actual right answer)
 
@@ -54,5 +57,5 @@ Repeat any field on a new `- field: value` line for multiple values.
 - url: 
 - section: 
 - pages: 
-- notes: Examples hold the answer but they are only available thru a url to the examples repo
+- notes: 
 

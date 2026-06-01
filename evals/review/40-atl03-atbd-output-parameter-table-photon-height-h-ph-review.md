@@ -5,6 +5,9 @@
 
 **Query:** `ATL03 ATBD output parameter table photon height h_ph`
 **Labeled corpus:** `nsidc`
+**Panel signature:** `616a19a21689` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

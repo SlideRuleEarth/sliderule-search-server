@@ -5,6 +5,9 @@
 
 **Query:** `atl08p phoreal vegetation api parameters`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `ec5548a2ca6b` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

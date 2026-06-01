@@ -5,6 +5,9 @@
 
 **Query:** `ATL13 uses ATL03 geolocation for inland water bodies`
 **Labeled corpus:** `nsidc`
+**Panel signature:** `03345191b5ad` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

@@ -5,6 +5,9 @@
 
 **Query:** `gedi gedi02ap canopy api parameters`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `f517c41a5121` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

@@ -13,25 +13,6 @@ corpora + `server.ranking.rank()` (no Lambda, no HTTP, no cache).
 
 **Below bar on: hit_at_1, mrr.**
 
-## Verdict — human-metric (suppressed)
-
-**No usable human reviews.** Completed verdicts exist but every one was
-excluded, so the human metric is not computed. Most often this means the
-corpus was rechunked since the reviews were scored (stale), or the review
-forms predate the panel-signature guard (unverifiable). Re-score against
-the regenerated `-results.md` panels and re-run `ingest_review.py`.
-
-> **Scope:** the human-metric is computed over *usable reviews only* —
-> completed AND scored against the panel still in the corpus. Unreviewed,
-> incomplete, stale, and unverifiable rows are excluded from the
-> denominator (rather than counted as misses).
->
-> - reviewed_n (usable): **0** of 100 golden-set rows
-> - coverage: **0.0%**
-> - incomplete rows excluded: **34**
-> - stale rows excluded (corpus rechunked since scoring): **0**
-> - unverifiable rows excluded (no panel signature): **66**
-
 ## Per corpus — auto-metric
 
 | corpus | n | recall@5 | hit@1 | MRR |

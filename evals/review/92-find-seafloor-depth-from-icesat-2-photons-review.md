@@ -5,6 +5,9 @@
 
 **Query:** `find seafloor depth from ICESat-2 photons`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `f6285781904a` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

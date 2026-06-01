@@ -5,6 +5,9 @@
 
 **Query:** `get lake water levels with atl13x`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `ed7fa111e41f` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

@@ -5,6 +5,9 @@
 
 **Query:** `how does SlideRule version its server and client`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `9db83f4b800b` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

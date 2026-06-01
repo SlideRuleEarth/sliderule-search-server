@@ -5,6 +5,9 @@
 
 **Query:** `h5 hdf5 read function parameters h5p h5x`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `3c628418857c` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 
@@ -14,32 +17,32 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 **docsearch:**
 
-- r1: partial
-- r2: partial
-- r3: partial
-- r4: partial
-- r5: partial
+- r1: 
+- r2: 
+- r3: 
+- r4: 
+- r5: 
 
 **nsidc:**
 
-- r1: partial 
-- r2: wrong
-- r3: wrong
-- r4: wrong
-- r5: partial
+- r1: 
+- r2: 
+- r3: 
+- r4: 
+- r5: 
 
 ## Overall verdict
 
 One of: `correct` | `partial` | `wrong`
 
-- overall: partial
+- overall: 
 
 ## Cross-corpus routing
 
 Should this query target a different corpus? One of:
 `keep` | `redirect-to-docsearch` | `redirect-to-nsidc` | `both-corpora`
 
-- routing: keep
+- routing: 
 
 ## Human truth (the actual right answer)
 

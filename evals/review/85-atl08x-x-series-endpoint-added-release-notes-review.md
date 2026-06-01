@@ -5,6 +5,9 @@
 
 **Query:** `atl08x x-series endpoint added release notes`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `0bcbd32a0e9f` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

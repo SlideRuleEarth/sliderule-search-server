@@ -5,6 +5,9 @@
 
 **Query:** `measure forest canopy height with space lidar`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `0c7ae3622e99` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

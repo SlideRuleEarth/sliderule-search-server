@@ -5,6 +5,9 @@
 
 **Query:** `sample GEDI L4A biomass over a region`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `1d2467a05a2e` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

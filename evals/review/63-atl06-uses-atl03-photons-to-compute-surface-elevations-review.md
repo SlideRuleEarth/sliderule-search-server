@@ -5,6 +5,9 @@
 
 **Query:** `ATL06 uses ATL03 photons to compute surface elevations algorithm`
 **Labeled corpus:** `nsidc`
+**Panel signature:** `0261b94ca05d` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

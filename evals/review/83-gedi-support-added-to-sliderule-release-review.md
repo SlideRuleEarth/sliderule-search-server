@@ -5,6 +5,9 @@
 
 **Query:** `GEDI support added to sliderule release`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `55883505b0ed` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

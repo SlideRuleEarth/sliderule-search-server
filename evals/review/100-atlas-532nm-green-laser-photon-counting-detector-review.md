@@ -5,6 +5,9 @@
 
 **Query:** `ATLAS 532nm green laser photon counting detector`
 **Labeled corpus:** `nsidc`
+**Panel signature:** `00c1bad780db` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

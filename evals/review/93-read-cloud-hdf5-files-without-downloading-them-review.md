@@ -5,6 +5,9 @@
 
 **Query:** `read cloud HDF5 files without downloading them`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `3417c5a3ad8b` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

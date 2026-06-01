@@ -5,6 +5,9 @@
 
 **Query:** `atl08x vegetation canopy height endpoint`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `30eaf1cfec17` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

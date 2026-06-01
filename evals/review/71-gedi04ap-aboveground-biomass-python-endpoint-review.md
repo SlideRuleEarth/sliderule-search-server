@@ -5,6 +5,9 @@
 
 **Query:** `gedi04ap aboveground biomass python endpoint`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `cd8dfa850582` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 
