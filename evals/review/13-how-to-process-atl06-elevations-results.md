@@ -14,7 +14,7 @@
   - `atl06x`
   - `2. atl06`
 - **expected_pages:** (none)
-- **notes:** rebaselined for testsliderule.org: assets/grandmesa.html removed; user_guide section on atl06 is closest substitute
+- **notes:** processing ATL06 elevations; user_guide/icesat2.html ATL06 section is canonical
 
 ---
 
@@ -22,7 +22,7 @@
 
 #### r1 — score 0.569
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl06
 - **category:** `api_reference`
@@ -36,7 +36,7 @@ sliderule.icesat2. atl06 ( parm , resource ) [source] Performs ATL06-SR processi
 
 #### r2 — score 0.565
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl08
 - **category:** `api_reference`
@@ -50,7 +50,7 @@ sliderule.icesat2. atl08 ( parm , resource ) [source] Performs ATL08-PhoREAL pro
 
 #### r3 — score 0.475
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl06sp
 - **category:** `api_reference`
@@ -64,7 +64,7 @@ Parameters : parms ( dict ) â parameters used to configure ATL03 subsetting
 
 #### r4 — score 0.517
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl06s
 - **category:** `api_reference`
@@ -78,7 +78,7 @@ sliderule.icesat2. atl06s ( parm , resource ) [source] Subsets ATL06 data given 
 
 #### r5 — score 0.521
 
-- **url:** https://docs.testsliderule.org/getting_started/Examples.html
+- **url:** https://docs.slideruleearth.io/getting_started/Examples.html
 - **title:** Examples
 - **section:** Examples
 - **category:** `getting_started`

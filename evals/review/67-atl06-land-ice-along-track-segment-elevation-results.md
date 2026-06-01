@@ -21,7 +21,7 @@
 
 #### r1 — score 0.561
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3. ATL08 - atl08x
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ Using the Python client, this service is called via: sliderule . run ( 'atl08x' 
 
 #### r2 — score 0.629
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.2 Elevations - atl06p
 - **category:** `user_guide`
@@ -49,7 +49,7 @@ The primary result returned by SlideRule for ICESat-2 ATL06-SR processing reques
 
 #### r3 — score 0.512
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -63,7 +63,7 @@ The magnitude of this bias depends on the shape of the transmitted waveform, the
 
 #### r4 — score 0.494
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** ICESat-2 Module
 - **category:** `user_guide`
@@ -77,7 +77,7 @@ The ICESat-2 module within SlideRule supports a number of both legacy p-series a
 
 #### r5 — score 0.522
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 2. ATL06 - atl06x
 - **category:** `user_guide`

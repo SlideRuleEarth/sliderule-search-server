@@ -9,14 +9,14 @@
 
 - **corpus:** `docsearch`
 - **expected_urls:**
+  - https://docs.slideruleearth.io/user_guide/icesat2.html
   - https://docs.slideruleearth.io/api_reference/icesat2.html
 - **expected_sections:**
-  - `native atl03`
-  - `photon-selection`
-  - `atl06p`
-  - `atl03sp`
+  - `1.2 photon-selection`
+  - `native atl03 photon classification`
+  - `1.2.1 native atl03`
 - **expected_pages:** (none)
-- **notes:** srt parameter for surface type filter (user_guide/how_tos/ancillary_fields dropped after testsliderule.org rebaseline)
+- **notes:** srt (surface reference type) photon-selection parameter; documented in user_guide/icesat2 photon-selection sections and the api_reference endpoint blocks
 
 ---
 
@@ -24,7 +24,7 @@
 
 #### r1 — score 0.337
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 2. ATL06 - atl06x
 - **category:** `user_guide`
@@ -38,7 +38,7 @@ and the along-track segment fit meters (float) land_ice_segments/fit_statistics/
 
 #### r2 — score 0.300
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -52,7 +52,7 @@ and the along-track segment fit meters (float) land_ice_segments/fit_statistics/
 
 #### r3 — score 0.294
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 4. ATL13 - atl13x
 - **category:** `user_guide`
@@ -64,23 +64,9 @@ and the along-track segment fit meters (float) land_ice_segments/fit_statistics/
 The SlideRule atl13x endpoint provides a service for ATL13 subsetting and custom processing. This endpoint queries ATL13 input granules for segment inland lake statistics based on geographic and temporal ranges. These statistics are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster sampling. This endpoint is called via: sliderule . run ( 'atl13x' , parms ) The default resulting DataFrame from this API contains the following columns: Field Description Units Notes time_ns Unix Time nanoseconds index column of DataFrame latitude segment coordinate (replaced by geometry column when GeoDataFrame) degrees (double) EPSG:7912 longitude segment coordinate (replaced by geometry column when GeoDataFrame) degrees (double) EPSG:7912 ht_ortho Orthometric height of the water surface meters (float) EGM08 ht_water_surf Ellipsoidal height of the water surface meters (float) WGS84 stdev_water_surf Derived standard deviation of water surface meters (float) water_depth Depth from the mean water surface to detected bottom meters (float) spot ATLAS detector field of view 1-6 Independent of spacecraft orientation cycle ATLAS orbit cycle number rgt Reference Ground Track gt Beam âgt1lâ, âgt1râ, âgt2lâ, âgt2râ, âgt3lâ, âgt3râ Dependent on spacecraft orientation
 ```
 
-#### r4 — score 0.323
+#### r4 — score 0.272
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
-- **title:** ICESat-2 Module
-- **section:** 1.2.4 ATL24 Classification
-- **category:** `user_guide`
-- **matched_tokens:** ['srt']
-
-**Full text:**
-
-```
-If ATL24 classification parameters are specified, the ATL24 (bathymetry) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=-1 (dynamic) and cnf=-1 (no native filtering) should be specified to allow all ATL24 photons to be used. atl24 class_ph : list of ATL24 classifications used to select which photons are used in the processing (the available classifications are: âbathymetryâ, âsea_surfaceâ, âunclassifiedâ) Note ATL24 is typically a release behind the ATL03 standard data product which it is based on. In order to correlate ATL24 classifications to ATL03, a release of ATL03 must be selected that has a corresponding ATL24 release.
-```
-
-#### r5 — score 0.272
-
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.1 Native ATL03 Photon Classification
 - **category:** `user_guide`
@@ -90,6 +76,20 @@ If ATL24 classification parameters are specified, the ATL24 (bathymetry) files c
 
 ```
 ATL03 contains a set of photon classification values, that are designed to identify signal photons for different surface types with specified confidence: srt : surface type: 0-land, 1-ocean, 2-sea ice, 3-land ice, 4-inland water cnf : confidence level for photon selection, can be supplied as a single value (which means the confidence must be at least that), or a list (which means the confidence must be in the list); note - the confidence can be supplied as strings {âatl03_tepâ, âatl03_not_consideredâ, âatl03_backgroundâ, âatl03_within_10mâ, âatl03_lowâ, âatl03_mediumâ, âatl03_highâ} or as numbers {-2, -1, 0, 1, 2, 3, 4}. quality_ph : quality classification based on an ATL03 algorithms that attempt to identify instrumental artifacts, can be supplied as a single value (which means the classification must be exactly that), or a list (which means the classification must be in the list). podppd : pointing/geolocation degradation mask; each bit in the mask represents a pointing/geolocation solution quality assessment to be included; the bits are 0: nominal, 1: pod_degrade, 2: ppd_degrade, 3: podppd_degrade, 4: cal_nominal, 5: cal_pod_degrade, 6: cal_ppd_degrade, 7: cal_podppd_degrade.
+```
+
+#### r5 — score 0.286
+
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** A.2 Elevations - atl06p
+- **category:** `user_guide`
+- **matched_tokens:** ['reference', 'surface']
+
+**Full text:**
+
+```
+The primary result returned by SlideRule for ICESat-2 ATL06-SR processing requests is a set of geolocated elevations corresponding to a geolocated ATL03 along-track segment. The elevations are contained in a GeoDataFrame where each row represents a calculated elevation. The elevation GeoDataFrame has the following columns: extent_id : unique ID associated with custom ATL03 segment (removed from final GeoDataFrame by default) segment_id : segment ID of first ATL03 segment in result n_fit_photons : number of photons used in final calculation pflags : processing flags (0x1 - spread too short; 0x2 - too few photons; 0x4 - max iterations reached) rgt : reference ground track cycle : cycle region : region of source granule spot : laser spot 1 to 6 gt : ground track (10: GT1L, 20: GT1R, 30: GT2L, 40: GT2R, 50: GT3L, 60: GT3R) x_atc : along track distance from the equator in meters time : nanoseconds from Unix epoch (January 1, 1970) without leap seconds lat : latitude (-90.0 to 90.0) lon : longitude (-180.0 to 180.0) h_mean : elevation in meters from ellipsoid dh_fit_dx : along-track slope y_atc : across-track distance w_surface_window_final : width of the window used to select the final set of photons used in the calculation rms_misfit : measured error in the linear fit of the surface h_sigma : error estimate for the least squares fit model
 ```
 
 ---

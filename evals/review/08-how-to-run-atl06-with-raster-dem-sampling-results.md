@@ -12,7 +12,7 @@
   - https://docs.slideruleearth.io/user_guide/raster_sampling.html
 - **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** pairing ATL06 with raster sampling (how_tos/arcticdem_request dropped after testsliderule.org rebaseline)
+- **notes:** pairing ATL06 with raster DEM sampling
 
 ---
 
@@ -20,7 +20,7 @@
 
 #### r1 — score 0.461
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 2. ATL06 - atl06x
 - **category:** `user_guide`
@@ -34,7 +34,7 @@ The SlideRule atl06x endpoint provides a service for ATL06 subsetting and custom
 
 #### r2 — score 0.414
 
-- **url:** https://docs.testsliderule.org/user_guide/raster_sampling.html
+- **url:** https://docs.slideruleearth.io/user_guide/raster_sampling.html
 - **title:** Raster Sampling
 - **section:** Overview
 - **category:** `user_guide`
@@ -48,7 +48,7 @@ SlideRule supports sampling raster data at points of interest and including thos
 
 #### r3 — score 0.422
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-03-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-03-00.html
 - **title:** Release v3.3.x
 - **section:** Major Changes
 - **category:** `release_notes`
@@ -62,7 +62,7 @@ Sampling support added for the Merit DEM Added raster module to Python client - 
 
 #### r4 — score 0.441
 
-- **url:** https://docs.testsliderule.org/getting_started/Examples.html
+- **url:** https://docs.slideruleearth.io/getting_started/Examples.html
 - **title:** Examples
 - **section:** Examples
 - **category:** `getting_started`
@@ -76,7 +76,7 @@ The following Jupyter notebooks provide examples of how to use some of SlideRule
 
 #### r5 — score 0.449
 
-- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** SRWC-5.1: Raster Sampling
 - **category:** `developer_guide`

@@ -23,10 +23,10 @@
 
 #### r1 — score 0.592
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/250328_atl24_golden_run.html
 - **title:** 2025-03-28: ATL24 Processing Run
 - **section:** Background
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['atl24', 'classification', 'photon']
 
 **Full text:**
@@ -37,7 +37,7 @@ The University of Texas at Austin and Oregon State University partnered with the
 
 #### r2 — score 0.709
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.4 ATL24 Classification
 - **category:** `user_guide`
@@ -51,7 +51,7 @@ If ATL24 classification parameters are specified, the ATL24 (bathymetry) files c
 
 #### r3 — score 0.543
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -65,7 +65,7 @@ If ATL24 classification parameters are specified, the ATL24 (bathymetry) files c
 
 #### r4 — score 0.616
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2 Photon-selection Parameters
 - **category:** `user_guide`
@@ -79,7 +79,7 @@ Once the ATL03 input data are are selected, a set of photon-selection photon par
 
 #### r5 — score 0.490
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5.1 Query Parameters
 - **category:** `user_guide`

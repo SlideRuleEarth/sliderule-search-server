@@ -25,7 +25,7 @@
 
 #### r1 — score 0.613
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.2 Elevations - atl06p
 - **category:** `user_guide`
@@ -39,7 +39,7 @@ The primary result returned by SlideRule for ICESat-2 ATL06-SR processing reques
 
 #### r2 — score 0.701
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -53,7 +53,7 @@ The SlideRule atl03x endpoint provides a service for ATL03 custom processing. Th
 
 #### r3 — score 0.560
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -67,7 +67,7 @@ The magnitude of this bias depends on the shape of the transmitted waveform, the
 
 #### r4 — score 0.639
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.5 ATL06-SR Algorithm
 - **category:** `user_guide`
@@ -79,18 +79,18 @@ The magnitude of this bias depends on the shape of the transmitted waveform, the
 The ATL06-SR algorithm fits a line segment to the photons in each extent, using an iterative selection refinement to eliminate noise photons not correctly identified by the photon classification. The results are then checked against three parameters : sigma_r_max , which eliminates segments for which the robust dispersion of the residuals is too large, and the ats and cnt parameters described above, which eliminate segments for which the iterative fitting has eliminated too many photons. The algorithm is run by supplying the fit parameter in the processing request, but can also be run via the legacy atl06 and atl06p endpoints.
 ```
 
-#### r5 — score 0.557
+#### r5 — score 0.674
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
-- **title:** ICESat-2 Module
-- **section:** A.1 Segmented Photon Data - atl03sp
-- **category:** `user_guide`
-- **matched_tokens:** ['algorithm', 'atl03', 'atl06', 'uses']
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
+- **title:** ICESat-2
+- **section:** ATL03 - Global Geolocated Photon Data
+- **category:** `background`
+- **matched_tokens:** ['atl03', 'photons', 'surface']
 
 **Full text:**
 
 ```
-The photon data is stored as along-track segments inside the ATL03 granules, which is then broken apart by SlideRule and re-segmented according to processing parameters supplied at the time of the request. The new segments are called extents . When the length of an extent is 40 meters, and the step size is 20 meters, the extent matches the ATL06 segments. Most of the time, the photon extents are kept internal to SlideRule and not returned to the user. But there are some APIs that do return raw photon extents for the user to process on their own. Even though this offloads processing on the server, the API calls can take longer since more data needs to be returned to the user, which can bottleneck over the network. Photon extents are returned as GeoDataFrames where each row is a photon. Each extent represents the data that the ATL06 algorithm uses to generate a single ATL06 elevation. When the step size is shorter than the length of the extent, the extents returned overlap each other which means that each photon is being returned multiple times and will be duplicated in the resulting GeoDataFrame.
+Potential errors in the average surface heights: Sampling error : average height estimates are based upon a random sampling of the surface heights, which might be skewed based on the horizontal distribution of PEs Background noise : signal PEs are intermixed with the background PEs, and so there are random outliers which may affect the surface determination, particularly in conditions with high background rates and low surface reflectivity Complex topography : the along-track linear fit will not always resolve complex surface topography Misidentified PEs : the ATL03 processing will not always correctly identify the signal PEs First-photon bias : this bias is inherent to photon-counting detectors and depends on the signal return strength Atmospheric forward scattering : photons traveling through a cloudy atmosphere or a wind-blown snow event may be repeatedly scattered through small angles but still be reflected by the surface and be within the ATLAS field of view Subsurface scattering : photons may be scattered many times within ice or snow before returning to the detector Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
 ---

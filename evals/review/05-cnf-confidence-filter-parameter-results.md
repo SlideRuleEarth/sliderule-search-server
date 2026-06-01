@@ -26,7 +26,7 @@
 
 #### r1 — score 0.315
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.1 Native ATL03 Photon Classification
 - **category:** `user_guide`
@@ -40,7 +40,7 @@ ATL03 contains a set of photon classification values, that are designed to ident
 
 #### r2 — score 0.331
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5.1 Query Parameters
 - **category:** `user_guide`
@@ -54,7 +54,7 @@ The following parameters are supported under the atl24 key for customizing the r
 
 #### r3 — score 0.227
 
-- **url:** https://docs.testsliderule.org/user_guide/basic_usage.html
+- **url:** https://docs.slideruleearth.io/user_guide/basic_usage.html
 - **title:** Basic Usage
 - **section:** Define the Request Parameters
 - **category:** `user_guide`
@@ -68,7 +68,7 @@ When making a request to the SlideRule servers, the parameters of the request (i
 
 #### r4 — score 0.237
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-04-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-04-00.html
 - **title:** Release v4.4.x
 - **section:** New Features
 - **category:** `release_notes`
@@ -80,18 +80,18 @@ When making a request to the SlideRule servers, the parameters of the request (i
 v4.4.0 - Resources are queried from servers instead of client. If a processing request does not include a list of resources to process, the server processing the request will query CMR and populate the resources parameter. In addition, any sampling requests that need a populated catalog parameter will also be queried on the server side and have that parameter populated. v4.4.0 - 389 and 383 - updates to demo plotting and added support for downloading results v4.4.0 - Raster sampling support when the output is an Arrow generated format (Geo/Parquet, CSV, Feather). v4.4.0 - Added Feather output support v4.4.0 - 43d536b - Request parameters and record information added to metadata of generated Parquet files. v4.4.0 - 763e553 - max confidence in the signal_conf variable can be selected when filtering ATL03 photons based on confidence level v4.4.0 - 392 - GEBCO raster sampling support added v4.4.0 - 9d71b6e - Meta global canopy height raster support added
 ```
 
-#### r5 — score 0.261
+#### r5 — score 0.236
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
-- **title:** ICESat-2 Module
-- **section:** 2. ATL06 - atl06x
+- **url:** https://docs.slideruleearth.io/user_guide/articles/260528_web_client_endpoint_scoped_params.html
+- **title:** 2026-05-28: Web Client v4.5.0 - Endpoint-Scoped Advanced Options
+- **section:** Request builder
 - **category:** `user_guide`
-- **matched_tokens:** ['confidence']
+- **matched_tokens:** ['cnf']
 
 **Full text:**
 
 ```
-and the along-track segment fit meters (float) land_ice_segments/fit_statistics/h_robust_sprd w_surface_window_final Width of the surface window, top to bottom meters (float) land_ice_segments/fit_statistics/w_surface_window_final bsnow_conf Confidence flag for presence of blowing snow boolean land_ice_segments/geophysical/bsnow_conf bsnow_h Blowing snow layer top height meters (float) land_ice_segments/geophysical/bsnow_h r_eff Effective reflectance, uncorrected for atmospheric effects. (float) land_ice_segments/geophysical/r_eff tide_ocean Ocean tides meters (float) land_ice_segments/geophysical/tide_ocean n_fit_photons Number of PEs used in determining h_li count land_ice_segments/fit_statistics/n_fit_photons spot ATLAS detector field of view 1-6 Independent of spacecraft orientation cycle ATLAS orbit cycle number region ATLAS granule region 1-14 rgt Reference Ground Track gt Beam âgt1lâ, âgt1râ, âgt2lâ, âgt2râ, âgt3lâ, âgt3râ Dependent on spacecraft orientation
+The request builder gates photon-processing parameters ( fit , len , res , cnf , srt , yapc , atl08_class , pass_invalid , ats , cnt , dist_in_seg ) behind an isPhotonAPI check, so switching from a P-series to an X-series endpoint no longer carries stale parameters into the outgoing request.
 ```
 
 ---

@@ -25,7 +25,7 @@
 
 #### r1 — score 0.515
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** ICESat-2 Module
 - **category:** `user_guide`
@@ -39,7 +39,7 @@ The ICESat-2 module within SlideRule supports a number of both legacy p-series a
 
 #### r2 — score 0.542
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.1 Native ATL03 Photon Classification
 - **category:** `user_guide`
@@ -53,7 +53,7 @@ ATL03 contains a set of photon classification values, that are designed to ident
 
 #### r3 — score 0.432
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5.1 Query Parameters
 - **category:** `user_guide`
@@ -67,7 +67,7 @@ The following parameters are supported under the atl24 key for customizing the r
 
 #### r4 — score 0.438
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -81,7 +81,7 @@ Some photons will be returns from the Transmit Echo Path (TEP) Some photons are 
 
 #### r5 — score 0.471
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`

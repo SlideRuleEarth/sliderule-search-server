@@ -23,7 +23,9 @@ The POC gates on three metrics:
 **Current state**: all three metrics below bar (see [diagnosis.md](diagnosis.md)
 for the breakdown). A 68-query golden set + offline harness exists. A
 human-review tool exists and a small subset of reviews is filled in.
-The corpus is locked at a `docs.testsliderule.org` snapshot.
+The corpus is built from the live `docs.slideruleearth.io` site as of
+the 2026-05-29 rebaseline (was a frozen `docs.testsliderule.org` mirror
+before then).
 
 The next concrete step is **Phase 2** — finish the human reviews,
 then add a `--metric=human` mode to the harness, then start pulling
@@ -54,14 +56,22 @@ levers. See "What's next" below.
   `evals/human_review.json`. Idempotent — re-run any time.
 
 ### Data
-- [evals/golden_set.jsonl](golden_set.jsonl) — 68 queries (35 docsearch,
-  33 nsidc) with `expected_urls` and optional `expected_sections` /
-  `expected_pages` for narrowing. URLs use the canonical
+- [evals/golden_set.jsonl](golden_set.jsonl) — 100 queries (60 docsearch,
+  40 nsidc) with `expected_urls` and optional `expected_sections` /
+  `expected_pages` for narrowing. Even type mix: docsearch 10 each across
+  identifier/conceptual/example/version_history/api_lookup/paraphrased;
+  nsidc 8 each across algorithm/variable_lookup/product_disambiguation/
+  cross_product/instrument. URLs use the canonical
   `https://docs.slideruleearth.io/...` host; harness path-matching
   ignores host so a `testsliderule.org`-hosted corpus still matches.
+  Narrowing is calibrated to where the answer actually lives in the live
+  corpus (real section headings for docsearch; page ranges for nsidc
+  PDFs, whose chunk sections are unreliable "Page N"). Author/validate
+  rows with [tools/gs_audit.py](../tools/gs_audit.py).
 - [evals/human_review.json](human_review.json) — aggregated user
-  verdicts. Currently sparse — only a few rows complete.
-- [evals/review/](review/) — 68 per-row markdown form files
+  verdicts. 67 rows carried over from the 68-row set; 33 new rows need
+  review (see below).
+- [evals/review/](review/) — 100 per-row markdown form files
   (results + review pairs). The `*-review.md` files are the hand-filled
   scoresheets. The `*-results.md` files are auto-regenerated and show
   what an agent actually sees.
@@ -74,23 +84,35 @@ levers. See "What's next" below.
 
 ## Current state
 
-### Corpus (as of last commit)
-- **docsearch**: built from `docs.testsliderule.org` (a frozen mirror
-  of the live docs). 754 chunks across 92 pages. Locked — will not
-  change unless we ask the developer to redeploy.
+### Corpus (as of the 2026-05-29 rebaseline)
+- **docsearch**: built from the live `docs.slideruleearth.io` site.
+  756 chunks across 94 pages. The builder skips `/_static/` (the
+  Redoc-rendered OpenAPI spec HTML) — without that filter those
+  auto-generated pages were ~40% of the crawl and swamped ranking; see
+  the `SKIP_PATH_PREFIXES` comment in `tools/build_docsearch_corpus.py`.
+  The live site updates weekly, so a fresh rebuild can move metrics.
 - **nsidc**: NASA + ORNL DAAC user guides and ATBDs. 1,757 chunks
   across 12 PDFs. Stable.
 
-### Baseline numbers (auto-metric)
+### Baseline numbers (auto-metric, 100-row set)
 | | recall@5 | hit@1 | MRR |
 | --- | --- | --- | --- |
-| Overall (n=68) | 0.676 | 0.309 | 0.469 |
-| docsearch (n=35) | 0.800 | 0.371 | 0.561 |
-| nsidc (n=33) | 0.545 | 0.242 | 0.371 |
+| Overall (n=100) | 0.780 | 0.390 | 0.544 |
+| docsearch (n=60) | 0.767 | 0.433 | 0.577 |
+| nsidc (n=40) | 0.800 | 0.325 | 0.495 |
 
-All three below bar. NSIDC is the weaker corpus; docsearch handles
-identifier-style queries well but loses precision on multi-section
-pages.
+recall@5 now clears its 0.70 bar; hit@1 (0.39, bar 0.50) and MRR (0.544,
+bar 0.55) are close but below. These numbers are not comparable to the
+old 68-row baseline (different, larger, recalibrated set). Weakest
+buckets and the levers they point to:
+- **version_history** (recall@5 0.50, hit@1 0.10) — semantic search can't
+  pinpoint *which release* introduced a feature; release notes are
+  repetitive. Wants category/recency signals or exact-version matching.
+- **nsidc/algorithm** (hit@1 0.00) — right ATBD, wrong chapter at #1; the
+  classic section-precision miss the cross-encoder reranker targets.
+- **nsidc/variable_lookup** (hit@1 0.25) — short user guides under-surface.
+docsearch identifier/example are strong (recall@5 1.0 / 0.80, hit@1
+0.70 / 0.60).
 
 ### Human reviews
 A human-review tool walks each query and presents the top-5 chunks
@@ -120,10 +142,11 @@ this file for "Verdict scale").
 
 ### Common commands
 ```bash
-# Re-chunk docsearch (default host = docs.slideruleearth.io live).
-# Use DOCSEARCH_HOST to point elsewhere — currently testsliderule.org
-# is the locked source.
-DOCSEARCH_HOST=docs.testsliderule.org .venv/bin/python tools/build_docsearch_corpus.py
+# Re-chunk docsearch from the live site (default host). Prefer the
+# Makefile target — it runs in the x86_64 builder so embeddings match
+# the Lambda arch. Set DOCSEARCH_HOST=docs.testsliderule.org only to
+# target the frozen mirror instead of live.
+make rebuild-corpus-docsearch
 
 # Run the offline harness (writes report.md + audit.md, also prints JSON to stdout)
 .venv/bin/python tools/eval_retrieval.py
@@ -148,14 +171,16 @@ DOCSEARCH_HOST=docs.testsliderule.org .venv/bin/python tools/build_docsearch_cor
 Reviews are filled in at `evals/review/*-review.md`. Most rows still
 need verdicts. Order doesn't matter; do them in any sequence.
 
-Rows flagged for re-review (after the testsliderule.org rebaseline):
-- **Repurposed** (full re-review needed): rows 13, 14, 15, 16, 17, 25.
-- **Drift-flagged** (top-5 changed, re-check existing verdicts):
-  rows 2, 3, 4, 5, 6, 7, 23, 27, 30, 34, 38, 41, 48, 49, 53, 55, 56,
-  57, 59. (Generated by the ad-hoc drift checker — see the rebaseline
-  section in [diagnosis.md](diagnosis.md).)
+Rows needing review (after the live-docs rebaseline + expansion to 100):
+- **New rows (33)**: rows 69-100 (the +25 docsearch / +7 nsidc additions)
+  plus row 40 (query re-pointed to the ATL03 ATBD output table) have blank
+  `-review.md` forms — fill these in.
+- **Carried over (67)**: verdicts preserved from the 68-row set. Because
+  the corpus was re-chunked from live docs, top-5 for many rows shifted;
+  re-check the carried-over verdicts as you go (verdicts are chunk-keyed,
+  so they travel with the chunk, but new chunks won't have one).
 
-Once all 68 rows have verdicts, run `tools/ingest_review.py` and
+Once all 100 rows have verdicts, run `tools/ingest_review.py` and
 proceed to Step 1.
 
 ### Step 1: add `--metric=human` mode to the harness
@@ -230,21 +255,33 @@ If hit@1 still well below 0.55, pull the next lever. Candidates from
 
 ## Known gotchas
 
-### testsliderule.org doesn't mirror everything
-The locked snapshot is missing:
-- All 7 `assets/*.html` example notebooks
-- All 6 `user_guide/how_tos/*.html` pages
-- 3 release-notes pages were renamed (paths don't match 4/20 docs)
+### The old `assets/*` and `user_guide/how_tos/*` pages are gone, not restored
+The HANDOFF used to assume the live site still served the example
+notebooks and how-to pages the testsliderule mirror lacked. It does not —
+the live site 403s every `assets/*.html` and `user_guide/how_tos/*.html`
+URL; that content was restructured into `user_guide/articles/*` (dated
+articles) and the canonical endpoint docs now live in
+`user_guide/icesat2.html` / `gedi.html`. The 2026-05-29 golden-set pass
+recalibrated every affected row to its true live-docs location (verified
+with `tools/gs_audit.py`) rather than pointing at pages that no longer
+exist, so there is no longer a "degraded rows" backlog.
 
-Source notebooks for the missing examples ARE in
-[SlideRuleEarth/sliderule-python](https://github.com/SlideRuleEarth/sliderule-python/tree/main/examples)
-but the docs build pipeline isn't currently rendering them onto
-testsliderule.org. If we want them back in the corpus, the
-developer needs to fix the build — we don't control that.
+### nsidc PDF chunk sections are unreliable — narrow by page
+Some nsidc PDFs extract real heading text (ATL03 ATBD, the user guides);
+others are pure "Page N" (ATL06/ATL08 ATBDs, GEDI). So `expected_sections`
+silently fails to match on the Page-N docs. For nsidc rows, narrow with
+`expected_pages` (every chunk has `source_page`); reserve
+`expected_sections` for docsearch, where headings are clean.
 
-For the eval, we worked around it by repurposing 6 rows and
-trimming `assets/*` URLs from 10 others. See the
-"Current corpus baseline" section in [diagnosis.md](diagnosis.md).
+### Keep `/_static/` filtered
+The live site renders the OpenAPI specs as HTML under
+`/_static/openapi/*.html` (Redoc). Those are auto-generated,
+keyword-dense API dumps — `sliderule.html` alone is ~320 chunks — and
+without filtering they were ~40% of the crawl and swamped IDF-lexical
+ranking (identifier recall@5 cratered 0.83 → 0.33 on a straight live
+rebuild). `tools/build_docsearch_corpus.py` skips `/_static/` in
+`SKIP_PATH_PREFIXES`; don't remove it. The testsliderule mirror never
+served these pages, which is why the filter wasn't needed before.
 
 ### Drift after rebaseline
 When the corpus changes, per-result verdicts (tied to specific chunks

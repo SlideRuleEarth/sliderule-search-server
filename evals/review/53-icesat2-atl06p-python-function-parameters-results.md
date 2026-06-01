@@ -21,7 +21,7 @@
 
 #### r1 — score 0.616
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl06p
 - **category:** `api_reference`
@@ -35,7 +35,7 @@ Parameters : parms ( dict ) â parameters used to configure ATL06-SR algorit
 
 #### r2 — score 0.611
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-00-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-00-00.html
 - **title:** Release v4.0.x
 - **section:** Breaking Changes
 - **category:** `release_notes`
@@ -49,7 +49,7 @@ This version contains a number of backward-incompatible changes, specifically to
 
 #### r3 — score 0.545
 
-- **url:** https://docs.testsliderule.org/user_guide/basic_usage.html
+- **url:** https://docs.slideruleearth.io/user_guide/basic_usage.html
 - **title:** Basic Usage
 - **section:** Issue the Processing Request
 - **category:** `user_guide`
@@ -63,7 +63,7 @@ There are two general purpose routines provided in the SlideRule Python client f
 
 #### r4 — score 0.572
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** init
 - **category:** `api_reference`
@@ -77,7 +77,7 @@ sliderule.icesat2. init ( url = 'slideruleearth.io' , verbose = False , max_reso
 
 #### r5 — score 0.573
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl13sp
 - **category:** `api_reference`

@@ -25,7 +25,7 @@
 
 #### r1 — score 0.819
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2 Photon-selection Parameters
 - **category:** `user_guide`
@@ -39,7 +39,7 @@ Once the ATL03 input data are are selected, a set of photon-selection photon par
 
 #### r2 — score 0.760
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.3 ATL08 Classification
 - **category:** `user_guide`
@@ -53,7 +53,7 @@ If ATL08 classification parameters are specified, the ATL08 (vegetation height) 
 
 #### r3 — score 0.660
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-01-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-01-00.html
 - **title:** Release v1.1.x
 - **section:** New Features
 - **category:** `release_notes`
@@ -67,7 +67,7 @@ Time is also used as the index. (APIs affected: atl06 , atl06p , atl03s , atl03s
 
 #### r4 — score 0.764
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.4 ATL24 Classification
 - **category:** `user_guide`
@@ -81,7 +81,7 @@ If ATL24 classification parameters are specified, the ATL24 (bathymetry) files c
 
 #### r5 — score 0.690
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-07-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-07-00.html
 - **title:** Release v4.7.x
 - **section:** Development Updates
 - **category:** `release_notes`

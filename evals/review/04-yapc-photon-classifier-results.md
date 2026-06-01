@@ -13,7 +13,7 @@
 - **expected_sections:**
   - `yapc`
 - **expected_pages:** (none)
-- **notes:** yapc = Yet Another Photon Classifier; user_guide/icesat2.html has the section (assets/grandmesa tutorial dropped after testsliderule.org rebaseline)
+- **notes:** yapc = Yet Another Photon Classifier; user_guide/icesat2.html YAPC-classification section
 
 ---
 
@@ -21,7 +21,7 @@
 
 #### r1 — score 0.792
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.2 YAPC Classification
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ The experimental YAPC (Yet Another Photon Classifier) photon-classification sche
 
 #### r2 — score 0.656
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2 Photon-selection Parameters
 - **category:** `user_guide`
@@ -49,7 +49,7 @@ Once the ATL03 input data are are selected, a set of photon-selection photon par
 
 #### r3 — score 0.457
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6.1 PhoREAL Parameters
 - **category:** `user_guide`
@@ -63,7 +63,7 @@ The PhoREAL parameters are supplied in user requests under the phoreal key and i
 
 #### r4 — score 0.461
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -75,18 +75,18 @@ The PhoREAL parameters are supplied in user requests under the phoreal key and i
 , 2:canopy, 3:top of canopy, 4:unclassified Optional: must enable phoreal or specify atl08_class yapc_score YAPC photon weight 0-255, higher is denser Optional: must enable yapc atl24_class ATL24 photon classification 0:unclassified, 40:bathymetry, 41:sea surface Optional: must enable atl24 atl24_confidence ATL24 photon classification bathymetry confidence score 0 to 1.0, higher is more confident (float) Optional: must enable atl24 spot ATLAS detector field of view 1-6 Independent of spacecraft orientation cycle ATLAS orbit cycle number region ATLAS granule region 1-14 rgt Reference Ground Track gt Beam 10: gt1l, 20: gt1r, 30: gt2l, 40: gt2r, 50: gt3l, 60: gt3r Dependent on spacecraft orientation
 ```
 
-#### r5 — score 0.418
+#### r5 — score 0.436
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
-- **title:** ICESat-2 Module
-- **section:** A.1 Segmented Photon Data - atl03sp
+- **url:** https://docs.slideruleearth.io/user_guide/articles/260528_web_client_endpoint_scoped_params.html
+- **title:** 2026-05-28: Web Client v4.5.0 - Endpoint-Scoped Advanced Options
+- **section:** Request builder
 - **category:** `user_guide`
 - **matched_tokens:** ['photon', 'yapc']
 
 **Full text:**
 
 ```
-The GeoDataFrame for each photon extent has the following columns: track : reference pair track number (1, 2, 3) sc_orient : spacecraft orientation (0: backwards, 1: forwards) rgt : reference ground track cycle : cycle segment_id : segment ID of first ATL03 segment in result segment_dist : along track distance from the equator to the center of the extent (in meters) count : the number of photons in the segment time : nanoseconds from Unix epoch (January 1, 1970) without leap seconds latitude : latitude (-90.0 to 90.0) longitude : longitude (-180.0 to 180.0) x_atc : along track distance of the photon in meters (with respect to the center of the segment) y_atc : across track distance of the photon in meters across : across track distance of the photon in meters height : height of the photon in meters solar_elevation : solar elevation from ATL03 at time of measurement, in degrees background_rate : background photon counts per second atl08_class : the photonâs ATL08 classification (0: noise, 1: ground, 2: canopy, 3: top of canopy, 4: unclassified) atl03_cnf : the photonâs ATL03 confidence level (-2: TEP, -1: not considered, 0: background, 1: within 10m, 2: low, 3: medium, 4: high) quality_ph : the photonâs quality classification (0: nominal, 1: possible after pulse, 2: possible impulse responpse effect, 3: possible tep) yapc_score : the photonâs YAPC classification (0 - 255, the larger the number the higher the confidence in surface reflection) Note: when PhoREAL is enabl
+The request builder gates photon-processing parameters ( fit , len , res , cnf , srt , yapc , atl08_class , pass_invalid , ats , cnt , dist_in_seg ) behind an isPhotonAPI check, so switching from a P-series to an X-series endpoint no longer carries stale parameters into the outgoing request.
 ```
 
 ---

@@ -7,19 +7,19 @@ corpora + `server.ranking.rank()` (no Lambda, no HTTP, no cache).
 
 | Metric | Value | Bar | Pass |
 | --- | --- | --- | --- |
-| recall@5 | 0.676 | ≥ 0.70 | ✗ |
-| hit@1 | 0.309 | ≥ 0.50 | ✗ |
-| MRR | 0.469 | ≥ 0.55 | ✗ |
+| recall@5 | 0.780 | ≥ 0.70 | ✓ |
+| hit@1 | 0.390 | ≥ 0.50 | ✗ |
+| MRR | 0.544 | ≥ 0.55 | ✗ |
 
-**Below bar on: recall_at_5, hit_at_1, mrr.**
+**Below bar on: hit_at_1, mrr.**
 
 ## Verdict — human-metric
 
 | Metric | Value | Bar | Pass |
 | --- | --- | --- | --- |
-| recall@5 | 0.397 | ≥ 0.70 | ✗ |
-| hit@1 | 0.235 | ≥ 0.50 | ✗ |
-| MRR | 0.286 | ≥ 0.55 | ✗ |
+| recall@5 | 0.270 | ≥ 0.70 | ✗ |
+| hit@1 | 0.150 | ≥ 0.50 | ✗ |
+| MRR | 0.187 | ≥ 0.55 | ✗ |
 
 **Below bar on: recall_at_5, hit_at_1, mrr.**
 
@@ -30,68 +30,68 @@ Negative delta = human-metric is lower (auto-labels too generous).
 
 | Metric | auto | human | delta |
 | --- | --- | --- | --- |
-| recall@5 | 0.676 | 0.397 | -0.279 |
-| hit@1    | 0.309 | 0.235 | -0.074 |
-| MRR      | 0.469 | 0.286 | -0.183 |
+| recall@5 | 0.780 | 0.270 | -0.510 |
+| hit@1    | 0.390 | 0.150 | -0.240 |
+| MRR      | 0.544 | 0.187 | -0.357 |
 
 ## Per corpus — auto-metric
 
 | corpus | n | recall@5 | hit@1 | MRR |
 | --- | --- | --- | --- | --- |
-| docsearch | 35 | 0.800 | 0.371 | 0.561 |
-| nsidc | 33 | 0.545 | 0.242 | 0.371 |
+| docsearch | 60 | 0.767 | 0.433 | 0.577 |
+| nsidc | 40 | 0.800 | 0.325 | 0.495 |
 
 ## Per query type — auto-metric
 
 | corpus | type | n | recall@5 | hit@1 | MRR |
 | --- | --- | --- | --- | --- | --- |
-| docsearch | api_lookup | 6 | 1.000 | 0.667 | 0.833 |
-| docsearch | conceptual | 6 | 1.000 | 0.167 | 0.506 |
-| docsearch | example | 5 | 0.600 | 0.200 | 0.417 |
-| docsearch | identifier | 6 | 0.833 | 0.667 | 0.732 |
-| docsearch | paraphrased | 6 | 0.833 | 0.333 | 0.547 |
-| docsearch | version_history | 6 | 0.500 | 0.167 | 0.310 |
-| nsidc | algorithm | 8 | 0.500 | 0.000 | 0.211 |
-| nsidc | cross_product | 6 | 0.333 | 0.167 | 0.215 |
-| nsidc | instrument | 6 | 0.833 | 0.333 | 0.537 |
-| nsidc | product_disambiguation | 6 | 0.833 | 0.667 | 0.759 |
-| nsidc | variable_lookup | 7 | 0.286 | 0.143 | 0.211 |
+| docsearch | api_lookup | 10 | 0.700 | 0.500 | 0.620 |
+| docsearch | conceptual | 10 | 0.800 | 0.300 | 0.529 |
+| docsearch | example | 10 | 0.800 | 0.600 | 0.678 |
+| docsearch | identifier | 10 | 1.000 | 0.700 | 0.795 |
+| docsearch | paraphrased | 10 | 0.800 | 0.400 | 0.553 |
+| docsearch | version_history | 10 | 0.500 | 0.100 | 0.286 |
+| nsidc | algorithm | 8 | 0.500 | 0.000 | 0.219 |
+| nsidc | cross_product | 8 | 0.875 | 0.625 | 0.682 |
+| nsidc | instrument | 8 | 1.000 | 0.250 | 0.529 |
+| nsidc | product_disambiguation | 8 | 0.875 | 0.500 | 0.642 |
+| nsidc | variable_lookup | 8 | 0.750 | 0.250 | 0.405 |
 
 ## Per corpus — human-metric
 
 | corpus | n | recall@5 | hit@1 | MRR |
 | --- | --- | --- | --- | --- |
-| docsearch | 35 | 0.400 | 0.229 | 0.290 |
-| nsidc | 33 | 0.394 | 0.242 | 0.282 |
+| docsearch | 60 | 0.233 | 0.133 | 0.169 |
+| nsidc | 40 | 0.325 | 0.175 | 0.214 |
 
 ## Per query type — human-metric
 
 | corpus | type | n | recall@5 | hit@1 | MRR |
 | --- | --- | --- | --- | --- | --- |
-| docsearch | api_lookup | 6 | 0.500 | 0.333 | 0.367 |
-| docsearch | conceptual | 6 | 0.667 | 0.333 | 0.500 |
-| docsearch | example | 5 | 0.200 | 0.200 | 0.200 |
-| docsearch | identifier | 6 | 0.667 | 0.333 | 0.450 |
-| docsearch | paraphrased | 6 | 0.167 | 0.167 | 0.167 |
-| docsearch | version_history | 6 | 0.167 | 0.000 | 0.042 |
+| docsearch | api_lookup | 10 | 0.300 | 0.200 | 0.220 |
+| docsearch | conceptual | 10 | 0.400 | 0.200 | 0.300 |
+| docsearch | example | 10 | 0.100 | 0.100 | 0.100 |
+| docsearch | identifier | 10 | 0.400 | 0.200 | 0.270 |
+| docsearch | paraphrased | 10 | 0.100 | 0.100 | 0.100 |
+| docsearch | version_history | 10 | 0.100 | 0.000 | 0.025 |
 | nsidc | algorithm | 8 | 0.500 | 0.125 | 0.223 |
-| nsidc | cross_product | 6 | 0.500 | 0.333 | 0.389 |
-| nsidc | instrument | 6 | 0.000 | 0.000 | 0.000 |
-| nsidc | product_disambiguation | 6 | 0.333 | 0.333 | 0.333 |
-| nsidc | variable_lookup | 7 | 0.571 | 0.429 | 0.457 |
+| nsidc | cross_product | 8 | 0.375 | 0.250 | 0.292 |
+| nsidc | instrument | 8 | 0.000 | 0.000 | 0.000 |
+| nsidc | product_disambiguation | 8 | 0.250 | 0.250 | 0.250 |
+| nsidc | variable_lookup | 8 | 0.500 | 0.250 | 0.306 |
 
 ## Auto vs human disagreements
 
 Out of 68 rows with completed human review:
-- **28 rows where auto says hit, human says miss** (auto-label likely too generous)
-- **9 rows where auto says miss, human says hit** (auto-label likely too narrow)
+- **30 rows where auto says hit, human says miss** (auto-label likely too generous)
+- **3 rows where auto says miss, human says hit** (auto-label likely too narrow)
 
 The disagreements are the work for the auto-vs-human reconciliation step (Phase 2 step 3).
 
 ### Auto says hit, human says miss
 
 - **row 2 [docsearch/identifier]** `atl06x surface fit elevation`
-  - auto first_rank: 3; human verdicts r1..r5: wrong partial partial wrong wrong
+  - auto first_rank: 5; human verdicts r1..r5: wrong partial partial wrong wrong
 - **row 3 [docsearch/identifier]** `atl24x bathymetry subsetting`
   - auto first_rank: 1; human verdicts r1..r5: partial partial partial wrong partial
 - **row 8 [docsearch/conceptual]** `how to run atl06 with raster DEM sampling`
@@ -99,13 +99,13 @@ The disagreements are the work for the auto-vs-human reconciliation step (Phase 
 - **row 11 [docsearch/conceptual]** `earthdata authentication credentials sliderule`
   - auto first_rank: 5; human verdicts r1..r5: partial wrong wrong wrong partial
 - **row 15 [docsearch/example]** `how to sample ArcticDEM raster mosaic`
-  - auto first_rank: 2; human verdicts r1..r5: wrong partial partial wrong wrong
+  - auto first_rank: 1; human verdicts r1..r5: wrong partial partial wrong wrong
 - **row 16 [docsearch/example]** `how to subset atl24 bathymetry data`
   - auto first_rank: 3; human verdicts r1..r5: wrong partial partial partial wrong
 - **row 18 [docsearch/version_history]** `when was atl24x added to sliderule release`
   - auto first_rank: 1; human verdicts r1..r5: wrong wrong wrong partial partial
 - **row 21 [docsearch/version_history]** `recent changes to atl06x release notes`
-  - auto first_rank: 4; human verdicts r1..r5: wrong wrong wrong wrong wrong
+  - auto first_rank: 3; human verdicts r1..r5: wrong wrong wrong wrong wrong
 - **row 23 [docsearch/api_lookup]** `raster sampling API function parameters`
   - auto first_rank: 1; human verdicts r1..r5: partial partial wrong wrong partial
 - **row 24 [docsearch/paraphrased]** `getting canopy height from atl03 photons using atl08`
@@ -116,6 +116,8 @@ The disagreements are the work for the auto-vs-human reconciliation step (Phase 
   - auto first_rank: 4; human verdicts r1..r5: partial wrong wrong wrong wrong
 - **row 33 [nsidc/algorithm]** `ATL08 canopy height calculation method`
   - auto first_rank: 3; human verdicts r1..r5: wrong wrong partial partial wrong
+- **row 34 [nsidc/variable_lookup]** `ATL03 HDF5 file structure data groups photon fields`
+  - auto first_rank: 4; human verdicts r1..r5: partial partial partial partial partial
 - **row 38 [nsidc/variable_lookup]** `ATL24 file contents and spatial coverage`
   - auto first_rank: 3; human verdicts r1..r5: wrong wrong partial wrong wrong
 - **row 41 [nsidc/product_disambiguation]** `ATL06 data groups structure for land ice`
@@ -137,11 +139,13 @@ The disagreements are the work for the auto-vs-human reconciliation step (Phase 
 - **row 51 [docsearch/api_lookup]** `sliderule module initialization session setup`
   - auto first_rank: 2; human verdicts r1..r5: wrong wrong wrong wrong wrong
 - **row 52 [docsearch/api_lookup]** `h5 hdf5 read function parameters h5p h5x`
-  - auto first_rank: 2; human verdicts r1..r5: partial partial partial partial partial
+  - auto first_rank: 1; human verdicts r1..r5: partial partial partial partial partial
 - **row 56 [docsearch/paraphrased]** `combine multiple ATL products in one processing pipeline`
   - auto first_rank: 5; human verdicts r1..r5: partial partial wrong wrong partial
 - **row 57 [docsearch/paraphrased]** `filter only vegetation photons from ICESat-2 atl03`
   - auto first_rank: 2; human verdicts r1..r5: partial partial wrong partial wrong
+- **row 64 [nsidc/instrument]** `ICESat-2 orbit altitude inclination mission specifications`
+  - auto first_rank: 3; human verdicts r1..r5: partial partial wrong wrong wrong
 - **row 65 [nsidc/instrument]** `GEDI laser channels power modes beam configuration`
   - auto first_rank: 1; human verdicts r1..r5: wrong wrong wrong wrong wrong
 - **row 66 [nsidc/instrument]** `ATL03 pointing biases beam geolocation error model`
@@ -149,29 +153,17 @@ The disagreements are the work for the auto-vs-human reconciliation step (Phase 
 
 ### Auto says miss, human says hit
 
-- **row 6 [docsearch/identifier]** `srt surface reference type parameter`
-  - auto first_rank: 17; human verdicts r1..r5: partial wrong wrong wrong correct; human first `correct` rank: 5
 - **row 30 [nsidc/algorithm]** `ATL24 PointNet++ bathymetric photon classification`
   - auto first_rank: 6; human verdicts r1..r5: partial partial partial partial correct; human first `correct` rank: 5
 - **row 32 [nsidc/algorithm]** `ATL03 geophysical corrections ocean tides solid earth`
   - auto first_rank: 7; human verdicts r1..r5: wrong wrong correct wrong wrong; human first `correct` rank: 3
 - **row 35 [nsidc/variable_lookup]** `ATL06 quality flags values interpretation`
   - auto first_rank: 35; human verdicts r1..r5: wrong partial wrong wrong correct; human first `correct` rank: 5
-- **row 36 [nsidc/variable_lookup]** `ATL08 terrain classification output variables HDF5`
-  - auto first_rank: None; human verdicts r1..r5: correct partial partial wrong wrong; human first `correct` rank: 1
-- **row 40 [nsidc/variable_lookup]** `ATL03 h_ph photon height variable description`
-  - auto first_rank: 45; human verdicts r1..r5: correct wrong partial partial wrong; human first `correct` rank: 1
-- **row 47 [nsidc/cross_product]** `photon classification confidence values ATL03`
-  - auto first_rank: 31; human verdicts r1..r5: correct wrong partial wrong wrong; human first `correct` rank: 1
-- **row 61 [nsidc/cross_product]** `ICESat-2 ground track beam naming GT1L GT1R GT2L convention`
-  - auto first_rank: None; human verdicts r1..r5: partial partial correct partial partial; human first `correct` rank: 3
-- **row 62 [nsidc/cross_product]** `reference ground track RGT cycle number ICESat-2 granule`
-  - auto first_rank: None; human verdicts r1..r5: correct partial correct partial correct; human first `correct` rank: 1
 
 
 ## Queries below recall@5
 
-22 / 68 queries where no expected URL appeared in top 5.
+22 / 100 queries where no expected URL appeared in top 5.
 Each is a candidate for a specific lever — not a mislabel (the URL is
 in the corpus; if it were truly missing, it wouldn't appear in top 50
 either and would show in the Misses section at the end).
@@ -179,45 +171,87 @@ either and would show in the Misses section at the end).
 - **[docsearch/example]** `how to query atl13 lake by name` (rank 6)
   - expected: https://docs.slideruleearth.io/user_guide/icesat2.html
   - top 3 returned:
-    - https://docs.testsliderule.org/developer_guide/articles/arbitrary_code_execution.html
-    - https://docs.testsliderule.org/user_guide/icesat2.html
-    - https://docs.testsliderule.org/getting_started/Examples.html
+    - https://docs.slideruleearth.io/user_guide/articles/250530_arbitrary_code_execution.html
+    - https://docs.slideruleearth.io/user_guide/icesat2.html
+    - https://docs.slideruleearth.io/getting_started/Examples.html
+- **[docsearch/api_lookup]** `atl08p phoreal vegetation api parameters` (rank 6)
+  - expected: https://docs.slideruleearth.io/api_reference/icesat2.html
+  - top 3 returned:
+    - https://docs.slideruleearth.io/user_guide/icesat2.html
+    - https://docs.slideruleearth.io/user_guide/icesat2.html
+    - https://docs.slideruleearth.io/user_guide/icesat2.html
 - **[docsearch/version_history]** `sliderule api deprecation breaking removed old function` (rank 7)
   - expected: https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-00-00.html
   - top 3 returned:
-    - https://docs.testsliderule.org/user_guide/versioning.html
-    - https://docs.testsliderule.org/api_reference/gedi.html
-    - https://docs.testsliderule.org/developer_guide/release_notes/release-v01-04-00.html
-- **[docsearch/version_history]** `yapc added to sliderule version release notes` (rank 9)
+    - https://docs.slideruleearth.io/user_guide/versioning.html
+    - https://docs.slideruleearth.io/api_reference/gedi.html
+    - https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-04-00.html
+- **[docsearch/conceptual]** `why use SlideRule for ICESat-2 processing` (rank 7)
+  - expected: https://docs.slideruleearth.io/developer_guide/why_sliderule.html
+  - top 3 returned:
+    - https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-01-00.html
+    - https://docs.slideruleearth.io/api_reference/icesat2.html
+    - https://docs.slideruleearth.io/user_guide/basic_usage.html
+- **[docsearch/version_history]** `yapc added to sliderule version release notes` (rank 8)
   - expected: https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-03-00.html
   - top 3 returned:
-    - https://docs.testsliderule.org/developer_guide/articles/private_clusters.html
-    - https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
-    - https://docs.testsliderule.org/developer_guide/release_notes/release-v03-05-00.html
+    - https://docs.slideruleearth.io/user_guide/articles/260120_private_clusters.html
+    - https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html
+    - https://docs.slideruleearth.io/developer_guide/release_notes/release-v03-05-00.html
+- **[docsearch/conceptual]** `what is SlideRule overview on-demand processing` (rank 9)
+  - expected: https://docs.slideruleearth.io/user_guide/overview.html
+  - top 3 returned:
+    - https://docs.slideruleearth.io/user_guide/articles/210423_h5coro.html
+    - https://docs.slideruleearth.io/developer_guide/under_the_hood.html
+    - https://docs.slideruleearth.io/developer_guide/how_tos/amazon_linux_arm_setup.html
+- **[docsearch/api_lookup]** `atl03sp segmented photon api parameters` (rank 10)
+  - expected: https://docs.slideruleearth.io/api_reference/icesat2.html
+  - top 3 returned:
+    - https://docs.slideruleearth.io/user_guide/icesat2.html
+    - https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-02-00.html
+    - https://docs.slideruleearth.io/user_guide/icesat2.html
+- **[docsearch/api_lookup]** `sliderule toregion polygon helper api` (rank 10)
+  - expected: https://docs.slideruleearth.io/api_reference/sliderule.html
+  - top 3 returned:
+    - https://docs.slideruleearth.io/api_reference/sliderule.html
+    - https://docs.slideruleearth.io/user_guide/basic_usage.html
+    - https://docs.slideruleearth.io/getting_started/Getting-Started.html
+- **[docsearch/version_history]** `GeoParquet arrow output format added version` (rank 11)
+  - expected: https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-00-00.html
+  - top 3 returned:
+    - https://docs.slideruleearth.io/user_guide/arrow_output.html
+    - https://docs.slideruleearth.io/user_guide/articles/230224_geoparquet.html
+    - https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-04-00.html
 - **[docsearch/example]** `how to process atl06 elevations` (rank 12)
   - expected: https://docs.slideruleearth.io/user_guide/icesat2.html
   - top 3 returned:
-    - https://docs.testsliderule.org/api_reference/icesat2.html
-    - https://docs.testsliderule.org/api_reference/icesat2.html
-    - https://docs.testsliderule.org/api_reference/icesat2.html
+    - https://docs.slideruleearth.io/api_reference/icesat2.html
+    - https://docs.slideruleearth.io/api_reference/icesat2.html
+    - https://docs.slideruleearth.io/api_reference/icesat2.html
 - **[docsearch/paraphrased]** `generate a DEM from ICESat-2 data over my area of interest` (rank 12)
   - expected: https://docs.slideruleearth.io/user_guide/icesat2.html
   - top 3 returned:
-    - https://docs.testsliderule.org/developer_guide/why_sliderule.html
-    - https://docs.testsliderule.org/getting_started/Examples.html
-    - https://docs.testsliderule.org/developer_guide/articles/h5coro.html
-- **[docsearch/identifier]** `srt surface reference type parameter` (rank 17)
-  - expected: https://docs.slideruleearth.io/api_reference/icesat2.html
-  - top 3 returned:
-    - https://docs.testsliderule.org/user_guide/icesat2.html
-    - https://docs.testsliderule.org/user_guide/icesat2.html
-    - https://docs.testsliderule.org/user_guide/icesat2.html
-- **[docsearch/version_history]** `phoreal added sliderule release notes version` (rank 48)
+    - https://docs.slideruleearth.io/developer_guide/why_sliderule.html
+    - https://docs.slideruleearth.io/getting_started/Examples.html
+    - https://docs.slideruleearth.io/user_guide/articles/210423_h5coro.html
+- **[docsearch/version_history]** `GEDI support added to sliderule release` (rank 15)
   - expected: https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-01-00.html
   - top 3 returned:
-    - https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
-    - https://docs.testsliderule.org/developer_guide/articles/v5_server_release.html
-    - https://docs.testsliderule.org/developer_guide/articles/private_clusters.html
+    - https://docs.slideruleearth.io/api_reference/gedi.html
+    - https://docs.slideruleearth.io/api_reference/gedi.html
+    - https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-13-00.html
+- **[docsearch/paraphrased]** `find seafloor depth from ICESat-2 photons` (rank 23)
+  - expected: https://docs.slideruleearth.io/user_guide/icesat2.html
+  - top 3 returned:
+    - https://docs.slideruleearth.io/user_guide/icesat2.html
+    - https://docs.slideruleearth.io/user_guide/icesat2.html
+    - https://docs.slideruleearth.io/background/ICESat-2.html
+- **[docsearch/version_history]** `phoreal added sliderule release notes version` (rank 50)
+  - expected: https://docs.slideruleearth.io/developer_guide/release_notes/release-v02-01-00.html
+  - top 3 returned:
+    - https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html
+    - https://docs.slideruleearth.io/user_guide/articles/251208_v5_server_release.html
+    - https://docs.slideruleearth.io/user_guide/articles/260120_private_clusters.html
 - **[nsidc/algorithm]** `ATL24 PointNet++ bathymetric photon classification` (rank 6)
   - expected: https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf
   - top 3 returned:
@@ -236,6 +270,12 @@ either and would show in the Misses section at the end).
     - https://nsidc.org/sites/default/files/documents/user-guide/atl06-v006-userguide.pdf
     - https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
     - https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
+- **[nsidc/algorithm]** `how does ATL03 signal finding algorithm work` (rank 9)
+  - expected: https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
+  - top 3 returned:
+    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
+    - https://nsidc.org/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf
+    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf
 - **[nsidc/variable_lookup]** `GEDI L4A footprint geolocation variables AGBD` (rank 11)
   - expected: https://daac.ornl.gov/GEDI/guides/GEDI_L4A_AGB_Density_V2_1.html
   - top 3 returned:
@@ -254,60 +294,12 @@ either and would show in the Misses section at the end).
     - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf
     - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf
     - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf
-- **[nsidc/algorithm]** `how does ATL03 signal finding algorithm work` (rank 23)
-  - expected: https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-  - top 3 returned:
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-    - https://nsidc.org/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf
-- **[nsidc/cross_product]** `photon classification confidence values ATL03` (rank 31)
-  - expected: https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-  - top 3 returned:
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf
 - **[nsidc/variable_lookup]** `ATL06 quality flags values interpretation` (rank 35)
   - expected: https://nsidc.org/sites/default/files/documents/user-guide/atl06-v006-userguide.pdf
   - top 3 returned:
     - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf
     - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
     - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf
-- **[nsidc/instrument]** `ICESat-2 orbit altitude inclination mission specifications` (rank 40)
-  - expected: https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-  - top 3 returned:
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl13_atbd_v007.pdf
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-- **[nsidc/variable_lookup]** `ATL03 h_ph photon height variable description` (rank 45)
-  - expected: https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-  - top 3 returned:
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf
-    - https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-- **[nsidc/variable_lookup]** `ATL03 HDF5 file structure data groups photon fields` (not in top 50)
-  - expected: https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-  - top 3 returned:
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-- **[nsidc/variable_lookup]** `ATL08 terrain classification output variables HDF5` (not in top 50)
-  - expected: https://nsidc.org/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf
-  - top 3 returned:
-    - https://nsidc.org/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf
-    - https://nsidc.org/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf
-- **[nsidc/cross_product]** `ICESat-2 ground track beam naming GT1L GT1R GT2L convention` (not in top 50)
-  - expected: https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-  - top 3 returned:
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf
-- **[nsidc/cross_product]** `reference ground track RGT cycle number ICESat-2 granule` (not in top 50)
-  - expected: https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-  - top 3 returned:
-    - https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-    - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf
-    - https://nsidc.org/sites/default/files/documents/user-guide/atl13-v007-userguide.pdf
 
 ## Per-query results
 
@@ -318,11 +310,11 @@ either and would show in the Misses section at the end).
 | type | rank | query |
 | --- | --- | --- |
 | identifier | 1 | atl03x X-Series API photon processing |
-| identifier | 3 | atl06x surface fit elevation |
+| identifier | 5 | atl06x surface fit elevation |
 | identifier | 1 | atl24x bathymetry subsetting |
 | identifier | 1 | yapc photon classifier |
 | identifier | 1 | cnf confidence filter parameter |
-| identifier | 17 | srt surface reference type parameter |
+| identifier | 4 | srt surface reference type parameter |
 | conceptual | 2 | how to filter ICESat-2 photons by confidence |
 | conceptual | 2 | how to run atl06 with raster DEM sampling |
 | conceptual | 1 | how to use SlideRule Python client install |
@@ -331,33 +323,58 @@ either and would show in the Misses section at the end).
 | conceptual | 2 | output SlideRule results as GeoParquet format |
 | example | 12 | how to process atl06 elevations |
 | example | 1 | how to use yapc photon classifier in atl03 |
-| example | 2 | how to sample ArcticDEM raster mosaic |
+| example | 1 | how to sample ArcticDEM raster mosaic |
 | example | 3 | how to subset atl24 bathymetry data |
 | example | 6 | how to query atl13 lake by name |
 | version_history | 1 | when was atl24x added to sliderule release |
-| version_history | 9 | yapc added to sliderule version release notes |
+| version_history | 8 | yapc added to sliderule version release notes |
 | version_history | 3 | sliderule version 5 breaking changes new functionality |
-| version_history | 4 | recent changes to atl06x release notes |
+| version_history | 3 | recent changes to atl06x release notes |
 | api_lookup | 1 | GEDI L4A python API parameters |
 | api_lookup | 1 | raster sampling API function parameters |
 | paraphrased | 1 | getting canopy height from atl03 photons using atl08 |
 | paraphrased | 1 | add ancillary fields to sliderule atl06 output |
 | api_lookup | 2 | sliderule module initialization session setup |
-| api_lookup | 2 | h5 hdf5 read function parameters h5p h5x |
+| api_lookup | 1 | h5 hdf5 read function parameters h5p h5x |
 | api_lookup | 1 | icesat2 atl06p python function parameters |
 | api_lookup | 1 | earthdata CMR search function signature |
 | paraphrased | 12 | generate a DEM from ICESat-2 data over my area of interest |
 | paraphrased | 5 | combine multiple ATL products in one processing pipeline |
 | paraphrased | 2 | filter only vegetation photons from ICESat-2 atl03 |
 | paraphrased | 2 | save sliderule output to a parquet file for later analysis |
-| version_history | 48 | phoreal added sliderule release notes version |
+| version_history | 50 | phoreal added sliderule release notes version |
 | version_history | 7 | sliderule api deprecation breaking removed old function |
+| identifier | 1 | atl13x inland water surface height |
+| identifier | 1 | atl08x vegetation canopy height endpoint |
+| identifier | 1 | gedi04ap aboveground biomass python endpoint |
+| identifier | 2 | phoreal algorithm parameters atl08 |
+| conceptual | 7 | why use SlideRule for ICESat-2 processing |
+| conceptual | 1 | how does SlideRule read cloud HDF5 with h5coro |
+| conceptual | 1 | how does SlideRule version its server and client |
+| conceptual | 9 | what is SlideRule overview on-demand processing |
+| example | 1 | sample GEDI L4A biomass over a region |
+| example | 1 | get lake water levels with atl13x |
+| example | 5 | sample a raster DEM alongside ICESat-2 elevations |
+| example | 1 | ATL24 bathymetry golden run end to end |
+| example | 1 | export results to GeoParquet for GIS |
+| version_history | 4 | atl13x added to sliderule release notes |
+| version_history | 15 | GEDI support added to sliderule release |
+| version_history | 11 | GeoParquet arrow output format added version |
+| version_history | 2 | atl08x x-series endpoint added release notes |
+| api_lookup | 6 | atl08p phoreal vegetation api parameters |
+| api_lookup | 10 | atl03sp segmented photon api parameters |
+| api_lookup | 3 | gedi gedi02ap canopy api parameters |
+| api_lookup | 10 | sliderule toregion polygon helper api |
+| paraphrased | 1 | get lake water levels from satellite altimetry |
+| paraphrased | 5 | measure forest canopy height with space lidar |
+| paraphrased | 23 | find seafloor depth from ICESat-2 photons |
+| paraphrased | 1 | read cloud HDF5 files without downloading them |
 
 ### nsidc
 
 | type | rank | query |
 | --- | --- | --- |
-| algorithm | 23 | how does ATL03 signal finding algorithm work |
+| algorithm | 9 | how does ATL03 signal finding algorithm work |
 | algorithm | 4 | how does ATL06 surface fit algorithm compute elevation |
 | algorithm | 3 | how does ATL08 classify photons into ground canopy noise |
 | algorithm | 4 | how does ATL13 derive inland water surface height |
@@ -365,31 +382,38 @@ either and would show in the Misses section at the end).
 | algorithm | 6 | GEDI L4A biomass estimation from waveforms algorithm |
 | algorithm | 7 | ATL03 geophysical corrections ocean tides solid earth |
 | algorithm | 3 | ATL08 canopy height calculation method |
-| variable_lookup | — | ATL03 HDF5 file structure data groups photon fields |
+| variable_lookup | 4 | ATL03 HDF5 file structure data groups photon fields |
 | variable_lookup | 35 | ATL06 quality flags values interpretation |
-| variable_lookup | — | ATL08 terrain classification output variables HDF5 |
+| variable_lookup | 1 | ATL08 terrain classification output variables HDF5 |
 | variable_lookup | 1 | ATL13 file naming convention granule filename |
 | variable_lookup | 3 | ATL24 file contents and spatial coverage |
 | variable_lookup | 11 | GEDI L4A footprint geolocation variables AGBD |
-| variable_lookup | 45 | ATL03 h_ph photon height variable description |
+| variable_lookup | 3 | ATL03 ATBD output parameter table photon height h_ph |
 | product_disambiguation | 2 | ATL06 data groups structure for land ice |
 | product_disambiguation | 1 | ATL08 DRAGANN noise filtering algorithm |
 | product_disambiguation | 1 | ATL24 ensemble classification bathymetry |
 | product_disambiguation | 19 | ATL13 processing workflow and goals |
 | cross_product | 5 | strong versus weak beams ICESat-2 ATLAS |
 | cross_product | 1 | how ATL08 uses ATL03 photons for classification |
-| cross_product | 31 | photon classification confidence values ATL03 |
+| cross_product | 1 | photon classification confidence values ATL03 |
 | instrument | 5 | ATLAS laser altimeter instrument specifications |
 | instrument | 2 | ATL03 photon geolocation algorithm method |
 | instrument | 1 | GEDI shot footprint size geometry |
-| cross_product | — | ICESat-2 ground track beam naming GT1L GT1R GT2L convention |
-| cross_product | — | reference ground track RGT cycle number ICESat-2 granule |
+| cross_product | 1 | ICESat-2 ground track beam naming GT1L GT1R GT2L convention |
+| cross_product | 1 | reference ground track RGT cycle number ICESat-2 granule |
 | cross_product | 18 | ATL06 uses ATL03 photons to compute surface elevations algorithm |
-| instrument | 40 | ICESat-2 orbit altitude inclination mission specifications |
+| instrument | 3 | ICESat-2 orbit altitude inclination mission specifications |
 | instrument | 1 | GEDI laser channels power modes beam configuration |
 | instrument | 2 | ATL03 pointing biases beam geolocation error model |
 | product_disambiguation | 1 | ATL06 land ice along-track segment elevation |
 | product_disambiguation | 1 | ATL08 100-meter segment terrain canopy height |
+| variable_lookup | 5 | ATL13 inland water surface height variables file contents |
+| product_disambiguation | 4 | ATL03 signal_conf_ph photon confidence flag |
+| product_disambiguation | 3 | GEDI L4A aboveground biomass density AGBD product |
+| cross_product | 1 | ATL24 uses ATL03 photons for bathymetry classification |
+| cross_product | 5 | ATL13 uses ATL03 geolocation for inland water bodies |
+| instrument | 5 | ICESat-2 six beam pairs ground track spacing geometry |
+| instrument | 2 | ATLAS 532nm green laser photon counting detector |
 
 ## Misses
 
@@ -398,19 +422,4 @@ here indicates either (a) a mislabeled expected URL, (b) the answer
 is genuinely not in the corpus, or (c) a severe retrieval failure
 that no lever short of rechunking or an embedder swap will fix.
 
-- **[nsidc/variable_lookup]** `ATL03 HDF5 file structure data groups photon fields`
-  - expected: https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-  - top 5 returned: https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf, https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf, https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-  - notes: ATL03 user guide HDF5 structure
-- **[nsidc/variable_lookup]** `ATL08 terrain classification output variables HDF5`
-  - expected: https://nsidc.org/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf
-  - top 5 returned: https://nsidc.org/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf, https://nsidc.org/sites/default/files/documents/user-guide/atl08-v006-userguide.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl24_atbd_v001.pdf
-  - notes: ATL08 user guide terrain variables
-- **[nsidc/cross_product]** `ICESat-2 ground track beam naming GT1L GT1R GT2L convention`
-  - expected: https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
-  - top 5 returned: https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf
-  - notes: beam naming convention defined in ATL03 docs but referenced across products
-- **[nsidc/cross_product]** `reference ground track RGT cycle number ICESat-2 granule`
-  - expected: https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf, https://nsidc.org/sites/default/files/documents/user-guide/atl06-v006-userguide.pdf
-  - top 5 returned: https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl08_atbd_v007.pdf, https://nsidc.org/sites/default/files/documents/user-guide/atl13-v007-userguide.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf, https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl06_atbd_v006.pdf
-  - notes: RGT/cycle concepts defined at ATL03 level, also in per-product user guides
+None.

@@ -15,15 +15,29 @@
   - `atl06x`
   - `2. atl06`
 - **expected_pages:** (none)
-- **notes:** user_guide/icesat2.html has 'ATL06 - atl06x' section
+- **notes:** user_guide/icesat2.html has 'ATL06 - atl06x' section; notes: r3 atl06x section description is partial — full answer requires dataframe-contents table that's in a separate chunk; signal for chunk-size/overlap Tier 3 lever
 
 ---
 
 ## 📚 docsearch results (top 5)
 
-#### r1 — score 0.507
+#### r1 — score 0.458
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/260528_web_client_endpoint_scoped_params.html
+- **title:** 2026-05-28: Web Client v4.5.0 - Endpoint-Scoped Advanced Options
+- **section:** Panel visibility by endpoint
+- **category:** `user_guide`
+- **matched_tokens:** ['atl06x', 'elevation', 'surface']
+
+**Full text:**
+
+```
+Endpoint Photon Selection Extents Surface Elevation PhoREAL atl03x variants, atl06p , atl06sp , atl08p , atl03vp editable editable if applicable if applicable atl06x hidden read-only: 40m / 20m hidden n/a atl08x hidden read-only: 100m / 100m n/a hidden atl24x , atl13x hidden hidden n/a n/a For atl06x and atl08x , the Extents panel now displays the real segment dimensions baked into the data product as a disabled read-only field with a lock icon and tooltip.
+```
+
+#### r2 — score 0.508
+
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -32,12 +46,12 @@
 **Full text:**
 
 ```
-Potential errors in the average surface heights: Sampling error : average height estimates are based upon a random sampling of the surface heights, which might be skewed based on the horizontal distribution of PEs Background noise : signal PEs are intermixed with the background PEs, and so there are random outliers which may affect the surface determination, particularly in conditions with high background rates and low surface reflectivity Complex topography : the along-track linear fit will not always resolve complex surface topography Misidentified PEs : the ATL03 processing will not always correctly identify the signal PEs First-photon bias : this bias is inherent to photon-counting detectors and depends on the signal return strength Atmospheric forward scattering : photons traveling through a cloudy atmosphere or a wind-blown snow event may be repeatedly scattered through small angles but still be reflected by the surface and be within the ATLAS field of view Subsurface scattering : photons may be scattered many times within ice or snow before returning to the detector Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+Potential errors in the average surface heights: Sampling error : average height estimates are based upon a random sampling of the surface heights, which might be skewed based on the horizontal distribution of PEs Background noise : signal PEs are intermixed with the background PEs, and so there are random outliers which may affect the surface determination, particularly in conditions with high background rates and low surface reflectivity Complex topography : the along-track linear fit will not always resolve complex surface topography Misidentified PEs : the ATL03 processing will not always correctly identify the signal PEs First-photon bias : this bias is inherent to photon-counting detectors and depends on the signal return strength Atmospheric forward scattering : photons traveling through a cloudy atmosphere or a wind-blown snow event may be repeatedly scattered through small angles but still be reflected by the surface and be within the ATLAS field of view Subsurface scattering : photons may be scattered many times within ice or snow before returning to the detector Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
-#### r2 — score 0.431
+#### r3 — score 0.431
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.2 Elevations - atl06p
 - **category:** `user_guide`
@@ -49,23 +63,9 @@ Potential errors in the average surface heights: Sampling error : average height
 The primary result returned by SlideRule for ICESat-2 ATL06-SR processing requests is a set of geolocated elevations corresponding to a geolocated ATL03 along-track segment. The elevations are contained in a GeoDataFrame where each row represents a calculated elevation. The elevation GeoDataFrame has the following columns: extent_id : unique ID associated with custom ATL03 segment (removed from final GeoDataFrame by default) segment_id : segment ID of first ATL03 segment in result n_fit_photons : number of photons used in final calculation pflags : processing flags (0x1 - spread too short; 0x2 - too few photons; 0x4 - max iterations reached) rgt : reference ground track cycle : cycle region : region of source granule spot : laser spot 1 to 6 gt : ground track (10: GT1L, 20: GT1R, 30: GT2L, 40: GT2R, 50: GT3L, 60: GT3R) x_atc : along track distance from the equator in meters time : nanoseconds from Unix epoch (January 1, 1970) without leap seconds lat : latitude (-90.0 to 90.0) lon : longitude (-180.0 to 180.0) h_mean : elevation in meters from ellipsoid dh_fit_dx : along-track slope y_atc : across-track distance w_surface_window_final : width of the window used to select the final set of photons used in the calculation rms_misfit : measured error in the linear fit of the surface h_sigma : error estimate for the least squares fit model
 ```
 
-#### r3 — score 0.453
-
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
-- **title:** ICESat-2 Module
-- **section:** 2. ATL06 - atl06x
-- **category:** `user_guide`
-- **matched_tokens:** ['atl06x']
-
-**Full text:**
-
-```
-The SlideRule atl06x endpoint provides a service for ATL06 subsetting and custom processing. This endpoint queries ATL06 input granules for segment heights and locations based on geographic and temporal ranges. The resulting extents are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster sampling.
-```
-
 #### r4 — score 0.419
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -77,18 +77,18 @@ The SlideRule atl06x endpoint provides a service for ATL06 subsetting and custom
 The magnitude of this bias depends on the shape of the transmitted waveform, the width of the window used to calculate the average surface, and the slope and roughness of the surface that broadens the return pulse. ATL03 contains most of the data needed to create the higher level data products (such as the ATL06-SR land ice product). With SlideRule , we will calculate the average elevation of segments for each beam. In SlideRule the average segment elevations will not be corrected for transmit pulse shape biases or first photon biases as compared to the higher level data products.
 ```
 
-#### r5 — score 0.455
+#### r5 — score 0.453
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-15-00.html
-- **title:** Release v4.15.x
-- **section:** Compatibility Changes
-- **category:** `release_notes`
-- **matched_tokens:** ['surface']
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** 2. ATL06 - atl06x
+- **category:** `user_guide`
+- **matched_tokens:** ['atl06x']
 
 **Full text:**
 
 ```
-The h_mean value in the atl03x API when running the ATL06 surface fitting algorithm was changed from a double to a float. This was to make it consistent with the ATL06 standard data product and to normalize all DataFrames with z columns to floating point precision. The x-series APIs provide a different column for the sample time - time_ns instead of time . This is to reflect that the new time_ns is provided as a Unix(ns) time, whereas the old time was provided as a GPS seconds time. The Unix(ns) time makes it compatible with Pandas and easier to display for human readability.
+The SlideRule atl06x endpoint provides a service for ATL06 subsetting and custom processing. This endpoint queries ATL06 input granules for segment heights and locations based on geographic and temporal ranges. The resulting extents are typically directly returned to the client, but may be passed to downstream algorithms and custom processing steps like raster sampling.
 ```
 
 ---

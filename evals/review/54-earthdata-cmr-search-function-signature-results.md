@@ -23,7 +23,7 @@
 
 #### r1 — score 0.511
 
-- **url:** https://docs.testsliderule.org/api_reference/earthdata.html
+- **url:** https://docs.slideruleearth.io/api_reference/earthdata.html
 - **title:** earthdata
 - **section:** cmr
 - **category:** `api_reference`
@@ -32,12 +32,12 @@
 **Full text:**
 
 ```
-sliderule.earthdata. cmr ( short_name = None , version = None , polygon = None , time_start = '2018-01-01T00:00:00Z' , time_end = '2026-04-28T19:44:13Z' , return_metadata = False , name_filter = None ) [source] Query the NASA Common Metadata Repository (CMR) for a list of data within temporal and spatial parameters Parameters : short_name ( str ) â dataset short name as defined in the NASA CMR Directory version ( str ) â dataset version string, leave as None to get latest support version polygon ( list ) â either a single list of longitude,latitude in counter-clockwise order with first and last point matching, defining region of interest (see polygons ), or a list of such lists when the region includes more than one polygon time_start ( str ) â starting time for query in format <year>-<month>-<day>T<hour>:<minute>:<second>Z time_end ( str ) â ending time for query in format <year>-<month>-<day>T<hour>:<minute>:<second>Z return_metadata ( bool ) â flag indicating whether metadata associated with the query is returned back to the user name_filter ( str ) â filter to apply to resources returned by query Returns : files (granules) for the dataset fitting the spatial and temporal parameters Return type : list Examples >>> from sliderule import earthdata >>> region = [ { "lon" : - 108.3435200747503 , "lat" : 38.89102961045247 }, ... { "lon" : - 107.7677425431139 , "lat" : 38.90611184543033 }, ... { "lon" : - 107.7818591266989 , "lat" : 39.26613714985466 }, ... { "lon"
+sliderule.earthdata. cmr ( short_name = None , version = None , polygon = None , time_start = '2018-01-01T00:00:00Z' , time_end = '2026-05-29T17:12:47Z' , return_metadata = False , name_filter = None ) [source] Query the NASA Common Metadata Repository (CMR) for a list of data within temporal and spatial parameters Parameters : short_name ( str ) â dataset short name as defined in the NASA CMR Directory version ( str ) â dataset version string, leave as None to get latest support version polygon ( list ) â either a single list of longitude,latitude in counter-clockwise order with first and last point matching, defining region of interest (see polygons ), or a list of such lists when the region includes more than one polygon time_start ( str ) â starting time for query in format <year>-<month>-<day>T<hour>:<minute>:<second>Z time_end ( str ) â ending time for query in format <year>-<month>-<day>T<hour>:<minute>:<second>Z return_metadata ( bool ) â flag indicating whether metadata associated with the query is returned back to the user name_filter ( str ) â filter to apply to resources returned by query Returns : files (granules) for the dataset fitting the spatial and temporal parameters Return type : list Examples >>> from sliderule import earthdata >>> region = [ { "lon" : - 108.3435200747503 , "lat" : 38.89102961045247 }, ... { "lon" : - 107.7677425431139 , "lat" : 38.90611184543033 }, ... { "lon" : - 107.7818591266989 , "lat" : 39.26613714985466 }, ... { "lon"
 ```
 
 #### r2 — score 0.401
 
-- **url:** https://docs.testsliderule.org/api_reference/earthdata.html
+- **url:** https://docs.slideruleearth.io/api_reference/earthdata.html
 - **title:** earthdata
 - **section:** search
 - **category:** `api_reference`
@@ -46,12 +46,12 @@ sliderule.earthdata. cmr ( short_name = None , version = None , polygon = None ,
 **Full text:**
 
 ```
-sliderule.earthdata. search ( parm , resources = None ) [source] This is the highest-level API call and attempts to automatically determine which service needs to be queried to return the resources being requested. Parameters : parm ( dict ) â request parameters Returns : list of resources to process Return type : list Notes The asset parameter must be supplied Examples >>> from sliderule import earthdata >>> region = [ { "lon" : - 108.3435200747503 , "lat" : 38.89102961045247 }, ... { "lon" : - 107.7677425431139 , "lat" : 38.90611184543033 }, ... { "lon" : - 107.7818591266989 , "lat" : 39.26613714985466 }, ... { "lon" : - 108.3605610678553 , "lat" : 39.25086131372244 }, ... { "lon" : - 108.3435200747503 , "lat" : 38.89102961045247 } ] >>> parms = { "asset" : "icesat2" , "poly" : region , "cycle" : 20 , "rgt" : 232 } >>> resources = earthdata . search ( parms ) Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+sliderule.earthdata. search ( parm , resources = None ) [source] This is the highest-level API call and attempts to automatically determine which service needs to be queried to return the resources being requested. Parameters : parm ( dict ) â request parameters Returns : list of resources to process Return type : list Notes The asset parameter must be supplied Examples >>> from sliderule import earthdata >>> region = [ { "lon" : - 108.3435200747503 , "lat" : 38.89102961045247 }, ... { "lon" : - 107.7677425431139 , "lat" : 38.90611184543033 }, ... { "lon" : - 107.7818591266989 , "lat" : 39.26613714985466 }, ... { "lon" : - 108.3605610678553 , "lat" : 39.25086131372244 }, ... { "lon" : - 108.3435200747503 , "lat" : 38.89102961045247 } ] >>> parms = { "asset" : "icesat2" , "poly" : region , "cycle" : 20 , "rgt" : 232 } >>> resources = earthdata . search ( parms ) Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
-#### r3 — score 0.458
+#### r3 — score 0.457
 
-- **url:** https://docs.testsliderule.org/api_reference/earthdata.html
+- **url:** https://docs.slideruleearth.io/api_reference/earthdata.html
 - **title:** earthdata
 - **section:** stac
 - **category:** `api_reference`
@@ -60,12 +60,12 @@ sliderule.earthdata. search ( parm , resources = None ) [source] This is the hig
 **Full text:**
 
 ```
-sliderule.earthdata. stac ( short_name = None , collections = None , polygon = None , time_start = '2018-01-01T00:00:00Z' , time_end = '2026-04-28T19:44:13Z' , as_str = True ) [source] Perform a STAC query of the NASA Common Metadata Repository (CMR) catalog for a list of data within temporal and spatial parameters Parameters : short_name ( str ) â dataset short name as defined in the NASA CMR Directory collections ( list ) â list of dataset collections as specified by CMR, leave as None to use defaults polygon ( list ) â either a single list of longitude,latitude in counter-clockwise order with first and last point matching, defining region of interest (see polygons ), or a list of such lists when the region includes more than one polygon time_start ( str ) â starting time for query in format <year>-<month>-<day>T<hour>:<minute>:<second>Z time_end ( str ) â ending time for query in format <year>-<month>-<day>T<hour>:<minute>:<second>Z as_str ( bool ) â whether to return geojson as a dictionary or string Returns : geojson of the feature set returned by the query { âtypeâ: âFeatureCollectionâ, âfeaturesâ: [ { âtypeâ: âFeatureâ, âidâ: â<id>â, âgeometryâ: { âtypeâ: âPolygonâ, âcoordinatesâ: [..] }, âpropertiesâ: { âdatetimeâ: âYYYY-MM-DDTHH:MM:SS.SSSZâ, âstart_datetimeâ: âYYYY-MM-DDTHH:MM:SS.SSSZâ, âend_datetimeâ: âYYYY-MM-DDTHH:MM:SS.SSSZâ, â<tag>â: â<url>â, .. } ], âstac_versionâ: â
+sliderule.earthdata. stac ( short_name = None , collections = None , polygon = None , time_start = '2018-01-01T00:00:00Z' , time_end = '2026-05-29T17:12:47Z' , as_str = True ) [source] Perform a STAC query of the NASA Common Metadata Repository (CMR) catalog for a list of data within temporal and spatial parameters Parameters : short_name ( str ) â dataset short name as defined in the NASA CMR Directory collections ( list ) â list of dataset collections as specified by CMR, leave as None to use defaults polygon ( list ) â either a single list of longitude,latitude in counter-clockwise order with first and last point matching, defining region of interest (see polygons ), or a list of such lists when the region includes more than one polygon time_start ( str ) â starting time for query in format <year>-<month>-<day>T<hour>:<minute>:<second>Z time_end ( str ) â ending time for query in format <year>-<month>-<day>T<hour>:<minute>:<second>Z as_str ( bool ) â whether to return geojson as a dictionary or string Returns : geojson of the feature set returned by the query { âtypeâ: âFeatureCollectionâ, âfeaturesâ: [ { âtypeâ: âFeatureâ, âidâ: â<id>â, âgeometryâ: { âtypeâ: âPolygonâ, âcoordinatesâ: [..] }, âpropertiesâ: { âdatetimeâ: âYYYY-MM-DDTHH:MM:SS.SSSZâ, âstart_datetimeâ: âYYYY-MM-DDTHH:MM:SS.SSSZâ, âend_datetimeâ: âYYYY-MM-DDTHH:MM:SS.SSSZâ, â<tag>â: â<url>â, .. } ], âstac_versionâ: â
 ```
 
 #### r4 — score 0.467
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-20-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-20-00.html
 - **title:** Release v4.20.x
 - **section:** Issues Resolved
 - **category:** `release_notes`
@@ -79,7 +79,7 @@ sliderule.earthdata. stac ( short_name = None , collections = None , polygon = N
 
 #### r5 — score 0.419
 
-- **url:** https://docs.testsliderule.org/api_reference/earthdata.html
+- **url:** https://docs.slideruleearth.io/api_reference/earthdata.html
 - **title:** earthdata
 - **section:** cmr
 - **category:** `api_reference`

@@ -14,7 +14,7 @@
   - `atl24x`
   - `5. atl24`
 - **expected_pages:** (none)
-- **notes:** atl24x is documented in user_guide/icesat2.html section 5 (assets/atl24_access tutorial dropped after testsliderule.org rebaseline)
+- **notes:** atl24x bathymetry endpoint documented in user_guide/icesat2.html section 5
 
 ---
 
@@ -22,7 +22,7 @@
 
 #### r1 — score 0.691
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 5. ATL24 - atl24x
 - **category:** `user_guide`
@@ -36,10 +36,10 @@ The SlideRule atl24x endpoint provides a service for ATL24 subsetting and custom
 
 #### r2 — score 0.616
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/250328_atl24_golden_run.html
 - **title:** 2025-03-28: ATL24 Processing Run
 - **section:** Background
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['bathymetry']
 
 **Full text:**
@@ -48,37 +48,9 @@ The SlideRule atl24x endpoint provides a service for ATL24 subsetting and custom
 The University of Texas at Austin and Oregon State University partnered with the SlideRule team (University of Washington, Goddard Space Flight Center, and Wallops Flight Facility) to develop and generate a Near-Shore Coastal Bathymetry Product for ICESat-2 called ATL24. The initial development and generation of the data product was kicked off in January of 2024, started in earnest in May of 2024, and completed April 1st, 2025. ATL24 is a photon classification for ICESat-2 photons in ATL03. Algorithms designed and implemented by UT and OSU were integrated into SlideRule and run as the atl24g service. Each processing request to atl24g provided an ATL03 granule and produced a corresponding ATL24 granule. All ATL03 version 006 photons within a global bathymetry search mask that were within 50m above and 100m below the geoid were processed and labelled as either: unclassified, sea surface, or bathymetry.
 ```
 
-#### r3 — score 0.555
+#### r3 — score 0.578
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html
-- **title:** 2025-03-28: ATL24 Processing Run
-- **section:** Statistics
-- **category:** `developer_guide`
-- **matched_tokens:** ['bathymetry']
-
-**Full text:**
-
-```
-452,173 ATL03 granules were processed (constituting cycles 1 through 25). 277,255 ATL24 granules were produced 145,283 processing runs resulted in empty output (no bathymetry was identified) and therefore no ATL24 granule was produced 29,635 processing runs failed to produce a valid result 27.649 TB of ATL24 data was produced 989.46 B photons were classified 59.19% of classified photons were sea surface 0.73% of classified photons were bathymetry
-```
-
-#### r4 — score 0.494
-
-- **url:** https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html
-- **title:** 2025-03-28: ATL24 Processing Run
-- **section:** 2025-03-28: ATL24 Processing Run
-- **category:** `developer_guide`
-- **matched_tokens:** ['bathymetry']
-
-**Full text:**
-
-```
-Note SlideRule processed ICESat-2 cycles 1 through 25 to produce the first release of the Near-Shore Coastal Bathymetry Product (ATL24) for ICESat-2.
-```
-
-#### r5 — score 0.578
-
-- **url:** https://docs.testsliderule.org/getting_started/Examples.html
+- **url:** https://docs.slideruleearth.io/getting_started/Examples.html
 - **title:** Examples
 - **section:** Examples
 - **category:** `getting_started`
@@ -87,7 +59,35 @@ Note SlideRule processed ICESat-2 cycles 1 through 25 to produce the first relea
 **Full text:**
 
 ```
-ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+ATL13 ( download ) Demonstrates different ways to access the ATL13 inland lake data: by reference ID, by name, and by contained coordinate. ATL24 ( download ) Subsets ATL24 near-shore bathymetry data using different methods and parameters. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
+```
+
+#### r4 — score 0.598
+
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** 1.2.4 ATL24 Classification
+- **category:** `user_guide`
+- **matched_tokens:** ['bathymetry']
+
+**Full text:**
+
+```
+If ATL24 classification parameters are specified, the ATL24 (bathymetry) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=-1 (dynamic) and cnf=-1 (no native filtering) should be specified to allow all ATL24 photons to be used. atl24 class_ph : list of ATL24 classifications used to select which photons are used in the processing (the available classifications are: âbathymetryâ, âsea_surfaceâ, âunclassifiedâ) Note ATL24 is typically a release behind the ATL03 standard data product which it is based on. In order to correlate ATL24 classifications to ATL03, a release of ATL03 must be selected that has a corresponding ATL24 release.
+```
+
+#### r5 — score 0.555
+
+- **url:** https://docs.slideruleearth.io/user_guide/articles/250328_atl24_golden_run.html
+- **title:** 2025-03-28: ATL24 Processing Run
+- **section:** Statistics
+- **category:** `user_guide`
+- **matched_tokens:** ['bathymetry']
+
+**Full text:**
+
+```
+452,173 ATL03 granules were processed (constituting cycles 1 through 25). 277,255 ATL24 granules were produced 145,283 processing runs resulted in empty output (no bathymetry was identified) and therefore no ATL24 granule was produced 29,635 processing runs failed to produce a valid result 27.649 TB of ATL24 data was produced 989.46 B photons were classified 59.19% of classified photons were sea surface 0.73% of classified photons were bathymetry
 ```
 
 ---

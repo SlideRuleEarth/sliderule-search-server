@@ -17,7 +17,7 @@
   - `1.6 phoreal`
   - `3. atl08`
 - **expected_pages:** (none)
-- **notes:** phoreal / atl08_class usage (assets/phoreal + grandmesa_atl03_classification dropped after testsliderule.org rebaseline)
+- **notes:** phoreal / atl08_class canopy-height workflow
 
 ---
 
@@ -25,7 +25,7 @@
 
 #### r1 — score 0.688
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.3 ATL08 Classification
 - **category:** `user_guide`
@@ -39,7 +39,7 @@ If ATL08 classification parameters are specified, the ATL08 (vegetation height) 
 
 #### r2 — score 0.513
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.1 Segmented Photon Data - atl03sp
 - **category:** `user_guide`
@@ -53,7 +53,7 @@ The GeoDataFrame for each photon extent has the following columns: track : refer
 
 #### r3 — score 0.651
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6 PhoREAL Algorithm
 - **category:** `user_guide`
@@ -67,7 +67,7 @@ The PhoREAL algorithm is a modified version of the ATL08 canopy metrics algorith
 
 #### r4 — score 0.627
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`
@@ -81,7 +81,7 @@ The SlideRule atl03x endpoint provides a service for ATL03 custom processing. Th
 
 #### r5 — score 0.449
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.6 PhoREAL Algorithm
 - **category:** `user_guide`

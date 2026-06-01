@@ -21,7 +21,7 @@
 
 #### r1 — score 0.662
 
-- **url:** https://docs.testsliderule.org/user_guide/gedi.html
+- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 3. Returned data
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ The main kind of data returned by the GEDI APIs are elevation and vegetation mea
 
 #### r2 — score 0.557
 
-- **url:** https://docs.testsliderule.org/user_guide/gedi.html
+- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 3.2 L2A Footprints
 - **category:** `user_guide`
@@ -49,7 +49,7 @@ The footprint data is stored along-track inside the GEDI granules. The data is r
 
 #### r3 — score 0.546
 
-- **url:** https://docs.testsliderule.org/user_guide/gedi.html
+- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 3.4 L4A Footprints
 - **category:** `user_guide`
@@ -63,7 +63,7 @@ The footprint data is stored along-track inside the GEDI granules. The data is r
 
 #### r4 — score 0.488
 
-- **url:** https://docs.testsliderule.org/user_guide/gedi.html
+- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
 - **title:** GEDI Module
 - **section:** 1. Overview
 - **category:** `user_guide`
@@ -75,18 +75,18 @@ The footprint data is stored along-track inside the GEDI granules. The data is r
 The GEDI API currently provides subsetting and raster sampling capabilities to SlideRule for the L1B, L2A, L3, L4A, and L4B datasets. * The L1B dataset can be subsetted with waveforms returned for each footprint inside a user-supplied area of interest * The L2A dataset can be subsetted with elevations returned for each footprint inside a user-supplied area of interest * The L3 dataset can be sampled at specific coordinates and associated with any other SlideRule generated data product that is geolocated * The L4A dataset can be subsetted with elevation and above-ground vegetation density returned for each footprint inside a user-supplied area of interest * The L4B dataset can be sampled at specific coordinates and associated with any other SlideRule generated data product that is geolocated
 ```
 
-#### r5 — score 0.288
+#### r5 — score 0.268
 
-- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** Appendix A. Parameter Components
 - **category:** `developer_guide`
-- **matched_tokens:** ['gedi', 'size']
+- **matched_tokens:** ['footprint', 'gedi']
 
 **Full text:**
 
 ```
-Mission : dropdown or select button ICESat-2 GEDI ICESat-2 APIs : dropdown [ICESat-2] atl03s atl06 atl06s atl08 atl24s GEDI APIs : dropdown [GEDI] gedi01b gedi02a gedi04a General : accordion header Polygon : label Draw On Map : radio button Upload : radio button File Upload : file upload button Rasterize Polygon : checkbox Cell Size : input number (degrees) Ignore Polygon for CMR : checkbox Projection : label auto : radio button plate_carree : radio button north_polar : radio button south_polar : radio button Timeout : input number (seconds) rqst-timeout : input number (seconds) node-timeout : input number (seconds) read-timeout : input number (seconds) Granule Selection : accordion header [ICESat-2] Track : label 1 : checkbox 2 : checkbox 3 : checkbox all : checkbox / toggle others Beam : label gt1l : checkbox gt1r : checkbox gt2l : checkbox gt2r : checkbox gt3l : checkbox gt3r : checkbox all : checkbox / toggle others RGT : input number Cycle : input number Region : input number T0 : calendar T1 : calendar Photon Selection : accordion header [ICESat-2] ATL03 Confidence : input switch (enables inputs below) Surface Reference Type : label land : radio button ocean : radio button sea ice : radio button land_ice : radio button inland_water : radio button Signal Confidence : label tep : radio button not_considered : radio button background : radio button within_10m : radio button low : radio button medium : radio button high : radio button ATL08 Classification : input switch (en
+Fields : multiselect [atl08] interpolate : checkbox (next to each field selection) GEDI Footprint Selection : accordion header [GEDI] Beam : multiselect 0 1 2 3 5 6 8 11 all (toggles selection of others) Degrade Flag : checkbox L2 Quality Flag : checkbox L4 Quality Flag : checkbox [gedi04a] Surface Flag : checkbox Raster Sampling : accordion header Rasters to Sample : data table (updated with each added entry) Add Entry : button key : input text asset : dropdown algorithm : dropdown NearestNeighbour Bilinear Cubic CubicSpline Lanczos Average Mode Gauss radius : input number (meters) zonal stats : checkbox with flags : checkbox t0 : calendar t1 : calendar substring : input text closest time : checkbox catalog : input group user edit : text area upload : file upload button (populates text area on upload) bands : multiselect (selection based on asset field) Output : accordion header Enabled : input switch (shows everything else below when enabled) Staged : checkbox (greys out path, region, and credentials when selected) Format : label geoparquet : radio button parquet : radio button csv : radio button Location : label local : radio button (greys out region and credentials when selected) s3 : radio button Path : input text Region : drowdown Credentials : file upload button aws_access_key_id : password aws_secret_access_key : password aws_session_token : password Previous Next © Copyright 2020â2026, University of Washington.
 ```
 
 ---

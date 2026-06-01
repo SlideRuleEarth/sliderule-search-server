@@ -4,7 +4,7 @@
 
 A Lambda + CloudFront service that exposes `POST /docsearch/search` —
 semantic + lexical retrieval over two corpora:
-- **docsearch**: SlideRule documentation (built from `docs.testsliderule.org`)
+- **docsearch**: SlideRule documentation (built from `docs.slideruleearth.io`)
 - **nsidc**: NASA + ORNL DAAC user guides and ATBDs (built from PDFs)
 
 Used by the [`sliderule-docsearch`](https://github.com/SlideRuleEarth/sliderule-analysis-claude-plugin)
@@ -32,8 +32,11 @@ deps locked via `requirements-dev.lock`). See [README.md](README.md#dev-environm
 # Run the offline retrieval-quality harness (writes report.md + audit.md)
 .venv/bin/python tools/eval_retrieval.py
 
-# Re-chunk the docsearch corpus (default host = docs.slideruleearth.io live)
-DOCSEARCH_HOST=docs.testsliderule.org .venv/bin/python tools/build_docsearch_corpus.py
+# Re-chunk the docsearch corpus from the live site (default host).
+# Prefer `make rebuild-corpus-docsearch` (x86_64 builder, matches Lambda
+# arch). Set DOCSEARCH_HOST=docs.testsliderule.org only to target the
+# frozen mirror instead of live.
+.venv/bin/python tools/build_docsearch_corpus.py
 
 # Re-chunk the nsidc corpus
 .venv/bin/python tools/build_nsidc_corpus.py
@@ -43,6 +46,10 @@ DOCSEARCH_HOST=docs.testsliderule.org .venv/bin/python tools/build_docsearch_cor
 
 # Aggregate filled-in human review verdicts
 .venv/bin/python tools/ingest_review.py
+
+# Audit / calibrate the golden set against the live corpora (authoring aid)
+.venv/bin/python tools/gs_audit.py audit            # per-row rank + flags
+.venv/bin/python tools/gs_audit.py calibrate "query" nsidc <url-fragment>
 ```
 
 The `Makefile` has additional targets for ad-hoc queries and request
@@ -50,10 +57,13 @@ restoration; `make help` if you need them.
 
 ## Conventions and gotchas
 
-- **Corpus is locked at testsliderule.org** as of last commit. The live
-  `slideruleearth.io` is updating weekly and we don't want it shifting
-  under us. See HANDOFF.md "Known gotchas" for what's missing on the
-  mirror.
+- **Corpus is built from live `docs.slideruleearth.io`** as of the
+  2026-05-29 rebaseline (94 pages / 756 chunks). The live site updates
+  weekly, so a fresh rebuild can shift metrics under you — rebuild
+  deliberately, not casually, and commit the new `generated/docsearch/`
+  + eval artifacts together. The builder skips `/_static/` (the
+  Redoc-rendered OpenAPI spec HTML) — see the `SKIP_PATH_PREFIXES`
+  comment in `tools/build_docsearch_corpus.py` for why.
 - **Path-only URL matching** — the golden set's `expected_urls` use
   the canonical `https://docs.slideruleearth.io/...` host; the harness
   ignores host when comparing, so a `testsliderule.org`-built corpus

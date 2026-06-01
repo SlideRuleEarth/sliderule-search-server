@@ -20,7 +20,7 @@
 
 #### r1 — score 0.478
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -34,7 +34,7 @@ The data from ATLAS and the secondary instrumentation onboard the ICESat-2 obser
 
 #### r2 — score 0.496
 
-- **url:** https://docs.testsliderule.org/background/NASA-Earthdata.html
+- **url:** https://docs.slideruleearth.io/background/NASA-Earthdata.html
 - **title:** NASA Earthdata
 - **section:** NSIDC
 - **category:** `background`
@@ -48,7 +48,7 @@ The National Snow and Ice Data Center (NSIDC) DAAC provides data and information
 
 #### r3 — score 0.506
 
-- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** SRWC-5.1: Raster Sampling
 - **category:** `developer_guide`
@@ -62,7 +62,7 @@ The following raster datasets shall be supported for sampling: GEDI L3 gridded g
 
 #### r4 — score 0.482
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 3. ATL08 - atl08x
 - **category:** `user_guide`
@@ -76,7 +76,7 @@ Using the Python client, this service is called via: sliderule . run ( 'atl08x' 
 
 #### r5 — score 0.448
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`

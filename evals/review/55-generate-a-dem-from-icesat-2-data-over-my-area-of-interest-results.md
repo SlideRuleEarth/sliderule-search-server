@@ -15,7 +15,7 @@
   - `atl06-sr`
   - `2. atl06`
 - **expected_pages:** (none)
-- **notes:** asking for ATL06 elevations without using ATL06 terminology (assets/grandmesa.html dropped after testsliderule.org rebaseline)
+- **notes:** asking for ATL06 elevations without ATL06 terminology
 
 ---
 
@@ -23,7 +23,7 @@
 
 #### r1 — score 0.540
 
-- **url:** https://docs.testsliderule.org/developer_guide/why_sliderule.html
+- **url:** https://docs.slideruleearth.io/developer_guide/why_sliderule.html
 - **title:** Why SlideRule
 - **section:** Why Develop SlideRule?
 - **category:** `developer_guide`
@@ -37,7 +37,7 @@ The tremendous growth in the size of Earth science datasets being produced by in
 
 #### r2 — score 0.465
 
-- **url:** https://docs.testsliderule.org/getting_started/Examples.html
+- **url:** https://docs.slideruleearth.io/getting_started/Examples.html
 - **title:** Examples
 - **section:** Examples
 - **category:** `getting_started`
@@ -51,10 +51,10 @@ The following Jupyter notebooks provide examples of how to use some of SlideRule
 
 #### r3 — score 0.512
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/h5coro.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/210423_h5coro.html
 - **title:** 2021-04-23: H5Coro
 - **section:** SlideRule Project Background
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['data', 'icesat', 'interest']
 
 **Full text:**
@@ -65,10 +65,10 @@ The NASA/ICESat-2 program is investing in a collaboration between Goddard Space 
 
 #### r4 — score 0.449
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/atl24_golden_run.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/250328_atl24_golden_run.html
 - **title:** 2025-03-28: ATL24 Processing Run
 - **section:** Background
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['data', 'generate', 'icesat']
 
 **Full text:**
@@ -77,18 +77,18 @@ The NASA/ICESat-2 program is investing in a collaboration between Goddard Space 
 The University of Texas at Austin and Oregon State University partnered with the SlideRule team (University of Washington, Goddard Space Flight Center, and Wallops Flight Facility) to develop and generate a Near-Shore Coastal Bathymetry Product for ICESat-2 called ATL24. The initial development and generation of the data product was kicked off in January of 2024, started in earnest in May of 2024, and completed April 1st, 2025. ATL24 is a photon classification for ICESat-2 photons in ATL03. Algorithms designed and implemented by UT and OSU were integrated into SlideRule and run as the atl24g service. Each processing request to atl24g provided an ATL03 granule and produced a corresponding ATL24 granule. All ATL03 version 006 photons within a global bathymetry search mask that were within 50m above and 100m below the geoid were processed and labelled as either: unclassified, sea surface, or bathymetry.
 ```
 
-#### r5 — score 0.444
+#### r5 — score 0.448
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v03-03-00.html
-- **title:** Release v3.3.x
-- **section:** Major Changes
-- **category:** `release_notes`
-- **matched_tokens:** ['dem', 'interest']
+- **url:** https://docs.slideruleearth.io/user_guide/gedi.html
+- **title:** GEDI Module
+- **section:** 1. Overview
+- **category:** `user_guide`
+- **matched_tokens:** ['area', 'data', 'interest']
 
 **Full text:**
 
 ```
-Sampling support added for the Merit DEM Added raster module to Python client - returns GeoDataFrame of sampled raster points of interest
+The GEDI API currently provides subsetting and raster sampling capabilities to SlideRule for the L1B, L2A, L3, L4A, and L4B datasets. * The L1B dataset can be subsetted with waveforms returned for each footprint inside a user-supplied area of interest * The L2A dataset can be subsetted with elevations returned for each footprint inside a user-supplied area of interest * The L3 dataset can be sampled at specific coordinates and associated with any other SlideRule generated data product that is geolocated * The L4A dataset can be subsetted with elevation and above-ground vegetation density returned for each footprint inside a user-supplied area of interest * The L4B dataset can be sampled at specific coordinates and associated with any other SlideRule generated data product that is geolocated
 ```
 
 ---

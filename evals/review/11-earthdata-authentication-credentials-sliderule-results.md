@@ -21,10 +21,10 @@
 
 #### r1 — score 0.653
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/security_model.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/260312_security_model.html
 - **title:** 2026-03-12: Security Model
 - **section:** Overview
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['authentication', 'credentials', 'sliderule']
 
 **Full text:**
@@ -33,23 +33,9 @@
 SlideRule Earth leverages GitHub authentication and account membership status within the GitHub SlideRuleEarth organization to authorize access to SlideRule services. Credentials are provided by users using a JSON Web Token (JWT) issued by the SlideRule Earth login service ( login.slideruleearth.io ). A userâs JWT contains claims used and verified by SlideRule services to allow access.
 ```
 
-#### r2 — score 0.566
+#### r2 — score 0.613
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/private_clusters.html
-- **title:** 2026-01-20: Private Clusters
-- **section:** SlideRule Authenticator
-- **category:** `developer_guide`
-- **matched_tokens:** ['authentication', 'credentials', 'sliderule']
-
-**Full text:**
-
-```
-The SlideRule Authenticator is an AWS Lambdaâbased authentication service that delegates user authentication to GitHub. User login requests are redirected to GitHubâs authorization endpoint, where credentials are verified by GitHub. Upon successful authentication, GitHub returns an authorization grant that the service exchanges for an access token to establish the userâs identity. The SlideRule Authenticator is available at https://login.slideruleearth.io and exposes the following API endpoints. /auth/github/login : Initiates the OAuth 2.1 authorization code flow for browser-based clients. /auth/github/device : Implements the OAuth 2.0 device authorization flow for CLI and Python clients. /auth/github/pat : Supports authentication using GitHub personal access tokens for automated systems. /auth/refresh : Exchanges a valid refresh token for a new JSON Web Token (JWT). /auth/pem : Returns the public signing key in PEM format. /.well-known/jwks.json : Publishes the public signing keys in JWKS format. /.well-known/openid-configuration : Provides OpenID Connect discovery metadata.
-```
-
-#### r3 — score 0.613
-
-- **url:** https://docs.testsliderule.org/user_guide/raster_sampling.html
+- **url:** https://docs.slideruleearth.io/user_guide/raster_sampling.html
 - **title:** Raster Sampling
 - **section:** Overview
 - **category:** `user_guide`
@@ -61,9 +47,23 @@ The SlideRule Authenticator is an AWS Lambdaâbased authentication service t
 The second step of obtaining credentials also requires some specialized code, but since most of our datasets are in AWS and authenticated through NASA DAACs, most of the authentication code is generic. But even still, because of this, each raster dataset supported by SlideRule needs to be registered with SlideRule ahead of time and provided in what we call an Asset Directory.
 ```
 
-#### r4 — score 0.492
+#### r3 — score 0.566
 
-- **url:** https://docs.testsliderule.org/developer_guide/how_tos/amazon_linux_arm_setup.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/260120_private_clusters.html
+- **title:** 2026-01-20: Private Clusters
+- **section:** SlideRule Authenticator
+- **category:** `user_guide`
+- **matched_tokens:** ['authentication', 'credentials', 'sliderule']
+
+**Full text:**
+
+```
+The SlideRule Authenticator is an AWS Lambdaâbased authentication service that delegates user authentication to GitHub. User login requests are redirected to GitHubâs authorization endpoint, where credentials are verified by GitHub. Upon successful authentication, GitHub returns an authorization grant that the service exchanges for an access token to establish the userâs identity. The SlideRule Authenticator is available at https://login.slideruleearth.io and exposes the following API endpoints. /auth/github/login : Initiates the OAuth 2.1 authorization code flow for browser-based clients. /auth/github/device : Implements the OAuth 2.0 device authorization flow for CLI and Python clients. /auth/github/pat : Supports authentication using GitHub personal access tokens for automated systems. /auth/refresh : Exchanges a valid refresh token for a new JSON Web Token (JWT). /auth/pem : Returns the public signing key in PEM format. /.well-known/jwks.json : Publishes the public signing keys in JWKS format. /.well-known/openid-configuration : Provides OpenID Connect discovery metadata.
+```
+
+#### r4 — score 0.493
+
+- **url:** https://docs.slideruleearth.io/developer_guide/how_tos/amazon_linux_arm_setup.html
 - **title:** Setting Up Amazon Linux Development Environment
 - **section:** 2-Factor Authentication
 - **category:** `developer_guide`
@@ -72,12 +72,12 @@ The second step of obtaining credentials also requires some specialized code, bu
 **Full text:**
 
 ```
-Make sure to setup an initial .aws/credentials file so that it has the sliderule profile access key and secret access key. The credentials file will look something like: [ default ] aws_access_key_id = _ aws_secret_access_key = _ aws_session_token = _ [ sliderule ] aws_access_key_id = _ aws_secret_access_key = _ To populate the default keys and session token, run: aws --profile = sliderule sts get-session-token --serial-number arn:aws:iam:: $account_number :mfa/ $user_name --token-code = $code To login to the AWS Elastic Container Registry, run: aws ecr get-login-password --region $region | docker login --username AWS --password-stdin $account_number .dkr.ecr. $region .amazonaws.com Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+Make sure to setup an initial .aws/credentials file so that it has the sliderule profile access key and secret access key. The credentials file will look something like: [ default ] aws_access_key_id = _ aws_secret_access_key = _ aws_session_token = _ [ sliderule ] aws_access_key_id = _ aws_secret_access_key = _ To populate the default keys and session token, run: aws --profile = sliderule sts get-session-token --serial-number arn:aws:iam:: $account_number :mfa/ $user_name --token-code = $code To login to the AWS Elastic Container Registry, run: aws ecr get-login-password --region $region | docker login --username AWS --password-stdin $account_number .dkr.ecr. $region .amazonaws.com Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
 #### r5 — score 0.574
 
-- **url:** https://docs.testsliderule.org/background/NASA-Earthdata.html
+- **url:** https://docs.slideruleearth.io/background/NASA-Earthdata.html
 - **title:** NASA Earthdata
 - **section:** Steps to Sync from NSIDC
 - **category:** `background`

@@ -21,7 +21,7 @@
 
 #### r1 — score 0.497
 
-- **url:** https://docs.testsliderule.org/user_guide/raster_sampling.html
+- **url:** https://docs.slideruleearth.io/user_guide/raster_sampling.html
 - **title:** Raster Sampling
 - **section:** Parameters
 - **category:** `user_guide`
@@ -35,7 +35,7 @@ losest_time : time used to filter rasters to be sampled; only the raster that is
 
 #### r2 — score 0.701
 
-- **url:** https://docs.testsliderule.org/user_guide/raster_sampling.html
+- **url:** https://docs.slideruleearth.io/user_guide/raster_sampling.html
 - **title:** Raster Sampling
 - **section:** Parameters
 - **category:** `user_guide`
@@ -49,7 +49,7 @@ To request raster sampling, the samples parameter must be populated as a diction
 
 #### r3 — score 0.442
 
-- **url:** https://docs.testsliderule.org/developer_guide/design/SlideRuleWebClient.html
+- **url:** https://docs.slideruleearth.io/developer_guide/design/SlideRuleWebClient.html
 - **title:** SlideRule Web Client
 - **section:** SRWC-3.3: Advanced Mode
 - **category:** `developer_guide`
@@ -63,7 +63,7 @@ In advanced mode, the control panel shall display the following controls All con
 
 #### r4 — score 0.494
 
-- **url:** https://docs.testsliderule.org/user_guide/raster_sampling.html
+- **url:** https://docs.slideruleearth.io/user_guide/raster_sampling.html
 - **title:** Raster Sampling
 - **section:** Parameters
 - **category:** `user_guide`
@@ -77,7 +77,7 @@ Each key in the dictionary is used to label the data returned for that raster in
 
 #### r5 — score 0.414
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v04-00-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v04-00-00.html
 - **title:** Release v4.0.x
 - **section:** Major Changes
 - **category:** `release_notes`

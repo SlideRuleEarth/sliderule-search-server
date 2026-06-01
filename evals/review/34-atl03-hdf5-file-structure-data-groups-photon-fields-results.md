@@ -10,12 +10,10 @@
 - **corpus:** `nsidc`
 - **expected_urls:**
   - https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-- **expected_sections:**
-  - `data groups`
-  - `file contents`
-  - `file structure`
-- **expected_pages:** (none)
-- **notes:** ATL03 user guide HDF5 structure
+- **expected_sections:** (none)
+- **expected_pages:**
+  - 6–10
+- **notes:** ATL03 user guide File Contents / data-group structure (1.2.3-1.2.4, pp.7-9)
 
 ---
 
@@ -23,7 +21,7 @@
 
 #### r1 — score 0.556
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -37,7 +35,7 @@ The data from ATLAS and the secondary instrumentation onboard the ICESat-2 obser
 
 #### r2 — score 0.585
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.4 Ancillary Data
 - **category:** `user_guide`
@@ -51,7 +49,7 @@ The ancillary field parameters allow the user to request additional fields from 
 
 #### r3 — score 0.562
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl03s
 - **category:** `api_reference`
@@ -65,7 +63,7 @@ sliderule.icesat2. atl03s ( parm , resource ) [source] Subsets ATL03 data given 
 
 #### r4 — score 0.555
 
-- **url:** https://docs.testsliderule.org/api_reference/icesat2.html
+- **url:** https://docs.slideruleearth.io/api_reference/icesat2.html
 - **title:** icesat2
 - **section:** atl03v
 - **category:** `api_reference`
@@ -79,7 +77,7 @@ sliderule.icesat2. atl03v ( parm , resource ) [source] Subsets ATL03 data given 
 
 #### r5 — score 0.490
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-01-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-01-00.html
 - **title:** Release v1.1.x
 - **section:** New Features
 - **category:** `release_notes`

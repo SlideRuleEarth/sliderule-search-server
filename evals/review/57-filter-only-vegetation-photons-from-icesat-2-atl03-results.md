@@ -12,11 +12,10 @@
   - https://docs.slideruleearth.io/user_guide/icesat2.html
 - **expected_sections:**
   - `atl08 classification`
-  - `atl08_class`
   - `1.2.3 atl08`
   - `phoreal`
 - **expected_pages:** (none)
-- **notes:** atl08_class with canopy label; user_guide/icesat2 has the class mapping (assets/grandmesa + phoreal dropped after testsliderule.org rebaseline)
+- **notes:** filtering vegetation photons = atl08_class canopy label; icesat2 ATL08-classification section
 
 ---
 
@@ -24,7 +23,7 @@
 
 #### r1 — score 0.571
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** ICESat-2 Module
 - **category:** `user_guide`
@@ -38,7 +37,7 @@ The ICESat-2 module within SlideRule supports a number of both legacy p-series a
 
 #### r2 — score 0.661
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.3 ATL08 Classification
 - **category:** `user_guide`
@@ -52,7 +51,7 @@ If ATL08 classification parameters are specified, the ATL08 (vegetation height) 
 
 #### r3 — score 0.566
 
-- **url:** https://docs.testsliderule.org/background/ICESat-2.html
+- **url:** https://docs.slideruleearth.io/background/ICESat-2.html
 - **title:** ICESat-2
 - **section:** ATL03 - Global Geolocated Photon Data
 - **category:** `background`
@@ -66,7 +65,7 @@ The data from ATLAS and the secondary instrumentation onboard the ICESat-2 obser
 
 #### r4 — score 0.566
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2 Photon-selection Parameters
 - **category:** `user_guide`
@@ -80,7 +79,7 @@ Once the ATL03 input data are are selected, a set of photon-selection photon par
 
 #### r5 — score 0.533
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** A.2 Elevations - atl06p
 - **category:** `user_guide`

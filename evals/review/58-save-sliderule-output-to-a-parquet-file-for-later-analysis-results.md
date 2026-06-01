@@ -12,7 +12,7 @@
   - https://docs.slideruleearth.io/user_guide/arrow_output.html
 - **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** parquet/arrow output; phrased as save-for-later rather than 'return in format' (how_tos/geoparquet_output dropped after testsliderule.org rebaseline)
+- **notes:** parquet/arrow output, phrased as save-for-later
 
 ---
 
@@ -20,10 +20,10 @@
 
 #### r1 — score 0.692
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/geoparquet.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/230224_geoparquet.html
 - **title:** 2023-02-24: GeoParquet
 - **section:** Overview
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['later', 'output', 'parquet', 'sliderule']
 
 **Full text:**
@@ -34,7 +34,7 @@ SlideRule currently supports returning results back to data users as GeoParquet 
 
 #### r2 — score 0.642
 
-- **url:** https://docs.testsliderule.org/user_guide/arrow_output.html
+- **url:** https://docs.slideruleearth.io/user_guide/arrow_output.html
 - **title:** Arrow Output
 - **section:** S3 Staging
 - **category:** `user_guide`
@@ -43,12 +43,12 @@ SlideRule currently supports returning results back to data users as GeoParquet 
 **Full text:**
 
 ```
-SlideRule also supports writing the output to its own S3 bucket for times when temporary storage is needed and the user does not have access to a bucket they own. To use this feature, the following parameters can be used: "output" : { "asset" : "sliderule-stage" , "path" : "myfile.parquet" , "open_on_complete" : False , } The sliderule-stage asset tells sliderule to stage the output in SlideRuleâs own bucket. The full path of the file is then returned back to the user so that the user can later open the file directly. For instance, in the above example, a call to icesat2.atl06p could return âs3://sliderule-public/myfile.parquetâ. If no path is specified, the server code generates a random file name and uses it to store the results. The generated file name including the path is returned back to the user. There are a couple of constraints to using this feature: In order to access the file staged in the SlideRule owned bucket, the user has to have read-access to the bucket. Typically, this is only provided through partnered organizations like CryoCloud . When running on CryoCloud, a user can specify the âsliderule-stageâ asset, and know that they returned file path is immediately accessible from their environment. Files are only stored for a short period of time before they are automatically deleted. Typically, the retention time is 2 weeks. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 .
+SlideRule also supports writing the output to its own S3 bucket for times when temporary storage is needed and the user does not have access to a bucket they own. To use this feature, the following parameters can be used: "output" : { "asset" : "sliderule-stage" , "path" : "myfile.parquet" , "open_on_complete" : False , } The sliderule-stage asset tells sliderule to stage the output in SlideRuleâs own bucket. The full path of the file is then returned back to the user so that the user can later open the file directly. For instance, in the above example, a call to icesat2.atl06p could return âs3://sliderule-public/myfile.parquetâ. If no path is specified, the server code generates a random file name and uses it to store the results. The generated file name including the path is returned back to the user. There are a couple of constraints to using this feature: In order to access the file staged in the SlideRule owned bucket, the user has to have read-access to the bucket. Typically, this is only provided through partnered organizations like CryoCloud . When running on CryoCloud, a user can specify the âsliderule-stageâ asset, and know that they returned file path is immediately accessible from their environment. Files are only stored for a short period of time before they are automatically deleted. Typically, the retention time is 2 weeks. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 .
 ```
 
 #### r3 — score 0.646
 
-- **url:** https://docs.testsliderule.org/user_guide/arrow_output.html
+- **url:** https://docs.slideruleearth.io/user_guide/arrow_output.html
 - **title:** Arrow Output
 - **section:** Parameters
 - **category:** `user_guide`
@@ -62,7 +62,7 @@ To control writing the data to an Arrow supported format, the output parameter i
 
 #### r4 — score 0.511
 
-- **url:** https://docs.testsliderule.org/user_guide/arrow_output.html
+- **url:** https://docs.slideruleearth.io/user_guide/arrow_output.html
 - **title:** Arrow Output
 - **section:** S3 Output to User Bucket
 - **category:** `user_guide`
@@ -76,7 +76,7 @@ SlideRule supports writing the output to an S3 bucket instead of streaming the o
 
 #### r5 — score 0.530
 
-- **url:** https://docs.testsliderule.org/user_guide/arrow_output.html
+- **url:** https://docs.slideruleearth.io/user_guide/arrow_output.html
 - **title:** Arrow Output
 - **section:** Parameters
 - **category:** `user_guide`

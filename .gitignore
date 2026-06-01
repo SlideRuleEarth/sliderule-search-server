@@ -9,6 +9,11 @@
 # this isn't a dumping ground that creeps into the repo.
 /scratch/
 
+# Local Claude Code harness state — per-machine settings, scheduled-task
+# locks, session/todo state. Not repo content. If you later want to share
+# team config, un-ignore it surgically (e.g. !/.claude/settings.json).
+/.claude/
+
 # Download caches — populated by the corpus builders on first run so
 # subsequent rebuilds skip the network. Large (PDFs can be 10+ MB each)
 # and re-fetchable; never committed.

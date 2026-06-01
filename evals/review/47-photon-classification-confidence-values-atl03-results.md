@@ -11,11 +11,9 @@
 - **expected_urls:**
   - https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl03_atbd_v006.pdf
   - https://nsidc.org/sites/default/files/documents/user-guide/atl03-v006-userguide.pdf
-- **expected_sections:**
-  - `photon classification`
-  - `confidence`
+- **expected_sections:** (none)
 - **expected_pages:** (none)
-- **notes:** confidence is ATL03 concept, also used by ATL08/ATL24
+- **notes:** photon-classification confidence is an ATL03 concept (signal_conf_ph); authoritative in ATL03 ATBD + user guide
 
 ---
 
@@ -23,7 +21,7 @@
 
 #### r1 — score 0.713
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.1 Native ATL03 Photon Classification
 - **category:** `user_guide`
@@ -37,7 +35,7 @@ ATL03 contains a set of photon classification values, that are designed to ident
 
 #### r2 — score 0.684
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.3 ATL08 Classification
 - **category:** `user_guide`
@@ -49,23 +47,9 @@ ATL03 contains a set of photon classification values, that are designed to ident
 If ATL08 classification parameters are specified, the ATL08 (vegetation height) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=0 (land) and cnf=0 (no native filtering) should be specified to allow all ATL08 photons to be used. atl08_class : list of ATL08 classifications used to select which photons are used in the processing (the available classifications are: âatl08_noiseâ, âatl08_groundâ, âatl08_canopyâ, âatl08_top_of_canopyâ, âatl08_unclassifiedâ)
 ```
 
-#### r3 — score 0.751
+#### r3 — score 0.678
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
-- **title:** ICESat-2 Module
-- **section:** 1.2 Photon-selection Parameters
-- **category:** `user_guide`
-- **matched_tokens:** ['atl03', 'classification', 'photon']
-
-**Full text:**
-
-```
-Once the ATL03 input data are are selected, a set of photon-selection photon parameters are used to select from among the available photons. At this stage, additional photon-classification algorithms (ATL08, YAPC) may be selected beyond what is available in the ATL03 files. The criterial described by these parameters are applied together, so that only photons that fulfill all of the requirements are returned.
-```
-
-#### r4 — score 0.678
-
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1.2.4 ATL24 Classification
 - **category:** `user_guide`
@@ -77,9 +61,23 @@ Once the ATL03 input data are are selected, a set of photon-selection photon par
 If ATL24 classification parameters are specified, the ATL24 (bathymetry) files corresponding to the ATL03 files are queried for the more advanced classification scheme available in those files. Photons are then selected based on the classification values specified. Note that srt=-1 (dynamic) and cnf=-1 (no native filtering) should be specified to allow all ATL24 photons to be used. atl24 class_ph : list of ATL24 classifications used to select which photons are used in the processing (the available classifications are: âbathymetryâ, âsea_surfaceâ, âunclassifiedâ) Note ATL24 is typically a release behind the ATL03 standard data product which it is based on. In order to correlate ATL24 classifications to ATL03, a release of ATL03 must be selected that has a corresponding ATL24 release.
 ```
 
+#### r4 — score 0.751
+
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
+- **title:** ICESat-2 Module
+- **section:** 1.2 Photon-selection Parameters
+- **category:** `user_guide`
+- **matched_tokens:** ['atl03', 'classification', 'photon']
+
+**Full text:**
+
+```
+Once the ATL03 input data are are selected, a set of photon-selection photon parameters are used to select from among the available photons. At this stage, additional photon-classification algorithms (ATL08, YAPC) may be selected beyond what is available in the ATL03 files. The criterial described by these parameters are applied together, so that only photons that fulfill all of the requirements are returned.
+```
+
 #### r5 — score 0.566
 
-- **url:** https://docs.testsliderule.org/user_guide/icesat2.html
+- **url:** https://docs.slideruleearth.io/user_guide/icesat2.html
 - **title:** ICESat-2 Module
 - **section:** 1. ATL03 - atl03x
 - **category:** `user_guide`

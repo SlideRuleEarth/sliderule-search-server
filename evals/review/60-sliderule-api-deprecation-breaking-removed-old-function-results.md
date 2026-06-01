@@ -21,7 +21,7 @@
 
 #### r1 — score 0.480
 
-- **url:** https://docs.testsliderule.org/user_guide/versioning.html
+- **url:** https://docs.slideruleearth.io/user_guide/versioning.html
 - **title:** Versioning
 - **section:** Note on Reproducibility
 - **category:** `user_guide`
@@ -30,12 +30,12 @@
 **Full text:**
 
 ```
-It is the goal of the SlideRule development team to create a system where results are able to be reproduced; but this is often times either extremely difficult or impossible for reasons outside of the teams control. SlideRule relies on publicly hosted datasets. When those datasets are updated, older versions of the datasets are often removed. For instance, ICESat-2 Standard Data Products have a 6-month to 1-year release cycle and EarthData Cloud only stores the last two releases. Production systems must stay up-to-date with all security patches. This means libraries used by older versions of SlideRule may not be able to be deployed if newer versions of those libraries contain security patches. While we make every effort to keep backward compatibility for as long as possible, our development time is a limited resource and we are unable to maintain very old architectures of SlideRule. Once we increment a major version number, we often remove deprecated functionality and internal configurations needed to deploy those older system designs. That does not mean it would not be impossible to recreate the environment needed to run the older design - it does mean it becomes more and more impractical to do so. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.0 . Built with Sphinx using a theme provided by Read the Docs .
+It is the goal of the SlideRule development team to create a system where results are able to be reproduced; but this is often times either extremely difficult or impossible for reasons outside of the teams control. SlideRule relies on publicly hosted datasets. When those datasets are updated, older versions of the datasets are often removed. For instance, ICESat-2 Standard Data Products have a 6-month to 1-year release cycle and EarthData Cloud only stores the last two releases. Production systems must stay up-to-date with all security patches. This means libraries used by older versions of SlideRule may not be able to be deployed if newer versions of those libraries contain security patches. While we make every effort to keep backward compatibility for as long as possible, our development time is a limited resource and we are unable to maintain very old architectures of SlideRule. Once we increment a major version number, we often remove deprecated functionality and internal configurations needed to deploy those older system designs. That does not mean it would not be impossible to recreate the environment needed to run the older design - it does mean it becomes more and more impractical to do so. Previous Next © Copyright 2020â2026, University of Washington. Build v5.4.2 . Built with Sphinx using a theme provided by Read the Docs .
 ```
 
 #### r2 — score 0.487
 
-- **url:** https://docs.testsliderule.org/api_reference/gedi.html
+- **url:** https://docs.slideruleearth.io/api_reference/gedi.html
 - **title:** gedi
 - **section:** init
 - **category:** `api_reference`
@@ -49,7 +49,7 @@ sliderule.gedi. init ( url = 'slideruleearth.io' , verbose = False , loglevel = 
 
 #### r3 — score 0.455
 
-- **url:** https://docs.testsliderule.org/developer_guide/release_notes/release-v01-04-00.html
+- **url:** https://docs.slideruleearth.io/developer_guide/release_notes/release-v01-04-00.html
 - **title:** Release v1.4.x
 - **section:** Required Updates
 - **category:** `release_notes`
@@ -63,7 +63,7 @@ v1.4.0 - In order to use the latest SlideRule server deployments, the Python cli
 
 #### r4 — score 0.491
 
-- **url:** https://docs.testsliderule.org/api_reference/sliderule.html
+- **url:** https://docs.slideruleearth.io/api_reference/sliderule.html
 - **title:** sliderule
 - **section:** init
 - **category:** `api_reference`
@@ -77,10 +77,10 @@ sliderule. init ( url = 'slideruleearth.io' , verbose = False , loglevel = 20 , 
 
 #### r5 — score 0.495
 
-- **url:** https://docs.testsliderule.org/developer_guide/articles/plugins.html
+- **url:** https://docs.slideruleearth.io/user_guide/articles/250910_plugins.html
 - **title:** 2025-09-10: Building a Plugin for SlideRule
 - **section:** Shared Object
-- **category:** `developer_guide`
+- **category:** `user_guide`
 - **matched_tokens:** ['api', 'function', 'sliderule']
 
 **Full text:**
