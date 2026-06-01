@@ -5,6 +5,9 @@
 
 **Query:** `ATL24 bathymetry golden run end to end`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `b6c3dac74219` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

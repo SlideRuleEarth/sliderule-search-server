@@ -5,6 +5,9 @@
 
 **Query:** `ATL24 uses ATL03 photons for bathymetry classification`
 **Labeled corpus:** `nsidc`
+**Panel signature:** `2c8a46f66928` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

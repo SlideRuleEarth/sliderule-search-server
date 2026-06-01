@@ -5,6 +5,9 @@
 
 **Query:** `atl13x added to sliderule release notes`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `384e77dd098c` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

@@ -5,6 +5,9 @@
 
 **Query:** `get lake water levels from satellite altimetry`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `1e318d8f4a01` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

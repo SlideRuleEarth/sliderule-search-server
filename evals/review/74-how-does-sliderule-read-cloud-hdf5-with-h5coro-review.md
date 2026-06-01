@@ -5,6 +5,9 @@
 
 **Query:** `how does SlideRule read cloud HDF5 with h5coro`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `20725cf1a8a1` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

@@ -5,6 +5,9 @@
 
 **Query:** `GeoParquet arrow output format added version`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `c1dddf910070` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

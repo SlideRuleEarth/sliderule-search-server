@@ -20,16 +20,51 @@ The POC gates on three metrics:
 | hit@1 | ≥ 0.50 |
 | MRR | ≥ 0.55 |
 
-**Current state**: all three metrics below bar (see [diagnosis.md](diagnosis.md)
-for the breakdown). A 68-query golden set + offline harness exists. A
-human-review tool exists and a small subset of reviews is filled in.
-The corpus is built from the live `docs.slideruleearth.io` site as of
-the 2026-05-29 rebaseline (was a frozen `docs.testsliderule.org` mirror
-before then).
+**Current state**: all three auto-metrics below bar (see [diagnosis.md](diagnosis.md)
+for the breakdown). A 100-query golden set + offline harness exists, with
+both auto and human (+ graded) grading modes. The human-review tool's
+forms are currently blank — they were reset for re-scoring (see the
+2026-06-01 update below). The corpus is built from the live
+`docs.slideruleearth.io` site as of the 2026-05-29 rebaseline (was a
+frozen `docs.testsliderule.org` mirror before then).
 
-The next concrete step is **Phase 2** — finish the human reviews,
-then add a `--metric=human` mode to the harness, then start pulling
-levers. See "What's next" below.
+The next concrete step is **Phase 2** — re-score the human reviews, then
+start pulling levers (the harness work is done). See "What's next" below.
+
+## Update 2026-06-01 — metric work landed; reviews reset for re-scoring
+
+Merged in PR #41 (this is why Phase 2 Step 1 below is marked done):
+
+- **`--metric=human` + graded metrics** are live in
+  [tools/eval_retrieval.py](../tools/eval_retrieval.py). The human metric
+  grades over *completed reviews only* (reviewed_n / coverage reported
+  explicitly), plus a graded family — nDCG@5, graded MRR, strict
+  success@5, partial-or-better success@5 (`correct`=1.0/`partial`=0.5/
+  `wrong`=0.0).
+- **Panel-staleness guard.** `generate_review.py` stamps a panel
+  signature (hash of the panel's chunk identities) into both companion
+  files; `ingest_review.py` flags each row `current` / `stale` (corpus
+  rechunked since scoring) / `unverifiable` (pre-guard form). Only
+  `current` rows count; stale/unverifiable are excluded so a rechunk can
+  no longer silently re-paste old verdicts onto chunks the reviewer never
+  saw. This replaces the old `*-results.pre-rebaseline.md` forensic
+  approach described under "Drift after rebaseline".
+
+**The immediate task is re-scoring.** The pre-rebaseline (April) verdicts
+were all `unverifiable` against the live-docs corpus, so on 2026-06-01 the
+review forms were reset (`generate_review.py --overwrite`): all 100
+`*-review.md` are now **blank** and carry current panel signatures, so
+once filled they ingest as `usable`. Re-score, then `ingest_review.py` +
+`eval_retrieval.py` to bring the human + graded metrics back.
+
+A helper to speed re-scoring (delete once re-scoring is done):
+- [prior_verdicts_reference.md](prior_verdicts_reference.md) — your April
+  verdicts shown next to the *current* panels, per rank, as a memory aid
+  (not ground truth — rank slots shifted with the rechunk).
+
+The raw April `*-review.md` forms are recoverable from git history at the
+commit just before the reset (the blank-forms commit's parent), e.g.
+`git show <parent>:evals/review/01-...-review.md`.
 
 ## What exists today
 
@@ -69,12 +104,14 @@ levers. See "What's next" below.
   PDFs, whose chunk sections are unreliable "Page N"). Author/validate
   rows with [tools/gs_audit.py](../tools/gs_audit.py).
 - [evals/human_review.json](human_review.json) — aggregated user
-  verdicts. 67 rows carried over from the 68-row set; 33 new rows need
-  review (see below).
-- [evals/review/](review/) — 100 per-row markdown form files
-  (results + review pairs). The `*-review.md` files are the hand-filled
-  scoresheets. The `*-results.md` files are auto-regenerated and show
-  what an agent actually sees.
+  verdicts, with each row tagged `usable` / `stale` / `unverifiable` by
+  the panel-staleness guard. Currently all forms are blank (reset
+  2026-06-01), so this holds no verdicts until re-scoring is done.
+- [evals/review/](review/) — 100 per-row markdown form pairs. The
+  `*-review.md` files are the hand-filled scoresheets (each carries a
+  frozen panel signature); the `*-results.md` files are auto-regenerated,
+  show what an agent actually sees, and carry the current panel signature.
+  Ingest compares the two to detect stale verdicts.
 
 ### Analysis docs
 - [evals/diagnosis.md](diagnosis.md) — current metric state,
@@ -123,13 +160,14 @@ might be better answered by `nsidc`). The user fills in:
 - Cross-corpus routing decision (is the labeled corpus right?)
 - Human truth (only if the answer wasn't returned)
 
-Currently filled in: ~5 pilot rows + some in-progress. Most rows
-need re-checking after the rebaseline (see "Drift after rebaseline"
-below).
+Currently all 100 forms are blank — the pre-rebaseline verdicts were
+reset on 2026-06-01 (see the update near the top) because they were
+unverifiable against the live-docs corpus. Re-scoring is the immediate
+task; use [prior_verdicts_reference.md](prior_verdicts_reference.md) as a
+memory aid.
 
 The verdict scale and how to fill these in is documented in the
-header of any `*-review.md` file plus in the plan history (search
-this file for "Verdict scale").
+header of any `*-review.md` file plus under "Verdict scale" below.
 
 ## How to run
 
@@ -166,38 +204,26 @@ make rebuild-corpus-docsearch
 
 ## What's next — the Phase 2 plan
 
-### Step 0: finish reviews (in flight)
+### Step 0: re-score the reviews (the immediate task)
 
-Reviews are filled in at `evals/review/*-review.md`. Most rows still
-need verdicts. Order doesn't matter; do them in any sequence.
+All 100 `evals/review/*-review.md` forms are blank (reset 2026-06-01) and
+carry current panel signatures, so once filled they ingest as `usable`.
+Re-score all 100 — order doesn't matter, do them in any sequence. While
+scoring, glance at [prior_verdicts_reference.md](prior_verdicts_reference.md)
+for your April call on each row (a memory aid, not ground truth — the
+rechunk shifted rank slots).
 
-Rows needing review (after the live-docs rebaseline + expansion to 100):
-- **New rows (33)**: rows 69-100 (the +25 docsearch / +7 nsidc additions)
-  plus row 40 (query re-pointed to the ATL03 ATBD output table) have blank
-  `-review.md` forms — fill these in.
-- **Carried over (67)**: verdicts preserved from the 68-row set. Because
-  the corpus was re-chunked from live docs, top-5 for many rows shifted;
-  re-check the carried-over verdicts as you go (verdicts are chunk-keyed,
-  so they travel with the chunk, but new chunks won't have one).
+Once a batch has verdicts, run `tools/ingest_review.py` then
+`tools/eval_retrieval.py` — the human + graded metrics come back scoped to
+what you've completed. Proceed to Step 2 when coverage is adequate.
 
-Once all 100 rows have verdicts, run `tools/ingest_review.py` and
-proceed to Step 1.
+### Step 1: `--metric=human` mode — DONE (PR #41)
 
-### Step 1: add `--metric=human` mode to the harness
-
-Currently `tools/eval_retrieval.py` grades against `expected_urls` /
-`expected_sections` in `golden_set.jsonl`. Add a parallel grading
-path that reads per-result verdicts from `evals/human_review.json`:
-- `correct` verdict on a returned chunk → counts as a hit.
-- `partial` → 0.5 in MRR-style metrics.
-- `wrong` or missing → not a hit.
-
-CLI: `--metric=auto` (default, current behavior) vs `--metric=human`
-(new). Both modes write into [evals/report.md](report.md) for side-by-side
-comparison.
-
-Effort: ~30-45 minutes. Touch `evaluate()`, `aggregate()`,
-`write_report()` in `tools/eval_retrieval.py`.
+The harness now grades against `evals/human_review.json` verdicts
+(`correct`/`partial`/`wrong`) in addition to the auto-labels, plus a
+graded family (nDCG@5, graded MRR, strict/partial success@5), and the
+panel-staleness guard. See the 2026-06-01 update near the top for details.
+`tools/eval_retrieval.py --metric={auto,human,both}`.
 
 ### Step 2: apply routing decisions
 
@@ -283,13 +309,16 @@ rebuild). `tools/build_docsearch_corpus.py` skips `/_static/` in
 `SKIP_PATH_PREFIXES`; don't remove it. The testsliderule mirror never
 served these pages, which is why the filter wasn't needed before.
 
-### Drift after rebaseline
-When the corpus changes, per-result verdicts (tied to specific chunks
-at specific ranks) may become invalid. Overall verdict, routing, and
-human truth are mostly chunk-independent and survive. The pre-
-rebaseline snapshot of each `*-results.md` is in
-`evals/review/*-results.pre-rebaseline.md` for forensic comparison;
-delete those once Phase 2 step 1 is done.
+### Drift after rebaseline — handled by the staleness guard
+When the corpus is rechunked, per-result verdicts (tied to specific
+chunks) can silently become invalid. This is now caught automatically:
+`generate_review.py` stamps a panel signature into both companion files
+and `ingest_review.py` flags any row whose form signature no longer
+matches the regenerated `-results.md` as `stale`, excluding it from the
+human metric. So a rechunk no longer corrupts the metric — it just drops
+the affected rows until they're re-scored. (Overall verdict, routing, and
+human truth are mostly chunk-independent, but the guard excludes the whole
+row to be safe.) Re-score flagged rows, then re-ingest.
 
 ### Don't run on both machines
 Claude Code session JSONL is append-only. If you sync `~/.claude/`

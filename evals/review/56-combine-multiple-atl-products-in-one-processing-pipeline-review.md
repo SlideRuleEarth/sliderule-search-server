@@ -5,6 +5,9 @@
 
 **Query:** `combine multiple ATL products in one processing pipeline`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `e0ebc3de4576` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 
@@ -14,32 +17,32 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 **docsearch:**
 
-- r1: partial
-- r2: partial
-- r3: wrong
-- r4: wrong
-- r5: partial
+- r1: 
+- r2: 
+- r3: 
+- r4: 
+- r5: 
 
 **nsidc:**
 
-- r1: wrong
-- r2: partial
-- r3: partial
-- r4: partial
-- r5: wrong
+- r1: 
+- r2: 
+- r3: 
+- r4: 
+- r5: 
 
 ## Overall verdict
 
 One of: `correct` | `partial` | `wrong`
 
-- overall: wrong
+- overall: 
 
 ## Cross-corpus routing
 
 Should this query target a different corpus? One of:
 `keep` | `redirect-to-docsearch` | `redirect-to-nsidc` | `both-corpora`
 
-- routing: keep
+- routing: 
 
 ## Human truth (the actual right answer)
 
@@ -54,5 +57,5 @@ Repeat any field on a new `- field: value` line for multiple values.
 - url: 
 - section: 
 - pages: 
-- notes: none of the partials really explained the concept
+- notes: 
 

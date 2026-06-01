@@ -5,6 +5,9 @@
 
 **Query:** `GEDI L4A aboveground biomass density AGBD product`
 **Labeled corpus:** `nsidc`
+**Panel signature:** `e342692ca231` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

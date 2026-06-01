@@ -5,6 +5,9 @@
 
 **Query:** `ATL03 signal_conf_ph photon confidence flag`
 **Labeled corpus:** `nsidc`
+**Panel signature:** `700199c1c591` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

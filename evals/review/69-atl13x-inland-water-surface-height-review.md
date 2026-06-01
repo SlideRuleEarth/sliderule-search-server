@@ -5,6 +5,9 @@
 
 **Query:** `atl13x inland water surface height`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `04e5570cdaa9` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

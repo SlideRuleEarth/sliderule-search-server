@@ -5,6 +5,9 @@
 
 **Query:** `ICESat-2 six beam pairs ground track spacing geometry`
 **Labeled corpus:** `nsidc`
+**Panel signature:** `e70f9d757a48` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

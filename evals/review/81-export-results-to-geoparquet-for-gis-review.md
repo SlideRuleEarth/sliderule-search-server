@@ -5,6 +5,9 @@
 
 **Query:** `export results to GeoParquet for GIS`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `7a1e5adc0e9a` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

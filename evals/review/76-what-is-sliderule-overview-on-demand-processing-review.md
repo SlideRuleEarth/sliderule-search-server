@@ -5,6 +5,9 @@
 
 **Query:** `what is SlideRule overview on-demand processing`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `175d1f78e23d` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

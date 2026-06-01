@@ -5,6 +5,9 @@
 
 **Query:** `phoreal algorithm parameters atl08`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `1aaf3f65b455` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

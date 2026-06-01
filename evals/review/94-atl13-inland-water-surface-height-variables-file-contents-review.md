@@ -5,6 +5,9 @@
 
 **Query:** `ATL13 inland water surface height variables file contents`
 **Labeled corpus:** `nsidc`
+**Panel signature:** `c3c6b0fa9222` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

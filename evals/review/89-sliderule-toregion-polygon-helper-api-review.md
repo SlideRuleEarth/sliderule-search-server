@@ -5,6 +5,9 @@
 
 **Query:** `sliderule toregion polygon helper api`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `fcb62227556a` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 

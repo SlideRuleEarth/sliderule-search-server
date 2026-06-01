@@ -5,6 +5,9 @@
 
 **Query:** `atl03sp segmented photon api parameters`
 **Labeled corpus:** `docsearch`
+**Panel signature:** `c5626f92e0c9` — do not edit; identifies the result
+panel these verdicts were scored against (ingest flags this row stale
+if the corpus is rechunked out from under it).
 
 ---
 
