@@ -57,6 +57,15 @@ PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/pyt
 # (default / sliderule-ro / sliderule-power / sliderule-admin) at once.
 SSO_SESSION ?= sliderule-dev
 
+# Named SSO profiles for the privileged roles. `login-admin` / `login-power`
+# sign in and confirm the role. NOTE: a make target cannot set AWS_PROFILE
+# in your shell — to actually *run* subsequent commands as that role, export
+# it yourself: `export AWS_PROFILE=sliderule-admin`. (The terraform state
+# backend always uses the `default` profile per backend.tf; the provider
+# uses AWS_PROFILE / default.)
+ADMIN_PROFILE ?= sliderule-admin
+POWER_PROFILE ?= sliderule-power
+
 .PHONY: help clean verify rebuild-corpus-docsearch rebuild-corpus-nsidc \
         build-corpus-image \
         freeplay build-image test-image run-image deploy-lambda smoketest query \
@@ -74,7 +83,7 @@ SSO_SESSION ?= sliderule-dev
         invocations invocations-testsliderule invocations-slideruleearth \
         requests requests-testsliderule requests-slideruleearth \
         cost-estimate cost-estimate-testsliderule cost-estimate-slideruleearth \
-        aws-whoami aws-sso-login
+        aws-whoami aws-sso-login login-admin login-power
 
 # ---- Corpus builder container (x86_64) -----------------------------------------------------------
 
@@ -111,6 +120,16 @@ aws-whoami: ## Show the AWS identity currently in effect (optional PROFILE=)
 
 aws-sso-login: ## Daily AWS SSO sign-in (refreshes all profiles on the SSO_SESSION)
 	aws sso login --sso-session $(SSO_SESSION)
+
+login-admin: ## SSO sign-in as the admin role (sliderule-admin) + confirm identity
+	aws sso login --profile $(ADMIN_PROFILE)
+	@aws sts get-caller-identity --profile $(ADMIN_PROFILE)
+	@echo "→ to run commands as this role: export AWS_PROFILE=$(ADMIN_PROFILE)"
+
+login-power: ## SSO sign-in as the power-user role (sliderule-power) + confirm identity
+	aws sso login --profile $(POWER_PROFILE)
+	@aws sts get-caller-identity --profile $(POWER_PROFILE)
+	@echo "→ to run commands as this role: export AWS_PROFILE=$(POWER_PROFILE)"
 
 # ---- Local CI (mirrors .github/workflows/ci.yml) --------------------------------------------------
 
