@@ -19,7 +19,14 @@ terraform {
     key                  = "tf-states/search-server.tfstate"
     workspace_key_prefix = "tf-workspaces"
     encrypt              = true
-    profile              = "default"
     region               = "us-west-2"
+    # Intentionally NO `profile` pinned. A hardcoded `profile = "default"`
+    # made the backend ignore AWS_PROFILE and always authenticate to S3 as
+    # the default profile — which is the read-only SSO role here, so state
+    # writes 403'd during deploy/destroy even when the operator had exported
+    # a privileged AWS_PROFILE for the provider. Leaving it unset lets the
+    # backend use the same credential resolution as the provider: AWS_PROFILE
+    # if set, otherwise the `default` profile (unchanged behavior when unset).
+    # For privileged ops: `export AWS_PROFILE=sliderule-admin` (or -power).
   }
 }
