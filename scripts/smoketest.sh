@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Smoke-test the deployed sliderule-search-server distribution.
-# Usage: DOMAIN=search.testsliderule.org ./scripts/smoketest.sh
+# Usage: DOMAIN=search.slideruleearth.io ./scripts/smoketest.sh
 #
 # Exercises both corpora and the domain-wide plumbing:
 #   GET     /healthz                     liveness + enumerates corpora
@@ -21,7 +21,7 @@
 
 set -uo pipefail
 
-DOMAIN="${DOMAIN:-search.testsliderule.org}"
+DOMAIN="${DOMAIN:-search.slideruleearth.io}"
 BASE="https://$DOMAIN"
 
 pass=0
