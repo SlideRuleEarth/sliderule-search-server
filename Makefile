@@ -25,10 +25,20 @@ DISTRIBUTION_ID = $(shell aws cloudfront list-distributions --query "Distributio
 # leaking in (e.g. from ~/.zshrc) rather than an intentional override.
 # Without this guard, targets like `make logs` / `make smoketest` /
 # `make deploy-lambda` pass their `test -n "$(DOMAIN)"` checks and
-# silently target the wrong thing. Wrapper targets (update-testsliderule
-# etc.) supply real FQDNs; bare invocations should leave DOMAIN unset.
+# silently target the wrong thing.
+#
+# Scope: fire only when a DOMAIN-*consuming* primitive is an explicit goal.
+# DOMAIN-agnostic goals (help, verify, aws-whoami, aws-sso-login, the
+# image/corpus builds) and the per-env wrappers (update-slideruleearth etc.,
+# which pass an explicit DOMAIN to their sub-makes) are unaffected — so a
+# stray `export DOMAIN=localhost` doesn't block them.
+DOMAIN_CONSUMING_GOALS := deploy-lambda terraform-apply terraform-apply-ecr \
+        terraform-destroy smoketest query check-vars \
+        logs errors error-count invocations requests cost-estimate
+ifneq ($(filter $(DOMAIN_CONSUMING_GOALS),$(MAKECMDGOALS)),)
 ifeq ($(DOMAIN),localhost)
 $(error DOMAIN=localhost is almost certainly a stray shell export, not intent. `unset DOMAIN` (or remove the export from ~/.zshrc) and re-run, or pass an explicit DOMAIN= on the command line. For a real environment use a wrapper like `make update-testsliderule`)
+endif
 endif
 
 SRC_DIR      = $(ROOT)/generated
@@ -41,6 +51,11 @@ CORPUS_FILE  = $(SRC_DIR)/docsearch/corpus.json
 # per-target import-check below prints a clear install hint instead
 # of a raw ModuleNotFoundError traceback.
 PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/python || echo python3)
+
+# AWS SSO session shared by all sliderule-* profiles (see ~/.aws/config).
+# A single `aws sso login` against this session refreshes every profile
+# (default / sliderule-ro / sliderule-power / sliderule-admin) at once.
+SSO_SESSION ?= sliderule-dev
 
 .PHONY: help clean verify rebuild-corpus-docsearch rebuild-corpus-nsidc \
         build-corpus-image \
@@ -58,7 +73,8 @@ PYTHON := $(shell test -x $(ROOT)/.venv/bin/python && echo $(ROOT)/.venv/bin/pyt
         error-count error-count-testsliderule error-count-slideruleearth \
         invocations invocations-testsliderule invocations-slideruleearth \
         requests requests-testsliderule requests-slideruleearth \
-        cost-estimate cost-estimate-testsliderule cost-estimate-slideruleearth
+        cost-estimate cost-estimate-testsliderule cost-estimate-slideruleearth \
+        aws-whoami aws-sso-login
 
 # ---- Corpus builder container (x86_64) -----------------------------------------------------------
 
@@ -87,6 +103,14 @@ help: ## That's me!
 	@echo DOMAIN_ROOT:     $(DOMAIN_ROOT)
 	@echo DOMAIN_APEX:     $(DOMAIN_APEX)
 	@echo DISTRIBUTION_ID: $(DISTRIBUTION_ID)
+
+# ---- AWS auth ------------------------------------------------------------------------------------
+
+aws-whoami: ## Show the AWS identity currently in effect (optional PROFILE=)
+	aws sts get-caller-identity $(if $(PROFILE),--profile $(PROFILE),)
+
+aws-sso-login: ## Daily AWS SSO sign-in (refreshes all profiles on the SSO_SESSION)
+	aws sso login --sso-session $(SSO_SESSION)
 
 # ---- Local CI (mirrors .github/workflows/ci.yml) --------------------------------------------------
 
