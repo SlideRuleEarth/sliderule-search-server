@@ -20,6 +20,7 @@ so a partially-completed review survives a re-run.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -35,11 +36,34 @@ from tools.eval_retrieval import (  # noqa: E402
     GOLDEN_SET_PATH,
     MODEL_PATH,
     TOKENIZER_PATH,
+    chunk_key_for_result,
     load_corpus_state,
 )
 
 REVIEW_DIR = REPO_ROOT / "evals" / "review"
 TOP_K = 5  # how many chunks to surface per corpus in the review form
+
+# Fixed corpus order for the panel signature — keep deterministic so the
+# same corpus + ranking always yields the same signature.
+PANEL_CORPORA = ("docsearch", "nsidc")
+
+
+def panel_signature(results_by_corpus: dict[str, list[dict]]) -> str:
+    """Stable fingerprint of the chunk *identities* a reviewer scores.
+
+    Concatenates the ordered `chunk_key`s of both panels (the same
+    path||section||content-hash keys the human metric matches verdicts
+    against) and hashes them. The signature changes iff the panel changes:
+    a rechunk that shifts text boundaries, a re-ordering, or a different
+    doc surfacing all move it. Stamped into both companion files so ingest
+    can tell whether a verdict was scored against the panel that's now in
+    the corpus — see the staleness check in `ingest_review.py`."""
+    parts = [
+        chunk_key_for_result(chunk)
+        for corpus in PANEL_CORPORA
+        for chunk in results_by_corpus.get(corpus, [])
+    ]
+    return hashlib.sha1("\n".join(parts).encode("utf-8")).hexdigest()[:12]
 
 
 def slugify(text: str, max_len: int = 60) -> str:
@@ -84,12 +108,15 @@ def render_results_md(
     row: dict,
     results_by_corpus: dict[str, list[dict]],
     review_filename: str,
+    sig: str,
 ) -> str:
     """Compose the read-only `-results.md` companion: query header,
     auto-labels, and the two result panels with full chunk text.
 
     This file is regenerated on every run — do not edit it. Verdicts and
-    feedback go in the matching `-review.md` file.
+    feedback go in the matching `-review.md` file. The panel signature
+    here always reflects the *current* corpus; ingest compares it to the
+    one frozen in `-review.md` to detect stale verdicts.
     """
     lines = [
         f"# Row {idx} results: {row['corpus']} / {row.get('type', '?')}",
@@ -98,6 +125,7 @@ def render_results_md(
         f"> verdicts go there, this side is read-only.",
         "",
         f"**Query:** `{row['query']}`",
+        f"**Panel signature:** `{sig}`",
         "",
         "## Auto-labeled (current ground truth)",
         "",
@@ -144,13 +172,19 @@ def render_results_md(
     return "\n".join(lines) + "\n"
 
 
-def render_review_md(idx: int, row: dict, results_filename: str) -> str:
+def render_review_md(idx: int, row: dict, results_filename: str, sig: str) -> str:
     """Compose the editable `-review.md` companion: short query header
     + the form with all blanks. This file is preserved across re-runs
     of generate_review.py unless --overwrite is set.
 
     Header includes row index + query so the parser can extract
     metadata directly from this file (no need to cross-read -results.md).
+
+    The panel signature is stamped here at generation time and frozen by
+    the preserve-on-rerun behavior, so it records the panel these verdicts
+    were scored against. When the corpus is rechunked and `-results.md`
+    regenerates with a new signature, ingest sees the mismatch and flags
+    the row stale — the verdicts can't be trusted until re-scored.
     """
     lines = [
         f"# Row {idx} review",
@@ -160,6 +194,9 @@ def render_review_md(idx: int, row: dict, results_filename: str) -> str:
         "",
         f"**Query:** `{row['query']}`",
         f"**Labeled corpus:** `{row['corpus']}`",
+        f"**Panel signature:** `{sig}` — do not edit; identifies the result",
+        "panel these verdicts were scored against (ingest flags this row stale",
+        "if the corpus is rechunked out from under it).",
         "",
         "---",
         "",
@@ -260,9 +297,11 @@ def main() -> int:
             )
             results_by_corpus[corpus_name] = results
 
+        sig = panel_signature(results_by_corpus)
+
         # `-results.md` is auto-generated and ALWAYS regenerated. The user
         # never edits it, so overwriting is safe.
-        results_md = render_results_md(idx, row, results_by_corpus, review_path.name)
+        results_md = render_results_md(idx, row, results_by_corpus, review_path.name, sig)
         results_path.write_text(results_md)
         results_written += 1
         print(f"  wrote {results_path.relative_to(REPO_ROOT)}", file=sys.stderr)
@@ -277,7 +316,7 @@ def main() -> int:
                 file=sys.stderr,
             )
         else:
-            review_md = render_review_md(idx, row, results_path.name)
+            review_md = render_review_md(idx, row, results_path.name, sig)
             review_path.write_text(review_md)
             review_written += 1
             print(f"  wrote {review_path.relative_to(REPO_ROOT)}", file=sys.stderr)

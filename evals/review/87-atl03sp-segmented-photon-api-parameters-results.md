@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `atl03sp segmented photon api parameters`
+**Panel signature:** `c5626f92e0c9`
 
 ## Auto-labeled (current ground truth)
 

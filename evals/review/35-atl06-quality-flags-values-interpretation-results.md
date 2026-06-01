@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL06 quality flags values interpretation`
+**Panel signature:** `d3aaa7215f24`
 
 ## Auto-labeled (current ground truth)
 

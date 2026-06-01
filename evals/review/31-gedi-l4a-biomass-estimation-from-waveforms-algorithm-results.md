@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `GEDI L4A biomass estimation from waveforms algorithm`
+**Panel signature:** `241cecf01961`
 
 ## Auto-labeled (current ground truth)
 

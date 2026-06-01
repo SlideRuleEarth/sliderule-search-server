@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `what is the X-Series API in SlideRule`
+**Panel signature:** `1e0212ba4681`
 
 ## Auto-labeled (current ground truth)
 

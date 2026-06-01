@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how to run atl06 with raster DEM sampling`
+**Panel signature:** `54c76ffe81f6`
 
 ## Auto-labeled (current ground truth)
 

@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `phoreal algorithm parameters atl08`
+**Panel signature:** `1aaf3f65b455`
 
 ## Auto-labeled (current ground truth)
 

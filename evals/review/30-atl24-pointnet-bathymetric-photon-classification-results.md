@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL24 PointNet++ bathymetric photon classification`
+**Panel signature:** `2f9025cff660`
 
 ## Auto-labeled (current ground truth)
 

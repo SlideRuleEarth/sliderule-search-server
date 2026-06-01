@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL13 file naming convention granule filename`
+**Panel signature:** `6e6b9840d0e6`
 
 ## Auto-labeled (current ground truth)
 

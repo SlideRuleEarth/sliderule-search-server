@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ICESat-2 orbit altitude inclination mission specifications`
+**Panel signature:** `7f6e3cf59abe`
 
 ## Auto-labeled (current ground truth)
 

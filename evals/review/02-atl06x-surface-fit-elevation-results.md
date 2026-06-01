@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `atl06x surface fit elevation`
+**Panel signature:** `0792616be553`
 
 ## Auto-labeled (current ground truth)
 

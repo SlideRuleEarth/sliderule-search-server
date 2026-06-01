@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `yapc added to sliderule version release notes`
+**Panel signature:** `47f97cbe2b4c`
 
 ## Auto-labeled (current ground truth)
 

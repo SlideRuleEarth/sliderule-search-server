@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL03 pointing biases beam geolocation error model`
+**Panel signature:** `132d1c480dbc`
 
 ## Auto-labeled (current ground truth)
 

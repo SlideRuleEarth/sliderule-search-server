@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `sliderule module initialization session setup`
+**Panel signature:** `9657b9feac4d`
 
 ## Auto-labeled (current ground truth)
 

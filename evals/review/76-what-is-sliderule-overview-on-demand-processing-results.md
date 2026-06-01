@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `what is SlideRule overview on-demand processing`
+**Panel signature:** `175d1f78e23d`
 
 ## Auto-labeled (current ground truth)
 

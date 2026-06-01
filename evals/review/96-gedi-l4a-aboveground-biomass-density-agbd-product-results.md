@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `GEDI L4A aboveground biomass density AGBD product`
+**Panel signature:** `e342692ca231`
 
 ## Auto-labeled (current ground truth)
 

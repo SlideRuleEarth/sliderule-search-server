@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `earthdata authentication credentials sliderule`
+**Panel signature:** `12754cd01512`
 
 ## Auto-labeled (current ground truth)
 

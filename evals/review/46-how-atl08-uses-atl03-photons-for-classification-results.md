@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how ATL08 uses ATL03 photons for classification`
+**Panel signature:** `55bf5472e98b`
 
 ## Auto-labeled (current ground truth)
 

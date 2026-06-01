@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `GEDI L4A python API parameters`
+**Panel signature:** `9dc4d498f6a5`
 
 ## Auto-labeled (current ground truth)
 

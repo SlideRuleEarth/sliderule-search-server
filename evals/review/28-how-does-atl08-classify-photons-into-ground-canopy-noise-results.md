@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how does ATL08 classify photons into ground canopy noise`
+**Panel signature:** `be1188e8374f`
 
 ## Auto-labeled (current ground truth)
 

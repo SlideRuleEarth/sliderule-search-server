@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `read cloud HDF5 files without downloading them`
+**Panel signature:** `3417c5a3ad8b`
 
 ## Auto-labeled (current ground truth)
 

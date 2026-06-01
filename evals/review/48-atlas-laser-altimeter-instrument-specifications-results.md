@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATLAS laser altimeter instrument specifications`
+**Panel signature:** `44c5ab4d3557`
 
 ## Auto-labeled (current ground truth)
 

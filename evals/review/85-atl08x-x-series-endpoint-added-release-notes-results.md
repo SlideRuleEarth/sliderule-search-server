@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `atl08x x-series endpoint added release notes`
+**Panel signature:** `0bcbd32a0e9f`
 
 ## Auto-labeled (current ground truth)
 

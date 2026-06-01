@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL13 uses ATL03 geolocation for inland water bodies`
+**Panel signature:** `03345191b5ad`
 
 ## Auto-labeled (current ground truth)
 

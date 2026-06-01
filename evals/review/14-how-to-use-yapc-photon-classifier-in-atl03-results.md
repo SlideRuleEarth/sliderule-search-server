@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how to use yapc photon classifier in atl03`
+**Panel signature:** `13e8b1a2966f`
 
 ## Auto-labeled (current ground truth)
 

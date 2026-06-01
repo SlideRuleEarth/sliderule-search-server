@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `gedi gedi02ap canopy api parameters`
+**Panel signature:** `f517c41a5121`
 
 ## Auto-labeled (current ground truth)
 

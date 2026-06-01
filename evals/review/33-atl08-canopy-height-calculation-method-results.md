@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL08 canopy height calculation method`
+**Panel signature:** `56aaf02420d2`
 
 ## Auto-labeled (current ground truth)
 

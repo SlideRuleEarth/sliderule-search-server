@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `cnf confidence filter parameter`
+**Panel signature:** `de32a2673d0d`
 
 ## Auto-labeled (current ground truth)
 

@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `GEDI support added to sliderule release`
+**Panel signature:** `55883505b0ed`
 
 ## Auto-labeled (current ground truth)
 

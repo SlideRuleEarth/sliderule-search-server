@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `add ancillary fields to sliderule atl06 output`
+**Panel signature:** `0c9a910c8245`
 
 ## Auto-labeled (current ground truth)
 

@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL06 uses ATL03 photons to compute surface elevations algorithm`
+**Panel signature:** `0261b94ca05d`
 
 ## Auto-labeled (current ground truth)
 

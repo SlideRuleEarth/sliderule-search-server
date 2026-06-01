@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how to query atl13 lake by name`
+**Panel signature:** `007b00068d45`
 
 ## Auto-labeled (current ground truth)
 

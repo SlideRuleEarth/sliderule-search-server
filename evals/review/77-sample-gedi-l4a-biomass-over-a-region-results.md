@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `sample GEDI L4A biomass over a region`
+**Panel signature:** `1d2467a05a2e`
 
 ## Auto-labeled (current ground truth)
 

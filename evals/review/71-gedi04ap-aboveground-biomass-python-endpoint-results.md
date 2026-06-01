@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `gedi04ap aboveground biomass python endpoint`
+**Panel signature:** `cd8dfa850582`
 
 ## Auto-labeled (current ground truth)
 

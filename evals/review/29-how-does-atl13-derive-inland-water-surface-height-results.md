@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how does ATL13 derive inland water surface height`
+**Panel signature:** `37c2b0c07384`
 
 ## Auto-labeled (current ground truth)
 

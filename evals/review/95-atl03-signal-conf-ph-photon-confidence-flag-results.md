@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATL03 signal_conf_ph photon confidence flag`
+**Panel signature:** `700199c1c591`
 
 ## Auto-labeled (current ground truth)
 

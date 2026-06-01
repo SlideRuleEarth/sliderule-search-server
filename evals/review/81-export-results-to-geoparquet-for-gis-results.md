@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `export results to GeoParquet for GIS`
+**Panel signature:** `7a1e5adc0e9a`
 
 ## Auto-labeled (current ground truth)
 

@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `GEDI shot footprint size geometry`
+**Panel signature:** `d2735d3fe820`
 
 ## Auto-labeled (current ground truth)
 

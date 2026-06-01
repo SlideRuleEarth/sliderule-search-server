@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `ATLAS 532nm green laser photon counting detector`
+**Panel signature:** `00c1bad780db`
 
 ## Auto-labeled (current ground truth)
 

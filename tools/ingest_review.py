@@ -10,6 +10,13 @@ Records that haven't been touched (every blank still empty) are tagged
 `incomplete` and excluded from the aggregate. This lets the user review
 incrementally — re-run this script anytime, the JSON updates.
 
+Each record also carries a `panel_status` from the staleness guard:
+`current` (verdicts scored against the panel still in the corpus),
+`stale` (corpus rechunked since scoring — the rank-keyed verdicts would
+now attach to chunks the reviewer never saw), or `unverifiable` (a
+pre-guard form with no panel signature). Only `current` records are
+`usable`; the eval harness grades the human metric over those alone.
+
 Usage
 -----
     python tools/ingest_review.py [--review-dir evals/review]
@@ -50,6 +57,18 @@ VALID_OVERALL = VALID_VERDICTS  # same vocabulary
 ROW_HEADER_RE = re.compile(r"^# Row (\d+) review", re.MULTILINE)
 QUERY_RE = re.compile(r"^\*\*Query:\*\* `(.+?)`", re.MULTILINE)
 LABELED_CORPUS_RE = re.compile(r"^\*\*Labeled corpus:\*\* `(\w+)`", re.MULTILINE)
+# Panel signature stamped into both companion files by generate_review.py.
+# The one in -review.md is frozen at authoring time; the one in -results.md
+# tracks the current corpus. A mismatch means the panel was rechunked since
+# the verdicts were scored. Pre-guard forms have no signature line.
+PANEL_SIG_RE = re.compile(r"^\*\*Panel signature:\*\* `([0-9a-f]+)`", re.MULTILINE)
+
+
+def parse_panel_sig(text: str) -> str | None:
+    """Pull the `**Panel signature:** \`<hex>\`` value, or None if absent
+    (e.g. a review form generated before the staleness guard existed)."""
+    m = PANEL_SIG_RE.search(text)
+    return m.group(1) if m else None
 
 
 def _extract_section(content: str, header: str, until_headers: list[str]) -> str:
@@ -330,6 +349,26 @@ def parse_review_file(path: Path) -> dict | None:
     # the user wrote at that rank.
     results_path = path.parent / path.name.replace("-review.md", "-results.md")
     chunk_ids = parse_results_chunks(results_path)
+
+    # Staleness guard: compare the panel signature frozen in this form
+    # (the panel the verdicts were scored against) to the one in the
+    # freshly-regenerated -results.md (the current corpus). Reranking is
+    # safe — same chunks, reordered — but a rechunk shifts chunk identities,
+    # so the rank-keyed verdicts above would be re-pasted onto chunks the
+    # reviewer never saw. Three states:
+    #   current      — signatures match; verdicts apply to the live panel
+    #   stale        — signatures differ; corpus rechunked since scoring
+    #   unverifiable — no signature in the form (pre-guard) or no -results.md
+    review_sig = parse_panel_sig(content)
+    results_sig = (
+        parse_panel_sig(results_path.read_text()) if results_path.exists() else None
+    )
+    if review_sig is None or results_sig is None:
+        panel_status = "unverifiable"
+    elif review_sig == results_sig:
+        panel_status = "current"
+    else:
+        panel_status = "stale"
     verdicts_by_chunk: dict[str, dict[str, str]] = {"docsearch": {}, "nsidc": {}}
     for corpus, rank_verdicts in (
         ("docsearch", docsearch_verdicts),
@@ -345,12 +384,22 @@ def parse_review_file(path: Path) -> dict | None:
             if key:
                 verdicts_by_chunk[corpus][key] = verdict
 
+    # A record is usable by the human metric only if it's both filled in
+    # AND scored against the panel that's still in the corpus. The eval
+    # harness keys off this so stale/unverifiable verdicts never silently
+    # inflate or deflate the metric.
+    usable = (not is_empty) and panel_status == "current"
+
     return {
         "row_index": row_index,
         "query": query,
         "labeled_corpus": labeled_corpus,
         "review_file": str(path.relative_to(REPO_ROOT)),
         "incomplete": is_empty,
+        "panel_status": panel_status,
+        "panel_sig": review_sig,
+        "current_panel_sig": results_sig,
+        "usable": usable,
         "verdicts": {
             "docsearch": docsearch_verdicts,
             "nsidc": nsidc_verdicts,
@@ -364,19 +413,38 @@ def parse_review_file(path: Path) -> dict | None:
 
 def summarize(records: list[dict]) -> dict:
     """High-level counts to surface in human_review.json — useful for
-    quick sanity checks without parsing the per-row entries."""
+    quick sanity checks without parsing the per-row entries.
+
+    The buckets partition every file exactly once:
+        total_files = incomplete + usable + stale + unverifiable
+    where stale/unverifiable are counted only among *completed* forms
+    (an incomplete form has no verdicts to be stale about). `usable` is
+    the count the human metric actually grades over — completed AND
+    scored against the current panel."""
     completed = [r for r in records if not r["incomplete"]]
     overall_counts: dict[str, int] = {}
     routing_counts: dict[str, int] = {}
+    stale = unverifiable = usable = 0
     for r in completed:
         overall = r["overall_verdict"] or "(blank)"
         overall_counts[overall] = overall_counts.get(overall, 0) + 1
         routing = r["routing"] or "(blank)"
         routing_counts[routing] = routing_counts.get(routing, 0) + 1
+        status = r.get("panel_status")
+        if status == "current":
+            usable += 1
+        elif status == "stale":
+            stale += 1
+        else:
+            unverifiable += 1
     return {
         "total_files": len(records),
         "completed": len(completed),
         "incomplete": len(records) - len(completed),
+        # staleness buckets (among completed forms)
+        "usable": usable,
+        "stale": stale,
+        "unverifiable": unverifiable,
         "overall_verdicts": overall_counts,
         "routing_decisions": routing_counts,
     }
@@ -424,9 +492,19 @@ def main() -> int:
     print(
         f"ingested {summary['total_files']} review file(s): "
         f"{summary['completed']} completed, {summary['incomplete']} incomplete\n"
+        f"  of completed: {summary['usable']} usable, "
+        f"{summary['stale']} stale (panel rechunked since scoring), "
+        f"{summary['unverifiable']} unverifiable (no panel signature)\n"
         f"wrote {out_path.relative_to(REPO_ROOT)}",
         file=sys.stderr,
     )
+    if summary["stale"] or summary["unverifiable"]:
+        print(
+            "  NOTE: stale/unverifiable rows are excluded from the human "
+            "metric. Re-score them against the regenerated -results.md "
+            "(generate_review.py --overwrite) and re-run this ingest.",
+            file=sys.stderr,
+        )
     return 0
 
 

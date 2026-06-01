@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `GEDI laser channels power modes beam configuration`
+**Panel signature:** `0441fc16d92c`
 
 ## Auto-labeled (current ground truth)
 

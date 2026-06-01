@@ -13,26 +13,24 @@ corpora + `server.ranking.rank()` (no Lambda, no HTTP, no cache).
 
 **Below bar on: hit_at_1, mrr.**
 
-## Verdict — human-metric
+## Verdict — human-metric (suppressed)
 
-| Metric | Value | Bar | Pass |
-| --- | --- | --- | --- |
-| recall@5 | 0.270 | ≥ 0.70 | ✗ |
-| hit@1 | 0.150 | ≥ 0.50 | ✗ |
-| MRR | 0.187 | ≥ 0.55 | ✗ |
+**No usable human reviews.** Completed verdicts exist but every one was
+excluded, so the human metric is not computed. Most often this means the
+corpus was rechunked since the reviews were scored (stale), or the review
+forms predate the panel-signature guard (unverifiable). Re-score against
+the regenerated `-results.md` panels and re-run `ingest_review.py`.
 
-**Below bar on: recall_at_5, hit_at_1, mrr.**
-
-## Auto vs human delta (overall)
-
-Positive delta = human-metric is higher (auto-labels too strict).
-Negative delta = human-metric is lower (auto-labels too generous).
-
-| Metric | auto | human | delta |
-| --- | --- | --- | --- |
-| recall@5 | 0.780 | 0.270 | -0.510 |
-| hit@1    | 0.390 | 0.150 | -0.240 |
-| MRR      | 0.544 | 0.187 | -0.357 |
+> **Scope:** the human-metric is computed over *usable reviews only* —
+> completed AND scored against the panel still in the corpus. Unreviewed,
+> incomplete, stale, and unverifiable rows are excluded from the
+> denominator (rather than counted as misses).
+>
+> - reviewed_n (usable): **0** of 100 golden-set rows
+> - coverage: **0.0%**
+> - incomplete rows excluded: **34**
+> - stale rows excluded (corpus rechunked since scoring): **0**
+> - unverifiable rows excluded (no panel signature): **66**
 
 ## Per corpus — auto-metric
 
@@ -56,109 +54,6 @@ Negative delta = human-metric is lower (auto-labels too generous).
 | nsidc | instrument | 8 | 1.000 | 0.250 | 0.529 |
 | nsidc | product_disambiguation | 8 | 0.875 | 0.500 | 0.642 |
 | nsidc | variable_lookup | 8 | 0.750 | 0.250 | 0.405 |
-
-## Per corpus — human-metric
-
-| corpus | n | recall@5 | hit@1 | MRR |
-| --- | --- | --- | --- | --- |
-| docsearch | 60 | 0.233 | 0.133 | 0.169 |
-| nsidc | 40 | 0.325 | 0.175 | 0.214 |
-
-## Per query type — human-metric
-
-| corpus | type | n | recall@5 | hit@1 | MRR |
-| --- | --- | --- | --- | --- | --- |
-| docsearch | api_lookup | 10 | 0.300 | 0.200 | 0.220 |
-| docsearch | conceptual | 10 | 0.400 | 0.200 | 0.300 |
-| docsearch | example | 10 | 0.100 | 0.100 | 0.100 |
-| docsearch | identifier | 10 | 0.400 | 0.200 | 0.270 |
-| docsearch | paraphrased | 10 | 0.100 | 0.100 | 0.100 |
-| docsearch | version_history | 10 | 0.100 | 0.000 | 0.025 |
-| nsidc | algorithm | 8 | 0.500 | 0.125 | 0.223 |
-| nsidc | cross_product | 8 | 0.375 | 0.250 | 0.292 |
-| nsidc | instrument | 8 | 0.000 | 0.000 | 0.000 |
-| nsidc | product_disambiguation | 8 | 0.250 | 0.250 | 0.250 |
-| nsidc | variable_lookup | 8 | 0.500 | 0.250 | 0.306 |
-
-## Auto vs human disagreements
-
-Out of 68 rows with completed human review:
-- **30 rows where auto says hit, human says miss** (auto-label likely too generous)
-- **3 rows where auto says miss, human says hit** (auto-label likely too narrow)
-
-The disagreements are the work for the auto-vs-human reconciliation step (Phase 2 step 3).
-
-### Auto says hit, human says miss
-
-- **row 2 [docsearch/identifier]** `atl06x surface fit elevation`
-  - auto first_rank: 5; human verdicts r1..r5: wrong partial partial wrong wrong
-- **row 3 [docsearch/identifier]** `atl24x bathymetry subsetting`
-  - auto first_rank: 1; human verdicts r1..r5: partial partial partial wrong partial
-- **row 8 [docsearch/conceptual]** `how to run atl06 with raster DEM sampling`
-  - auto first_rank: 2; human verdicts r1..r5: partial wrong partial wrong partial
-- **row 11 [docsearch/conceptual]** `earthdata authentication credentials sliderule`
-  - auto first_rank: 5; human verdicts r1..r5: partial wrong wrong wrong partial
-- **row 15 [docsearch/example]** `how to sample ArcticDEM raster mosaic`
-  - auto first_rank: 1; human verdicts r1..r5: wrong partial partial wrong wrong
-- **row 16 [docsearch/example]** `how to subset atl24 bathymetry data`
-  - auto first_rank: 3; human verdicts r1..r5: wrong partial partial partial wrong
-- **row 18 [docsearch/version_history]** `when was atl24x added to sliderule release`
-  - auto first_rank: 1; human verdicts r1..r5: wrong wrong wrong partial partial
-- **row 21 [docsearch/version_history]** `recent changes to atl06x release notes`
-  - auto first_rank: 3; human verdicts r1..r5: wrong wrong wrong wrong wrong
-- **row 23 [docsearch/api_lookup]** `raster sampling API function parameters`
-  - auto first_rank: 1; human verdicts r1..r5: partial partial wrong wrong partial
-- **row 24 [docsearch/paraphrased]** `getting canopy height from atl03 photons using atl08`
-  - auto first_rank: 1; human verdicts r1..r5: partial partial partial partial wrong
-- **row 25 [docsearch/paraphrased]** `add ancillary fields to sliderule atl06 output`
-  - auto first_rank: 1; human verdicts r1..r5: partial wrong wrong wrong wrong
-- **row 29 [nsidc/algorithm]** `how does ATL13 derive inland water surface height`
-  - auto first_rank: 4; human verdicts r1..r5: partial wrong wrong wrong wrong
-- **row 33 [nsidc/algorithm]** `ATL08 canopy height calculation method`
-  - auto first_rank: 3; human verdicts r1..r5: wrong wrong partial partial wrong
-- **row 34 [nsidc/variable_lookup]** `ATL03 HDF5 file structure data groups photon fields`
-  - auto first_rank: 4; human verdicts r1..r5: partial partial partial partial partial
-- **row 38 [nsidc/variable_lookup]** `ATL24 file contents and spatial coverage`
-  - auto first_rank: 3; human verdicts r1..r5: wrong wrong partial wrong wrong
-- **row 41 [nsidc/product_disambiguation]** `ATL06 data groups structure for land ice`
-  - auto first_rank: 2; human verdicts r1..r5: wrong partial wrong partial partial
-- **row 42 [nsidc/product_disambiguation]** `ATL08 DRAGANN noise filtering algorithm`
-  - auto first_rank: 1; human verdicts r1..r5: wrong partial wrong partial partial
-- **row 43 [nsidc/product_disambiguation]** `ATL24 ensemble classification bathymetry`
-  - auto first_rank: 1; human verdicts r1..r5: partial partial partial partial partial
-- **row 45 [nsidc/cross_product]** `strong versus weak beams ICESat-2 ATLAS`
-  - auto first_rank: 5; human verdicts r1..r5: partial partial partial partial partial
-- **row 46 [nsidc/cross_product]** `how ATL08 uses ATL03 photons for classification`
-  - auto first_rank: 1; human verdicts r1..r5: partial partial partial partial wrong
-- **row 48 [nsidc/instrument]** `ATLAS laser altimeter instrument specifications`
-  - auto first_rank: 5; human verdicts r1..r5: partial partial partial wrong partial
-- **row 49 [nsidc/instrument]** `ATL03 photon geolocation algorithm method`
-  - auto first_rank: 2; human verdicts r1..r5: partial partial wrong partial wrong
-- **row 50 [nsidc/instrument]** `GEDI shot footprint size geometry`
-  - auto first_rank: 1; human verdicts r1..r5: partial partial partial partial wrong
-- **row 51 [docsearch/api_lookup]** `sliderule module initialization session setup`
-  - auto first_rank: 2; human verdicts r1..r5: wrong wrong wrong wrong wrong
-- **row 52 [docsearch/api_lookup]** `h5 hdf5 read function parameters h5p h5x`
-  - auto first_rank: 1; human verdicts r1..r5: partial partial partial partial partial
-- **row 56 [docsearch/paraphrased]** `combine multiple ATL products in one processing pipeline`
-  - auto first_rank: 5; human verdicts r1..r5: partial partial wrong wrong partial
-- **row 57 [docsearch/paraphrased]** `filter only vegetation photons from ICESat-2 atl03`
-  - auto first_rank: 2; human verdicts r1..r5: partial partial wrong partial wrong
-- **row 64 [nsidc/instrument]** `ICESat-2 orbit altitude inclination mission specifications`
-  - auto first_rank: 3; human verdicts r1..r5: partial partial wrong wrong wrong
-- **row 65 [nsidc/instrument]** `GEDI laser channels power modes beam configuration`
-  - auto first_rank: 1; human verdicts r1..r5: wrong wrong wrong wrong wrong
-- **row 66 [nsidc/instrument]** `ATL03 pointing biases beam geolocation error model`
-  - auto first_rank: 2; human verdicts r1..r5: partial partial partial partial partial
-
-### Auto says miss, human says hit
-
-- **row 30 [nsidc/algorithm]** `ATL24 PointNet++ bathymetric photon classification`
-  - auto first_rank: 6; human verdicts r1..r5: partial partial partial partial correct; human first `correct` rank: 5
-- **row 32 [nsidc/algorithm]** `ATL03 geophysical corrections ocean tides solid earth`
-  - auto first_rank: 7; human verdicts r1..r5: wrong wrong correct wrong wrong; human first `correct` rank: 3
-- **row 35 [nsidc/variable_lookup]** `ATL06 quality flags values interpretation`
-  - auto first_rank: 35; human verdicts r1..r5: wrong partial wrong wrong correct; human first `correct` rank: 5
 
 
 ## Queries below recall@5

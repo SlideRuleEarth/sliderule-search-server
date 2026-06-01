@@ -4,6 +4,7 @@
 > verdicts go there, this side is read-only.
 
 **Query:** `how to filter ICESat-2 photons by confidence`
+**Panel signature:** `a405a105c77f`
 
 ## Auto-labeled (current ground truth)
 
