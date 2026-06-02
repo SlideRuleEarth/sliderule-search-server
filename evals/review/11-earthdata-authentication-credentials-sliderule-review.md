@@ -17,19 +17,19 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 **docsearch:**
 
-- r1: 
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r1: wrong
+- r2: wrong
+- r3: wrong
+- r4: wrong
+- r5: correct
 
 **nsidc:**
 
-- r1: 
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r1: wrong
+- r2: wrong
+- r3: wrong
+- r4: wrong
+- r5: wrong
 
 ## Overall verdict
 

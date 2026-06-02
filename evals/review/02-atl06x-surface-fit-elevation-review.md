@@ -17,32 +17,32 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 **docsearch:**
 
-- r1: 
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r1: partial
+- r2: wrong
+- r3: partial
+- r4: partial
+- r5: partial
 
 **nsidc:**
 
-- r1: 
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r1: partial
+- r2: wrong
+- r3: wrong
+- r4: wrong
+- r5: wrong
 
 ## Overall verdict
 
 One of: `correct` | `partial` | `wrong`
 
-- overall: 
+- overall: partial
 
 ## Cross-corpus routing
 
 Should this query target a different corpus? One of:
 `keep` | `redirect-to-docsearch` | `redirect-to-nsidc` | `both-corpora`
 
-- routing: 
+- routing: keep
 
 ## Human truth (the actual right answer)
 
@@ -54,8 +54,8 @@ or if you want to override what's correct.
 Repeat any field on a new `- field: value` line for multiple values.
 
 - corpus: 
-- url: 
-- section: 
+- url: https://docs.slideruleearth.io/user_guide/icesat2.html#atl06-atl06x https://docs.slideruleearth.io/user_guide/icesat2.html#atl06-sr-algorithm
+- section: ATL03 Atl06-SR Algorithm
 - pages: 
-- notes: 
+- notes: The query is misleading/ because atl06x doesn't allow control of surface fit algorithm alt06-SR does.
 
