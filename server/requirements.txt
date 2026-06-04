@@ -9,5 +9,5 @@ pydantic>=2.13.3
 # Pin until the regression is fixed upstream; track the cp313 arm64 wheel
 # availability when bumping.
 onnxruntime==1.26.0
-tokenizers>=0.20.0
+tokenizers>=0.23.1
 numpy>=1.24.0
