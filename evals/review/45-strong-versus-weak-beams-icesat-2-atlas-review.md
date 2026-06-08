@@ -26,23 +26,23 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 **nsidc:**
 
 - r1: partial
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r2: correct
+- r3: partial
+- r4: partial
+- r5: partial
 
 ## Overall verdict
 
 One of: `correct` | `partial` | `wrong`
 
-- overall: 
+- overall: correct
 
 ## Cross-corpus routing
 
 Should this query target a different corpus? One of:
 `keep` | `redirect-to-docsearch` | `redirect-to-nsidc` | `both-corpora`
 
-- routing: 
+- routing: keep
 
 ## Human truth (the actual right answer)
 

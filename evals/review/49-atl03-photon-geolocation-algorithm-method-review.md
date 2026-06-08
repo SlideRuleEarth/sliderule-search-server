@@ -17,19 +17,19 @@ Mark each result `correct`, `partial`, or `wrong`. Leave blank to skip.
 
 **docsearch:**
 
-- r1: 
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r1: wrong
+- r2: wrong
+- r3: wrong
+- r4: wrong
+- r5: wrong
 
 **nsidc:**
 
-- r1: 
-- r2: 
-- r3: 
-- r4: 
-- r5: 
+- r1: partial
+- r2: partial
+- r3: wrong
+- r4: partial
+- r5: wrong
 
 ## Overall verdict
 
@@ -57,5 +57,6 @@ Repeat any field on a new `- field: value` line for multiple values.
 - url: 
 - section: 
 - pages: 
-- notes: 
+- notes: ATL03g is the correct document and it is not in the corpus
 
+wrong
